@@ -1,0 +1,1858 @@
+**************************************************************
+1. What language Kubernetes is developed
+**************************************************************
+	GoLang
+	
+**************************************************************	
+2. What is Kubernetes?
+**************************************************************
+	Docker is a Image Building, storing and container creation technology but k8s is container orchestration technology.
+	At one point of time it becomes very difficult to manage docker containers spanning over multiple hosts.
+	So we need Kubernetes for below aspects:
+	AutoScaling Networks
+	High Availability
+	Reliability Self Healing
+	Storage Mechanism
+	Roles based access Control
+	Docker Swarm has a lots of manual intervention for maintainance. 
+	Docker relies on single Host
+	Enterprise level sopports like access and load balancing black listing
+	cluster architechture
+	
+**************************************************************	
+3. What is Cluster
+**************************************************************
+	Group of Nodes. Master and Worker Nodes. Pods can be randomly distributed in Clusters
+
+**************************************************************
+4. Why dockers standalone not user is Prod
+**************************************************************
+	Because its not an enterprise solution, due to shortcomings listed in Point1	
+
+**************************************************************	
+5. What is k8s alternative to LoadBalancing
+**************************************************************
+	Ingress		
+
+**************************************************************	
+6. What is components of Worker Node
+**************************************************************
+	kubelet -- is like docker shim that provides runtime for running pods if the pod fails it will take necessry action by informing one of the
+	component in master node 
+	Container Runtime -- like Docker for running containers
+	kubeproxy --provides ip address to pods and helps in load balancing of network traffic, it uses IP Tables of host machine for networking 
+
+**************************************************************	
+7. What is components of Master Node
+**************************************************************
+	API Server -- exposes cluster to external world, it decides action
+	Scheduler -- to schedule a pod in available worker node , it performs action
+	etcd --name value pair database that stores entire cluster information
+	controller manager -- helps in auto scaling eg replicasets, there has to be some components that keeps checking desired no of requested pods are
+	running , actual and desired state of pods are always maintained 
+	ccm(cloud controller manager ) -- suppose we want some actions from host cloud maching like gke, azure,  this is open source libraries that cloud
+	people has to code which can understand instutions like from now load balancing to be done from host machine. no need of this on premise. Interaction Interface with Cloud Host
+
+**************************************************************
+8. What is Kubectl
+**************************************************************
+	Kubectl is k8s commandline to interact with k8s cluster	like in docker we have docker cli
+
+*************************************************************
+Q9. In GCP where to create new VMs and check billing?
+**************************************************************
+Ans:	https://console.cloud.google.com/compute/instances?onCreate=true&project=vocal-vigil-397605
+		https://console.cloud.google.com/billing/012FD3-91E6A7-0F5C10/credits
+	
+		Master node - 1 cpu x 2 GB memory -- debian
+		Worker node - 2 cpu x 2 GB memory -- debian
+		Client node - 2 cpu x 2 GB memory -- debian
+		
+**************************************************************
+Q10. In GCP how to operate above created Vms from wincsp or local ssh
+**************************************************************
+Ans:	Following steps are needed 
+		1. first create ppk file signature file local machine 
+			1.1 Local SSH SetUp
+			1.2 Open C:\Program Files\PuTTY
+			1.3 you will find puttygen.exe
+			1.4 Change the name to kunalshrivastava.cloud1@gmail.com  in key comment 
+			1.5 Generate pulic and private keys in ppk file
+			1.6 Give some passcode also 
+		2. Copy and Add rsa string in google cloud console in SSH
+		3. In winscp  select the external ip address
+		4. In authentication give the private key as ppk
+		5. now in ssh bith unix promp and file trasnfer can be done easily
+		
+**************************************************************
+Q11. What are the steps to be done on both Master and Worker Node for K8s Cluster creation?
+**************************************************************
+Ans:	Overall there are 2 things to be taken care of :
+		a) at OS level turn off swap and nodes should be on same network and interping can happen using respective hostname
+			Step (a1) Turn off Swap -- so that processes mainly runs in memory.  else installation fails. since k8 relies mainly in-memory operations
+				sudo su -
+				apt-get update -- so that update repository catche
+				swapoff -a
+				Step (a2) Comment swap FS from /etc/fstab -- NOT required in cloud, only for oracle virtual box or vmware
+				vi /etc/fstab
+				Comment any line that has swap written	
+			Step (a3) just check if below command is working then no need of step 4 and 5
+				ping workernode	
+			Step (a4) Edit /etc/hostname and add hostname to match the host of your choice no need for cloud
+			Step (a5) Get private ip address of all hosts
+				ip addr
+			Step (a6) Edit /etc/hosts to add hostname and IP address on all nodes
+				vi /etc/hosts
+				ping -c1 worker
+				ping -c1 master
+				kmaster 192.168.0.2  -- private IP address from previous step
+				knode1  192.168.0.3  -- provate IP address from previous step
+		
+		b) Installation steps for kubelet kubeadm kubectl
+			Step (b1) This installs curl so that in next steps we are able to download .gpg key for verification of k8s binaries
+				This does comparison of hash values of downloaded binaries and package manager from where we downloaded k8s-installation-kubeadm
+				apt-get update && apt-get install -y apt-transport-https curl
+				curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+			Step (b2) below will add reporitory location of k8s so that when we run apt-get command it will check the binaries vs repository 		location using gpg keys. gpg keys will be used for authenticating the download location
+				cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+				deb https://apt.kubernetes.io/ kubernetes-xenial main
+				EOF
+				apt-get update
+			Step (b3) this will update all we did and will update the current apt get repositories with latest repositories details
+				apt-get install -y kubelet kubeadm kubectl
+				apt-mark hold kubelet kubeadm kubectl
+				no need to run as this will make sure kubelet kubeadm kubectl are not getting updated
+		C) Installation steps for docker-ce docker-ce-cli containerd.io
+			sudo apt-get update
+			sudo apt-get install -y \
+			apt-transport-https \
+			ca-certificates \
+			curl \
+			gnupg-agent \
+			software-properties-common
+			curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+			sudo add-apt-repository \
+			"deb [arch=amd64] https://download.docker.com/linux/debian \
+			$(lsb_release -cs) \
+			stable"
+			sudo apt-get update
+			sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
+**************************************************************
+Q12. What are the steps to be  be performed ONLY ON MASTER NODE
+**************************************************************
+Ans: We have to initialize the cluster from Master Node using sudo kubeadm init command
+	Step 1) Get the IP address of master
+		ip addr
+		10.182.0.2/32
+
+	Step 2) Initialize the cluster
+
+		sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.2 
+
+		by saying this 192.168.0.0/16 we are pre declaring subnet in config that will be imeplemeted by cni, this should be different than 
+		subnet of host which might be fine for dev bit not for prod.
+		if above fails saying containerd not running (means there is issue with OS installed and cri demon needs to be started) then install containerd as shown below,
+		sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installCRIDockerd.sh -P /tmp
+		sudo chmod 755 /tmp/installCRIDockerd.sh
+		sudo bash /tmp/installCRIDockerd.sh
+		change from vi cntos to debian
+		sudo systemctl restart cri-docker.service
+
+		sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.2
+		post this master node setup should start with below message
+##############################################################################################################################
+				Your Kubernetes control-plane has initialized successfully!
+
+				To start using your cluster, you need to run the following as a regular user:
+
+				  mkdir -p $HOME/.kube
+				  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+				  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+				Alternatively, if you are the root user, you can run:
+
+				  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+				You should now deploy a pod network to the cluster.
+				Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+				  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+				Then you can join any number of worker nodes by running the following on each as root:
+
+				kubeadm join 10.182.0.2:6443 --token 6dug91.9da0hkmdr1j366bs \
+						--discovery-token-ca-cert-hash sha256:1327ad20cd127d8b1b1895ada5d746eadf07dad5ed83aa377f066c662f37a28f
+##############################################################################################################################
+		Preserve the above output as it contains the token required for node configuration.
+
+	Step 3) Copy over the configuration files. this is creating a .kube directory and coping config files
+
+		mkdir -p $HOME/.kube
+		sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+		sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+	Step 4) Install Networking component (CNI) container networking interface or kind of network tunneling overlay and establishing 
+	private networks get this from kubernetes.io
+
+		kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml
+
+
+**************************************************************
+Q13. What are the steps to be  be performed ONLY ON WORKER NODE
+**************************************************************
+
+	Step 1) Join the worker node. The output of the kubeadm init command will provide the kubeadm join as its output. Run the kubeadm join command on the worker nodes.
+
+
+		kubeadm join 10.182.0.2:6443 --cri-socket unix:///var/run/cri-dockerd.sock --token 6dug91.9da0hkmdr1j366bs \
+				--discovery-token-ca-cert-hash sha256:1327ad20cd127d8b1b1895ada5d746eadf07dad5ed83aa377f066c662f37a28f
+
+		The output will be as below
+
+			This node has joined the cluster:
+			* Certificate signing request was sent to apiserver and a response was received.
+			* The Kubelet was informed of the new secure connection details.
+
+			Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+		root@master:~# kubectl get pods -o wide --all-namespaces
+		NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE   IP               NODE     NOMINATED NODE   READINESS GATES
+		kube-system   calico-kube-controllers-5f94594857-h4fw8   1/1     Running   0          12m   192.168.219.66   master   <none>           <none>
+		kube-system   calico-node-6mxjl                          1/1     Running   0          12m   10.128.0.13      master   <none>           <none>
+		kube-system   calico-node-qbbvf                          1/1     Running   0          10m   10.128.0.14      node1    <none>           <none>
+		kube-system   coredns-787d4945fb-lrzfc                   1/1     Running   0          35m   192.168.219.67   master   <none>           <none>
+		kube-system   coredns-787d4945fb-rm75t                   1/1     Running   0          35m   192.168.219.65   master   <none>           <none>
+		kube-system   etcd-master                                1/1     Running   0          36m   10.128.0.13      master   <none>           <none>
+		kube-system   kube-apiserver-master                      1/1     Running   0          36m   10.128.0.13      master   <none>           <none>
+		kube-system   kube-controller-manager-master             1/1     Running   0          36m   10.128.0.13      master   <none>           <none>
+		kube-system   kube-proxy-4678m                           1/1     Running   0          35m   10.128.0.13      master   <none>           <none>
+		kube-system   kube-proxy-j7668                           1/1     Running   0          10m   10.128.0.14      node1    <none>           <none>
+		kube-system   kube-scheduler-master                      1/1     Running   0          36m   10.128.0.13      master   <none>           <none
+
+		root@node1:~# ip addr
+		1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+			link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+			inet 127.0.0.1/8 scope host lo
+			   valid_lft forever preferred_lft forever
+			inet6 ::1/128 scope host 
+			   valid_lft forever preferred_lft forever
+		2: ens4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1460 qdisc mq state UP group default qlen 1000
+			link/ether 42:01:0a:80:00:0e brd ff:ff:ff:ff:ff:ff
+			inet 10.128.0.14/32 scope global dynamic ens4
+			   valid_lft 2066sec preferred_lft 2066sec
+			inet6 fe80::4001:aff:fe80:e/64 scope link 
+			   valid_lft forever preferred_lft forever
+		3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+			link/ether 02:42:fa:48:56:af brd ff:ff:ff:ff:ff:ff
+			inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+			   valid_lft forever preferred_lft forever
+		4: tunl0@NONE: <NOARP,UP,LOWER_UP> mtu 1440 qdisc noqueue state UNKNOWN group default qlen 1000
+			link/ipip 0.0.0.0 brd 0.0.0.0
+			inet 192.168.166.128/32 scope global tunl0
+			   valid_lft forever preferred_lft forever
+
+
+**************************************************************
+Q14. What are the steps to be  be performed ONLY ON CLIENT NODE
+**************************************************************
+Ans: At client Node only kubectl is needed and copy tha /.kude/config file from Master to client.
+	Thats it now  all kuectl commands should work
+
+**************************************************************
+Q15. Need to know more on k8s security? 
+**************************************************************
+Ans: Below are the useful GitHub Links:
+	https://github.com/hub-kubernetes/cka-exam/blob/master/Extra%20Content/Multi-Master%20Setup/README.md
+	https://github.com/lerndevops/educka/blob/master/7-security/security.pdf
+	When we run anything from kubectl, it first refers to the .kube directory for configs and certs.
+	we have 9 certs in total in which cert of ca and client are important , both this work together.
+	ca means certification authority
+**************************************************************
+16.	What is RBAC / ROLE BASED ACCESS CONTROL?
+**************************************************************
+	RBAC can be implemented in 2 ways
+	Users Access Control -- who all can login Dev, QA and with what extact roles
+	Service Account Access Control : Means what all access a Pod can have like configmap, scerets, apiservers etc
+	
+	Highlevel 3 things are there for rbac
+	service accounts / Users`
+	roles / clusterroles
+	role binding / crb
+
+	Custom Reserces Defination
+	Custom Resources
+	Custom Controllers
+
+
+**************************************************************
+Q17. How to get Nodes details? 
+**************************************************************
+	kubectl get nodes
+	kubectl describe node master
+	its shows all static data fetched from etcd and the dymatic data here comes from  inmemory storage
+	kubectl get nodes master -o wide
+	kubectl get nodes master -o yaml
+	kubectl get nodes master -o jason
+	kubectl get nodes worker1 -o wide
+	kubectl get nodes worker1 -o yaml
+	kubectl get nodes worker1 -o jason
+
+
+**************************************************************
+Q18. What is NAMESPACE? 
+**************************************************************
+Ans:In Kubernetes namespace is a logical isolation of resources, network policies, rbac(role based access control) and everyhing
+	for example 2 projects using same k8s cluster one can use ns1 and other can use ns2 without any overlap and authentication problem
+	namespaces are boundary of my cluster implimentation
+	following 3 name space are create by k8 by itself
+	kube-system -- never use this ns its for system
+	get pods -n kube-system
+	kube-node-lease is used by kubelet to send healthcheck and node check info between servers
+	kube-public-- means global pods, these can be accessed from any ns
+	all pods are created in default namespace if not specified, its primary ns
+	kubectl get pods -o wide --all-namespaces
+	kubectl get namespaces
+	kubectl create namespace project1
+	#creates new namespace to isolate apps
+	#allows to divite pods in logical groups eg. prod dev qa etc...intra namespace pods cannot communicate
+	kubectl get pods -n project1
+	kubectl get namespace project1
+
+
+
+	
+
+**************************************************************
+Q19. What is PODS
+**************************************************************
+
+Pods are the smallest deployable units of computing that you can create and manage in Kubernetes
+A Pod models an application-specific "logical host": it contains one or more application containers which are relatively tightly coupled. In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to cloud applications executed on the same logical host.
+
+Ans: Wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
+	standardized by writing these all container specifications in yaml file and passing it in kubectl. in a pod yaml we give api version and specs ofall containers to be made.
+	advantage is kube proxy assign single cluster ip to each pod and all containers in side a pod can share common network and storage. common network means they can interact with each other using localhost followed by port.
+	
+its wrapper around containers.
+docker implement cont, but for k8 to intertact and manage we need this wrapper
+so that  scaling , resource assigment and other management can be done by k8s
+pod can wrap single and multiple conts both.
+it can behave as a single vm for multiple conts
+mutiple Pods patterns are available.
+
+ambasador
+sidecar -- 2 containers -- primary is nginx which reads what secondary writes
+adaptor -- 2 containers -- primary is nginx which writes what secondary reads
+
+got to
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/
+see wrkloads
+
+yaml files have 3 data strucature
+arrry dictionary and scaler
+just go to pods vi core in left side to see yaml file needed for pods
+
+straight forward fields are given
+if something is string then scaler
+else put enter and 2 spaces
+for lables and name value keyvalue pair is allowed
+when object is there it means dictionary
+container is any array as writtten there, which starts from hyphen -
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+
+create vi myfirstpod.yaml
+root@master:~# cat myfirstpod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels:
+    typeofapp: webserverapp
+    version: bdsds
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginxcontainer
+https://kubernetes.io/docs/concepts/workloads/pods/
+kubectl create -f myfirstpod.yaml
+kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
+
+root@master:~# kubectl create -f myfirstpod.yaml
+pod/myfirstpod created
+root@master:~# kubectl get pods
+NAME         READY   STATUS    RESTARTS   AGE
+myfirstpod   1/1     Running   0          26s
+root@master:~# kubectl get pods -o wide
+NAME         READY   STATUS    RESTARTS   AGE   IP                NODE    NOMINATED NODE   READINESS GATES
+myfirstpod   1/1     Running   0          37s   192.168.166.129   node1   <none>           <none>
+
+
+this got created in dafault ns since we didnt mentioned anything
+it got ip from subnet we defined
+root@master:~# curl 192.168.166.129
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+if this not works from master then firwall might be issue, you need to run sam
+kubectl describe pods myfirstpod
+Name:             myfirstpod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/10.128.0.14
+Start Time:       Sat, 18 Feb 2023 14:54:12 +0000
+Labels:           typeofapp=webserverapp
+                  version=bdsds
+Annotations:      cni.projectcalico.org/containerID: 251d64961018fff86a33ded486c142db6e096a45258cdb1653f2134aaf24c8ff
+                  cni.projectcalico.org/podIP: 192.168.166.129/32
+                  cni.projectcalico.org/podIPs: 192.168.166.129/32
+Status:           Running
+IP:               192.168.166.129
+IPs:
+  IP:  192.168.166.129
+Containers:
+  nginxcontainer:
+    Container ID:   docker://1a7a3deafa5bbf514b0206ff7ee63fb76da63370f3770543bc5c2abef851f267
+    Image:          nginx:latest
+    Image ID:       docker-pullable://nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 18 Feb 2023 14:54:19 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-vxkbn (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-vxkbn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  17m   default-scheduler  Successfully assigned default/myfirstpod to node1
+  Normal  Pulling    17m   kubelet            Pulling image "nginx:latest"
+  Normal  Pulled     17m   kubelet            Successfully pulled image "nginx:latest" in 5.054469189s (5.054478011s including waiting)
+  Normal  Created    17m   kubelet            Created container nginxcontainer
+  Normal  Started    17m   kubelet            Started container nginxcontainer
+
+
+
+see containers and events ip sections
+now see 
+kubectl get pods myfirstpod -o yaml
+you will see status and other infos updated by k8s
+
+-o jason also works
+ read abount emptydir volume and hostpath
+
+
+
+**************************************************************
+Q20. What is VOLUMES
+**************************************************************
+
+emptydir --  inmememory volume which exists till pods lasts, highly suidable for sidecar pattern pods
+where one container writes and the other reads and permanent physical storage really not needed,
+so mostly suits when 2 continers shares volume in container
+
+hostpath -- is used when we want to mount physical directory to a pod
+
+
+demo --side car pod and emptydir pod and adapterpod.yaml
+
+https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/multicontainerpod
+
+cat sidecar.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mc1
+spec:
+  volumes:
+  - name: html
+    emptyDir: {}
+  containers:
+  - name: 1st
+    image: nginx
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: 2nd
+    image: debian
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - while true; do
+          date >> /html/index.html;
+          sleep 1;
+        done
+
+volumeMounts tells about inside pod directory
+name can be anything like html or html2
+if mountPath doesnot exists k8s will create it inside container
+so html directory will be created as hash , you can see same inside /var/lib/docker/overlay2
+just brush up docker knowledge for this 
+we just have to make sure that mountPath: /usr/share/nginx/html and mountPath: /html points to same emptydir thats why we given exact same name to volumn in both container level and pod level
+  volumes:
+  - name: html
+    emptyDir: {}
+
+
+and volume tells about the physical storage in vm
+
+
+root@master:~# kubectl get pods
+NAME         READY   STATUS    RESTARTS       AGE
+mc1          2/2     Running   0              16s
+myfirstpod   1/1     Running   1 (145m ago)   3h
+
+2/2 here means 2 containers are running inside pods
+
+now go to 
+kubectl exec -it mc1 bash -c 2nd
+cd html and see index file 
+kubectl exec -it mc1 bash -c 1st
+cd /usr/share/nginx/html
+and see index file 
+
+kubectl get pods -o wide
+curl 192.168.166.131
+
+kubectl delete pods myfirstpod
+kubectl delete pods mc1
+
+**************************************************************
+Q21 What is INIT CONTAINERS
+**************************************************************
+
+init containers--they run as prerequisite to start a pod
+like when we install a software we have to make sure its dependency in place
+like change in kernal params, firewallwport, 
+specialised multi container pod which waits will initi cont are successfull then only primary containers start
+as long as init cont are running primary cannot start
+
+demo
+https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/initcontainers
+
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: initcontainerdemo
+spec:
+  initContainers:
+    - name: init1
+      image: busybox
+      command: ["/bin/sh","-c"]
+      args: ["mkdir /nginxmount; echo This is coming from initcontainer > /nginxmount/index.html"]
+      
+      volumeMounts:
+        - name: nginxmount
+          mountPath: /nginxmount
+
+
+  containers:
+    - name: nginx 
+      image: nginx 
+      volumeMounts: 
+        - name: nginxmount
+          mountPath: /usr/share/nginx/html
+
+  volumes:
+    - name: nginxmount
+      hostPath:
+        path: /nginx
+        type: DirectoryOrCreate
+
+
+busybox is light weight ubuntu image, in this case both hostpath and emptydir can work please note
+
+root@master:~# kubectl get pods
+NAME                READY   STATUS    RESTARTS   AGE
+initcontainerdemo   1/1     Running   0          2m44s
+root@master:~# kubectl describe pods initcontainerdemo
+Name:             initcontainerdemo
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/10.128.0.14
+Start Time:       Sat, 18 Feb 2023 18:34:21 +0000
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 95e42a2a937768e30817f32e015f366ab02274a9ccc226a2678052319930f763
+                  cni.projectcalico.org/podIP: 192.168.166.132/32
+                  cni.projectcalico.org/podIPs: 192.168.166.132/32
+Status:           Running
+IP:               192.168.166.132
+IPs:
+  IP:  192.168.166.132
+Init Containers:
+  init1:
+    Container ID:  docker://4792c02f0befa3bed3046c71337450c8c8b7aec53f4271c695c42f0808c004d9
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:7b3ccabffc97de872a30dfd234fd972a66d247c8cfc69b0550f276481852627c
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+    Args:
+      mkdir /nginxmount; echo This is coming from initcontainer > /nginxmount/index.html
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sat, 18 Feb 2023 18:34:24 +0000
+      Finished:     Sat, 18 Feb 2023 18:34:24 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /nginxmount from nginxmount (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-g2vbw (ro)
+Containers:
+  nginx:
+    Container ID:   docker://585267cf9a92f24d8ed75d335b5194c0628813dc87cd41297bcd9229b5a7bd34
+    Image:          nginx
+    Image ID:       docker-pullable://nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 18 Feb 2023 18:34:25 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /usr/share/nginx/html from nginxmount (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-g2vbw (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  nginxmount:
+    Type:          HostPath (bare host directory volume)
+    Path:          /nginx
+    HostPathType:  DirectoryOrCreate
+  kube-api-access-g2vbw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  3m7s  default-scheduler  Successfully assigned default/initcontainerdemo to node1
+  Normal  Pulling    3m6s  kubelet            Pulling image "busybox"
+  Normal  Pulled     3m5s  kubelet            Successfully pulled image "busybox" in 1.248102173s (1.248165212s including waiting)
+  Normal  Created    3m4s  kubelet            Created container init1
+  Normal  Started    3m4s  kubelet            Started container init1
+  Normal  Pulling    3m4s  kubelet            Pulling image "nginx"
+  Normal  Pulled     3m4s  kubelet            Successfully pulled image "nginx" in 349.252136ms (349.267761ms including waiting)
+  Normal  Created    3m4s  kubelet            Created container nginx
+  Normal  Started    3m3s  kubelet            Started container nginx
+root@master:~# 
+
+if u see since init container success is there thats why second pod started
+in node1
+root@node1:~# ls -lrtad /nginx
+drwxr-xr-x 2 root root 4096 Feb 18 18:34 /nginx
+root@node1:~# 
+root@node1:~# cd /nginx
+root@node1:/nginx# ls
+index.html
+root@node1:/nginx# cat index.html
+This is coming from initcontainer
+
+**************************************************************
+Q22. Why to we need Services	
+**************************************************************
+	service is the component in k8s which as load balancer by using kube proxy. scenarios where a pod is retarted by replicasets to ensure actual and desired state its ip address changes so service has to be made on top so that access can be made reliable
+	services does service discovery by lables and selectors to avoid keeping track of ip addreses, because rs always recreates pods with same labels
+	service also expose to external world 
+	3 types of service
+	1. nodeport -- only people having of node ip, i.e same organization or lan
+	2. clusterip -- default behaviour , pods are only accessable inside cluser ssh
+	3. load balancer -- external world, provides public ip address , here ccm will give the public ip address to k8s  cluster
+	3 things services does
+		1. load balancing
+		2. Service discovery
+		3. expose
+
+
+*******************************************
+Q23. What are kubernetes -- labels and selectors
+*******************************************
+
+root@master:~# kubectl get pods --show-labels
+NAME                READY   STATUS    RESTARTS   AGE   LABELS
+initcontainerdemo   1/1     Running   0          10m   <none>
+root@master:~# kubectl label pod initcontainerdemo app=initcontainerdemo
+pod/initcontainerdemo labeled
+root@master:~# kubectl get pods --show-labels
+NAME                READY   STATUS    RESTARTS   AGE   LABELS
+initcontainerdemo   1/1     Running   0          11m   app=initcontainerdemo
+
+so label can be any key value pair like state=maharastra
+
+root@master:~# kubectl label pod initcontainerdemo aapp=initcontainerdemoa
+pod/initcontainerdemo labeled
+root@master:~# kubectl get pods --show-labels
+NAME                READY   STATUS    RESTARTS   AGE   LABELS
+initcontainerdemo   1/1     Running   0          14m   aapp=initcontainerdemoa,app=initcontainerdemo
+
+root@master:~# kubectl get pods --selector=app=initcontainerdemo
+NAME                READY   STATUS    RESTARTS   AGE
+initcontainerdemo   1/1     Running   0          16m
+
+
+label can be assigned to any resource in k8 and selector can select the pod with help  of labels
+
+even nodes are assigned labels
+initcontainerdemo   1/1     Running   0          20m   aapp=initcontainerdemoa,app=initcontainerdemo
+root@master:~# kubectl get nodes --show-labels
+NAME     STATUS   ROLES           AGE   VERSION   LABELS
+master   Ready    control-plane   12h   v1.26.1   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=master,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=
+node1    Ready    <none>          12h   v1.26.1   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node1,kubernetes.io/os=linux
+root@master:~# 
+
+so we can label namespaces also 
+
+
+*******************************************
+Q24 kubernetes services
+*******************************************
+
+if namespace is same then if you go inside a pod using exec command we can ping other pod's ip address but not podnames
+which is not good for implementation , since if pod dies ip address changes
+
+so to make this dns management inside a namespace easy we need services
+
+now that kube-proxy comes to picture and coredns also
+kubectl get pods -n kube-system
+only thing that exists inside vm with binaries are pods else all stuffs like services namespace are physical configuration file
+	service is resource in k8s at cluster level config file
+	service never dies
+	sevice will have same ip always and points to pods using lebels
+	even if u scale pods but have same label their ip will remain same because of service
+	endpint -pod ip address
+	service hence loadbance using round robin algo
+	
+	demo
+	delete all pods
+
+root@master:~# kubectl delete pods --all
+pod "initcontainerdemo" deleted
+	
+	
+https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%202/Services	
+
+first add label run: nginx to any running pod 
+
+vi service.yaml 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-clusterip
+spec:
+  selector:
+    typeofapp: webserverapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+
+OR
+
+kubectl expose deploy nginx --port=80 --type=ClusterIP --name=nginx-clusterip
+	
+here port means what will be the port which the service will take request for that pod
+targetPort: 80 is at pod level, for nginx its 80 and tomcat 8080
+ port: 80 is service port
+ 
+run 
+kubectl create -f service.yaml 	
+kubectl get services
+you will see service got automatic ip address
+which is not part of assigmed cluster
+kuvectl describe service nginx-clusterip
+you see an end pont with podip and port
+ kubectl get endpoints 
+ now curl nginx-clusterip will works since service dns name is assigned to pod ip, but run this inside a pod
+ kubectl exec -it myfirstpod bash 
+ apt-get update && apt-get install -y curl
+ this will work from any vm now with ip address
+
+20-feb class 5
+
+ 
+ services acts as load balancersnot just this also helps for internally routable managed ip address, which is not part of kluster wifi
+ just within the cluster pods are accesable thats why is clusterip
+ 
+opposite of cluterip is nodeport or loadblancer svc , this will allow my pods to be accessable outside the cluster
+so that post port mapping we can use curl vmip:port
+nodeprt service provides externally routable ip address 
+
+
+demo
+kubectl run nginx --image=nginx 
+this is quick and dirty way to create pods , dont use in prods
+kubectl get pods --show-labels
+kubectl get pods --o wide
+kubectl expose deploy nginx --port=8080 --type=ClusterIP --name=nginx-clusterip
+ here expose creates service --port=80 is port assigned to service 
+ kuvectl get svc 
+ kubectl edit svc nginx
+ 
+ see the ports section 
+ edit target port to 80
+ now curl ipaddr:port
+ if you change it to 80 then no need to user :port in curl command as by default the port is running in port 80
+ 
+ 
+ nodeport
+ kubectl expose deploy nginx --port=80 --type=NodePort --name=nginx-nodeport
+ kuvectl get svc 
+ you will see port is mapped--port ranges from 30000-32767
+ kuvectl get nodes
+ curl kmaster:31358 will works
+ curl kworker:31358 will works 
+ even from local brower it will work with external ip address
+ but mosty kubernates have load bancer in fornt in most of architecture
+ which is given by 3rd party
+ 
+ 
+ loadbalancer:
+ this service only exists in clould providers
+ 
+ kubectl expose deploy nginx --port=80 --type=LoadBalancer --name=nginx-lb
+ kuvectl get svc 
+ you will see port is mapped--port ranges from 30000-32767
+ kuvectl get nodes
+ curl kmaster:31358 will works
+ curl kworker:31358 will works 
+ even from local brower it will work with external ip address
+ 
+ you will see ecternalip in pending state
+ get the external ip address(this will only populate if you run this on gcloud cmd prompt refer the self managed clusters)
+ with this curl command will work for port given 
+ 
+ 
+ scheduling 
+ we need to schedule pods based on node configs
+ foor eg pods linke db should had good ssd
+ pods like mls should have good compute/instances
+ and we should avoid pods getting scheduled in one single vm
+ 
+ kubectl get pods -n kubesystems
+ kubectl delete pods kube-apis.. -n kubesystems 
+ kubectl get pods -n kubesystems
+
+u see this is restarted on exact same node
+some one is ensuring
+recreate
+same node
+kubelet is always goinf to reschedule any thing present in /etc/kubernates/manifests/*yaml
+this location is governed by kubelet 
+so any yaml file i place here will automatically gets triggered deom here
+just vi nginx.yaml and save here and see get pods
+this is called as manual scheduling 
+
+nodeselector scheduling 
+we asssign some labels to node
+https://github.com/hub-kubernetes/cka-exam/blob/master/Module%20-%202/Scheduling/nodeselector/nginx-nodeselector.yaml
+
+vi nodeselector.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    app: frontend
+ 
+kubectl get nodes --show-labels
+kubectl label node worker1 app=frontend
+ kubectl create -f nginx-nodeselector.yaml
+kubectl get pods -o wide 
+ kubectl edit node worker1
+
+Remove the entry app=frontend from .metadata.labels section and save the node config.
+kubectl create -f nginx-nodeselector.yaml
+kubectl get pods 
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   0/1     Pending   0          7s
+
+
+nodeaffinity
+kubectl label node worker1 zone=us-central-1
+
+	kubectl label node worker2 zone=eu-west-1
+
+	kubectl label node worker2 drbackup=europe
+
+kubectl get nodes worker1 worker2 --show-labels
+As you can see our labels are now added. Lets now look at the hard and soft rules provided by nodeAffinity.
+
+NodeAffinity.RequiredDuringSchedulingIgnoredDuringExecution - rule is “required during scheduling” but has no effect on an already-running Pod.
+
+NodeAffinity.PreferredDuringSchedulingIgnoredDuringExecution - rule is “preferred during scheduling” but likewise has no effect on an already-running Pod.
+
+so basically this is set based selector, which first asks whhat are the opions and then what is preferance.
+if preferance is not meat then also its fine
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: zone
+            operator: In
+            values:
+            - us-central-1
+            - eu-west-1
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: drbackup
+            operator: In
+            values:
+            - europe
+kubectl create -f nginx-nodeaffinity.yaml 
+
+kubectl get pods -o wide
+NAME                  READY   STATUS    RESTARTS   AGE   IP              NODE     NOMINATED NODE   READINESS GATES
+nginx-affinity-node   1/1     Running   0          6s    192.168.2.204   worker2   <none>           <none>
+
+
+podaffinity and podantiafinity--means that scheduler will schedule the pod where the some existing pods are present or not present respectively.
+use case --if we give 3 replicas of pod and want to make sure all in different nodes then we put podantiaffinity as pod label
+so here we give the requirements and preference at pod level not node level
+antiaffinity doesnot exists for nodes
+
+kubectl create -f redis-cache.yaml
+
+kubectl get pods --show-labels -o wide 
+NAME                           READY   STATUS    RESTARTS   AGE   IP             NODE     NOMINATED NODE   READINESS GATES   LABELS
+redis-cache-7d6d684f97-s7zrb   1/1     Running   0          48s   192.168.1.27   worker1   <none>           <none>            app=cache
+We will now deploy another redis pod with the label - app=web-cache which denotes that this redis deployment will server only web traffic. The nodeselector on redis-cache-web is set as worker2, basically any node on which our previous deployment doesnt run.
+
+	kubectl create -f redis-cache-web.yaml
+
+kubectl get pods -owide 
+NAME                               READY   STATUS    RESTARTS   AGE     IP              NODE     NOMINATED NODE   READINESS GATES
+redis-cache-7d6d684f97-s7zrb       1/1     Running   0          5m58s   192.168.1.27    worker1   <none>           <none>
+web-redis-cache-856b7bc58b-ksf7t   1/1     Running   0          9s      192.168.2.210   worker2   <none>           <none>
+
+We will now deploy a dummy application that will have both - affinity and antiaffinity as below -
+
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web-cache
+            topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - cache
+            topologyKey: "kubernetes.io/hostname"
+
+The above example says that - The application will not run on any node where any pod has a label - app=web-cache. All instances of the pod will always be colocated with the redis pod which has the label - app=cache.
+
+	kubectl create -f nginx.yaml
+
+Observations :
+
+kubectl get pods -o wide 
+NAME                               READY   STATUS    RESTARTS   AGE     IP              NODE     NOMINATED NODE   READINESS GATES
+redis-cache-7d6d684f97-s7zrb       1/1     Running   0          11m     192.168.1.27    worker1   <none>           <none>
+web-redis-cache-856b7bc58b-ksf7t   1/1     Running   0          5m13s   192.168.2.210   worker2   <none>           <none>
+web-server-f98668944-grtkv         1/1     Running   0          8s      192.168.1.30    worker1   <none>           <none>
+web-server-f98668944-rzmws         1/1     Running   0          8s      192.168.1.29    worker1   <none>           <none>
+web-server-f98668944-wzlsr         1/1     Running   0          8s      192.168.1.28    worker1   <none>           <none>
+
+taints-tolerations/toleration-pod.yaml
+https://github.com/hub-kubernetes/cka-exam/blob/master/Module%20-%202/Scheduling/taints-tolerations/toleration-pod.yaml
+
+
+
+kubectl get pods -o wide
+normally pods are not running in masters node  
+kubectl describe nodes kmaster
+see taints section--no schedule is written
+kubectl describe nodes knode1
+see taints section--blank is written
+kubectl taint node knode1 app=webserver:NoSchedule
+kubectl taint node knode2 app=db:NoSchedule
+kubectl get pods -o wide
+currently running pods still runs
+noe run a fresh new pod
+kubectl run nginx --image=nginx:latest
+kubectl get pods -o wide
+not this is pending
+kubectl describe pods nginx
+see the last message
+
+3 parameters
+NoSchedule
+PreferredNoSchedule
+NoExecute--already running pods will be removed or evicted  post some time interval param given 
+
+folloing yaml can be used to schedule pods on tainted nodes alsoapiVersion: v1
+kind: Pod
+metadata:
+ name: toleration-pod
+spec:
+ containers:
+ - name: nginx
+   image: nginx
+ tolerations:
+ - key: "scanner-app"
+   operator: "Equal"
+   value: "true"
+   effect: "NoSchedule"
+
+ deleting taint
+ kubectl taint node knode1 app:NoSchedule-
+ 
+ class6 21-feb
+ 
+ 16. What is ConfigMap?
+	for storing information that can be used in later point of time, db ports and environment variables. This can be mounted in cluster and resolves issue of manully logging side the containers and accessing data. this is saved in etcd , we can use volume mounts also in cofig here so that dynamic changes can immeditely come into effect
+	
+ secrets
+ sesitive data which is stored after decription in etcd, k8s also recommends to have strong rbac to access secrets
+ only thing that runs in clusters as binaries are pods rest every thing is configurations 
+ secrects are just key value pair that is stored inside etcd
+ and encryption happens inside etcd
+ in yaml ile we just write secret name and key 
+ secret is always stored in base64 encoding 
+ so first encoding happens then encryption happens
+ https://github.com/hub-kubernetes/cka-exam/blob/master/Module%20-%203/Controllers/secret.conf
+ 
+ kubectl create secret generic mysql-pass --from-literal=password=root
+ generic means opaque secret or encrpted secret
+ mysql-pass is name of secret
+ from-literal means what ever coming next is key value pair 
+ from-file can be used in case file is passed
+ root means actual value
+ kubectl get secret
+kubectl describe secret mysql-pass
+ kubectl get secret -o yaml
+here we see password in base64 encoded format
+echo <passwordtext> | base64 -d
+
+replicaset and replication controller
+
+9. Whats is ClusterIp
+	The ip that kubeproxy assign to Pods
+	
+11. Whats is Replicaset
+	Replicaset is a kubernetes controller that ensures desired and actual state is always same
+
+
+if we have 3 poads running there is no one who manages to bring up the one who dies
+controllers are superset of pods
+there are 2 types of controllers
+replicaset and replication controller--
+replicaset--set based selection so much more powerful way-- 
+replication controller--equality based selection --advantages of roll up and rollback stuffs
+deployment controller--- combination of above two provides much more granular way of contollers and 100 pct of cases we use this only
+replication controller
+https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%203/Controllers/replicationcontroller
+vi replicationcontroller.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-nginx
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+
+kubectl create -f replicationcontroller.yaml 
+
+kubectl get pods 
+ now try deleting once single pod
+ 
+kubectl delete pod aaa
+
+kubectl get pods 
+kubectl get rc  
+
+
+kubectl expose rc myrc --port=80 --type=ClusterIP
+kubectl get svc  
+kubectl describe svc musvc 
+kubectl get pods -o wide
+you see same sets of ip address (kubectl get svc  )
+curl aaaaaa
+this basically starts load balancing between all pods
+
+scalling
+kubectl scale rc myrc --replicas=10
+kubectl get pods -o wide
+
+now run curl command on service ip address i.e clusterip ()
+
+kubectl scale rc myrc --replicas=1
+kubectl get pods -o wide
+
+with vi change the yaml file for 10 replicates
+then
+kubectl apply -f filename.yaml
+this woll also serve the purpose
+
+replicset --28:19
+
+
+works on exact same way but cannot perform rolling-update with apply command and dynamic auto scaling
+
+https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%203/Controllers/replicaset
+
+lets create a pod before demo 
+here we are using the exact same secret we created before 
+note the label 
+
+vi mysql_rs1.yaml
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: mysql
+  labels:
+    app: mysql_1 
+spec:
+  containers:
+    - image: mysql:5.6
+      name: mysql
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+      ports:
+        - containerPort: 3306
+          name: mysql
+      volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: mysql-persistent-storage
+      hostPath:
+        path: /data
+        type: DirectoryOrCreate
+
+kubectl create -f mysql_rs1.yaml
+kubectl get pods --show-labels
+kubectl get rc
+kubectl delete rc myrc
+		
+in below whatever post metadata is copy paste of vi of above pod just label is changed 
+here we have used the set based selection
+matchexpression-- 3 imp things here key operator and value 
+so incase mysql_1 is remove replicaset wont rerun same since it doesnot have its defination, 
+it only be able to manage the pod mysql_2
+		
+		
+		
+vi mysql_rs2.yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: mysqlrs
+  labels:
+    app: mysql
+spec: 
+  replicas: 3
+  selector: 
+    matchExpressions:
+      - {key: app, operator: In, values: [mysql_1, mysql_2]}
+  template:
+    metadata:
+      name: mysql
+      labels:
+        app: mysql_2 
+    spec:
+      containers:
+        - image: mysql:5.6
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          emptyDir: {}
+		  
+kubectl create -f mysql_rs2.yaml
+kubectl get pods --show-labels
+kubectl get rs
+kubectl delete pods sql1
+kubectl get pods --show-labels
+kubectl create -f mysql_rs2.yaml
+kubectl get pods --show-labels
+it wont restart
+
+deployment controllers
+
+deployment controllers is superset of replicaset
+replicaset is superset of  Pods
+deployment controllers mainly rolling up updates and roll back in prod zones
+and autoscalable resources or Pods 
+it users both matchexpression adn match leabel bothit manages app lifesycle
+main things in yaml is replicates and updatetype
+	To achieve Auto Healing and AutoScaling Capabilities of Pods, zero down time .
+	Deployments always has replicasets which is handled by controller
+	so that given numbers of replicas are maintained even if i is killed auto healing will bring the other up
+
+https://github.com/hub-kubernetes/cka-exam/blob/master/Module%20-%203/Controllers/deployments/README.md
+
+vi app1.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app1
+  labels:
+    app: app1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      name: nginx-app1
+      labels:
+        app: app1
+    spec:
+      containers:
+        - name: app1
+          image: harshal0812/nginx-app1
+--no difference in above file from replicaset and equialisy based match is given 
+
+Create a deployment
+
+kubectl create -f app1.yaml --record
+
+Verify the deployment is complete
+
+kubectl get pods 
+
+NAME                          READY   STATUS    RESTARTS   AGE
+nginx-app1-56f7b66c7d-5vxk9   1/1     Running   0          10s
+nginx-app1-56f7b66c7d-bz4td   1/1     Running   0          10s
+nginx-app1-56f7b66c7d-vqpjg   1/1     Running   0          10s
+
+
+kubectl get deploy
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-app1   3/3     3            3           48s
+
+kubectl get rs
+see that some hasvalue is added 
+
+kubectl delete rs
+kubectl get rs
+
+rs restarted
+
+Verify the status of deployment
+
+kubectl rollout status deployment nginx-app1
+
+Expose the deployment as ClusterIP
+
+kubectl expose deploy nginx-app1 --port=80 --type=ClusterIP
+
+service/nginx-app1 exposed
+
+Verify successful creation of service
+
+kubectl get svc
+
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+nginx-app1   ClusterIP      10.101.30.208   <none>        80/TCP         24s
+
+curl 10.101.30.208
+
+You have reached app1
+
+Edit the same yaml file and add minReadySeconds  parameter and set it to 30 seconds
+Before - 
+
+spec:
+  replicas: 3
+  selector:
+  
+  After
+  
+spec:
+  replicas: 3
+  minReadySeconds: 30
+  selector:
+Apply the latest configuration
+kubectl apply -f app1.yaml 
+Verify minReadySeconds is available
+kubectl describe deploy nginx-app1 | grep -i minreadyseconds
+MinReadySeconds:        30
+Use command line to perform a rolling update
+kubectl set image deployments nginx-app1 app1=harshal0812/nginx-app2 
+Note - app1 = container name
+
+Verify that rollingUpdate happens in accordance with the minReadySeconds criteria.
+kubectl get pods 
+curl http://SERVICE_UP
+Check the history of all the deployments performed
+kubectl rollout history deployment nginx-app1
+Rollback to the last deployed version version
+kubectl rollout undo deployments nginx-app1
+Pause the rollout
+kubectl rollout pause deployment nginx-app1
+Resume the rollout
+kubectl rollout resume deployment nginx-app1
+
+see the strateggy sestion in yaml its imp 
+apply -f works here for rollong updates just we need to change the image name inside deploy yaml
+
+
+
+
+
+replicationcontrollerupdate.cmd
+
+kubectl rolling-update my-nginx --image=nginx:1.9.1
+
+
+
+22-feb class 7
+security in kubernetes
+kubeapi server provides below controls
+authentication
+authorization
+admission control
+
+authentication: k8s can use certificate, token , proxy
+
+to understand this first we need to create certificate
+there are 2 types of users
+and exists groups also
+root@masternode:~# kubectl get serviceaccount
+NAME      SECRETS   AGE
+default   0         3d6h
+so this is type of internal user which runs all internal k8 processes, like creating a pod etc
+every ns which is created by default a internal service account is created named "default"
+
+all these service account have authorzations
+so default is the first sa created fro all ns
+
+we can also create our own svc account by below command 
+root@masternode:~# kubectl create serviceaccount testsa
+serviceaccount/testsa created
+root@masternode:~# kubectl get serviceaccount
+NAME      SECRETS   AGE
+default   0         3d6h
+testsa    0         114s
+now when we create pod yaml there we provide serviceaccount as testsa, in that case pod can do only those actions for which testsa is 
+authorized to do
+
+demo
+here will create a user who can do only network admin
+suppose we have hired some one for network admin and i dont want to give
+and admin access just want him to configure my networkpolies only 
+root@masternode:~# kubectl get networkpolicies
+No resources found in default namespace.
+
+
+root@masternode:~# mkdir certs
+root@masternode:~# openssl genrsa -out certs/user.key
+Generating RSA private key, 2048 bit long modulus (2 primes)
+..................................................................+++++
+..........................................................+++++
+e is 65537 (0x010001)
+root@masternode:~# chmod 400 certs/user.key
+
+root@masternode:~# cd certs
+root@masternode:~/certs# ls
+user.key
+root@masternode:~/certs# cat user.key
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAnmZb8Fxm5SwWGQEYQF92LLz1Ehq73PFzzmfaI8QfFeyuRupX
+xEf1szQtIsJKEQncntIl1hCelAjY7f5trLMlEoNVCb7S92XSj/ol9/FKurdYHOgY
+zHlzI4ZOlrYgpZR+UGeJveQhQavIHOO6a28AtdGJjGxocvgD2qBFxi9dLur0TBbT
+wPdL42Ka6MaFGox05sX+mQ9ftt6npmW1pzUv9pRxbmt18cqO2DecE+b4ZdRjO9Zk
+W456gsdZ0VsQVZsbzJHK9GO8Hc+6yYh62IrIJRAqPbLvDtY0Gi5r2temwSCcw3xt
+9pYjATZlP3VoH6iI5aybnCrRBEOpcREOYX+6/wIDAQABAoIBACCYU6b8fLgAAHQY
+w5LLkhfWsl+NXMc0cG4y9LKTcwoh8CLrqi/b1vWPcRJMBM3Ix7tu5xZLyTYRNAKV
+bqAxJRnQKLmeqO775v51rUZ+QrB1dg5MvH2nKEhRJO7if4lTK0MEa1XGEgnffYhk
+XEIrT2wauEFLNZsi6jgc7v6/VF+I6tJfM8C0b8TX7sGQJBl8lgqhdeGjw5X8kdQJ
+lDh0cC1RAP6Z/zvwCVI3eb/e0EAs0ky/ExmRxlKacpR8dt8fkWNPd9d4oemmRpS8
+bhOnT/MFYApo0hAWA6FIP5K0teFjTpph1eR5c1ywlYxb5uGoDI1orJKvylnUvvaN
+HuYsUcECgYEA0rlf01UrdFU2ghNDThPSvma1KZL87BQzcYg2Dw2o0XK6bNmeDtRy
+4/MABDGzeOYJG/Z+AjlMokDV37EG/MKYspWaL7z1Sn4hVyl0wrVZzOyjmDPbe4N3
+HV+cNEFG4/3G5pdR3m5jPCHTtCDDapgnZEvkWzgZfTIr5FyoK6EJ73ECgYEAwG7z
+el4MmhCz3lbOKjN5OAPG3bJnPi9df/yi1SUFM2Qg0TjBcmQ8zVzx0E/8cjFMp7YA
+Cn9oTj8ehPd1O3vN5TFVBFzReBKPhN0bJSJeIS3rqHriy0PX5lYeBvK9ljChRsAS
+GxYp3oR/Y51lWlMrrdsFc7GzJ17Y7BVbdNsM+W8CgYEAxN6DdEFh87GY1zV/7/X9
+Mf1qy4iT20uUNEF5n963FdcF7KPzUw+Qtv5TyZdVgWIIqKNFXnaB7iR8rBwL1yFG
+37F895Sl5g6ov3Hvr+kWGKoMvSnVqDNOmZa1rOw/esmhhdVhm1muRIOl8eeaKoA0
+bTOqCL8EsT6qWxNl2jz9t0ECgYBdNiEoF+BgzFBkFYYduPsxn9q3TpBl9cmDkltJ
+hXokb47Z6XUCtP0iuK/FKMluguTPpAAXFanvpPFilP8rRgfwydmVmGQ6ljsAr51T
+enc/+R9aZ9Ptg7pTr0kyMmiVFI86VxUuG6lCSMnv9bC/dOQGfb4BUYUnP/ExQhMf
+4m9BbwKBgQCCZCKnJKazdCdBZNeRPbB2xgtyFH3M24iNQYKhgTeMVprBkC3JXXHs
+W0XRvA0Vu2ZkDR6p97KSTfOAmt7Z8TciKeUOcbsI+mo/PLczRx0HgDuoz8CWSR3W
+tabzzF2/qScwgBi6W/BR4WjVOgDbOoycaXd+E8/frACLbojewKv8WA==
+-----END RSA PRIVATE KEY-----
+root@masternode:~/certs# 
+
+hence we created simple private certificate that can be used for user authentication
+
+
+now we have to create user.csr which will create user certificate signing request
+
+root@masternode:~# openssl req -new -key certs/user.key -out certs/user.csr -subj "/CN=networkadmin/O=network-admin"
+Can't load /root/.rnd into RNG
+140570363339200:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=/root/.rnd
+
+if this failure happens
+then vi /etc/ssl/openssl.cnf and comment RAND line 
+
+root@masternode:~# vi /etc/ssl/openssl.cnf 
+root@masternode:~# openssl req -new -key certs/user.key -out certs/user.csr -subj "/CN=networkadmin/O=network-admin"
+root@masternode:~# 
+root@masternode:~/certs# ls
+user.csr  user.key
+root@masternode:~/certs# 
+
+noe to load this csr we need to create yaml 
+
+root@masternode:~/certs# kubectl get csr
+No resources found
+
+
+Create a Kubernetes CSR resource YAML
+cat > certs/networkadmin-user.yaml <<EOF
+apiVersion: certificates.k8s.io/v1beta1
+kind: CertificateSigningRequest
+metadata:
+  name: new-user-request
+spec:
+  request: $(cat certs/user.csr | base64 | tr -d '\n')
+  usages:
+  - digital signature
+  - key encipherment
+  - client auth
+EOF
+
+Create the CSR resource
+
+kubectl create -f certs/networkadmin-user.yaml
+certificatesigningrequest.certificates.k8s.io/new-user-request created
+
+
+
+root@masternode:~/certs# kubectl create -f networkadmin-user.yaml
+certificatesigningrequest.certificates.k8s.io/new-user-request created
+root@masternode:~/certs# cat networkadmin-user.yaml 
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: new-user-request
+spec:
+  signerName: kubernetes.io/kube-apiserver-client
+  request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ2REQ0NBVndDQVFBd0x6RVZNQk1HQTFVRUF3d01ibVYwZDI5eWEyRmtiV2x1TVJZd0ZBWURWUVFLREExdQpaWFIzYjNKckxXRmtiV2x1TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFubVpiCjhGeG01U3dXR1FFWVFGOTJMTHoxRWhxNzNQRnp6bWZhSThRZkZleXVSdXBYeEVmMXN6UXRJc0pLRVFuY250SWwKMWhDZWxBalk3ZjV0ckxNbEVvTlZDYjdTOTJYU2ovb2w5L0ZLdXJkWUhPZ1l6SGx6STRaT2xyWWdwWlIrVUdlSgp2ZVFoUWF2SUhPTzZhMjhBdGRHSmpHeG9jdmdEMnFCRnhpOWRMdXIwVEJiVHdQZEw0MkthNk1hRkdveDA1c1grCm1ROWZ0dDZucG1XMXB6VXY5cFJ4Ym10MThjcU8yRGVjRStiNFpkUmpPOVprVzQ1NmdzZFowVnNRVlpzYnpKSEsKOUdPOEhjKzZ5WWg2MklySUpSQXFQYkx2RHRZMEdpNXIydGVtd1NDY3czeHQ5cFlqQVRabFAzVm9INmlJNWF5YgpuQ3JSQkVPcGNSRU9ZWCs2L3dJREFRQUJvQUF3RFFZSktvWklodmNOQVFFTEJRQURnZ0VCQUlEVk9nbWgzTXJPCjR1TEcyUmdZZCt3NytLUkRWTUFJMVc5SmdnbXFwaEFPOW5EcWxlNXMwcFp6WE4raHFqVEVmdUFRS0NBY1FPNjQKQS9wYmtnajNuZTF2dmp4ZGV3V2J2QTZPeStxSUFMWTdFK3VmRkpRR0VtU0xlZGZFeGNEUlgyN0dtNkkrK1RkUQpMYjN2Wmo0M3B6UXNhcjlQaUJJS29WSlA0K0dHZWVhc1A0UmlJNUR2RTA1QnhJYjhrbWFOMkt3ZEhMTlZJd1pTCm5KVzlLbmlrSjEvSXdiRVlRMXEyS3FXTlZWck5tK0VDcUJhRW1nSFhySDVVUjgweEpoTmdjNFVYeks5TG5jaTEKWktDb2xNcU5UTFQ4T0JNQTdiU3cyRkhwVEpwWTIyWlg3MUltMGZaVHdQa05lL2RSaVVYVU9uNFJNQ3pQemhybQptQk9vMTFUclhkND0KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+  usages:
+  - digital signature
+  - key encipherment
+  - client auth
+  
+
+Verify the created CSR
+kubectl get csr
+NAME               AGE   SIGNERNAME                                    REQUESTOR                 CONDITION
+csr-qcvdd          34m   kubernetes.io/kube-apiserver-client-kubelet   system:node:master        Approved,Issued
+csr-v6txd          34m   kubernetes.io/kube-apiserver-client-kubelet   system:bootstrap:0dpdie   Approved,Issued
+csr-vjh88          34m   kubernetes.io/kube-apiserver-client-kubelet   system:bootstrap:0dpdie   Approved,Issued
+new-user-request   21s   kubernetes.io/legacy-unknown                  kubernetes-admin          Pending
+
+to move from pending to approve we need to approve so that internal cert generated
+kubectl certificate approve new-user-request
+
+
+kubectl get csr
+NAME               AGE   SIGNERNAME                                    REQUESTOR                 CONDITION
+csr-qcvdd          36m   kubernetes.io/kube-apiserver-client-kubelet   system:node:master        Approved,Issued
+csr-v6txd          35m   kubernetes.io/kube-apiserver-client-kubelet   system:bootstrap:0dpdie   Approved,Issued
+csr-vjh88          35m   kubernetes.io/kube-apiserver-client-kubelet   system:bootstrap:0dpdie   Approved,Issued
+new-user-request   83s   kubernetes.io/legacy-unknown                  kubernetes-admin          Approved,Issued
+
+kubectl get csr new-user-request -o jsonpath='{.status.certificate}' \
+  | base64 --decode > certs/networkadmin.crt
+  
+  
+root@masternode:~# kubectl get csr new-user-request -o jsonpath='{.status.certificate}' \
+>   | base64 --decode > certs/networkadmin.crt
+root@masternode:~# openssl x509 -noout -text -in networkadmin.crt 
+Can't open networkadmin.crt for reading, No such file or directory
+140225196847552:error:02001002:system library:fopen:No such file or directory:../crypto/bio/bss_file.c:72:fopen('networkadmin.crt','r')
+140225196847552:error:2006D080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:79:
+unable to load certificate
+root@masternode:~# cd certs/
+root@masternode:~/certs# openssl x509 -noout -text -in networkadmin.crt 
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            b2:fa:8b:b4:dd:66:09:d7:56:e9:b2:77:5a:e1:09:a1
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN = kubernetes
+        Validity
+            Not Before: Feb 22 15:28:00 2023 GMT
+            Not After : Feb 22 15:28:00 2024 GMT
+        Subject: O = network-admin, CN = networkadmin
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:9e:66:5b:f0:5c:66:e5:2c:16:19:01:18:40:5f:
+                    76:2c:bc:f5:12:1a:bb:dc:f1:73:ce:67:da:23:c4:
+                    1f:15:ec:ae:46:ea:57:c4:47:f5:b3:34:2d:22:c2:
+                    4a:11:09:dc:9e:d2:25:d6:10:9e:94:08:d8:ed:fe:
+                    6d:ac:b3:25:12:83:55:09:be:d2:f7:65:d2:8f:fa:
+                    25:f7:f1:4a:ba:b7:58:1c:e8:18:cc:79:73:23:86:
+                    4e:96:b6:20:a5:94:7e:50:67:89:bd:e4:21:41:ab:
+                    c8:1c:e3:ba:6b:6f:00:b5:d1:89:8c:6c:68:72:f8:
+                    03:da:a0:45:c6:2f:5d:2e:ea:f4:4c:16:d3:c0:f7:
+                    4b:e3:62:9a:e8:c6:85:1a:8c:74:e6:c5:fe:99:0f:
+                    5f:b6:de:a7:a6:65:b5:a7:35:2f:f6:94:71:6e:6b:
+                    75:f1:ca:8e:d8:37:9c:13:e6:f8:65:d4:63:3b:d6:
+                    64:5b:8e:7a:82:c7:59:d1:5b:10:55:9b:1b:cc:91:
+                    ca:f4:63:bc:1d:cf:ba:c9:88:7a:d8:8a:c8:25:10:
+                    2a:3d:b2:ef:0e:d6:34:1a:2e:6b:da:d7:a6:c1:20:
+                    9c:c3:7c:6d:f6:96:23:01:36:65:3f:75:68:1f:a8:
+                    88:e5:ac:9b:9c:2a:d1:04:43:a9:71:11:0e:61:7f:
+                    ba:ff
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                keyid:F9:C8:43:AF:19:FB:19:B1:29:21:37:6A:B2:FA:98:20:1F:60:E6:E0
+
+    Signature Algorithm: sha256WithRSAEncryption
+         49:6c:2f:f1:23:03:a3:a3:fc:34:72:31:37:00:43:72:f2:ec:
+         79:77:13:1f:ad:77:20:c2:69:36:66:04:d9:cc:c0:87:3d:d7:
+         57:e5:70:3f:56:d2:3f:01:1e:0a:3c:db:1c:d7:e9:5c:a0:48:
+         65:59:ca:75:21:59:e3:73:dd:6d:b6:f8:b4:f9:37:d2:a6:6a:
+         3d:69:f8:73:bc:47:c2:6b:ef:a6:1a:cd:eb:e7:52:73:8e:61:
+         4e:c8:bc:66:0d:21:33:ee:e3:74:ff:20:10:69:65:b0:bf:a9:
+         5a:33:df:be:d8:27:9a:81:04:6b:b1:3e:1c:d0:11:a1:18:ae:
+         9c:7f:99:b6:7e:25:2c:d5:32:7d:14:7e:4d:11:1d:7a:b0:83:
+         f2:10:34:9f:7e:2e:2d:bb:68:94:09:d2:7e:7a:6b:93:98:6c:
+         73:1d:31:d9:07:45:4d:31:1c:d1:af:5b:61:f9:14:13:34:8a:
+         f0:86:6f:5d:f6:ec:c4:77:9a:7d:25:f2:6d:fe:2c:80:d2:86:
+         f3:22:24:0b:33:e0:04:b0:65:c4:1e:65:8c:50:d4:92:b4:5f:
+         08:99:c7:79:e7:c8:64:54:e3:9f:6e:bb:35:44:e7:b8:95:46:
+         cd:f9:8d:3f:cd:64:65:77:59:db:42:57:ad:dd:25:16:81:35:
+         c3:25:0a:04
+root@masternode:~/certs# 
+
+kubectl config set-credentials networkadmin\
+  --client-certificate=certs/networkadmin.crt \
+  --client-key=certs/user.key \
+  --embed-certs
+
+root@masternode:~# kubectl config set-credentials networkadmin\
+>   --client-certificate=certs/networkadmin.crt \
+>   --client-key=certs/user.key \
+>   --embed-certs
+User "networkadmin" set.
+root@masternode:~# 
+
+cd $HOME/.kub
+cat config
+
+now comes concpt of context 
+start from 26.34 
+
+in config file that we have 
+ server: https://10.128.0.16:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+
+this means then k8 was installed automatically   kubernetes-admin@kubernetes was used as CN
+these all fall in single value called context
+context and user are one to one mappoing this means that user can access
+below commands menas which current user we are using 
+
+root@masternode:~/.kube# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+
+below creates new context
+root@masternode:~/.kube# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+          network-admin                 kubernetes   networkadmin      
+		  
+root@masternode:~/.kube# kubectl config use-context network-admin
+Switched to context "network-admin".
+root@masternode:~/.kube# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+*         network-admin                 kubernetes   networkadmin   		  
+
+this way we are half way done in creating a user
+root@masternode:~/.kube# kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "networkadmin" cannot list resource "pods" in API group "" in the namespace "default"
+root@masternode:~/.kube# kubectl get networkpolicies
+Error from server (Forbidden): networkpolicies.networking.k8s.io is forbidden: User "networkadmin" cannot list resource "networkpolicies" in API group "networking.k8s.io" in the namespace "default"
+
+this fails because our new user dont have the  acess
+so server is able to suthenticate but since i am not authorized its failing 
+means authorization is still pending
+in config file we can see multiple clusters , so switching context we can go to desired cluster
+
+Rollback to admin context -
+
+kubectl config use-context kubernetes-admin@kubernetes
+
+so there are multiple modes of authorizations
+auth can be granted to groups or service account and not user account
+so in our case we need to grant auth to group of networkadmin
+
+now there are 2 modes of auth
+namesppacebased i.e roles
+3 steps to define role
+API : APPS, V1
+RESORCES: SECRETS,PODS DEPLYMENTS,rc ETC
+actions : put , delete etc
+clustervased i.e 
+same as roleonly diff is it has a namespace thing in spec action
+and its a cluster role..
+like cluster role
+root@masternode:~/.kube# kubectl get clusterrole cluster-admin -o yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  creationTimestamp: "2023-02-19T07:48:06Z"
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+  name: cluster-admin
+  resourceVersion: "73"
+  uid: 183c1e3f-9c42-4c5b-bae9-2ca244f020d8
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- nonResourceURLs:
+  - '*'
+  verbs:
+  - '*'
+  now we basically have to bind any of these auth to service account or groups
+  either called
+  role binding
+  clusterrole binding
+
+kubectl get clusterrolebinding
+
+oot@masternode:~/.kube# kubectl get roles
+No resources found in default namespace.
+root@masternode:~/.kube# kubectl get roles -n all-namespaces
+No resources found in all-namespaces namespace.
+root@masternode:~/.kube# kubectl get roles -n kube-system
+NAME                                             CREATED AT
+extension-apiserver-authentication-reader        2023-02-19T07:48:07Z
+kube-proxy                                       2023-02-19T07:48:08Z
+kubeadm:kubelet-config                           2023-02-19T07:48:07Z
+kubeadm:nodes-kubeadm-config                     2023-02-19T07:48:07Z
+system::leader-locking-kube-controller-manager   2023-02-19T07:48:07Z
+system::leader-locking-kube-scheduler            2023-02-19T07:48:07Z
+system:controller:bootstrap-signer               2023-02-19T07:48:07Z
+system:controller:cloud-provider                 2023-02-19T07:48:07Z
+system:controller:token-cleaner                  2023-02-19T07:48:07Z
+
+p2eMWB7V016WnxsK
+
+cat > network-admin-role.yaml <<EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: network-admin
+rules:
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - '*'
+- apiGroups:
+  - extensions
+  resources:
+  - networkpolicies
+  verbs:
+  - '*'
+EOF
+
+
+
+root@masternode:~/.kube# kubectl get rolebinding
+No resources found in default namespace.
+root@masternode:~/.kube# cat > network-admin-role.yaml <<EOF
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: network-admin
+> rules:
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - '*'
+> EOF
+root@masternode:~/.kube# 
+root@masternode:~/.kube# kubectl create -f network-admin-role.yaml
+clusterrole.rbac.authorization.k8s.io/network-admin created
+root@masternode:~/.kube# kubectl create clusterrolebinding network-admin --clusterrole=network-admin --group=network-admin
+clusterrolebinding.rbac.authorization.k8s.io/network-admin created
+root@masternode:~/.kube# kubectl config use-context network-admin
+Switched to context "network-admin".
+root@masternode:~/.kube# kubectl get networkpolicies
+No resources found in default namespace.
+root@masternode:~/.kube# 
+
+
+
+Generating Kubernetes Configuration Files for Authentication
+In this lab you will generate Kubernetes configuration files, also known as kubeconfigs, which enable Kubernetes clients to locate and authenticate to the Kubernetes API Servers.
+
+In this section you will generate kubeconfig files for the controller manager, kubelet, kube-proxy, and scheduler clients and the admin user.
+
+Kubernetes Public IP Address
+
+KUBERNETES_PUBLIC_ADDRESS=$(gcloud compute addresses describe kubernetes-the-hard-way \
+  --region $(gcloud config get-value compute/region) \
+  --format 'value(address)')
+  
+KUBERNETES_PUBLIC_ADDRESS=35.222.113.224  
+  
+  
+14. why to we Need Ingress:
+	Load Balancer -- cloud provider charges amount
+	Also without load balancer we miss below stuff
+	1. sticky node traffic
+	2. ratio based traffic
+	3. host based traffic
+
+15. What is Ingress?
+	In K8s ingress component can map the real domain name like wwww.foo.com with application. we just have to apply ingress yaml where we can mentionion the service name along with domain name. after this we need to get the ingrss controller also from gitbub which is a pod and can constantly see the ingress services running and assign an ipaddress to it. post that we just have to porchse and register domain name.
+  
+  

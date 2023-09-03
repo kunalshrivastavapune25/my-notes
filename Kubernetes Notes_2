@@ -1,0 +1,109 @@
+1. What is Kubernetes?
+	Docker is a Image Building, storing and container creation technology but k8s is container orchestration technology.
+	At one point of time it becomes very difficult to manage docker containers spanning over multiple hosts.
+	So we need Kubernetes for below aspects:
+	AutoScaling Networks
+	High Availability
+	Reliability Self Healing
+	Storage Mechanism
+	Roles based access Control
+	Docker Swarm has a lots of manual intervention for maintainance. 
+	Docker relies on single Host
+	Enterprise level sopports like access and load balancing black listing
+	cluster architechture
+	
+2. What is Cluster
+	Group of Nodes. Master and Worker Nodes. Pods can be randomly distributed in Clusters
+
+3. Why dockers standalone not user is Prod
+	Because its not an enterprise solution, due to shortcomings listed in Point1	
+	
+4. What is k8s alternative to LoadBalancing
+	Ingress		
+	
+5. What is components of Worker Node
+	kubelet -- is like docker shim that provides runtime for running pods if the pod fails it will take necessry action by informing one of the
+	component in master node 
+	Container Runtime -- like Docker for running containers
+	kubeproxy --provides ip address to pods and helps in load balancing of network traffic, it uses IP Tables of host machine for networking 
+	
+6. What is components of Master Node
+	API Server -- exposes cluster to external world, it decides action
+	Scheduler -- to schedule a pod in available worker node , it performs action
+	etcd --name value pair database that stores entire cluster information
+	controller manager -- helps in auto scaling eg replicasets, there has to be some components that keeps checking desired no of requested pods are
+	running , actual and desired state of pods are always maintained 
+	ccm(cloud controller manager ) -- suppose we want some actions from host cloud maching like gke, azure,  this is open source libraries that cloud
+	people has to code which can understand instutions like from now load balancing to be done from host machine. no need of this on premise. Interaction Interface with Cloud Host
+
+7. What is Kubectl
+	Kubectl is k8s commandline to interact with k8s cluster	like in docker we have docker cli
+
+8. Whats is Pods
+	wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
+	standardized by writing these all container specifications in yaml file and passing it in kubectl. in a pod yaml we give api version and specs of all containers to be made.
+	advantage is kube proxy assign single cluster ip to each pod and all containers in side a pod can share common network and storage. common network means they can interact with each other using localhost followed by port.
+
+9. Whats is ClusterIp
+	The ip that kubeproxy assign to Pods
+	
+10. Whats is Deployment
+	To achieve Auto Healing and AutoScaling Capabilities of Pods, zero down time .
+	Deployments always has replicasets which is handled by controller
+	so that given numbers of replicas are maintained even if i is killed auto healing will bring the other up
+	
+11. Whats is Replicaset
+	Replicaset is a kubernetes controller that ensures desired and actual state is always same
+
+12. Why to we need Services	
+	service is the component in k8s which as load balancer by using kube proxy. scenarios where a pod is retarted by replicasets to ensure actual and desired state its ip address changes so service has to be made on top so that access can be made reliable
+	services does service discovery by lables and selectors to avoid keeping track of ip addreses, because rs always recreates pods with same labels
+	service also expose to external world 
+	3 types of service
+	1. nodeport -- only people having of node ip, i.e same organization or lan
+	2. clusterip -- default behaviour , pods are only accessable inside cluser ssh
+	3. load balancer -- external world, provides public ip address , here ccm will give the public ip address to k8s  cluster
+	3 things services does
+		1. load balancing
+		2. Service discovery
+		3. expose
+	
+13. What is namespace
+	In Kubernetes namespace is a logical isolation of resources, network policies, rbac(role based access control) and everyhing
+	for example 2 projects using same k8s cluster one can use ns1 and other can use ns2 without any overlap and authentication problem
+
+14. why to we Need Ingress:
+	Load Balancer -- cloud provider charges amount
+	Also without load balancer we miss below stuff
+	1. sticky node traffic
+	2. ratio based traffic
+	3. host based traffic
+
+15. What is Ingress?
+	In K8s ingress component can map the real domain name like wwww.foo.com with application. we just have to apply ingress yaml where we can mentionion the service name along with domain name. after this we need to get the ingrss controller also from gitbub which is a pod and can constantly see the ingress services running and assign an ipaddress to it. post that we just have to porchse and register domain name.
+	
+16. What is ConfigMap?
+	for storing information that can be used in later point of time, db ports and environment variables. This can be mounted in cluster and resolves issue of manully logging side the containers and accessing data. this is saved in etcd , we can use volume mounts also in cofig here so that dynamic changes can immeditely come into effect
+	
+17. What is Secrets?
+	sesitive data which is stored after decription in etcd, k8s also recommends to have strong rbac to access secrets
+
+18. Why apply over create in k8s used in kubectl?
+
+19.	What is RBAC?
+	RBAC can be implemented in 2 ways
+	Users Access Control -- who all can login Dev, QA and with what extact roles
+	Service Account Access Control : Means what all access a Pod can have like configmap, scerets, apiservers etc
+	
+	Highlevel 3 things are there for rbac
+	service accounts / Users`
+	roles / clusterroles
+	role binding / crb
+
+Custom Reserces Defination
+Custom Resources
+Custom Controllers
+
+
+20 What language Kubernetes is developed
+	GoLang

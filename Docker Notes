@@ -1,0 +1,1036 @@
+#####################################
+	#########THEORY############
+#####################################
+
+A) What is Docker?
+	Docker is a software or containerization tool that makes it easy to install and run any application without worring about setup and dependencies
+	Docker Ecosystem
+	Docker Client -- running commands
+	Docker Machine -- 
+	Docker Hub
+	Docker Server -- create images and containers
+	Docker Images
+	Docker Compose
+	There are many such tools available like containerd,podman etc
+B) What is Image and Container
+	Image - Single file that contains all dependencies and configs required to run a program
+			Advantage is from single image we can run multiple containers in virtual/physical servers	
+	Container - Instance of Image that runs a program
+	Container is a bundle of software i.r main code and dependencies, like web code, tomcat and java together
+	How to build and Run Containers:
+	Ans: We need a container runtime or containerization tool
+	Eg docker, containerd,podman etc
+	Container package is also called docker image
+	Docker ce - community edition – free
+	Docker ee- ent edition – paid
+	Pro
+	Docker Desktop
+
+	
+C) What is Server?
+	Server is a computer or laptop
+	Types of Servers
+		Physical
+		Logical -- achieved from VM ; Hardware Virtualization; partitioning of hardware
+D) What is Application?
+	Piece of code
+	Types of Application
+		Web
+		Standalone 		
+E) What do we need to run a container
+	container runtimer eg - docker
+
+F) Can we run a container runtime(docker) on hardware directly
+	No, We need a machine with OS (any So just full os is needed to run docker)
+ 
+G) Diffrence between a application running in VM and container
+	VM contains FULL OS,JAVA,TOMCAT, abc.war -- interacts with dedicated kernel partition all commands works -- vi, grep, cat ssh
+	Container contains --OSLib ,JAVA,TOMCAT, abc.war -- no vi, no gui, no grep, no cat, size of ubuntu image is 60mb and alpine -- 7mb
+
+
+#####################################
+
+
+
+
+
+#####################################
+	#########Practicals############
+#####################################
+
+
+#1. How to check VM OS release
+	cat /etc/os-release 
+
+#2. How to check if docker is installed ? 	
+	docker -v 
+
+#3. How to install docker ?
+	sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installDocker.sh -P /tmp
+	ls -l /tmp
+	sudo chmod 755 /tmp/installDocker.sh
+	sudo bash /tmp/installDocker.sh
+	docker -v 
+	docker version 
+	sudo docker version 
+	docker ps 
+	docker image ls 
+	sudo docker image ls 
+	sudo docker ps 
+	sudo su -
+
+#4. How to append your user to docker user grp?
+	sudo usermod -aG docker kunal
+
+#5. How to check which docker containers are running?
+	docker ps 
+
+#6. How to check what docker Images we have?
+	docker image ls
+
+#7. How to pull docker Images from docker hub and google?
+	docker pull nginx:1.23
+	docker pull nginx:latest
+	docker pull tomcat:latest
+	docker pull gcr.io/google-containers/busybox:1.27
+	docker pull docker.io/library/nginx:1.22
+	docker image ls
+	docker info 
+	#see the registry and image count here
+
+#8. How to container from docker Images already downloaded?
+	docker run nginx:1.23
+	docker run -d nginx:1.23
+	#check web browser 34.100.168.178:80--> this wont work
+	#check ssh 0.0.0.0:80--> this wont work
+	docker run --name foo -d foo:latest
+
+#9. How to container from docker Images which is not already downlloaded?
+	docker image rm tomcat:8.5.40
+	docker run -d tomcat:8.5.40
+
+#10. How to inspect a container and check ipaddress and port?
+	docker ps -a -- this shows all lists of exited containers also 
+	docker inspect 3883f9d54700
+	#check ipaddress and port and run curl 172.17.0.3:8080 at ssh
+
+#11. How to stop container?
+	docker ps -a
+	docker stop 3883f9d54700
+	docker ps -a
+
+#12. How to start container?
+	docker ps -a
+	docker start 3883f9d54700
+	docker ps -a
+
+#13. How to restart container?
+	docker ps -a
+	docker restart 4c84821951e8  # it stops the container  first & start again
+	docker ps -a
+
+#14. How to kill container?
+	docker ps -a
+	docker kill ab596dfce269
+	docker ps -a
+	docker start ab596dfce269
+	docker ps -a
+
+#15. How to remove container?
+	docker ps -a
+	docker rm 05fd1b9a54b7
+	docker rm --force 05fd1b9a54b7
+	docker ps -a
+	docker rm --force ab596dfce269 f0d30abbc81f 0c6b04155a07
+	docker ps -a
+	docker ps -a
+	docker rm --force c71183c05e52 3883f9d54700 bfef087233f4 4c84821951e8
+	docker ps -a
+	docker rm --force `docker ps -qa`
+	docker ps
+	clear
+	docker ps -a
+	docker container prune
+
+
+#16. How to remove IMAGE?
+	docker image ls
+	docker image rm tomcat:latest
+	docker rmi nginx:1.22
+	docker image prune -a
+
+
+#17. How to give alias name to frequently used commands?
+	alias removcont="docker rm --force `docker ps -qa`"
+	removcont
+
+#18. How to check logs of running container?
+	docker ps
+	docker logs 66e39c205649
+	docker ps
+
+#19. How to check CPU MEMORY UTILIZATION of containers? --imp
+	docker stats
+
+#20. How to do port mapping of running container?
+	docker run -d tomcat:8.5.40
+	docker stats
+	docker ps
+	docker inspect 21e744fa6d2a
+	curl 172.17.0.4:80
+	docker ps
+	docker run -d -P nginx:latest
+	docker ps
+	docker run -d -P nginx:latest
+	docker ps
+	docker run -d -p 9080:80  nginx:latest
+	docker run -d -p 9081:8080 tomcat:8.5.40
+	docker ps
+	docker run -d -p 9080:808  nginx:latest
+	docker run -d -p 9090:808  nginx:latest
+	docker ps
+	#check in browser
+	#http://34.100.168.178:9080/
+	#http://34.100.168.178:32768/
+
+#21. How to do go inside running container?
+	docker pull alpine:latest
+	docker pull ubuntu:latest
+	docker pull centos:latest
+	docker image ls
+	docker image inspect tomcat:latest
+	# this will fail as u cant inpepect inside image
+	docker image ls
+	docker ps
+	docker exec -it 3bdb1a6aa054 /bin/bash
+	docker ps
+	docker exec 3bdb1a6aa054 ls -l /
+	docker exec 3bdb1a6aa054 ls -l
+	ls -
+	docker exec 3bdb1a6aa054 pwd
+	pwd
+	java -version
+	docker exec 3bdb1a6aa054 java -version
+
+
+#22. How to do go OVERRIDE running container?
+	docker run -d tomcat:latest
+	docker run -d alpine:latest
+	docker ps -a
+	ls -l
+	cd
+	sleep 10
+	docker run -d alpine:latest sleep 60
+	docker run -d tomcat:latest sleep 50
+	docker ps -a
+	docker image inspect tomcat:latest
+	# since container is running we can inspect images
+	# check cmd also
+	docker inspect e18cd05ef70
+	# since container is running we can inspect containers
+
+#23. How to run mangodb container?
+	clear
+	docker pull mongo:latest
+	docker run -d mongo:latest
+	docker ps -a
+	clear
+	# run mango db and see whats running in cmd
+
+#24. How to run tomcat in VM
+	wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
+	ls -l
+	tar -xzf apache-tomcat-9.0.71.tar.gz
+	ls -l
+	cd apache-tomcat-9.0.71/
+	ls -l
+	cd bin/
+	ls -l
+	./catalina.sh run
+	java -version
+	sudo apt install default-jre
+	java -version
+	ls -l
+	./catalina.sh run
+	#check browser http://34.100.168.178:8080/
+
+	docker image ls
+	docker run -d -p 9081:8080 tomcat:8.5.40
+	docker ps
+	cd
+	docker image ls
+	clear
+	docker exec -it e18cd05ef708 /bin/bash
+	# check java version already there 
+
+#25. How to run a samplecode in VM
+	docker run -d -P lerndevops/smaples:mywebsite-v1
+	docker run -d -P lerndevops/samples:mywebsite-v1
+	docker image ls
+	docker ps -a
+	docker ps
+	#Unable to find image 'lerndevops/smaples:mywebsite-v1' locally
+	#docker: Error response from daemon: pull access denied for lerndevops/smaples, repository does not exist or may require 'docker login': #denied: requested access to the resource is denied.
+	#See 'docker run --help'.
+
+#26. How to create a new image?
+	docker image ls
+	docker pull tomcat:latest
+	docker pull nginx:latest
+	clear
+	docker image ls
+	docker pull tomcat:8.5.40
+	docker run -d -P tomcat:8.5.40
+	docker ps
+	docker exec -it b597c5ef7966 /bin/bash
+		cd /usr/local/tomcat/webapps
+		mkdir demo
+		cd demo
+		echo '<html>' > tp.html
+		echo '<body>' >> tp.html
+		echo '<B>KUNAL</B>' >> tp.html
+		echo '</body>' >> tp.html
+		echo '</html>' >> tp.html
+		#dont try this using below to install vi not sure why it fails
+		#apt-get update
+		#apt-get install vim
+		cat tp.html	
+	exit
+	docker ps
+	docker commit -m "deployed app" b597c5ef7966 sampleapp:v1
+	docker image ls
+	docker ps
+	docker rm -f b597c5ef7966
+	docker ps
+	docker run -d -P sampleapp:v1
+	docker ps -a
+	#CHECK BROWSER http://34.100.168.178:32778/demo/tp.html
+
+#27. How to play with Dockerfile to create image?
+
+	vi mydockerfile
+
+	FROM ubuntu:16.04
+	RUN apt-get update
+	RUN apt-get install -y nginx 
+	RUN mkdir /tmp/docker
+	RUN touch /tmp/docker/test.txt
+	EXPOSE 334 80
+	CMD ["/usr/sbin/nginx", "-g", "daemon off;"]  ## JSON Format
+	# CMD /usr/sbin/nginx -g "daemon off;"  ## Shell Format
+
+	save&quit
+
+	docker build --file /home/kunalshrivastava_cloud/mydockerfile --tag sampleapp:v3 .
+	docker run -d -P sampleapp:v3
+	docker image ls
+	http://34.100.153.114:32771/
+
+
+#28. How to PUSH image?
+
+
+	docker login
+	docker tag sampleapp:v3 docker.io/kunalshrivastava/edusampleapp:v3
+	docker image ls
+	docker push kunalshrivastava/edusampleapp:v3
+	docker run -d -P kunalshrivastava/edusampleapp:v3
+	docker rm -f `docker ps -qa`
+
+	docker ps
+	df -h /
+	docker image ls
+	cd /var/lib/docker/
+	ls -l
+	cd image/
+	ls -l
+	cd overlay2/imagedb/
+	ls -l
+	cd
+	clear
+	docker run -d -p 5000:5000 --restart always --name registry registry:2
+	docker ps
+	docker pull nginx:latest
+	docker image ls
+	docker tag nginx:latest localhost:5000/kunalshrivastava_cloud/mynginx:v1
+	docker image ls
+	docker push localhost:5000/kunalshrivastava_cloud/mynginx:v1
+	docker image ls
+	docker image prune -a
+	docker image ls
+	docker ps -a
+	docker image ls
+	docker pull localhost:5000/kunalshrivastava_cloud/mynginx:v1
+	docker image ls
+
+
+#30. How to play with VOLUME?
+
+	docker volume ls
+	docker volume create applogs
+	docker volume ls
+	docker volume inspect applogs
+	cd /var/lib/docker/volumes/applogs/_data
+	ls -l
+	cd
+	docker run -d -P --mount type=volume,src=applogs,target=/usr/local/tomcat/logs kunalshrivastava/edusampleapp:v3
+	docker ps
+	cd /var/lib/docker/volumes/applogs/_data
+	ls -l
+	docker ps
+	docker rm -f 1f72dca3c513
+	docker ps
+	ls -l
+	cd
+	mkdir /opt/applogs
+	ls -l /opt/applogs/
+	docker run -d -P --mount type=bind,src=/opt/applogs,target=/usr/local/tomcat/logs kunalshrivastava/edusampleapp:v3
+	docker ps
+	cd /opt/applogs/
+	ls -l
+	docker rm -f 28cae1050774
+	docker ps
+	ls -l
+	history
+	docker run -d -P --mount type=bind,src=/opt/applogs,target=/var/log/nginx nginx:latest
+	ls -l
+	cd
+	mkdir /opt/appconf
+	docker run -d -P --mount type=bind,src=/opt/appconf,target=/usr/share/nginx/html nginx:latest
+	docker ps
+	cd /opt/appconf/
+	ls -l
+	touch index.html
+	vi index.html
+	ls -l
+	docker ps
+	cd
+	ls -l /opt
+	docker run -d -P --mount type=bind,src=/opt/appconf,target=/usr/share/nginx/html --mount type=bind,src=/opt/applogs,target=/var/log/nginx nginx:latest
+	docker run -d -P --mount type=tmpfs,target=/usr/share/nginx/html nginx:latest
+	docker exec -it 19dd7fc9e690fa33d /bin/bash
+	clear
+	history
+	docker run -d -P --volume /opt/appconf:/usr/share/nginx/html --volume /opt/applogs:/var/log/nginx nginx:latest
+	docker run -d -P -v /opt/appconf:/usr/share/nginx/html -v /opt/applogs:/var/log/nginx nginx:latest
+	#browser addresss check recordings
+
+
+
+
+#31. How to play with NETWORKS?
+
+	docker network ls
+	docker network inspect bridge
+
+
+	ifconfig
+	apt install net-tools
+	docker network inspect bridge
+	ifconfig
+
+	docker run -d -P tomcat:8.5.40
+	docker ps
+	docker exec -it 16a081c692d1 /bin/bash
+
+	apt-get update
+	apt install net-tools
+	ifconfig
+	exit
+
+	docker ps -a
+	docker commit -m "deployed app" 16a081c692d1 sampleapp:v5
+	docker image ls
+
+
+
+
+	docker run -d --name cont1 sampleapp:v1
+	docker run -d --name cont2 sampleapp:v1
+	docker inspect cont1
+	docker inspect cont2
+	docker ps
+
+	docker ps
+	docker inspect cont1
+	docker inspect cont2
+	docker exec cont1 ifconfig
+	docker exec cont2 ifconfig
+	docker exec cont2 ping 172.17.0.2
+	docker exec cont1 ping 172.17.0.3
+	hostname -i
+
+
+	docker network ls
+
+	docker network create --help
+	docker network create mynet --driver bridge --subnet 24.34.0.0/16 --gateway 24.34.0.1
+	docker network ls
+	docker network inspect mynet
+	docker run -d --name cont3 --network mynet sampleapp:v5
+	docker run -d --name cont4 --network mynet sampleapp:v5
+	docker ps
+	docker exec cont1 hostname -i
+	docker exec cont2 hostname -i
+	docker exec cont3 hostname -i
+	docker exec cont4 hostname -i
+	docker exec cont4 ping 24.34.0.2
+	docker exec cont3 ping 24.34.0.3
+	docker exec cont3 ping 172.17.0.2
+	docker exec cont3 ping 172.17.0.3
+	docker exec cont3 ping google.com
+	docker ps
+	docker exec cont1 ifconfig
+	docker network connect mynet cont1
+	docker exec cont1 ifconfig
+	docker exec cont1 ping cont3
+	docker exec cont1 ping cont4
+	clear
+	docker network ls
+	docker run -d --name cont5 --network none sampleapp:v5
+	docker ps
+	docker exec cont5 ifconfig
+	docker run -d --name cont6 --network host sampleapp:v5
+	docker ps
+	hostname -i
+	docker exec bb2eeaa0747f hostname -i
+	docker run -d --name cont6 --network host sampleapp:v5
+	docker run -d --name cont7 --network host sampleapp:v5
+	docker ps -a
+	docker logs 60968937e6eb
+	docker run -d -P --name cont6 --network mynet sampleapp:v5
+	docker run -d -P --name cont9 --network mynet sampleapp:v5
+	docker ps
+	docker ps -a
+	docker rm -f `docker ps -qa`
+	systemctl status docker.service
+	ps -ef|grep dockerd
+	docker version
+	docker info
+	cd /var/lib/docker/
+	ls -l
+	clear
+	cd
+	docker ps
+	systemctl status docker.service
+	vi /lib/systemd/system/docker.service
+	systemctl daemon-reload
+	systemctl restart docker.service
+	systemctl status docker.service
+	docker version
+	docker run -d -P --name cont1 nginx:latest
+	docker ps
+	curl http://localhost:4443/version
+	docker version
+	curl http://35.224.145.72:4443/containers/json
+
+#32. How to play with Dockerd? Below will change the default port of IP
+
+	systemctl status docker.service
+	vi /lib/systemd/system/docker.service
+	
+	systemctl daemon-reload
+	systemctl restart docker.service
+	systemctl status docker.service
+	docker version
+	docker run -d -P --name cont1 nginx:latest
+	docker ps
+	curl http://localhost:4443/version
+	docker version
+	curl http://35.224.145.72:4443/containers/json
+	
+	
+
+#33. How to make YAML files?
+
+			abc.(yaml / yml) -- yaml ain't markup lang -- data serialization lang
+
+			there is one basic rule we need to follow while writing yaml -- INDENTATION -- spaces
+			DO NOT USE TAB KEY ON YOUR KEYBOARD -- USE ONLY SPACEBAR
+
+			yaml is space sensitive / yaml is case sensitive
+
+			all the data in yaml we write as key value pairs
+			key: value
+			yaml is know as a very human frendly lang
+			================================================================================
+			3 data strucutures
+
+			scalar
+			abc.yaml  
+			a: 5
+			name: naresh 
+			abc: 4.5
+
+			dict/map
+			laptop:
+			  ram: 16gb
+			  cpu: 8core
+			  disk: 1tb 
+			  os: macos 
+			  brand: apple 
+
+			list/array
+			basket.yaml
+			- choc
+			- coke
+			- apple 
+			================================================================================
+
+			uber:
+			  - name: audi
+				color: red
+				model: sadan
+			  - bmw:
+				  color: blue 
+				  model: xuv 
+				  engine: 2lt
+			  - kia:
+				  color:
+					- blue
+					- red 
+					- white
+				  model:
+					- xuv 
+					- compact xuv 
+					- sadan 
+					- hatchback 
+				  engine:
+				    - 1lt
+					- 1.2lt
+					- 1.5lt
+
+
+#34. How to create docker compose file
+
+volumes:
+ dbdata:
+networks:
+ mynet:
+services:
+  myapp:  # this is the service name / can be any value
+	image: nginx:latest
+	ports:
+	  - 80  # -P 
+	  #- 443 # -P 
+	  #- 9080:80  # -p
+	volumes:
+	  # src(hostpath):target(contpath)
+	  - /opt/appconf:/usr/share/nginx/html
+	  - /opt/applogs:/var/log/nginx
+	networks:
+	  - mynet
+  mydb:
+	image: mongo:latest
+	ports:
+	  - 27017
+	volumes:
+	  - dbdata:/dbdata
+	networks:
+	  - mynet
+
+
+
+
+#35. How to run multi containers without docker compose file
+
+	docker info | grep -i swarm
+	docker swarm init
+	hostname -i
+	docker info | grep -i swarm
+	docker node ls
+	clear
+	ps -ef|grep dockerd
+	docker service create --name myapp --replicas 7 -p 9080:3000 lerndevops/samples:pyapp-v1
+	docker service create --name mydb --replicas 3 -p 9099:27017 mongo:latest
+	docker service ls
+	docker service ps myapp
+	docker service ps mydb
+	docker ps
+
+
+#36. How to scale multi containers without docker compose file
+
+		docker service scale myapp=15
+		docker service ps myapp
+		docker service scale myapp=3
+		docker service ps myapp
+
+		docker service rm mydb
+		docker service ls
+		clear
+		docker service ls
+		docker service scale myapp=6
+		docker service ls
+		docker service ps myapp
+		docker ps
+		clear
+		docker ps
+		docker service ls
+		docker service logs --follow myapp
+		clear
+		iptables
+		iptables -tnat -L
+		docker service ls
+		history
+		clear
+
+--check local browser http://35.202.212.66:9080/
+
+#37. How to run multi containers from docker compose file
+
+			docker compose --help
+			clear
+			docker -v
+volumes:
+ dbdata:
+networks:
+ mynet:
+services:
+ myapp:  # this is the service name / can be any value
+  image: nginx:latest
+  ports:
+  - "8000:80"
+  volumes:
+  - /opt/appconf:/usr/share/nginx/html
+  - /opt/applogs:/var/log/nginx
+  networks:
+  - mynet
+ mydb:
+  image: mongo:latest
+  ports:
+  - 27017
+  volumes:
+  - dbdata:/dbdata
+  networks:
+  - mynet
+
+		docker compose -f compose.yaml up -d
+		docker ps
+		docker compose -f compose.yaml up --scale myapp=5 --scale mydb=3 -d
+
+
+
+
+
+
+#38. How to run multi containers from docker STACK
+		create 3 nodes
+
+		on master
+			docker info | grep -i swarm
+			docker swarm init
+			hostname -i
+			docker info | grep -i swarm
+			docker node ls
+			clear
+			ps -ef|grep dockerd
+			docker service create --name myapp --replicas 7 -p 9080:3000 lerndevops/samples:pyapp-v1
+			docker service create --name mydb --replicas 3 -p 9099:27017 mongo:latest
+			docker service ls
+			docker service ps myapp
+			docker service ps mydb
+			docker ps
+			
+		check browser for :9080 port
+		iptables
+		iptables -tnat -L
+		docker service ls
+		history
+		clear
+
+			
+			
+		vi myapp.yaml
+		cat myapp.yaml
+		volumes:
+		  data:
+		  data-bkp:
+		services:
+		  springbootapp:
+			image: lerndevops/samples:springboot-app
+			deploy:
+			  replicas: 4
+		#      placement:
+		#        constraints:
+		#          - node.labels.role==app
+			  restart_policy:
+				condition: on-failure
+			  resources:
+				limits:
+				  cpus: "0.1"
+				  memory: 512M
+			ports:
+			  - "9090:8080"
+			depends_on:
+			  - mongo
+		  mongo:
+			image: lerndevops/samples:mongodb
+			deploy:
+			  replicas: 1
+		#      placement:
+		#        constraints:
+		#          - node.labels.role==db
+			  restart_policy:
+				condition: on-failure
+			ports:
+			  - "27017:27017"
+			volumes:
+			  - data:/data/db
+			  - data-bkp:/data/bkp
+
+
+		docker stack deploy -c myapp.yaml myappstack
+		docker stack ls
+		docker stack services ls
+		docker stack services
+		docker stack services myappstack
+		docker service ls
+		docker service ps myappstack_springbootapp
+		cat myapp.yaml
+		vi myapp.yaml
+		docker service ls
+		docker stack ls
+
+
+
+#39. How to play multi containers from docker STACK
+
+		docker stack rm myappstack
+		docker stack deploy -c myapp.yaml myappstack
+		docker stack ls
+		docker service ps myappstack_springbootapp
+		docker service ls
+		docker ps
+		docker service logs myappstack_springbootapp
+		docker service logs myappstack_springbootapp -f
+		docker service ls
+		docker ps
+		docker service ls
+		docker service ps myappstack_mongo
+		docker service scale myappstack_mongo=0
+		docker service ps myappstack_mongo
+		docker service ls
+		docker service logs myappstack_springbootapp -f
+		docker service ls
+		docker service logs myappstack_springbootapp -f
+		docker ps
+		docker stats
+		free -m
+		docker service scale myappstack_mongo=1
+		docker service ps myappstack_mongo
+		docker service scale myappstack_springbootapp=2
+
+
+#40. What are replicated mode services:
+		-- Allows to create as many replicas as we want
+		-- Allows to run more than one container on any worker node
+		-- scale up and down with docker service scale
+		--usecase--customer facing applications which receives load on demand
+		cat myapp.yaml
+		volumes:
+		  data:
+		  data-bkp:
+		services:
+		  springbootapp:
+			image: lerndevops/samples:springboot-app
+			deploy:
+			  replicas: 4
+		#      placement:
+		#        constraints:
+		#          - node.labels.role==app
+			  restart_policy:
+				condition: on-failure
+			  resources:
+				limits:
+				  cpus: "0.1"
+				  memory: 512M
+			ports:
+			  - "9090:8080"
+			depends_on:
+			  - mongo
+		  mongo:
+			image: lerndevops/samples:mongodb
+			deploy:
+			  replicas: 1
+		#      placement:
+		#        constraints:
+		#          - node.labels.role==db
+			  restart_policy:
+				condition: on-failure
+			ports:
+			  - "27017:27017"
+			volumes:
+			  - data:/data/db
+			  - data-bkp:/data/bkp		
+			  
+		docker stack deploy -c myapp.yaml myappstack
+		docker stack ls
+		docker stack ps myappstack
+		docker service ls
+		clear
+		
+		docker service ls
+		docker service scale myapp=10
+		docker service ps myapp
+		docker service create --name testapp --mode replicated --p 9899:80 nginx:latest
+		docker service create --name testapp --mode replicated -p 9899:80 nginx:latest
+		docker service ls
+		docker service create --name gmtestapp --mode global -p 9890:80 nginx:latest
+		docker service ls
+		docker service ps gmtestapp
+		docker service scale gmtestapp=10
+		docker service ls
+		docker service rm gmtestapp myapp myappstack_mongo myappstack_springbootapp testapp
+		docker service ls
+		docker service create --name test --replicas 8 -p 9080:80 nginx
+		docker service ps test
+		docker service rm test
+		clear
+		docker node ls
+		docker node inspect worker-node01
+		docker node inspect master-node
+		docker service --help
+		docker service create --help
+
+#41. How to make sure containers run in specific nodes		
+		
+		vi myapp.yaml
+		docker stack deploy -c myapp.yaml myappstack
+		docker service ls
+		docker service inspect myappstack_mongo
+		clear
+		docker service ls
+		docker service ps myappstack_mongo
+		docker inspect w3byks30w8ud
+		clear
+		docker node ls
+		docker node inspect worker-node01 | grep -i labels
+		docker node inspect worker-node02 | grep -i labels
+		docker node inspect master-node | grep -i labels
+		docker node update worker-node01 --label-add role=db
+		docker node inspect worker-node01 | grep -i labels
+		docker node inspect worker-node01 | grep -iA 1 labels
+		docker service ls
+		docker node update worker-node02 --label-add role=app
+		docker node inspect worker-node02 | grep -iA 1 labels
+		docker service ls
+		docker service ps myappstack_mongo
+		docker service ps myappstack_springbootapp
+		clear
+		
+#42. How to update version of containers:		
+		docker service ls
+		docker service create --name myapp --replicas 5 -p 9080:80 nginx:1.17
+		docker service ls
+		docker service ps myapp
+		docker service rm myapp
+		docker service ls
+		docker service create --name myapp --replicas 5 -p 9080:80 nginx:1.18
+		docker service ls
+		docker service ps myapp
+		docker service update --help
+		docker service update myapp --image nginx:1.19
+		docker service ls
+		docker service rollback myapp
+		docker service ls
+		docker service update --help
+		docker service update myapp --update-failure-action rollback --image nginx:1.1999
+		docker service ls
+		history
+		
+#43. What are Overlay/Ingress networks
+
+		docker service ls
+		docker service ps myappstack_mongo
+		docker service ps myappstack_springbootapp
+		docker network ls
+		docker network inspect ingress
+		hostname -i
+		docker network ls
+		docker stack deploy -c myapp.yaml myappstack
+		docker stack rm myappstack
+		docker network ls
+		docker stack deploy -c myapp.yaml myappstack
+		docker network ls
+		docker network createe myoverlay --driver overlay --subnet 10.4.0.0/16 --gateway 10.4.0.1
+		docker network create myoverlay --driver overlay --subnet 10.4.0.0/16 --gateway 10.4.0.1
+		docker network ls
+		clear
+		docker service create --name ntest --replicas 5 -p 9097:80 lerndevops/samples:netshoot
+		docker service rm ntest
+		docker service create --name ntest --replicas 5 -p 9097:80 --network myoverlay lerndevops/samples:netshoot
+		docker service ps ntest
+		docker ps
+		docker inspect 3b646d96e3a4
+		clear
+		docker ps
+		docker exec 3b646d96e3a4 hostname -i
+		docker exec fcb11453907d hostname -i
+		docker exec 3b646d96e3a4 ping 10.4.0.6
+		docker exec 3b646d96e3a4 ping 10.4.0.7
+		history
+		cat myapp.yaml
+		vi myapp.yaml
+		cat myapp.yaml
+		docker stack deploy -c myapp.yaml teststack
+		docker service ls
+		docker network ls
+		docker stack rm myappstack
+		docker service ls
+		docker stack deploy -c myapp.yaml teststack
+		docker service ls
+		docker service ps teststack_mongo
+		cat myapp.yaml
+		docker version
+		
+#44. How to join new master node		
+		docker node ls
+		docker swarm --help
+		docker swarm join-token
+		docker swarm join-token worker
+		docker swarm join-token manager
+		docker node ls
+		docker node delete worker-node02
+		docker node --help
+		docker node rm worker-node02
+		docker node rm worker-node02 --force
+		docker node ls
+		docker swarm join-token manager
+		docker node ls
+		docker node promte worker-node01
+		docker node promote worker-node01
+		docker node ls
+		docker node demote worker-node01
+		docker node ls
+		docker node demote worker-node02
+		docker node ls
+
+#45 How to play with Docker EE 
+https://raw.githubusercontent.com/lerndevops/docker/master/09-docker-ee/SETUP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
