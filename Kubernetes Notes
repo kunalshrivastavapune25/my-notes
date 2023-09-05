@@ -176,11 +176,12 @@ Ans: We have to initialize the cluster from Master Node using sudo kubeadm init 
 		by saying this 192.168.0.0/16 we are pre declaring subnet in config that will be imeplemeted by cni, this should be different than 
 		subnet of host which might be fine for dev bit not for prod.
 		if above fails saying containerd not running (means there is issue with OS installed and cri demon needs to be started) then install containerd as shown below,
-		sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installCRIDockerd.sh -P /tmp
+		sudo wget https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/installCRIDockerd.sh -P /tmp
 		sudo chmod 755 /tmp/installCRIDockerd.sh
 		sudo bash /tmp/installCRIDockerd.sh
 		change from vi cntos to debian
 		sudo systemctl restart cri-docker.service
+
 
 		sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.5
 		post this master node setup should start with below message
@@ -229,7 +230,7 @@ Q13. What are the steps to be  be performed ONLY ON WORKER NODE
 	Step 1) Join the worker node. The output of the kubeadm init command will provide the kubeadm join as its output. Run the kubeadm join command on the worker nodes.
 
 
-kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
+kubeadm join 10.182.0.5:6443 --cri-socket unix:///var/run/cri-dockerd.sock --token 8cz596.qab45k9rs04w11if \
 --discovery-token-ca-cert-hash sha256:243764bdfea6a4fc96c4bb4acdda26f8cbd10b7ebbc8a313cd600672aa128b13
 
 		The output will be as below
@@ -280,8 +281,10 @@ kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
 **************************************************************
 Q14. What are the steps to be  be performed ONLY ON CLIENT NODE
 **************************************************************
-Ans: At client Node only kubectl is needed and copy tha /.kude/config file from Master to client.
+Ans: At client Node only kubectl is needed and copy tha /.kube/config file from Master to client.
 	Thats it now  all kuectl commands should work
+		mkdir -p $HOME/.kube
+		sudo chown $(id -u):$(id -g) $HOME/.kube
 
 **************************************************************
 Q15. Need to know more on k8s security? 
