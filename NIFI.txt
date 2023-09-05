@@ -1,0 +1,84 @@
+Step1 	 :  Delete Applogs
+				Go inside C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\logs
+				Delete nifi-app.log
+Step2    :  Stop all Flows
+				Open Nifi
+				Right click an any empty space in Canvas and Stop
+				Right click an any empty space in Canvas and EmptyAllQueues
+Step3	 :  Delete all Controller Services
+				Left Click on any empty space in Canvas and 
+				Go to Setting in Left and 
+				delete all controller services
+Step4    :  Create a test Folder C:/Tools/src
+Step5    :  Place file export.csv there
+Step6	 :  Login to any dev database and create below table, also note down db ip
+			DROP table tab1
+
+			CREATE table tab1 
+			(
+			title varchar2(4000),
+			first varchar2(4000),
+			last varchar2(4000),
+			email varchar2(4000),
+			created_on varchar2(4000)
+			)
+
+Step6    :  Add template
+Step7    :  Go to Controller services and Configure table and Connection
+Step8    :  RUN AND CHECK if table is populating
+
+Step9    :  dbdetails in file db.properties
+
+			C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\conf
+			db.properties
+
+			uname=U32_C5_6900
+			pwd=U32_C5_6900
+			conn=jdbc:oracle:thin:@10.109.22.222:1539:DBG195
+			path=C:\Intel\sqldeveloper\jdbc\lib\ojdbc6.jar
+			tname=TAB1
+			cname=oracle.jdbc.driver.OracleDriver
+			
+			inside nifi.properties
+			nifi.variable.registry.properties=./conf/db.properties
+Step12   :  RESTART Nifi and set the variables , then add a normal variable	for tablename	
+Step13   :  make 2 processor Group and segreggate
+Step14   :  Connect
+Step15   :  Funnel connection with 2 more generate flow files
+			{
+				"TITLE": "mr",
+				"FIRST": "John ${random():mod(10):plus(1)}",
+				"LAST": "Doe ${random():mod(10):plus(1)}",
+				"EMAIL": "johndoe@ ${random():mod(10):plus(1)}.com",
+				"CREATED_ON": "${now():toNumber()}"
+			}
+Step16   :  Update Attribute Processor with filename and priority attribute
+				src1_${now():toNumber()}
+Step17   :  Data sequencing
+Step18   :  Data expiration 
+
+
+
+
+Monitoring
+default status can be changed from nifi.properties
+# Component and Node Status History Repository
+Bulletin
+Reporting Tasks -- runs in backgroud and provides more stats.
+Remote Monitoring Nifi using Monitoring Tasks
+SitetoSiteBulletinReportingTasks
+SitetoSiteMetricsReportingTasks
+SitetoSite -- protocol used to send data from one Nifi Instance to other or to transmit data to Nifi from any other application
+copy nifi folder
+and nifi.properties --nifi.web.http.port=8081
+
+two intsnats will be accessable now , one with default and other with 8081
+
+enable the site to site config
+nifi.remote.input.host = 127.0.0.1 since both instance on same machine
+nifi.remote.input.socket.port =8082 something not in use in ins 1
+nifi.remote.input.socket.port =8083 something not in use in ins 2
+
+add sitetositebulletin report task in ins1
+update deination url of second ins 2
+AND inputpotname as bulletin 

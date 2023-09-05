@@ -1,0 +1,32 @@
+1. Nifi
+2. Kubernetes
+	basic commands like list pods  
+3. Docker
+Refer Docker Notes inside "C:\Tools\DOCKER\Docker Notes"	
+4. Microservices
+5. Oracle performance tuning
+	eg: merge-sort joins types of joins
+6. Cloud performance tuning services
+7. Postgres; 
+	performance tuning
+8. our  nifi training
+
+GIT
+Jenkins
+DevOps
+elastic search
+aws
+gcp
+
+
+1. Nifi
+2. Kubernetes
+	basic commands like list pods  
+3. Docker
+4. Microservices
+5. Oracle performance tuning
+	eg: merge-sort joins types of joins
+6. Cloud performance tuning services
+7. Postgres; 
+	performance tuning	
+8. question related to our nifi training	

@@ -144,7 +144,7 @@ Q12. What are the steps to be  be performed ONLY ON MASTER NODE
 Ans: We have to initialize the cluster from Master Node using sudo kubeadm init command
 	Step 1) Get the IP address of master
 		ip addr
-		10.182.0.2/32
+		 10.182.0.4/32
 
 	Step 2) Initialize the cluster
 

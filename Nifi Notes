@@ -1,0 +1,796 @@
+ApacheNifi
+
+nifi.bat set-single-user-credentials kunal kunal
+nifi.bat start
+
+Installation
+
+1. Google for latest JDK and download at below location
+	C:\Tools\jdk-19_windows-x64_bin.exe
+2. While installing notice the path where JDK is getting installed and set env variable
+	JAVA_HOME = C:\Program Files\Java\jdk-19
+	check java version 
+	java -version
+3. Google for latest NiFi and download at below location
+	C:\Tools\nifi-1.20.0-bin.zip
+	unzip and go to 
+	C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\bin
+	run-nifi.bat
+	C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\logs
+
+nifi.sh set-single-user-credentials kunal kunal
+		search for "NiFi has started"
+		you will get the url
+		https://127.0.0.1:8443/nifi
+
+Generated Username [c1e089c9-8854-49ef-89a7-d29947825fad]
+Generated Password [POdknk9pOMXD5He19OAVvV5r0O7ipRJz]
+
+
+Generated Username [364f9207-d33e-4a2e-b1b9-1dd49a725613]
+Generated Password [rXMuoCBe+i5T0OmIzkUxDPHSg8lblJll]
+
+		incase issue in starting ui then delete all*repository folders inside C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\bin directory
+
+terminologies in NiFi
+
+Theory
+
+Introducation
+
+Basic Terms:
+
+What is Data Flow, Data Pipeline & ETL?
+Let’s start with the basic terms in the data world.
+What is Data Flow?
+✘ Data Flow -> Moving data/content from Source to Destination
+✘ Data can be CSV, JSON, XML, Logs, HTTP data, Image, Videos, Telemetry data, etc..
+What is Data Pipeline?
+✘ Data Pipeline -> Movement and Transformation of data/content from Source to Destination
+What is ETL?
+✘ ETL -> E – Extract, T – Transform, L – Load
+
+
+Why we should use a Framework for Data Flow
+✘ Support for multiple data format - CSV, JSON, Plaintext, Images, Videos, etc. 
+✘ Support for various types of sources and destinations - FTP, HTTP, SQL Databases, NoSQL Databases, Search Engines, Cache Server, etc. 
+✘ Scalable and Reliable for large volume and high-velocity data. 
+✘ You should also consider Data Cleansing and Data Validation logics.
+
+
+Apache NiFi
+
+A robust open-source Data Ingestion and Distribution framework.
+Apache NiFi supports powerful and scalable directed graphs of data routing, transformation, and system mediation logic.
+NiFi was built to automate the flow of data between systems. It can propagate any data content from any source to any destination.
+
+
+
+
+
+Flow Based Programming
+5 Major components : Processors, Flow file,Connections,Process Group and Controller services
+
+1. Processors --> 
+	Atomic element which can be combined to group
+	Latest release has 280+ Processors.
+		Eg. Getfile and Putfile
+	Nifi has rich set of processors	
+		To Read and Write to various datasources we need processors
+		it can connect to any db..
+		nifi also gives way to write custom processors also
+
+	Various types of processors available as below
+	
+		data ingestion processors-- means pulling of data from datasources
+		Eg. generateflowfiles, getfile, getMango etc
+
+		data transformation processors-- means tranforming of data
+		Eg. convertrecord, replacetext, encryptcontent  etc
+		
+		data eGRESS/Sending ata processors-- means sending of data to datasources
+		Eg. putemail, putsql, puthdfc  etc
+	
+		routing and mediation processors-- HELPS us to conditionally change the way how a flowfile will be processed
+		Eg. controlRate, RouteonAttribute, ScanContent 
+	
+		Database Access Processors-- to access the db
+		Eg. convertJsontoSql,PuSQL , executesql etc 
+	
+		Attribute extraction Processors-- to extract and manipulate the attributes and  content  of flowfile , these maily work with
+	
+		routing and mediation processors
+		Eg. EvaluteJsonPath,ExtractText , HashAttribute etc 
+	
+		System Interaction Processors-- for running OS Specific commands
+		Eg. ExecuteProcess, ExecuteStreamCommand
+	
+		Splitting and Aggregation Processors
+		Eg. SplitText,SplitRecord,SplitJson
+	
+		HTTP and UDP Processors
+		Eg. GetHttp,PostHTTP,PutUDP etcc
+	
+		AWS Processors
+		Eg. FetchS2object, GetSQS
+
+		types of nifi processors configurations
+		standard configuration-- common properties across all processors-->
+		Unique configuration-- specific to processors
+		
+		Relationships---each processors have 0 or more relationships assigned to it 
+		after completion of processing of flowfiles it will transfer the flowfile in one of the  relationships
+		the flowfile creator has to handle all relationships and terminate unhanfled  relationships
+		
+		
+
+2. flow file--> actual data --> can be csv, json paintext sql,binary etc
+	processor processes a flow file to generate another flow file
+	these are most crutial parts of nifi, it has 2 components
+		content --> its actual contents of flow file , these can be read using getfile, gethttp etc
+		attributes -->metadata inform of keyvalue pairs
+				   --> contains info about content , like name, so=urce, createdate etc 
+	a processor can manipulate attributes of flow file or change the content to get the required output of df of your choice
+
+
+3. connections--> processors are connected by use of connectors
+	to create a data processing flow
+	each coonector acts as queue to flowfile
+
+
+4. process group--> set of	 processors can be combined to form process group
+	this helps in better maintainance of large and complex dataflow
+
+5. controller services--> are shared services used by the processors
+	like for example a processors to get and put data from db, we will need controller services with reqiured db connection details
+	controller services are not limited to db services there are many more uses
+
+
+read nifi expression language guide in apache nifi docs website 
+
+{
+  "field1": "${csv.1}",
+  "field2": "${csv.2}",
+  "field3": "${csv.3}",
+  "field4": "${csv.4}",  
+}
+
+www.oreilly.com/library/view/introduction-to-apache/9781789346084 
+--1hr47min 
+-- 6-March i started at 1230 5march finished 2:20 PM 5march 
+-- same as youtube manoj
+
+www.oreilly.com/library/view/the-complete-apache/9781839217876 13h 26m -- 19 March
+5march
+-- TLB INDEX 17, 9.9 M DOWNLOADS 
+--STABLE open source prog language
+groovy-lang.org
+src code also available in github github-- apache/groovy
+
+groovy-lang.org
+here we have bools and documentations
+see api.html also important site
+gdk.html
+books to read -- groovy in action (cover has a dancing lady in yellow attire)
+making java groovy 
+programming groovy2 
+
+
+
+C:\Users\kush0221>groovysh
+Groovy Shell (4.0.9, JVM: 19.0.2)
+Type ':help' or ':h' for help.
+-------------------------------------------------------------------------------
+groovy:000> 1+2
+===> 3
+groovy:000> println "Hello World"
+Hello World
+===> null
+groovy:000> class Person {
+groovy:001>  def sayHello() { println "Hello" }
+groovy:002> }
+===> true
+groovy:000> p = new Person()
+===> Person@6c6017b9
+groovy:000> p.sayHello()
+Hello
+===> null
+
+groovy:000> :clear
+groovy:000> :q
+12.37 remaining 
+ask abount how to get additional resources
+10.20 remains start from simple data types
+8.27
+
+6march
+7march
+8march
+9march
+10march
+11march
+12march
+13march
+14march
+15march
+16march
+17march
+18march
+19march
+www.oreilly.com/videos/-/9781491930915 5h 49m -- 24 March
+www.oreilly.com/library/view/practical-groovy-programming/9781491930908 4h 58m -- 28 March
+www.oreilly.com/library/view/groovy-programming-fundamentals/9781491926253 3h 57m -- 4 Apr
+
+https://learning.oreilly.com/videos/-/9781789346084/continue
+
+
+https://learning.oreilly.com/videos/-/9781491930915/continue
+https://learning.oreilly.com/videos/-/9781491930908/continue
+https://learning.oreilly.com/videos/-/9781491926253/continue
+
+
+
+Controller Services Demo
+Shared Services which is used across the Processors
+https://www.jsonlint.com/
+
+{
+	"title": "mr",
+	"first": "John",
+	"last": "Doe",
+	"email": "johndoe@email.com",
+	"created_on": "111111111"
+}
+
+
+{
+	"title": "mr",
+	"first": "John ${random():mod(10):plus(1)}",
+	"last": "Doe ${random():mod(10):plus(1)}",
+	"email": "johndoe@ ${random():mod(10):plus(1)}.com",
+	"created_on": "${now():toNumber()}"
+}
+
+Database Connection URL ->  jdbc:oracle:thin:@10.109.22.222:1539:DBG195
+
+Database Driver Class Name -> oracle.jdbc.driver.OracleDriver
+path - C:\Intel\sqldeveloper\jdbc\lib\ojdbc6.jar
+Database User -> U32_C5_6900
+
+Password -> U32_C5_6900
+
+
+create table tab1
+(
+"title" varchar2(4000),
+	"first" varchar2(4000),
+	"last" varchar2(4000),
+	"email" varchar2(4000),
+	"created_on" varchar2(4000)
+  )
+ 
+ CREATE table tab1 
+(
+title varchar2(4000),
+	first varchar2(4000),
+last varchar2(4000),
+email varchar2(4000),
+created_on varchar2(4000)
+  )
+  
+  
+(.+),(.+),(.+),(.+)
+
+{
+  "field1": "${csv.1}",
+  "field2": "${csv.2}",
+  "field3": "${csv.3}",
+  "field4": "${csv.4}"
+}  
+
+${filename}-${now():toNumber():format('dd-MM-yy')}.json
+
+
+Problem Statement
+1. Create a csv file (contains 1 line "a,b,c,d") every 10 sec
+2. Convert csv file (contains 1 line "a,b,c,d") to jason
+{
+  "field1": "${csv.1}",
+  "field2": "${csv.2}",
+  "field3": "${csv.3}",
+  "field4": "${csv.4}"
+}  
+3. Change Filename , append date
+4. store the file
+
+
+Solution:
+GenerateFlowfile
+ReplaceText
+EXTRACTText Capture fields --(.+),(.+),(.+),(.+)
+ReplaceText Generate json by setting captured fields in json format 
+{
+  "field1": "${csv.1}",
+  "field2": "${csv.2}",
+  "field3": "${csv.3}",
+  "field4": "${csv.4}"
+}  
+UPDATEATTRIBUTE update file name
+${filename}-${now():toNumber():format('dd-MM-yy')}.json
+PUTFILE Store
+
+
+Problem Statement
+
+1. Load json file into DB
+Solution:
+GENERATEFLOWFILE
+CONVERTJSOTOSQL
+PUTSQL
+
+
+2. Load csv file into DB
+Solution:
+GETFILE
+SPLITTEXT
+CONVERTRECORD
+CONVERTJSOTOSQL
+PUTSQL
+
+Monitoring Nifi
+Version Control 
+Nifi Cluster - Zookeeper
+Custom Processor 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. How to install Hyper-V Manager
+- Search -- "Turn Windows features on or off"
+---Check Hyper-V
+--ReStart
+
+2. What settings are needed before starting VM
+--Virtual Switch Manager
+---New Virtual net Switch
+---Name-external
+---external network --WIFI
+---- check Allow Management..
+
+
+3. How to create VM
+--QUICK Create
+--make sure the connection is external in More Options
+Once VM is created
+Edit Settings
+---Increase HARDDISK - 25GB
+---CheckPoint No
+--APPLY--OK
+
+
+4. Install SSH
+sudo apt update
+--Verify SSH service installation: Ensure that the SSH service is installed on your Ubuntu VM. You can install it using the following command:
+sudo apt-get install openssh-server
+--If the SSH service is already installed, the command will inform you that it is already the latest version. Otherwise, it will install the SSH server.
+--Start and enable the SSH service: After installing the SSH server, start the service and enable it to start automatically on system boot using the following commands:
+sudo systemctl start ssh
+sudo systemctl enable ssh
+sudo systemctl status ssh
+--This command should display the status of the SSH service and confirm whether it is active and running.
+ip addr show
+--configure above ip in WINSCP
+	   
+5. JAVA_HOME SetUp	   
+Check if java is installed
+update-alternatives --config java
+sudo apt install default-jdk
+sudo apt install default-jre
+java -version
+--Locate your Java installation on Ubuntu
+---To find out where apt installed Java on Ubuntu, issue the following command and copy the location provided:
+
+$ update-alternatives --config java
+
+--There is only one alternative in link group java (providing /usr/bin/java): 
+/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+--Add JAVA_HOME to the environment
+--With the location of the Java install on the clipboard, open up the server’s environment file with Nano:
+
+nano ~/.bashrc
+export JAVA_HOME=/usr/lib/jvm/jdk-19
+source ~/.bashrc
+
+--You should then be able to echo the JAVA_HOME environment variable in an Ubuntu terminal window:
+
+echo $JAVA_HOME
+/lib/jvm/java-11-openjdk-amd64
+set JAVA_HOME ubuntu
+Edit the environment file to set JAVA_HOME globally in Ubuntu.
+
+5. Install Nifi
+Update the package lists on your system:
+sudo apt update
+
+
+
+1.22.0
+wget https://dlcdn.apache.org/nifi/1.22.0/nifi-1.22.0-bin.zip
+tar xzf nifi-<version>-bin.tar.gz
+sudo mv nifi-<version> /opt/nifi
+sudo chown -R <your-username>:<your-username> /opt/nifi
+sudo chmod -R 755 /opt/nifi
+nano ~/.bashrc
+
+cd /opt/nifi
+./bin/nifi.sh start
+
+http://localhost:8080/nifi
+
+Run pkexec chmod 0755 /etc/sudoers.d
+
+pkexec will use a different method of using root permissions, bypassing the issue.
+And the chmod will fix the permissions.
+
+
+dh -H
+
+Alogn to None
+Apply 
+
+
+sudo apt-get -qqy install ./jdk-19.0.2_linux-x64_bin.deb
+
+sudo apt-get -qqy install ./jdk-19_linux-x64_bin.deb
+
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1919
+
+check result
+
+root@vypc:~# java -version
+java version "19" 2022-09-20
+Java(TM) SE Runtime Environment (build 19+36-2238)
+Java HotSpot(TM) 64-Bit Server VM (build 19+36-2238, mixed mode, sharing)
+
+f "nifi.web.https.host" From 127.0.0.1 to the IP address you want to use. Then restart NiFi. This will enable remote access to NiFi, so do use securit
+
+http://192.168.1.15:18080/nifi-registry/#/explorer/grid-list
+
+nifi 1.20\
+registry 22
+
+
+
+
+Step 1 IP ADDRESS OF HOST
+	-- get external ip address of host machine
+	open cmd and type 
+	ipconfig
+	refer Ethernet adapter vEthernet (external) 2: section and note the ipaddress of IPv4 Address
+	--10.230.25.234
+	
+Step 2 UPDATE NIFI.PROPERTIES
+	-- Open Nifi.Properties inside C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\conf
+ 	--change below property 
+	from nifi.web.https.host=127.0.0.1 to nifi.web.https.host=10.230.25.234
+	
+Step 3 OPEN NIFI 
+	-- go to C:\Tools\nifi-1.20.0-bin\nifi-1.20.0\bin
+	-- type cmd in navigotor then below command
+	-- nifi.cmd start
+	-- Open web Browser with changed ip https://10.230.25.234:8443/nifi
+
+
+Step 3--Open VM , Open Terminal Module
+
+Step 4--ip addr show -- Get IP Address --10.230.26.124
+
+Step 5--ping hostip
+	ping 10.230.25.234
+
+Step 6 --Run below command to check if 25GB is allocated
+		df -H
+		sudo apt update && sudo apt upgrade
+		sudo apt install gparted
+
+Step 7--Install Nifi
+	7.1 -- Install SSH
+			sudo apt update
+			sudo apt-get install openssh-server
+			sudo systemctl start ssh
+			sudo systemctl enable ssh
+			sudo systemctl status ssh
+			--This command should display the status of the SSH service and confirm whether it is active and running.
+			move nifi and nifi registry files from host machine using winscp to VM and unzip and change properties in nifi.properties file
+			from nifi.web.https.host=127.0.0.1 to nifi.web.https.host=10.230.26.124
+			
+	7.2 -- Install JAVA and Setup JAVA_HOME inVM
+			--Check if java is installed
+				update-alternatives --config java
+				sudo apt install default-jdk
+				sudo apt install default-jre
+				java -version
+			$ update-alternatives --config java
+				/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+			--Add JAVA_HOME to the environment
+			--With the location of the Java install on the clipboard, open up the server’s environment file with Nano:
+
+			nano ~/.bashrc
+			export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+			source ~/.bashrc
+
+			--You should then be able to echo the JAVA_HOME environment variable in an Ubuntu terminal window:
+
+			echo $JAVA_HOME
+			/lib/jvm/java-11-openjdk-amd64
+			set JAVA_HOME ubuntu
+			Edit the environment file to set JAVA_HOME globally in Ubuntu.
+	
+	7.3 Start Nifi AT VM
+	cd /home/kunal/Desktop/nifi-1.20.0/bin
+	./nifi.sh start
+
+		-- Open URL in VM
+		--https://10.230.26.124:8443/nifi
+Step 8--Install Nifi Registry at VM
+		8.1	-- Change IP in nifi-registry.properties
+			-- Open URL in VM	
+			cd /Desktop/nifi-registry-1.22.0/bin 
+			./nifi-registry.sh start
+			http://10.230.26.124:18080/nifi-registry
+
+Step 9--Configure Nifi Registry in NIfi VM
+		Go to Controller Settings
+		REGISTRY CLIENT tab
+		Plus Button
+		Name as localregistry
+		in properties add http://10.230.26.124:18080 
+		
+Step 10--Configure Nifi Registry in NIfi host
+		Go to Controller Settings
+		REGISTRY CLIENT tab
+		Plus Button
+		Name as localregistry
+		in properties add http://10.230.26.124:18080 
+
+Step 11 -- Play and ENJOY
+
+Step 12 -- REMOTE MONITORING
+
+Site to Site properties
+nifi.remote.input.host
+nifi.remote.input.socket.port
+
+
+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 
+https://github.com/kunalshrivastavapune25/nifi-flows
+git clone https://github.com/kunalshrivastavapune25/nifi-flows
+192.168.1.10
+192.168.1.8
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Zookeeper
+all 3 nodes
+MEMORY-1024MB
+PROCESSORS-2
+HD-25GB
+Network Adaptor - External
+
+Step1: sudo update
+	sudo apt update && sudo apt upgrade
+
+Step2: Extend to 25gb
+	df -H
+	sudo apt install gparted
+
+Step3: install ssh
+sudo apt update
+sudo apt-get install openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+sudo systemctl status ssh
+	--This command should display the status of the SSH service and confirm whether it is active and running.
+	move nifi and nifi registry files from host machine using winscp to VM and unzip and change properties in nifi.properties file
+	from nifi.web.https.host=127.0.0.1 to nifi.web.https.host=10.230.26.124
+
+Step4: install java
+	--Check if java is installed
+	update-alternatives --config java
+sudo apt install default-jdk
+sudo apt install default-jre
+java -version
+	$ update-alternatives --config java
+	/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+	--Add JAVA_HOME to the environment
+	--With the location of the Java install on the clipboard, open up the server’s environment file with Nano:
+	nano ~/.bashrc
+	export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+	source ~/.bashrc
+	--You should then be able to echo the JAVA_HOME environment variable in an Ubuntu terminal window:
+	echo $JAVA_HOME
+	/lib/jvm/java-11-openjdk-amd64
+	set JAVA_HOME ubuntu
+	Edit the environment file to set JAVA_HOME globally in Ubuntu.
+
+
+Step5: install nifi
+	cd /home/kunal/Desktop/nifi-1.20.0/bin
+	./nifi.sh start
+
+	-- Open URL in VM
+	--https://10.230.26.124:8443/nifi
+
+
+Ubuntu1
+https://192.168.1.23:8443/nifi
+Generated Username [58f0f530-e5bd-4971-81fc-d33ee1d4d503]
+Generated Password [cJWzp4/dTPhHOdkh3ji7lEhPh5ZJoHDA]
+Ubuntu2
+https://192.168.1.11:8443/nifi
+Generated Username [222a814e-5a82-4d6f-bb2b-4ea1ec76d715]
+Generated Password [KLVkRK3dtew82Cwvzm2nUHQZHR8ZS7M1]
+
+
+
+
+
+
+
+
+
+nifi clusturing
+larger data sets we need more nodes for quicker processing
+can be done if same code deployed manually in each server and handling individually
+apache zookeper is tool for clustermanagement
+higly reliable distributed cordination
+one node is selected as cordinator
+
+
+checking  Build on Sprint: 45.1.1
+https://bass.netcracker.com/display/O2UK/O2+UK+Release+Notes+R4.02+Sprint+45.1.1
+
+Toms`
+108_2019.4_O2UK.APP.TOMS.R4.02.S45.1.2_INT_PD_009_PR_96121_POC_95686_96056.zip
+Env Dev2--	
+10.109.22.222
+https://cisrvcn.netcracker.com/job/O2UK_Instance_TOMS/4578/
+108_2019.4_O2UK.TOMS.DM.WHS.Iteration3.3_rev95969_autoinstaller.zip	
+
+RBM
+108_2020.2_O2UK.NRM.R4.02.Sprint45.1.2_rev18392_delta_autoinstaller.zip
+Env Dev2--
+10.109.22.223
+https://cisrvcn.netcracker.com/job/O2UK_Instance_RBM/17378/
+108_2020.1_O2UK.RBM-DM.WHS.Iteration3.3_rev1510.zip	
+
+Step1-Change the DBLINK at RBM
+
+
+
+
+
+https://cisrvcn.netcracker.com/job/O2UK_Instance_RBM/17502/
+
+https://cisrvcn.netcracker.com/job/O2UK_Instance_TOMS/4784/
+
+1.what is nifi
+A robust open-source Data Ingestion and Distribution framework.
+
+2.what are components of nifi
+Processors, Flow file,Connections,Process Group and Controller services
+
+3.What are Processors and give examples: 
+Atomic element which can be combined to group
+Latest release has 280+ Processors.
+To Read and Write to various datasources we need processors
+it can connect to any db..
+
+4.Types of nifi processors configurations
+	Standard configuration-- common properties across all processors-->
+	Unique configuration-- specific to processors
+
+5. Relationships---each processors have 0 or more relationships assigned to it 
+after completion of processing of flowfiles it will transfer the flowfile in one of the  relationships
+
+6.Flow File--> actual data --> can be csv, json paintext sql,binary etc
+	processor processes a flow file to generate another flow file
+
+7. These are most crutial parts of nifi, it has 2 components
+	content --> its actual contents of flow file , these can be read using getfile, gethttp etc
+	attributes -->metadata inform of keyvalue pairs
+> contains info about content , like name, source, createdate etc 
+
+8. A processor can manipulate attributes of flow file or change the content to get the required output of df of your choic
+
+9. Connections--> processors are connected by use of connectors
+	to create a data processing flow
+	each coonector acts as queue to flowfile
+10. Process Group--> Set of processors can be combined to form process group
+	this helps in better maintainance of large and complex dataflow
+11. how to configure variables in Nifi
+12. how to set up db details in nifi
+13. If i want to convert xml to insert staement then what to do
+14. 
+
+
+
+https://cisrvcn.netcracker.com/job/O2UK_Instance_RBM/17535/
+https://cisrvcn.netcracker.com/job/O2UK_Instance_TOMS/4833/
+
+Step 1: Login to any DB and create a temp table
+
+DROP table tab1
+
+CREATE table tab1 
+(
+title varchar2(4000),
+	first varchar2(4000),
+last varchar2(4000),
+email varchar2(4000),
+created_on varchar2(4000)
+  )
+
+Hostname -- 10.109.22.222
+Port --1539
+Service Name -- DBG195
+UserName -- U32_C5_6900
+Pwd -- U32_C5_6900
+
+Step 1: Login to any DB and create a temp table
+
+
+Atomic element which can be combined to group
+Latest release has 280+ Processors.
+To Read and Write to various datasources we need processors
+it can connect to any db..
+nifi also gives way to write custom processors also
+Eg. Getfile and Putfile
+Nifi has rich set of processors	
+
+Various types of processors available as below
+
+data ingestion processors-- means pulling of data from datasources
+Eg. generateflowfiles, getfile, getMango etc
+data transformation processors-- means tranforming of data
+Eg. convertrecord, replacetext, encryptcontent  etc
+data eGRESS/Sending ata processors-- means sending of data to datasources
+Eg. putemail, putsql, puthdfc  etc
+routing and mediation processors-- HELPS us to conditionally change the way how a flowfile will be processed
+Eg. controlRate, RouteonAttribute, ScanContent 
+Database Access Processors-- to access the db
+Eg. convertJsontoSql,PuSQL , executesql etc 
+Attribute extraction Processors-- to extract and manipulate the attributes and  content  of flowfile , these maily work with
+routing and mediation processors
+Eg. EvaluteJsonPath,ExtractText , HashAttribute etc 
+System Interaction Processors-- for running OS Specific commands
+Eg. ExecuteProcess, ExecuteStreamCommand
+Splitting and Aggregation Processors
+Eg. SplitText,SplitRecord,SplitJson
+HTTP and UDP Processors
+Eg. GetHttp,PostHTTP,PutUDP etcc
+AWS Processors
+Eg. FetchS2object, GetSQS
+
+		types of nifi processors configurations
+		standard configuration-- common properties across all processors-->
+		Unique configuration-- specific to processors
+		
+		Relationships---each processors have 0 or more relationships assigned to it 
+		after completion of processing of flowfiles it will transfer the flowfile in one of the  relationships
+		the flowfile creator has to handle all relationships and terminate unhanfled  relationships
