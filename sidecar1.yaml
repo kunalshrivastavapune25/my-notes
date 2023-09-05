@@ -4,7 +4,7 @@ metadata:
   name: sidecar-pod-1
 spec:
   containers:
-  - image: busybox
-    name: mysql
-    image: busybox
-    name: mysql1
+    - image: nginx:latest
+      name: nginxcontainer
+      image: nginx:latest
+      name: nginxcontainer1
