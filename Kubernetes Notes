@@ -359,9 +359,9 @@ Q19. What is PODS
 Ans: Pods are the smallest deployable units of computing that you can create and manage in Kubernetes
 A Pod models an application-specific "logical host": it contains one or more application containers which are relatively tightly coupled. In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to cloud applications executed on the same logical host.
 
-	Wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
-	standardized by writing these all container specifications in yaml file and passing it in kubectl. in a pod yaml we give api version and specs ofall containers to be made.
-	advantage is kube proxy assign single cluster ip to each pod and all containers in side a pod can share common network and storage. common network means they can interact with each other using localhost followed by port.
+Wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
+standardized by writing these all container specifications in yaml file and passing it in kubectl. in a pod yaml we give api version and specs ofall containers to be made.
+advantage is kube proxy assign single cluster ip to each pod and all containers in side a pod can share common network and storage. common network means they can interact with each other using localhost followed by port.
 	
 its wrapper around containers.
 docker implement cont, but for k8 to intertact and manage we need this wrapper
@@ -402,21 +402,11 @@ spec:
 
 
 create vi myfirstpod.yaml
-root@master:~# cat myfirstpod.yaml
-apiVersion: v1 
-kind: Pod
-metadata:
-  name: myfirstpod
-  labels:
-    typeofapp: webserverapp
-    version: bdsds
-spec:
-  containers:
-    - image: nginx:latest
-      name: nginxcontainer
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/myfirstpod.yaml
 	  
 https://kubernetes.io/docs/concepts/workloads/pods/
-kubectl create -f myfirstpod.yaml
+
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/myfirstpod.yaml
 kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
 
 root@master:~# kubectl create -f myfirstpod.yaml
@@ -456,7 +446,7 @@ Commercial support is available at
 </body>
 </html>
 
-if this not works from master then firwall might be issue, you need to run sam
+if this not works from master then firwall might be issue, you need to run sam, also this wont work from client machine 
 kubectl describe pods myfirstpod
 Name:             myfirstpod
 Namespace:        default
@@ -542,31 +532,7 @@ https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/multi
 
 cat sidecar.yaml
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: mc1
-spec:
-  volumes:
-  - name: html
-    emptyDir: {}
-  containers:
-  - name: 1st
-    image: nginx
-    volumeMounts:
-    - name: html
-      mountPath: /usr/share/nginx/html
-  - name: 2nd
-    image: debian
-    volumeMounts:
-    - name: html
-      mountPath: /html
-    command: ["/bin/sh", "-c"]
-    args:
-      - while true; do
-          date >> /html/index.html;
-          sleep 1;
-        done
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/sidecar.yaml
 
 volumeMounts tells about inside pod directory
 name can be anything like html or html2
@@ -615,35 +581,7 @@ as long as init cont are running primary cannot start
 demo
 https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/initcontainers
 
-apiVersion: v1 
-kind: Pod 
-metadata:
-  name: initcontainerdemo
-spec:
-  initContainers:
-    - name: init1
-      image: busybox
-      command: ["/bin/sh","-c"]
-      args: ["mkdir /nginxmount; echo This is coming from initcontainer > /nginxmount/index.html"]
-      
-      volumeMounts:
-        - name: nginxmount
-          mountPath: /nginxmount
-
-
-  containers:
-    - name: nginx 
-      image: nginx 
-      volumeMounts: 
-        - name: nginxmount
-          mountPath: /usr/share/nginx/html
-
-  volumes:
-    - name: nginxmount
-      hostPath:
-        path: /nginx
-        type: DirectoryOrCreate
-
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/initcontainerdemo.yaml
 
 busybox is light weight ubuntu image, in this case both hostpath and emptydir can work please note
 
@@ -836,19 +774,7 @@ first add label run: nginx to any running pod
 
 vi service.yaml 
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-clusterip
-spec:
-  selector:
-    typeofapp: webserverapp
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: ClusterIP
-
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/service.yaml
 OR
 
 kubectl expose deploy nginx --port=80 --type=ClusterIP --name=nginx-clusterip
@@ -858,7 +784,7 @@ targetPort: 80 is at pod level, for nginx its 80 and tomcat 8080
  port: 80 is service port
  
 run 
-kubectl create -f service.yaml 	
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/service.yaml	
 kubectl get services
 you will see service got automatic ip address
 which is not part of assigmed cluster
@@ -950,23 +876,11 @@ we asssign some labels to node
 https://github.com/hub-kubernetes/cka-exam/blob/master/Module%20-%202/Scheduling/nodeselector/nginx-nodeselector.yaml
 
 vi nodeselector.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-  labels:
-    env: test
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    imagePullPolicy: IfNotPresent
-  nodeSelector:
-    app: frontend
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/nodeselector.yaml
  
 kubectl get nodes --show-labels
 kubectl label node worker1 app=frontend
- kubectl create -f nginx-nodeselector.yaml
+ kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/nodeselector.yaml
 kubectl get pods -o wide 
  kubectl edit node worker1
 
@@ -1164,24 +1078,9 @@ deployment controller--- combination of above two provides much more granular wa
 replication controller
 https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%203/Controllers/replicationcontroller
 vi replicationcontroller.yaml
-apiVersion: v1
-kind: ReplicationController
-metadata:
-  name: my-nginx
-spec:
-  replicas: 5
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.7.9
-        ports:
-        - containerPort: 80
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/replicationcontroller.yaml
 
-kubectl create -f replicationcontroller.yaml 
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/replicationcontroller.yaml 
 
 kubectl get pods 
  now try deleting once single pod
@@ -1226,35 +1125,8 @@ here we are using the exact same secret we created before
 note the label 
 
 vi mysql_rs1.yaml
-apiVersion: v1
-kind: Pod 
-metadata:
-  name: mysql
-  labels:
-    app: mysql_1 
-spec:
-  containers:
-    - image: mysql:5.6
-      name: mysql
-      env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
-      ports:
-        - containerPort: 3306
-          name: mysql
-      volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
-  volumes:
-    - name: mysql-persistent-storage
-      hostPath:
-        path: /data
-        type: DirectoryOrCreate
-
-kubectl create -f mysql_rs1.yaml
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/mysql_rs1.yaml
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/mysql_rs1.yaml
 kubectl get pods --show-labels
 kubectl get rc
 kubectl delete rc myrc
@@ -1268,43 +1140,9 @@ it only be able to manage the pod mysql_2
 		
 		
 vi mysql_rs2.yaml
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata: 
-  name: mysqlrs
-  labels:
-    app: mysql
-spec: 
-  replicas: 3
-  selector: 
-    matchExpressions:
-      - {key: app, operator: In, values: [mysql_1, mysql_2]}
-  template:
-    metadata:
-      name: mysql
-      labels:
-        app: mysql_2 
-    spec:
-      containers:
-        - image: mysql:5.6
-          name: mysql
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: password
-          ports:
-            - containerPort: 3306
-              name: mysql
-          volumeMounts:
-            - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
-      volumes:
-        - name: mysql-persistent-storage
-          emptyDir: {}
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/mysql_rs2.yaml
 		  
-kubectl create -f mysql_rs2.yaml
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/mysql_rs2.yaml
 kubectl get pods --show-labels
 kubectl get rs
 kubectl delete pods sql1
