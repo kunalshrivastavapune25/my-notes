@@ -5,17 +5,4 @@ metadata:
 spec:
   containers:
   - image: busybox
-    name: application
-    args:
-     - /bin/sh
-     - -c
-     - >
-      while true; do
-        echo "$(date) INFO hello" >> /var/log/myapp.log ;
-        sleep 1;
-      done
     image: busybox
-    args:
-     - /bin/sh
-     - -c
-     - tail -fn+1 /var/log/myapp.log
