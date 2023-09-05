@@ -1,12 +1,12 @@
 **************************************************************
 1. What language Kubernetes is developed
 **************************************************************
-	GoLang
+ANS:GoLang
 	
 **************************************************************	
 2. What is Kubernetes?
 **************************************************************
-	Docker is a Image Building, storing and container creation technology but k8s is container orchestration technology.
+ANS:Docker is a Image Building, storing and container creation technology but k8s is container orchestration technology.
 	At one point of time it becomes very difficult to manage docker containers spanning over multiple hosts.
 	So we need Kubernetes for below aspects:
 	AutoScaling Networks
@@ -22,41 +22,41 @@
 **************************************************************	
 3. What is Cluster
 **************************************************************
-	Group of Nodes. Master and Worker Nodes. Pods can be randomly distributed in Clusters
+ANS:Group of Nodes. Master and Worker Nodes. Pods can be randomly distributed in Clusters
 
 **************************************************************
-4. Why dockers standalone not user is Prod
+4. Why dockers standalone is not used is Prod
 **************************************************************
-	Because its not an enterprise solution, due to shortcomings listed in Point1	
+ANS:Because its not an enterprise solution, due to shortcomings listed in Point2	
 
 **************************************************************	
 5. What is k8s alternative to LoadBalancing
 **************************************************************
-	Ingress		
+ANS:Ingress		
 
 **************************************************************	
 6. What is components of Worker Node
 **************************************************************
-	kubelet -- is like docker shim that provides runtime for running pods if the pod fails it will take necessry action by informing one of the
+ANS: 3 Componentslisted below:	
+	1. kubelet -- is like docker shim that provides runtime for running pods if the pod fails it will take necessry action by informing one of the
 	component in master node 
-	Container Runtime -- like Docker for running containers
-	kubeproxy --provides ip address to pods and helps in load balancing of network traffic, it uses IP Tables of host machine for networking 
+	2. Container Runtime -- like Docker for running containers
+	3. kubeproxy --provides ip address to pods and helps in load balancing of network traffic, it uses IP Tables of host machine for networking 
 
 **************************************************************	
 7. What is components of Master Node
 **************************************************************
-	API Server -- exposes cluster to external world, it decides action
-	Scheduler -- to schedule a pod in available worker node , it performs action
-	etcd --name value pair database that stores entire cluster information
-	controller manager -- helps in auto scaling eg replicasets, there has to be some components that keeps checking desired no of requested pods are
-	running , actual and desired state of pods are always maintained 
-	ccm(cloud controller manager ) -- suppose we want some actions from host cloud maching like gke, azure,  this is open source libraries that cloud
-	people has to code which can understand instutions like from now load balancing to be done from host machine. no need of this on premise. Interaction Interface with Cloud Host
+ANS: 5 Componentslisted below:
+	1. API Server -- exposes cluster to external world, it decides action
+	2. Scheduler -- to schedule a pod in available worker node , it performs action
+	3. etcd --name value pair database that stores entire cluster information
+	4. controller manager -- helps in auto scaling eg replicasets, there has to be some components that keeps checking desired no of requested pods are running , actual and desired state of pods are always maintained 
+	5. ccm(cloud controller manager ) -- suppose we want some actions from host cloud maching like gke, azure,  this is open source libraries that cloud 	people has to code which can understand instutions like from now load balancing to be done from host machine. no need of this on premise. Interaction Interface with Cloud Host
 
 **************************************************************
 8. What is Kubectl
 **************************************************************
-	Kubectl is k8s commandline to interact with k8s cluster	like in docker we have docker cli
+ANS:Kubectl is k8s commandline to interact with k8s cluster	like in docker we have docker cli
 
 *************************************************************
 Q9. In GCP where to create new VMs and check billing?
@@ -93,7 +93,7 @@ Ans:	Overall there are 2 things to be taken care of :
 				sudo su -
 				apt-get update -- so that update repository catche
 				swapoff -a
-				Step (a2) Comment swap FS from /etc/fstab -- NOT required in cloud, only for oracle virtual box or vmware
+			Step (a2) Comment swap FS from /etc/fstab -- NOT required in cloud, only for oracle virtual box or vmware
 				vi /etc/fstab
 				Comment any line that has swap written	
 			Step (a3) just check if below command is working then no need of step 4 and 5
@@ -138,17 +138,40 @@ Ans:	Overall there are 2 things to be taken care of :
 			sudo apt-get update
 			sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
+ALL ABOVE COMMANDS TOGETHER
+apt-get update && apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+sudo apt-get update
+sudo apt-get install -y \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/debian \
+$(lsb_release -cs) \
+stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
 **************************************************************
 Q12. What are the steps to be  be performed ONLY ON MASTER NODE
 **************************************************************
 Ans: We have to initialize the cluster from Master Node using sudo kubeadm init command
 	Step 1) Get the IP address of master
 		ip addr
-		 10.182.0.4/32
+		 10.182.0.5/32
 
 	Step 2) Initialize the cluster
 
-		sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.2 
+		sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.5 
 
 		by saying this 192.168.0.0/16 we are pre declaring subnet in config that will be imeplemeted by cni, this should be different than 
 		subnet of host which might be fine for dev bit not for prod.
@@ -159,29 +182,31 @@ Ans: We have to initialize the cluster from Master Node using sudo kubeadm init 
 		change from vi cntos to debian
 		sudo systemctl restart cri-docker.service
 
-		sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.2
+		sudo kubeadm init --cri-socket unix:///var/run/cri-dockerd.sock --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.182.0.5
 		post this master node setup should start with below message
 ##############################################################################################################################
-				Your Kubernetes control-plane has initialized successfully!
 
-				To start using your cluster, you need to run the following as a regular user:
+		Your Kubernetes control-plane has initialized successfully!
 
-				  mkdir -p $HOME/.kube
-				  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-				  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+		To start using your cluster, you need to run the following as a regular user:
 
-				Alternatively, if you are the root user, you can run:
+		  mkdir -p $HOME/.kube
+		  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+		  sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-				  export KUBECONFIG=/etc/kubernetes/admin.conf
+		Alternatively, if you are the root user, you can run:
 
-				You should now deploy a pod network to the cluster.
-				Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
-				  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+		  export KUBECONFIG=/etc/kubernetes/admin.conf
 
-				Then you can join any number of worker nodes by running the following on each as root:
+		You should now deploy a pod network to the cluster.
+		Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+		  https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-				kubeadm join 10.182.0.2:6443 --token 6dug91.9da0hkmdr1j366bs \
-						--discovery-token-ca-cert-hash sha256:1327ad20cd127d8b1b1895ada5d746eadf07dad5ed83aa377f066c662f37a28f
+		Then you can join any number of worker nodes by running the following on each as root:
+
+		kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
+				--discovery-token-ca-cert-hash sha256:243764bdfea6a4fc96c4bb4acdda26f8cbd10b7ebbc8a313cd600672aa128b13
+
 ##############################################################################################################################
 		Preserve the above output as it contains the token required for node configuration.
 
@@ -204,8 +229,8 @@ Q13. What are the steps to be  be performed ONLY ON WORKER NODE
 	Step 1) Join the worker node. The output of the kubeadm init command will provide the kubeadm join as its output. Run the kubeadm join command on the worker nodes.
 
 
-		kubeadm join 10.182.0.2:6443 --cri-socket unix:///var/run/cri-dockerd.sock --token 6dug91.9da0hkmdr1j366bs \
-				--discovery-token-ca-cert-hash sha256:1327ad20cd127d8b1b1895ada5d746eadf07dad5ed83aa377f066c662f37a28f
+		kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
+				--discovery-token-ca-cert-hash sha256:243764bdfea6a4fc96c4bb4acdda26f8cbd10b7ebbc8a313cd600672aa128b13
 
 		The output will be as below
 
