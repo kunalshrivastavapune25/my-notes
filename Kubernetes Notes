@@ -513,6 +513,40 @@ you will see status and other infos updated by k8s
 -o jason also works
  read abount emptydir volume and hostpath
 
+Observations: 
+1. when we execute pod , all the containers get same ip address. we can check same by docker ps and then docker exec -it command
+2. When you run `docker ps` and see a container with the image name `registry.k8s.io/pause:3.6`, it typically indicates the presence of a "pause" container that Kubernetes automatically injects into Pods.
+The "pause" container is a small, minimalistic container that Kubernetes uses as a helper container to manage the network namespace of the Pod. It helps facilitate communication between containers in the same Pod. It also assists with Pod lifecycle management, such as stopping all containers in the Pod when the Pod is deleted or terminated.
+This "pause" container is not something you define in your Pod manifest; Kubernetes automatically adds it when you create a Pod. It's an integral part of how Kubernetes manages Pods and container networking.
+
+Here's an example of what a `docker ps` output might look like with a "pause" container:
+
+```
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS         PORTS     NAMES
+abc123         registry.k8s.io/pause:3.6      "/pause"                 5 seconds ago   Up 4 seconds             mypod
+def456         nginx:latest                   "nginx -g 'daemon of…"   5 seconds ago   Up 4 seconds             mypod
+```
+
+In the above output, you can see two containers (`registry.k8s.io/pause:3.6` and `nginx:latest`) running within a Pod named `mypod`. The "pause" container, as mentioned, is an internal component managed by Kubernetes and is not something you define explicitly.
+
+It's perfectly normal to see this "pause" container when using Kubernetes, and it plays a crucial role in making container networking and Pod management work seamlessly.
+
+
+Yes, the "pause" container is initiated and managed by the Kubernetes control plane components, specifically the kubelet running on the worker node where the Pod is scheduled.
+
+Here's how it works:
+
+1. **Pod Scheduling:** When you create a Pod manifest and deploy it to your Kubernetes cluster, the Kubernetes control plane (usually through the kube-scheduler) decides which node should run the Pod.
+
+2. **Pod Creation:** Once the node is selected for running the Pod, the kubelet on that node is responsible for creating and managing the containers within the Pod.
+
+3. **Adding the "Pause" Container:** As part of the Pod creation process, the kubelet adds the "pause" container (with the image `registry.k8s.io/pause:3.6`) to the Pod's network namespace. This container serves as a common networking namespace for all the containers in the Pod.
+
+4. **Managing Networking:** The "pause" container is responsible for configuring and managing the network namespace, including setting up networking rules and providing network isolation between the containers in the Pod.
+
+5. **Starting Other Containers:** After the "pause" container is set up, the kubelet starts the other containers defined in your Pod manifest, and they share the network namespace with the "pause" container. This allows them to communicate with each other over the same network namespace.
+
+So, while the Kubernetes control plane, including the kubelet, initiates and manages the "pause" container, it's done on the worker node where the Pod is scheduled, not on the master node. This architecture helps ensure that the containers in the Pod can communicate with each other efficiently and are isolated from containers in other Pods on the same node.
 
 
 **************************************************************
