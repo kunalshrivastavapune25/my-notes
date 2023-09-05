@@ -5,4 +5,6 @@ metadata:
 spec:
   containers:
   - image: busybox
+    name: mysql
     image: busybox
+    name: mysql1
