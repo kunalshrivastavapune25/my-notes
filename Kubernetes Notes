@@ -219,7 +219,7 @@ Ans: We have to initialize the cluster from Master Node using sudo kubeadm init 
 	Step 4) Install Networking component (CNI) container networking interface or kind of network tunneling overlay and establishing 
 	private networks get this from kubernetes.io
 
-		kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml
+		kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 
 
 **************************************************************
@@ -229,8 +229,8 @@ Q13. What are the steps to be  be performed ONLY ON WORKER NODE
 	Step 1) Join the worker node. The output of the kubeadm init command will provide the kubeadm join as its output. Run the kubeadm join command on the worker nodes.
 
 
-		kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
-				--discovery-token-ca-cert-hash sha256:243764bdfea6a4fc96c4bb4acdda26f8cbd10b7ebbc8a313cd600672aa128b13
+kubeadm join 10.182.0.5:6443 --token 8cz596.qab45k9rs04w11if \
+--discovery-token-ca-cert-hash sha256:243764bdfea6a4fc96c4bb4acdda26f8cbd10b7ebbc8a313cd600672aa128b13
 
 		The output will be as below
 
