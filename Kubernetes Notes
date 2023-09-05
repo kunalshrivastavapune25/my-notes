@@ -553,9 +553,9 @@ So, while the Kubernetes control plane, including the kubelet, initiates and man
 Q20. What is VOLUMES
 **************************************************************
 
-emptydir --  inmememory volume which exists till pods lasts, highly suidable for sidecar pattern pods
+emptydir --  in-memory volume which exists till pods lasts, highly suidable for sidecar pattern pods
 where one container writes and the other reads and permanent physical storage really not needed,
-so mostly suits when 2 continers shares volume in container
+so mostly suits when 2 continers shares volume in pod
 
 hostpath -- is used when we want to mount physical directory to a pod
 
