@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels:
+    typeofapp: webserverapp
+    version: bdsds
+spec:
+  containers:
+    - image: nginx:latest
+      name: nginxcontainer

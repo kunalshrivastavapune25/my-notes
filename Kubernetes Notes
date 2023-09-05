@@ -332,13 +332,15 @@ Q18. What is NAMESPACE?
 Ans:In Kubernetes namespace is a logical isolation of resources, network policies, rbac(role based access control) and everyhing
 	for example 2 projects using same k8s cluster one can use ns1 and other can use ns2 without any overlap and authentication problem
 	namespaces are boundary of my cluster implimentation
-	following 3 name space are create by k8 by itself
+	Following 3 name space are create by k8 by itself
 	kube-system -- never use this ns its for system
-	get pods -n kube-system
+	kubectl get pods -n kube-system
 	kube-node-lease is used by kubelet to send healthcheck and node check info between servers
 	kube-public-- means global pods, these can be accessed from any ns
 	all pods are created in default namespace if not specified, its primary ns
+	
 	kubectl get pods -o wide --all-namespaces
+	
 	kubectl get namespaces
 	kubectl create namespace project1
 	#creates new namespace to isolate apps
@@ -354,10 +356,10 @@ Ans:In Kubernetes namespace is a logical isolation of resources, network policie
 Q19. What is PODS
 **************************************************************
 
-Pods are the smallest deployable units of computing that you can create and manage in Kubernetes
+Ans: Pods are the smallest deployable units of computing that you can create and manage in Kubernetes
 A Pod models an application-specific "logical host": it contains one or more application containers which are relatively tightly coupled. In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to cloud applications executed on the same logical host.
 
-Ans: Wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
+	Wrapper of container, in docker we use to deploy containers by passing docker run cnt img -v -p - net in command like , but in k8s things are 
 	standardized by writing these all container specifications in yaml file and passing it in kubectl. in a pod yaml we give api version and specs ofall containers to be made.
 	advantage is kube proxy assign single cluster ip to each pod and all containers in side a pod can share common network and storage. common network means they can interact with each other using localhost followed by port.
 	
@@ -401,7 +403,7 @@ spec:
 
 create vi myfirstpod.yaml
 root@master:~# cat myfirstpod.yaml
-apiVersion: v1
+apiVersion: v1 
 kind: Pod
 metadata:
   name: myfirstpod
@@ -412,6 +414,7 @@ spec:
   containers:
     - image: nginx:latest
       name: nginxcontainer
+	  
 https://kubernetes.io/docs/concepts/workloads/pods/
 kubectl create -f myfirstpod.yaml
 kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
