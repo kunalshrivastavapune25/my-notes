@@ -40,7 +40,7 @@ spec:
   - name: app-container
     # Simple application: write the current date
     # to the log file every five seconds
-    image: alpine # alpine is a simple Linux OS image
+    image: alpine:latest # alpine is a simple Linux OS image
     command: ["/bin/sh"]
     args: ["-c", "while true; do date >> /var/log/app.txt; sleep 5;done"]
 
@@ -55,7 +55,7 @@ spec:
     # Simple sidecar: display log files using nginx.
     # In reality, this sidecar would be a custom image
     # that uploads logs to a third-party or storage service.
-    image: nginx:1.7.9
+    image: nginx:latest
     ports:
       - containerPort: 80
 
