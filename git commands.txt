@@ -3,3 +3,5 @@ git status
 git add .
 git commit -m "first commit"
 git push -u origin main
+
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml

@@ -549,9 +549,20 @@ Here's how it works:
 So, while the Kubernetes control plane, including the kubelet, initiates and manages the "pause" container, it's done on the worker node where the Pod is scheduled, not on the master node. This architecture helps ensure that the containers in the Pod can communicate with each other efficiently and are isolated from containers in other Pods on the same node.
 
 
+
 **************************************************************
-Q20. What is VOLUMES
+Q20. How to check ip address of container.
 **************************************************************
+docker exec -it ssss /bin/sh
+apt-get update
+apt-get install iproute2
+ip addr show 
+
+**************************************************************
+Q21. What is VOLUMES
+**************************************************************
+
+
 
 emptydir --  in-memory volume which exists till pods lasts, highly suidable for sidecar pattern pods
 where one container writes and the other reads and permanent physical storage really not needed,
@@ -564,9 +575,10 @@ demo --side car pod and emptydir pod and adapterpod.yaml
 
 https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/multicontainerpod
 
+
 cat sidecar.yaml
 
-https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/sidecar.yaml
+kubectl create -f https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/sidecar.yaml
 
 volumeMounts tells about inside pod directory
 name can be anything like html or html2
@@ -602,8 +614,14 @@ curl 192.168.166.131
 kubectl delete pods myfirstpod
 kubectl delete pods mc1
 
+Observation 
+1. curl 192.168.166.131 will work only on worker node
+2. i checked the ip address in both containers and found both same
+3. both /usr/share/nginx/html and /html had index.html being continuouely updated
+4. also checked inside the /var/lib/docker/overlay2 and saw hash values of directory.
+
 **************************************************************
-Q21 What is INIT CONTAINERS
+Q22 What is INIT CONTAINERS
 **************************************************************
 
 init containers--they run as prerequisite to start a pod
@@ -722,9 +740,9 @@ root@node1:/nginx# cat index.html
 This is coming from initcontainer
 
 **************************************************************
-Q22. Why to we need Services	
+Q23. Why to we need Services	
 **************************************************************
-	service is the component in k8s which as load balancer by using kube proxy. scenarios where a pod is retarted by replicasets to ensure actual and desired state its ip address changes so service has to be made on top so that access can be made reliable
+	service is the component in k8s which acts as load balancer by using kube proxy. scenarios where a pod is started by replicasets to ensure actual and desired state , ip address frequently changes so service has to be made on top so that access can be made hasslefree
 	services does service discovery by lables and selectors to avoid keeping track of ip addreses, because rs always recreates pods with same labels
 	service also expose to external world 
 	3 types of service
@@ -737,8 +755,29 @@ Q22. Why to we need Services
 		3. expose
 
 
+if namespace is same then if you go inside a pod using exec command we can ping other pod's ip address but not podnames
+which is not good for implementation , since if pod dies ip address changes
+
+so to make this dns management inside a namespace easy we need services
+
+now that kube-proxy comes to picture and coredns also
+kubectl get pods -n kube-system
+only thing that exists inside vm with binaries are pods else all stuffs like services namespace are physical configuration file
+	service is resource in k8s at cluster level config file
+	service never dies
+	sevice will have same ip always and points to pods using lebels
+	even if u scale pods but have same label their ip will remain same because of service
+	endpint -pod ip address
+	service hence loadbance using round robin algo
+	
+	demo
+	delete all pods
+
+root@master:~# kubectl delete pods --all
+pod "initcontainerdemo" deleted
+
 *******************************************
-Q23. What are kubernetes -- labels and selectors
+Q24. What are kubernetes -- labels and selectors
 *******************************************
 
 root@master:~# kubectl get pods --show-labels
@@ -776,30 +815,10 @@ root@master:~#
 so we can label namespaces also 
 
 
-*******************************************
-Q24 kubernetes services
-*******************************************
 
-if namespace is same then if you go inside a pod using exec command we can ping other pod's ip address but not podnames
-which is not good for implementation , since if pod dies ip address changes
-
-so to make this dns management inside a namespace easy we need services
-
-now that kube-proxy comes to picture and coredns also
-kubectl get pods -n kube-system
-only thing that exists inside vm with binaries are pods else all stuffs like services namespace are physical configuration file
-	service is resource in k8s at cluster level config file
-	service never dies
-	sevice will have same ip always and points to pods using lebels
-	even if u scale pods but have same label their ip will remain same because of service
-	endpint -pod ip address
-	service hence loadbance using round robin algo
-	
-	demo
-	delete all pods
-
-root@master:~# kubectl delete pods --all
-pod "initcontainerdemo" deleted
+**********************************************************
+Q25. How are labels and selectors used in service.yaml 
+**********************************************************
 	
 	
 https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%202/Services	
@@ -832,6 +851,9 @@ you see an end pont with podip and port
 
 20-feb class 5
 
+**********************************************************
+Q26. How are labels and selectors used in CLUSTERIP
+**********************************************************
  
  services acts as load balancersnot just this also helps for internally routable managed ip address, which is not part of kluster wifi
  just within the cluster pods are accesable thats why is clusterip
@@ -857,7 +879,11 @@ kubectl expose deploy nginx --port=8080 --type=ClusterIP --name=nginx-clusterip
  if you change it to 80 then no need to user :port in curl command as by default the port is running in port 80
  
  
- nodeport
+**********************************************************
+Q27. How are labels and selectors used in NODEPORT
+**********************************************************
+
+
  kubectl expose deploy nginx --port=80 --type=NodePort --name=nginx-nodeport
  kuvectl get svc 
  you will see port is mapped--port ranges from 30000-32767
@@ -869,6 +895,10 @@ kubectl expose deploy nginx --port=8080 --type=ClusterIP --name=nginx-clusterip
  which is given by 3rd party
  
  
+ **********************************************************
+Q28. How are labels and selectors used in LOADBALANCER
+**********************************************************
+
  loadbalancer:
  this service only exists in clould providers
  
@@ -885,7 +915,12 @@ kubectl expose deploy nginx --port=8080 --type=ClusterIP --name=nginx-clusterip
  with this curl command will work for port given 
  
  
- scheduling 
+ **********************************************************
+Q29. How are labels and selectors used in SCHEDULING
+**********************************************************
+
+
+
  we need to schedule pods based on node configs
  foor eg pods linke db should had good ssd
  pods like mls should have good compute/instances
@@ -925,7 +960,11 @@ NAME    READY   STATUS    RESTARTS   AGE
 nginx   0/1     Pending   0          7s
 
 
-nodeaffinity
+ **********************************************************
+Q30. How are labels and selectors used in NODE AFFINITY
+**********************************************************
+
+
 kubectl label node worker1 zone=us-central-1
 
 	kubectl label node worker2 zone=eu-west-1
@@ -966,6 +1005,9 @@ kubectl get pods -o wide
 NAME                  READY   STATUS    RESTARTS   AGE   IP              NODE     NOMINATED NODE   READINESS GATES
 nginx-affinity-node   1/1     Running   0          6s    192.168.2.204   worker2   <none>           <none>
 
+ **********************************************************
+Q31. How are labels and selectors used in podaffinity and podantiafinity
+**********************************************************
 
 podaffinity and podantiafinity--means that scheduler will schedule the pod where the some existing pods are present or not present respectively.
 use case --if we give 3 replicas of pod and want to make sure all in different nodes then we put podantiaffinity as pod label
@@ -1068,7 +1110,12 @@ spec:
  
  class6 21-feb
  
- 16. What is ConfigMap?
+
+ 
+  **********************************************************
+Q32. How are ConfigMap AND SECRETS
+**********************************************************
+
 	for storing information that can be used in later point of time, db ports and environment variables. This can be mounted in cluster and resolves issue of manully logging side the containers and accessing data. this is saved in etcd , we can use volume mounts also in cofig here so that dynamic changes can immeditely come into effect
 	
  secrets
@@ -1095,10 +1142,18 @@ echo <passwordtext> | base64 -d
 
 replicaset and replication controller
 
-9. Whats is ClusterIp
+
+
+  **********************************************************
+Q33. Whats is ClusterIp
+**********************************************************
+
 	The ip that kubeproxy assign to Pods
 	
-11. Whats is Replicaset
+  **********************************************************
+Q34. Whats is Replicasets
+**********************************************************
+
 	Replicaset is a kubernetes controller that ensures desired and actual state is always same
 
 
@@ -1133,7 +1188,11 @@ you see same sets of ip address (kubectl get svc  )
 curl aaaaaa
 this basically starts load balancing between all pods
 
-scalling
+  **********************************************************
+Q35. Whats is scale
+**********************************************************
+
+
 kubectl scale rc myrc --replicas=10
 kubectl get pods -o wide
 
@@ -1185,7 +1244,12 @@ kubectl create -f mysql_rs2.yaml
 kubectl get pods --show-labels
 it wont restart
 
-deployment controllers
+
+
+  **********************************************************
+Q36. Whats is deployment controllers
+**********************************************************
+
 
 deployment controllers is superset of replicaset
 replicaset is superset of  Pods
@@ -1316,7 +1380,13 @@ kubectl rolling-update my-nginx --image=nginx:1.9.1
 
 
 
-22-feb class 7
+
+
+
+******************************************************
+37 SECURITY
+******************************************************
+
 security in kubernetes
 kubeapi server provides below controls
 authentication
@@ -1748,14 +1818,16 @@ KUBERNETES_PUBLIC_ADDRESS=$(gcloud compute addresses describe kubernetes-the-har
 KUBERNETES_PUBLIC_ADDRESS=35.222.113.224  
   
   
-14. why to we Need Ingress:
+******************************************************
+38 INGRESS
+******************************************************
 	Load Balancer -- cloud provider charges amount
 	Also without load balancer we miss below stuff
 	1. sticky node traffic
 	2. ratio based traffic
 	3. host based traffic
 
-15. What is Ingress?
+
 	In K8s ingress component can map the real domain name like wwww.foo.com with application. we just have to apply ingress yaml where we can mentionion the service name along with domain name. after this we need to get the ingrss controller also from gitbub which is a pod and can constantly see the ingress services running and assign an ipaddress to it. post that we just have to porchse and register domain name.
   
   
