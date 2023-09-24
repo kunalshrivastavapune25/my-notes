@@ -1,0 +1,202 @@
+**Kubernetes Namespace**
+Kubernetes namespace is an abstraction to support multiple virtual clusters on the same physical cluster.
+You can have multiple namespaces inside a single Kubernetes cluster, and they are all logically isolated from each other.
+Namespaces provide logical separation of cluster resources between multiple users, teams, projects, and even customers. Namespaces are a way to divide cluster resources between multiple users (via resource quota).
+Namespaces also provide the scope for names, names of resources within one namespace must be unique.
+Namespaces are intended for use in environments (Dev, QA, Test, and Prod) with many users, or projects.
+
+**List namespaces:**
+```console
+$ kubectl get namespaces
+NAME        STATUS AGE
+default     Active 1d
+kube-system Active 1d
+kube-public Active 1d
+```
+
+**Kubernetes ships with three initial namespaces:**
+
+default:
+The default namespace for all objects not belonging to other namespaces. The default namespace is used to hold the default set of pods, services, and deployments used by the cluster. Kubernetes tooling is set up out of the box to use this namespace and you can’t delete it.
+kube-system:
+The namespace for objects created by the Kubernetes system.
+Kube-public:
+The namespace for resources that are publicly available/readable by all.
+
+Create a namespace
+Let's create namespaces for development, QA and Production.
+
+Use kubectl create command:
+
+$ kubectl create namespace development
+namespace/development create
+
+$ kubectl create namespace qa
+namespace/qa created
+
+$ kubectl create namespace production
+namespace/production created
+You can also create a YAML file to create namespaces as below:
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+Verify the new namespace
+
+$ kubectl get namespaces
+
+NAME        STATUS AGE
+default     Active 1d
+development Active 5m
+kube-system Active 1d
+kube-public Active 1d
+production  Active 4m
+qa          Active 4m
+
+Create objects in a specific namespace:
+
+You can choose a namespace while creating an object/resource.
+
+Use --namespace or -n to specify the namespace as follows:
+
+$ kubectl run nginx --image=nginx --namespace development
+or
+$ kubectl run nginx --image=nginx -n development
+You can also specify the namespace in the YAML file as below:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: development
+
+List/Modify/Delete the objects in a namespace
+
+Use --namespace or -n to specify the namespace while executing kubectl commands.
+
+$ kubectl get pods -n development
+$ kubectl describe pod nginx -n development
+$ kubectl delete pod nginx -n development
+
+Delete Namespace
+Use kubectl delete command to delete a namespace. When you delete a namespace, it will delete all the objects and resources created in that namespace.
+
+$ kubectl delete namespaces development qa
+namespace "development" deleted
+namespace "qa" deleted
+The above commands execute in asynchronous mode.
+
+The status of the namespace would show up as Terminating until it gets completely deleted.
+
+Notes:
+Note 1: Use --all-namespaces option for all namespaces.
+
+Note 2: Not All Objects are in a Namespace
+
+Most Kubernetes objects/resources such as pods, services, replication controllers, and others are in some namespaces.
+
+However, namespace resources are not themselves in a namespace. And low-level resources, such as nodes and persistentVolumes, are not in any namespace.
+
+
+
+
+
+$ kubectl get namespaces
+NAME        STATUS AGE
+default     Active 1d
+kube-system Active 1d
+kube-public Active 1d
+Kubernetes ships with three initial namespaces:
+
+default:
+
+The default namespace for all objects not belonging to other namespaces. The default namespace is used to hold the default set of pods, services, and deployments used by the cluster. Kubernetes tooling is set up out of the box to use this namespace and you can’t delete it.
+
+kube-system:
+
+The namespace for objects created by the Kubernetes system.
+
+Kube-public:
+
+The namespace for resources that are publicly available/readable by all.
+
+
+Create a namespace
+Let's create namespaces for development, QA and Production.
+
+Use kubectl create command:
+
+$ kubectl create namespace development
+namespace/development create
+
+$ kubectl create namespace qa
+namespace/qa created
+
+$ kubectl create namespace production
+namespace/production created
+You can also create a YAML file to create namespaces as below:
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+Verify the new namespace
+
+$ kubectl get namespaces
+
+NAME        STATUS AGE
+default     Active 1d
+development Active 5m
+kube-system Active 1d
+kube-public Active 1d
+production  Active 4m
+qa          Active 4m
+
+Create objects in a specific namespace:
+
+You can choose a namespace while creating an object/resource.
+
+Use --namespace or -n to specify the namespace as follows:
+
+$ kubectl run nginx --image=nginx --namespace development
+or
+$ kubectl run nginx --image=nginx -n development
+You can also specify the namespace in the YAML file as below:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: development
+
+List/Modify/Delete the objects in a namespace
+
+Use --namespace or -n to specify the namespace while executing kubectl commands.
+
+$ kubectl get pods -n development
+$ kubectl describe pod nginx -n development
+$ kubectl delete pod nginx -n development
+
+Delete Namespace
+Use kubectl delete command to delete a namespace. When you delete a namespace, it will delete all the objects and resources created in that namespace.
+
+$ kubectl delete namespaces development qa
+namespace "development" deleted
+namespace "qa" deleted
+The above commands execute in asynchronous mode.
+
+The status of the namespace would show up as Terminating until it gets completely deleted.
+
+Notes:
+Note 1: Use --all-namespaces option for all namespaces.
+
+Note 2: Not All Objects are in a Namespace
+
+Most Kubernetes objects/resources such as pods, services, replication controllers, and others are in some namespaces.
+
+However, namespace resources are not themselves in a namespace. And low-level resources, such as nodes and persistentVolumes, are not in any namespace.
+
+
+
+
