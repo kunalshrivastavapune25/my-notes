@@ -75,7 +75,7 @@ $ kubectl run nginx --image=nginx --namespace development
 or
 $ kubectl run nginx --image=nginx -n development
 
-```console
+```
 
 You can also specify the namespace in the YAML file as below:
 
@@ -87,7 +87,7 @@ metadata:
   name: nginx
   namespace: development
 
-```console
+```
 
 List/Modify/Delete the objects in a namespace
 
@@ -99,7 +99,7 @@ $ kubectl get pods -n development
 $ kubectl describe pod nginx -n development
 $ kubectl delete pod nginx -n development
 
-```console
+```
 
 Delete Namespace
 Use kubectl delete command to delete a namespace. When you delete a namespace, it will delete all the objects and resources created in that namespace.
@@ -109,7 +109,7 @@ $ kubectl delete namespaces development qa
 namespace "development" deleted
 namespace "qa" deleted
 
-```console
+```
 The above commands execute in asynchronous mode.
 
 The status of the namespace would show up as Terminating until it gets completely deleted.
