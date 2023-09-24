@@ -81,11 +81,11 @@ It manages pods on the node, volumes, secrets, creating new containers health ch
 **Command line interface**
 kubectl is a command line interface that interacts with the API server and sends commands to the master node. Each command will convert into an API call.
 
-**$ kubectl --help
-kubectl controls the Kubernetes cluster manager.
-Basic Commands (Beginner):
-  create         Create a resource from a file or from stdin.
-  expose         Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
-  run            Run a particular image on the cluster
-  set            Set specific features on objects
-**
+****$ kubectl --help**
+**kubectl controls the Kubernetes cluster manager.**
+**Basic Commands (Beginner):**
+**  create         Create a resource from a file or from stdin.**
+  **expose         Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service**
+  **run            Run a particular image on the cluster**
+  **set            Set specific features on objects**
+
