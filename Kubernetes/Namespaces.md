@@ -16,18 +16,18 @@ kube-public Active 1d
 
 **Kubernetes ships with three initial namespaces:**
 
-default:
+**default:**
 The default namespace for all objects not belonging to other namespaces. The default namespace is used to hold the default set of pods, services, and deployments used by the cluster. Kubernetes tooling is set up out of the box to use this namespace and you can’t delete it.
-kube-system:
+
+**kube-system:**
 The namespace for objects created by the Kubernetes system.
-Kube-public:
+
+**Kube-public:**
 The namespace for resources that are publicly available/readable by all.
 
-Create a namespace
+**Create a namespace**
 Let's create namespaces for development, QA and Production.
-
 Use kubectl create command:
-
 
 ```console
 $ kubectl create namespace development
@@ -38,13 +38,10 @@ namespace/qa created
 
 $ kubectl create namespace production
 namespace/production created
-
 ```
 
 You can also create a YAML file to create namespaces as below:
-
 ```console
-
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -63,12 +60,9 @@ qa          Active 4m
 
 ```
 
-Create objects in a specific namespace:
-
+**Create objects in a specific namespace:**
 You can choose a namespace while creating an object/resource.
-
 Use --namespace or -n to specify the namespace as follows:
-
 
 ```console
 $ kubectl run nginx --image=nginx --namespace development
@@ -76,9 +70,7 @@ or
 $ kubectl run nginx --image=nginx -n development
 
 ```
-
 You can also specify the namespace in the YAML file as below:
-
 
 ```console
 apiVersion: v1
@@ -89,10 +81,9 @@ metadata:
 
 ```
 
-List/Modify/Delete the objects in a namespace
+**List/Modify/Delete the objects in a namespace**
 
 Use --namespace or -n to specify the namespace while executing kubectl commands.
-
 
 ```console
 $ kubectl get pods -n development
@@ -100,8 +91,7 @@ $ kubectl describe pod nginx -n development
 $ kubectl delete pod nginx -n development
 
 ```
-
-Delete Namespace
+**Delete Namespace**
 Use kubectl delete command to delete a namespace. When you delete a namespace, it will delete all the objects and resources created in that namespace.
 
 ```console
@@ -115,8 +105,11 @@ The above commands execute in asynchronous mode.
 The status of the namespace would show up as Terminating until it gets completely deleted.
 
 **Notes:**
+
 **Note 1:** Use --all-namespaces option for all namespaces.
+
 **Note 2:** Not All Objects are in a Namespace
+
 Most Kubernetes objects/resources such as pods, services, replication controllers, and others are in some namespaces.
 However, namespace resources are not themselves in a namespace. And low-level resources, such as nodes and persistentVolumes, are not in any namespace.
 
