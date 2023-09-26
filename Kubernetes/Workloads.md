@@ -1,17 +1,21 @@
 **Workloads Overview**
+
 A containerized application can deploy on Kubernetes using either "pods or workloads".
 
 **Pods**
+
 A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.
 A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.
 Usually, pods get scaled and managed by the workloads.
 
 **Workloads**
+
 Workloads are controller objects that set deployment rules for pods.
 These controller objects represent the applications, daemons, and batch jobs running on your cluster.
 Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.
 
 **Types of workloads**
+
 Kubernetes divides workloads into different types. The most popular types supported by Kubernetes are:
 
 **Deployments DaemonSets StatefulSets ReplicaSets Jobs CronJobs Deployments**
