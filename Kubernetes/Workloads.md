@@ -53,38 +53,24 @@ pod "nginx" deleted
 ```
 
 
-**Pod Lifecycle**
+**Q7 What are Pods Lifecycle?**\
+**Ans** :\
+Pending: The Pod Has Been Accepted By The Kubernetes System, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.\
+Running: The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting. \
+Succeeded: All Containers in the Pod have terminated in success, and will not be restarted.\
+Failed: All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system. \
+Unknown : For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod. \
+Completed : The pod has run to completion as there is nothing to keep it running eg. Completed Jobs. \
+CrashLoopBackOff : This means that one of the containers in the pod has exited unexpectedly, and perhaps with a non-zero error code even after restarting due to restart policy. \
 
-Pending
-The Pod Has Been Accepted By The Kubernetes System, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.
-
-Running
-The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting.
-
-Succeeded
-All Containers in the Pod have terminated in success, and will not be restarted.
-
-Failed
-All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.
-
-Unknown
-For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
-
-Completed
-The pod has run to completion as there is nothing to keep it running eg. Completed Jobs.
-
-CrashLoopBackOff
-This means that one of the containers in the pod has exited unexpectedly, and perhaps with a non-zero error code even after restarting due to restart policy.
-
-Multi-Container Pods
+**Q8 What are Multi-Container Pods?**\
+**Ans** :\
 Pods are designed to support multiple containers. The containers in a Pod are automatically co-located and co-scheduled on the same node in the cluster.
-
-
-
 The containers can share resources and dependencies, communicate with one another, and coordinate when and how they are terminated.
 The "one container per Pod" model is the most common use case and Kubernetes manages the Pods rather than the containers directly.
 Here is example for multi-container pod
 
+```console
 apiVersion: v1
 kind: Pod
 metadata:
@@ -110,13 +96,14 @@ spec:
     - name: nginx-config-volume
       mountPath: /etc/nginx/nginx.conf
       subPath: nginx.conf
-
-Init Containers
+```
+**Q8 What are Init Containers?**\
+**Ans** :\
 Like multiple containers in a pod, it can also have one or more init containers, which are run before the application containers are started.
 Init containers always run to completion.
 Each init container must complete successfully before the next one starts.
 Here is example for init containers
-
+```console
 apiVersion: v1
 kind: Pod
 metadata:
@@ -132,9 +119,9 @@ spec:
   - name: change-permissions
     image: busybox
     command: ['sh', '-c', 'chown www-data:www-data /var/www/html && chmod -R 755 /var/www/html']
+```
 
-
-**Q3 What are Workloads?**\
+**Q9 What are Workloads?**\
 Ans:**Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
 **Types of workloads**\
 **Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters disruption, Kubernetes removes it and then recreates it.\
@@ -145,7 +132,7 @@ Ans:**Workloads** -Workloads are controller objects that set deployment rules fo
 **CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
 
 
-**Q4 What are Deployments?**\
+**Q10 What are Deployments?**\
 Ans: Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
 Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default.
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
