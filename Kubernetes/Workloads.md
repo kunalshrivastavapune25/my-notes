@@ -4,7 +4,7 @@
   Usually, pods get scaled and managed by the workloads.
   **Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.
 
-    **Types of workloads**
+  **Types of workloads**
     **Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters           disruption, Kubernetes removes it and then recreates it.
     **DaemonSets** :     Daemonsets ensures that every node in the cluster runs a copy of the pod.
     For use cases where you're collecting logs or monitoring node performance, this daemon-like workload works best.
