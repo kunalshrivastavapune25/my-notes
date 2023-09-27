@@ -1,7 +1,7 @@
-**Q1 How are containerized application can be deployed on Kubernetes?**
+**Q1 How are containerized application can be deployed on Kubernetes?**\
 Ans: **Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
 
-**Q2 What are Pods?**
+**Q2 What are Pods?**\
 Ans: **Pods** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
 **Kubernetes Pods**
 Pod is the basic building block of Kubernetes, the smallest deployable unit in the Kubernetes that can be created and managed.
@@ -127,7 +127,7 @@ spec:
     command: ['sh', '-c', 'chown www-data:www-data /var/www/html && chmod -R 755 /var/www/html']
 
 
-**Q3 What are Workloads?**
+**Q3 What are Workloads?**\
 Ans:**Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
 **Types of workloads**\
 **Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters disruption, Kubernetes removes it and then recreates it.\
@@ -138,7 +138,7 @@ Ans:**Workloads** -Workloads are controller objects that set deployment rules fo
 **CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
 
 
-**Q4 What are Deployments?**
+**Q4 What are Deployments?**\
 Ans: Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
 Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default.
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
@@ -285,7 +285,7 @@ Limit ranges
 Application run-time misconfiguration
 
 
-**Q5 What are StatefulSets?**
+**Q5 What are StatefulSets?**\
 Ans: StatefulSets represent a set of Pods with unique, persistent identities and stable hostnames. It provides guarantees about the ordering of deployment and scaling.
 
 StatefulSets are valuable for applications that require one or more of the following:
@@ -438,7 +438,7 @@ StatefulSets currently require a Headless Service to be responsible for the netw
 StatefulSets do not provide any guarantees on the termination of pods when a StatefulSet is deleted. To achieve ordered and graceful termination of the pods in the StatefulSet, it is possible to scale the StatefulSet down to 0 prior to deletion.
 
 
-**Q6 What are ReplicaSets?**
+**Q6 What are ReplicaSets?**\
 Ans:A ReplicaSet's purpose is to run a specified number of pods at any given time.
 
 
@@ -518,7 +518,7 @@ $ kubectl delete replicaset/webapp --cascade=false
 
 
 
-**Q7 What are Jobs?**
+**Q7 What are Jobs?**\
 Ans:You might also need to run large computation or batch processing workloads in your clusters. For this, Job controller is useful.
 
 A job creates one or more pods running in parallel. You can specify how many number of pods need to complete in this Job.
@@ -653,7 +653,7 @@ The .spec.schedule is a required field of the .spec. It takes a Cron format stri
 
 
 
-Stateless vs StatefulSet
+Stateless vs StatefulSet\
 A stateless application doesn't manage its state in the Kubernetes cluster. All of the states are stored outside the cluster and the cluster containers access it in some manner.
 
 A stateful application can remember at least some things about its state each time that it runs. The actual state data that it stores may depend on the application and on the conditions under which it operates.
@@ -668,7 +668,7 @@ So if your application is stateful or if you want to deploy stateful storage on 
 
 If your application is stateless or if the state can be built up from backend-systems during the start then use Deployments.
 
-Stateless
+Stateless\
 
 No Persistent Storage
 Scaling can be done independently
