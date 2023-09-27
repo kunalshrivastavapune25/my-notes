@@ -1,4 +1,4 @@
-**Workloads Overview** : A containerized application can deploy on Kubernetes using either "pods or workloads".
+**Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
 
 **Pods** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
 
@@ -10,7 +10,6 @@
 **StatefulSets** : Like a Deployment , a StatefulSet manages Pods, are best used when your application needs to maintain its identity and store data.An application would be something like Zookeeper - an application that requires a database for storage.\
 **Jobs** : Jobs launch one or more pods and ensure that a specified number of them successfully terminate. Jobs are best used to run a finite task to completion as opposed to managing an ongoing desired application state.\
 **CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
-
 
 
 
