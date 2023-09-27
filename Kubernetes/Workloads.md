@@ -2,11 +2,9 @@
 Ans: **Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
 
 **Q2 What are Pods?**\
-Ans: **Pods** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
-**Kubernetes Pods**
+**Ans** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
 Pod is the basic building block of Kubernetes, the smallest deployable unit in the Kubernetes that can be created and managed.
-Pod is a group of one or more containers (such as Docker containers) with shared storage/network, and a specification for how to run the containers.
-A pod represents a single instance of an application in Kubernetes.
+Pod is a group of one or more containers (such as Docker containers) with shared storage/network, and a specification for how to run the containers.A pod represents a single instance of an application in Kubernetes.
 Here is manifest for a Pod:
 ```console
 apiVersion: v1
@@ -20,24 +18,32 @@ spec:
     imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 80
+```
 
-Create a pod:
-
+**Q3 Create a pod?**\
+**Ans** :
+```console
 $ kubectl create -f nginx.yaml
 pod "nginx" created
+```
 
-Verify the pod is running:
-
+**Q4 Verify the pod is running?**\
+**Ans** :
+```console
 $ kubectl get pod nginx
 NAME        READY   STATUS    RESTARTS   AGE
 nginx       1/1     Running   0          48s
+```
 
-Edit pod configuration:
-
+**Q5 Edit pod configuration?**\
+**Ans** :
+```console
 $ kubectl edit pod nginx
+```
 
-Delete a pod
-
+**Q6 Delete a pod?**\
+**Ans** :
+```console
 $ kubectl delete -f nginx.yaml
 pod "nginx" deleted
         -- or --
@@ -45,6 +51,7 @@ $ kubectl delete pod nginx
 pod "nginx" deleted
 
 ```
+
 
 **Pod Lifecycle**
 
