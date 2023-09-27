@@ -1,26 +1,12 @@
-**Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
+**Q1 How are containerized application can be deployed on Kubernetes?**
+Ans: **Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
 
-**Pods** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
-
-**Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
-**Types of workloads**\
-**Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters disruption, Kubernetes removes it and then recreates it.\
-**DaemonSets** :     Daemonsets ensures that every node in the cluster runs a copy of the pod. For use cases where you're collecting logs or monitoring node performance, this daemon-like workload works best.\
-**ReplicaSets** : A ReplicaSet's purpose is to run a specified number of pods at any given time.\
-**StatefulSets** : Like a Deployment , a StatefulSet manages Pods, are best used when your application needs to maintain its identity and store data.An application would be something like Zookeeper - an application that requires a database for storage.\
-**Jobs** : Jobs launch one or more pods and ensure that a specified number of them successfully terminate. Jobs are best used to run a finite task to completion as opposed to managing an ongoing desired application state.\
-**CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
-
-
-
-
+**Q2 What are Pods?**
+Ans: **Pods** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
 **Kubernetes Pods**
 Pod is the basic building block of Kubernetes, the smallest deployable unit in the Kubernetes that can be created and managed.
-
 Pod is a group of one or more containers (such as Docker containers) with shared storage/network, and a specification for how to run the containers.
-
 A pod represents a single instance of an application in Kubernetes.
-
 Here is manifest for a Pod:
 ```console
 apiVersion: v1
@@ -34,18 +20,22 @@ spec:
     imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 80
+
 Create a pod:
 
 $ kubectl create -f nginx.yaml
 pod "nginx" created
+
 Verify the pod is running:
 
 $ kubectl get pod nginx
 NAME        READY   STATUS    RESTARTS   AGE
 nginx       1/1     Running   0          48s
+
 Edit pod configuration:
 
 $ kubectl edit pod nginx
+
 Delete a pod
 
 $ kubectl delete -f nginx.yaml
@@ -57,41 +47,35 @@ pod "nginx" deleted
 ```
 
 **Pod Lifecycle**
-Pending
 
+Pending
 The Pod Has Been Accepted By The Kubernetes System, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.
 
 Running
-
 The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting.
 
 Succeeded
-
 All Containers in the Pod have terminated in success, and will not be restarted.
 
 Failed
-
 All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.
 
 Unknown
-
 For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
 
 Completed
-
 The pod has run to completion as there is nothing to keep it running eg. Completed Jobs.
 
 CrashLoopBackOff
-
 This means that one of the containers in the pod has exited unexpectedly, and perhaps with a non-zero error code even after restarting due to restart policy.
 
 Multi-Container Pods
 Pods are designed to support multiple containers. The containers in a Pod are automatically co-located and co-scheduled on the same node in the cluster.
 
+
+
 The containers can share resources and dependencies, communicate with one another, and coordinate when and how they are terminated.
-
 The "one container per Pod" model is the most common use case and Kubernetes manages the Pods rather than the containers directly.
-
 Here is example for multi-container pod
 
 apiVersion: v1
@@ -119,9 +103,9 @@ spec:
     - name: nginx-config-volume
       mountPath: /etc/nginx/nginx.conf
       subPath: nginx.conf
+
 Init Containers
 Like multiple containers in a pod, it can also have one or more init containers, which are run before the application containers are started.
-
 Init containers always run to completion.
 Each init container must complete successfully before the next one starts.
 Here is example for init containers
@@ -143,48 +127,51 @@ spec:
     command: ['sh', '-c', 'chown www-data:www-data /var/www/html && chmod -R 755 /var/www/html']
 
 
+**Q3 What are Workloads?**
+Ans:**Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
+**Types of workloads**\
+**Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters disruption, Kubernetes removes it and then recreates it.\
+**DaemonSets** :     Daemonsets ensures that every node in the cluster runs a copy of the pod. For use cases where you're collecting logs or monitoring node performance, this daemon-like workload works best.\
+**ReplicaSets** : A ReplicaSet's purpose is to run a specified number of pods at any given time.\
+**StatefulSets** : Like a Deployment , a StatefulSet manages Pods, are best used when your application needs to maintain its identity and store data.An application would be something like Zookeeper - an application that requires a database for storage.\
+**Jobs** : Jobs launch one or more pods and ensure that a specified number of them successfully terminate. Jobs are best used to run a finite task to completion as opposed to managing an ongoing desired application state.\
+**CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
 
 
-
-Deployment
-Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
-
+**Q4 What are Deployments?**
+Ans: Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
 Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default.
-
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
-
 In this way, Deployments ensure that one or more instances of your application are available to serve user requests.
 
-
 Create a deployment:
-
 $ kubectl create -f nginx-deployment.yaml
 deployment.apps "nginx-deployment" created
-Display your deployments:
 
+Display your deployments:
 $ kubectl get deployments
 NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment 3         3         3            3           2m
+
 Get details of a deployment:
-
 $ kubectl describe deployment nginx-deployment
-Check the Pods:
 
+Check the Pods:
 $ kubectl get pods
 NAME                                READY     STATUS    RESTARTS   AGE
 nginx-deployment-6cf94d8d7c-7bfpt   1/1       Running   0          3m
 nginx-deployment-6cf94d8d7c-9mqkv   1/1       Running   0          3m
 nginx-deployment-6cf94d8d7c-xnbnl   1/1       Running   0          3m
-Check status of the deployment:
 
+Check status of the deployment:
 $ kubectl rollout status deployment/nginx-deployment
 deployment "nginx-deployment" successfully rolled out
-Update the deployment:
 
+Update the deployment:
 $ kubectl set image deployment/nginx-deployment nginx=nginx:latest
 deployment.apps "nginx-deployment" image updated
-Rollback to previous revision:
 
+Rollback to previous revision:
 $ kubectl rollout undo deployment/nginx-deployment
 deployment.apps "nginx-deployment"
 
@@ -197,8 +184,9 @@ deployments "nginx-deployment"
 REVISION  CHANGE-CAUSE
 2         < none >
 3         < none >
-Scale a deployment:
 
+
+Scale a deployment:
 $ kubectl scale deployment/nginx-deployment --replicas=5
 deployment.apps "nginx-deployment" scaled
 
@@ -209,15 +197,16 @@ nginx-deployment-6cf94d8d7c-hnhvl  1/1       Running   0          12m
 nginx-deployment-6cf94d8d7c-kpzxq  1/1       Running   0          8s
 nginx-deployment-6cf94d8d7c-kvtj9  1/1       Running   0          8s
 nginx-deployment-6cf94d8d7c-pg7n8  1/1       Running   0          12m
+
+
 Edit a deployment:
-
 $ kubectl edit deployment nginx-deployment
-Delete a deployment:
 
+
+Delete a deployment:
 $ kubectl delete deployment nginx-deployment
 Writing a Deployment Spec
 A Deployment manifest needs
-
 apiVersion
 kind
 metadata
@@ -296,11 +285,8 @@ Limit ranges
 Application run-time misconfiguration
 
 
-
-
-
-StatefulSets
-StatefulSets represent a set of Pods with unique, persistent identities and stable hostnames. It provides guarantees about the ordering of deployment and scaling.
+**Q5 What are StatefulSets?**
+Ans: StatefulSets represent a set of Pods with unique, persistent identities and stable hostnames. It provides guarantees about the ordering of deployment and scaling.
 
 StatefulSets are valuable for applications that require one or more of the following:
 
@@ -452,12 +438,8 @@ StatefulSets currently require a Headless Service to be responsible for the netw
 StatefulSets do not provide any guarantees on the termination of pods when a StatefulSet is deleted. To achieve ordered and graceful termination of the pods in the StatefulSet, it is possible to scale the StatefulSet down to 0 prior to deletion.
 
 
-
-
-
-
-ReplicaSets
-A ReplicaSet's purpose is to run a specified number of pods at any given time.
+**Q6 What are ReplicaSets?**
+Ans:A ReplicaSet's purpose is to run a specified number of pods at any given time.
 
 
 While ReplicaSets can be used independently, today it's mainly used by Deployments as a mechanism to orchestrate pod creation, deletion, and updates.
@@ -536,8 +518,8 @@ $ kubectl delete replicaset/webapp --cascade=false
 
 
 
-Jobs
-You might also need to run large computation or batch processing workloads in your clusters. For this, Job controller is useful.
+**Q7 What are Jobs?**
+Ans:You might also need to run large computation or batch processing workloads in your clusters. For this, Job controller is useful.
 
 A job creates one or more pods running in parallel. You can specify how many number of pods need to complete in this Job.
 
@@ -626,6 +608,8 @@ spec:
             - date; echo Hello from the Kubernetes cluster
           restartPolicy: OnFailure
 
+
+Jobs
 Create a Cron Job:
 
 $ kubectl create -f cronjob.yaml
