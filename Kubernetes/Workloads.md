@@ -134,53 +134,72 @@ Ans:**Workloads** -Workloads are controller objects that set deployment rules fo
 
 **Q10 What are Deployments?**\
 Ans: Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
-Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default.
-A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
+Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
 In this way, Deployments ensure that one or more instances of your application are available to serve user requests.
 
-Create a deployment:
+**Q11 How to Create a deployment?**\
+**Ans** :\
+```console
 $ kubectl create -f nginx-deployment.yaml
 deployment.apps "nginx-deployment" created
+```
 
-Display your deployments:
+**Q8 How to Display your deployments?**\
+**Ans** :\
+```console
 $ kubectl get deployments
 NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment 3         3         3            3           2m
+```
 
-Get details of a deployment:
+**Q8 How to Get details of a deployment?**\
+**Ans** :\
+```console
 $ kubectl describe deployment nginx-deployment
-
-Check the Pods:
 $ kubectl get pods
 NAME                                READY     STATUS    RESTARTS   AGE
 nginx-deployment-6cf94d8d7c-7bfpt   1/1       Running   0          3m
 nginx-deployment-6cf94d8d7c-9mqkv   1/1       Running   0          3m
 nginx-deployment-6cf94d8d7c-xnbnl   1/1       Running   0          3m
+```
 
-Check status of the deployment:
+**Q8 How to Check status of the deployment?**\
+**Ans** :\
+```console
 $ kubectl rollout status deployment/nginx-deployment
 deployment "nginx-deployment" successfully rolled out
+```
 
-Update the deployment:
+**Q8 How to Update the deployment?**\
+**Ans** :\
+```console
 $ kubectl set image deployment/nginx-deployment nginx=nginx:latest
 deployment.apps "nginx-deployment" image updated
+```
 
-Rollback to previous revision:
+**Q8 How to Rollback to previous revision?**\
+**Ans** :\
+```console
 $ kubectl rollout undo deployment/nginx-deployment
 deployment.apps "nginx-deployment"
 
 $ kubectl rollout status deployment/nginx-deployment
 deployment "nginx-deployment" successfully rolled out
-Check Rollout history:
+```
 
+**Q8 How to Check Rollout history?**\
+**Ans** :\
+```console
 $ kubectl rollout history deployment/nginx-deployment
 deployments "nginx-deployment"
 REVISION  CHANGE-CAUSE
 2         < none >
 3         < none >
+```
 
-
-Scale a deployment:
+**Q8 How to Scale a deployment?**\
+**Ans** :\
+```console
 $ kubectl scale deployment/nginx-deployment --replicas=5
 deployment.apps "nginx-deployment" scaled
 
@@ -191,15 +210,23 @@ nginx-deployment-6cf94d8d7c-hnhvl  1/1       Running   0          12m
 nginx-deployment-6cf94d8d7c-kpzxq  1/1       Running   0          8s
 nginx-deployment-6cf94d8d7c-kvtj9  1/1       Running   0          8s
 nginx-deployment-6cf94d8d7c-pg7n8  1/1       Running   0          12m
+```
 
 
-Edit a deployment:
+**Q8 How to Edit a deployment?**\
+**Ans** :\
+```console
 $ kubectl edit deployment nginx-deployment
+```
 
-
-Delete a deployment:
+**Q8 How to Delete a deployment?**\
+**Ans** :\
+```console
 $ kubectl delete deployment nginx-deployment
-Writing a Deployment Spec
+```
+
+**Q8 How to Writing a Deployment Spec?**\
+**Ans** :\
 A Deployment manifest needs
 apiVersion
 kind
@@ -277,6 +304,11 @@ Image pull errors
 Insufficient permissions
 Limit ranges
 Application run-time misconfiguration
+
+
+
+
+
 
 
 **Q5 What are StatefulSets?**\
