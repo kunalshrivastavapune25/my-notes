@@ -137,6 +137,7 @@ Ans: Deployment controller provides declarative updates for Pods and it manage s
 Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
 In this way, Deployments ensure that one or more instances of your application are available to serve user requests.
 
+
 **Q11 How to Create a deployment?**\
 **Ans** :\
 ```console
