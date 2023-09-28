@@ -227,9 +227,9 @@ $ kubectl delete deployment nginx-deployment
 
 **Q8 How to Writing a Deployment Spec?**\
 **Ans** :\
-A Deployment manifest needs
-apiVersion
-kind
+A Deployment manifest needs \
+apiVersion  \
+kind 
 metadata
 spec
 fields. The metadata field have name, labels, annotations and other information.
