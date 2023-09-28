@@ -229,28 +229,23 @@ $ kubectl delete deployment nginx-deployment
 **Ans** :\
 A Deployment manifest needs \
 apiVersion  \
-kind 
-metadata
-spec
-fields. The metadata field have name, labels, annotations and other information.
-
-The spec field have replicas, deployment strategy, pod template, selector and other details.
-
-Pod Template
-
-The spec.template is the only required field of the .spec.
-
-The spec.template is a pod template. It has exactly the same schema as a Pod, except it is nested and does not have an apiVersion or kind.
-
+kind \
+metadata : The metadata field have name, labels, annotations and other information \
+spec :The spec field have replicas, deployment strategy, pod template, selector and other details \
+ 
+**Pod Template** \ 
+The spec.template is the only required field of the .spec.\
+The spec.template is a pod template. It has exactly the same schema as a Pod, except it is nested and does not have an apiVersion or kind.\
+```console
  spec:
   template:
     metadata:
       labels:
         app: frontend
-Restart Policy
-
+```
+**Restart Policy** \
 Only a spec.template.spec.restartPolicy equal to Always is allowed, which is the default if not specified.
-
+```console
  spec:
   template:
     metadata:
@@ -259,23 +254,24 @@ Only a spec.template.spec.restartPolicy equal to Always is allowed, which is the
     spec:
       restartPolicy : Always
       containers:
-Replicas
-
+```
+**Replicas** \
 spec.replicas is an optional field that specifies the number of desired Pods. It defaults to 1.
-
+```console
  spec:
     replicas: 3
-Selector
-
+```
+**Selector** \
 spec.selector is an optional field that specifies a label selector for the Pods targeted by this deployment.
-
+```console
   spec:
     replicas: 3
     selector:
       matchLabels:
         app: fronted
+```
 spec.selector must match .spec.template .metadata.labels, or it will be rejected by the API.
-
+```console
  spec:
   replicas: 3
   selector:
@@ -285,25 +281,27 @@ spec.selector must match .spec.template .metadata.labels, or it will be rejected
     metadata:
       labels:
         app: fronted
-Strategy
-
+```console
+**Strategy** \
 spec.strategy specifies the strategy used to replace old Pods by new ones. spec.strategy.type can be "Recreate" or "RollingUpdate". "RollingUpdate" is the default value.
-
+```console
  spec:
   replicas: 3
   strategy:
     type: RollingUpdate
-Deployment Failure
-Your Deployment may get stuck trying to deploy its newest ReplicaSet without ever completing.
+```
 
-This can occur due to some of the following factors:
+**Deployment Failure**\
+Your Deployment may get stuck trying to deploy its newest ReplicaSet without ever completing.\
 
-Insufficient quota
-Readiness probe failures
-Image pull errors
-Insufficient permissions
-Limit ranges
-Application run-time misconfiguration
+This can occur due to some of the following factors:\
+
+Insufficient quota\
+Readiness probe failures\
+Image pull errors\
+Insufficient permissions\
+Limit ranges\
+Application run-time misconfiguration\
 
 
 
