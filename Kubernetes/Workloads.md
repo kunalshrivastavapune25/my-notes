@@ -1,5 +1,5 @@
 **Q1 How are containerized application can be deployed on Kubernetes?**\
-Ans: **Workloads Overview** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
+**Ans** : A containerized application can deploy on Kubernetes using either **"pods or workloads"**.
 
 **Q2 What are Pods?**\
 **Ans** : A pod is a smallest and simplest unit that you create or deploy in Kubernetes. A single pod has usually one, or multiple containers, and their shared resources.A pod represents a single instance of an application in Kubernetes. You can scale pods by having multiple instances of the application.Usually, pods get scaled and managed by the workloads.
@@ -97,7 +97,7 @@ spec:
       mountPath: /etc/nginx/nginx.conf
       subPath: nginx.conf
 ```
-**Q8 What are Init Containers?**\
+**Q9 What are Init Containers?**\
 **Ans** :\
 Like multiple containers in a pod, it can also have one or more init containers, which are run before the application containers are started.
 Init containers always run to completion.
@@ -121,8 +121,9 @@ spec:
     command: ['sh', '-c', 'chown www-data:www-data /var/www/html && chmod -R 755 /var/www/html']
 ```
 
-**Q9 What are Workloads?**\
-Ans:**Workloads** -Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
+**Q10 What are Workloads?**\
+**Ans** :\
+Workloads are controller objects that set deployment rules for pods.These controller objects represent the applications, daemons, and batch jobs running on your cluster.Based on the rules, Kubernetes performs application scheduling, scaling, and upgrade.\
 **Types of workloads**\
 **Deployments** : are best used for stateless applications. Pods managed by deployment workload are treated as independent and disposable.If a pod encounters disruption, Kubernetes removes it and then recreates it.\
 **DaemonSets** :     Daemonsets ensures that every node in the cluster runs a copy of the pod. For use cases where you're collecting logs or monitoring node performance, this daemon-like workload works best.\
@@ -132,29 +133,30 @@ Ans:**Workloads** -Workloads are controller objects that set deployment rules fo
 **CronJobs** : CronJobs are similar to jobs. CronJobs, however, runs to completion on a cron-based schedule.\
 
 
-**Q10 What are Deployments?**\
-Ans: Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
+**Q11 What are Deployments?**\
+**Ans** :\
+Deployment controller provides declarative updates for Pods and it manage stateless applications running on your cluster.
 Deployments represent a set of multiple, identical Pods and upgrade them in a controlled way, performing a rolling update by default. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive.
 In this way, Deployments ensure that one or more instances of your application are available to serve user requests.
 
 
-**Q11 How to Create a deployment?**\
-**Ans** :\
+**Q12 How to Create a deployment?**\
+**Ans** :
 ```console
 $ kubectl create -f nginx-deployment.yaml
 deployment.apps "nginx-deployment" created
 ```
 
-**Q8 How to Display your deployments?**\
-**Ans** :\
+**Q13 How to Display your deployments?**\
+**Ans** :
 ```console
 $ kubectl get deployments
 NAME             DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment 3         3         3            3           2m
 ```
 
-**Q8 How to Get details of a deployment?**\
-**Ans** :\
+**Q14 How to Get details of a deployment?**\
+**Ans** :
 ```console
 $ kubectl describe deployment nginx-deployment
 $ kubectl get pods
@@ -164,21 +166,21 @@ nginx-deployment-6cf94d8d7c-9mqkv   1/1       Running   0          3m
 nginx-deployment-6cf94d8d7c-xnbnl   1/1       Running   0          3m
 ```
 
-**Q8 How to Check status of the deployment?**\
-**Ans** :\
+**Q15 How to Check status of the deployment?**\
+**Ans** :
 ```console
 $ kubectl rollout status deployment/nginx-deployment
 deployment "nginx-deployment" successfully rolled out
 ```
 
-**Q8 How to Update the deployment?**\
-**Ans** :\
+**Q16 How to Update the deployment?**\
+**Ans** :
 ```console
 $ kubectl set image deployment/nginx-deployment nginx=nginx:latest
 deployment.apps "nginx-deployment" image updated
 ```
 
-**Q8 How to Rollback to previous revision?**\
+**Q17 How to Rollback to previous revision?**\
 **Ans** :\
 ```console
 $ kubectl rollout undo deployment/nginx-deployment
@@ -188,7 +190,7 @@ $ kubectl rollout status deployment/nginx-deployment
 deployment "nginx-deployment" successfully rolled out
 ```
 
-**Q8 How to Check Rollout history?**\
+**Q18 How to Check Rollout history?**\
 **Ans** :\
 ```console
 $ kubectl rollout history deployment/nginx-deployment
@@ -198,8 +200,8 @@ REVISION  CHANGE-CAUSE
 3         < none >
 ```
 
-**Q8 How to Scale a deployment?**\
-**Ans** :\
+**Q19 How to Scale a deployment?**\
+**Ans** :
 ```console
 $ kubectl scale deployment/nginx-deployment --replicas=5
 deployment.apps "nginx-deployment" scaled
@@ -214,19 +216,19 @@ nginx-deployment-6cf94d8d7c-pg7n8  1/1       Running   0          12m
 ```
 
 
-**Q8 How to Edit a deployment?**\
-**Ans** :\
+**Q20 How to Edit a deployment?**\
+**Ans** :
 ```console
 $ kubectl edit deployment nginx-deployment
 ```
 
-**Q8 How to Delete a deployment?**\
-**Ans** :\
+**Q21 How to Delete a deployment?**\
+**Ans** :
 ```console
 $ kubectl delete deployment nginx-deployment
 ```
 
-**Q8 How to Writing a Deployment Spec?**\
+**Q22 How to Writing a Deployment Spec?**\
 **Ans** :\
 A Deployment manifest needs \
 apiVersion  \
@@ -304,30 +306,23 @@ Insufficient permissions\
 Limit ranges\
 Application run-time misconfiguration\
 
+**Q23 What are StatefulSets?**\
+**Ans** :\
+StatefulSets represent a set of Pods with unique, persistent identities and stable hostnames. It provides guarantees about the ordering of deployment and scaling.
+StatefulSets are valuable for applications that require one or more of the following: \
+Stable, unique network identifiers\
+Stable, persistent storage \
+Ordered, graceful deployment and scaling \
+Ordered, graceful deletion and termination \
+If an application doesn't require any stable identifiers or ordered deployment, deletion, or scaling, you should deploy your application with a controller such as Deployments or ReplicaSets that provides a set of stateless replicas. \
 
+StatefulSet Components \
 
+A Headless Service \
+A StatefulSet \
+A PersistentVolume \
 
-
-
-
-**Q5 What are StatefulSets?**\
-Ans: StatefulSets represent a set of Pods with unique, persistent identities and stable hostnames. It provides guarantees about the ordering of deployment and scaling.
-
-StatefulSets are valuable for applications that require one or more of the following:
-
-Stable, unique network identifiers
-Stable, persistent storage
-Ordered, graceful deployment and scaling
-Ordered, graceful deletion and termination
-If an application doesn't require any stable identifiers or ordered deployment, deletion, or scaling, you should deploy your application with a controller such as Deployments or ReplicaSets that provides a set of stateless replicas.
-
-StatefulSet Components
-
-A Headless Service
-A StatefulSet
-A PersistentVolume
-
-Below are manifests of a Service, StatefulSet and Persistent volume:
+Below are manifests of a Service, StatefulSet and Persistent volume: \
 
 apiVersion: v1
 kind: Service
