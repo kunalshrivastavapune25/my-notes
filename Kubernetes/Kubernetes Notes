@@ -653,9 +653,8 @@ specialised multi container pod which waits will initi cont are successfull then
 as long as init cont are running primary cannot start
 
 demo
-https://github.com/hub-kubernetes/cka-exam/tree/master/Module%20-%201/pods/initcontainers
 
-https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/initcontainerdemo.yaml
+https://raw.githubusercontent.com/kunalshrivastavapune25/my-notes/main/misc/initcontainerdemo.yaml
 
 busybox is light weight ubuntu image, in this case both hostpath and emptydir can work please note
 
