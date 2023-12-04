@@ -1,7 +1,7 @@
 CLF C02
 40 aws services (200+ available)
 ################################################################
-###########################CHAPTER 1############################
+###################CHAPTER 1/2 INTRODUCTION#####################
 ################################################################
 
 Q1. What is a server composed of? --CMSDN 
@@ -16,7 +16,7 @@ Q1. What is a server composed of? --CMSDN
 		
 		
 ################################################################
-###########################CHAPTER 3############################
+##########CHAPTER 3 - What is Cloud Computing?##################
 ################################################################
 
 
@@ -27,8 +27,6 @@ IMPQ2. What is Cloud Computing?
 	• You can access as many resources as you need, almost instantly
 	• Simple way to access servers, storage, databases and a set of application services
 	• Amazon Web Services owns and maintains the network-connected hardware required for these application services, while you provision and use what you need via a web application.
-
-
 
 Q3. The Deployment Models of the Cloud
 	Private Cloud:
@@ -170,7 +168,6 @@ Q10. AWS Global Infrastructure
 		Amazon has 400+ Points of Presence (400+ Edge Locations & 10+
 		Regional Caches) in 90+ cities across 40+ countries
 		• Content is delivered to end users with lower latency
-
 
 
 Q11. Tour of the AWS Console
@@ -981,6 +978,8 @@ Q76. ELB & ASG – Summary
 	• Scale EC2 instances based on the demand on your system, replace unhealthy
 	• Integrated with the ELB
 
-#########################################
-#########Amazon S3 Section###############
-#########################################
+############################################################################################
+			#######################Amazon S3 Section########################
+############################################################################################
+
+55k
