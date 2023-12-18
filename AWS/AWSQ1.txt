@@ -1,606 +1,324 @@
-Question 1: Incorrect
+Question 1: 
 Which option is a common stakeholder role for the AWS Cloud Adoption Framework (AWS CAF) platform perspective? (Select two)
-
-
-
-
-
-
-Explanation
-Correct option:
-
 Engineer
-
 Chief Technology Officer (CTO)
-
-The AWS Cloud Adoption Framework (AWS CAF) leverages AWS experience and best practices to help you digitally transform and accelerate your business outcomes through innovative use of AWS. AWS CAF identifies specific organizational capabilities that underpin successful cloud transformations. These capabilities provide best practice guidance that helps you improve your cloud readiness. AWS CAF groups its capabilities in six perspectives: Business, People, Governance, Platform, Security, and Operations.
-
-The platform perspective focuses on accelerating the delivery of your cloud workloads via an enterprise-grade, scalable, hybrid cloud environment. It comprises seven capabilities shown in the following figure. Common stakeholders include Chief Technology Officer (CTO), technology leaders, architects, and engineers.
-
-The AWS Cloud Adoption Framework (AWS CAF) platform perspective:  via - https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/platform-perspective.html
-
-Incorrect options:
-
 Chief Product Officer (CPO)
-
 Chief Data Officer (CDO)
-
 Chief Information Officer (CIO)
 
-These three options contradict the explanation provided above, so these options are incorrect.
-
-References:
-
-https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/platform-perspective.html
-
-https://d1.awsstatic.com/whitepapers/aws-caf-ebook.pdf
-
-Question 2: Skipped
-A silicon valley based healthcare startup stores anonymized patient health data on Amazon S3. The CTO further wants to ensure that any sensitive data on S3 is discovered and identified to prevent any sensitive data leaks. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
-
-
-
-
-
-Explanation
 Correct option:
+Engineer
+Chief Technology Officer (CTO)
+AWS Cloud Adoption Framework (CAF) set of guidelines and best practices, Common stakeholders include Chief Technology Officer (CTO), technology leaders, architects, and engineers.
 
+###############################################################################
+
+Question 2: 
+A silicon valley based healthcare startup stores anonymized patient health data on Amazon S3. The CTO further wants to ensure that any sensitive data on S3 is discovered and identified to prevent any sensitive data leaks. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
 Amazon Macie
+AWS Glue
+Amazon Polly 
+AWS Secrets Manager 
 
-Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS Organizations. Then, Macie applies machine learning and pattern matching techniques to the buckets you select to identify and alert you to sensitive data, such as personally identifiable information (PII).
-
-How Macie Works:  via - https://aws.amazon.com/macie/
-
+Correct option:
+Amazon Macie : data privacy service that uses machine learning TO protect your sensitive data in AWS. 
 Incorrect options:
+AWS Glue - (ETL) service that makes it easy for customers to prepare and load their data for analytics. 
+Amazon Polly - Amazon Polly is a service that turns text into lifelike speech
+AWS Secrets Manager - AWS Secrets Manager helps you protect secrets needed to access your applications
 
-AWS Glue - AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. AWS Glue job is meant to be used for batch ETL data processing. It cannot be used to discover and protect your sensitive data in AWS.
+###############################################################################
 
-Amazon Polly - Amazon Polly is a service that turns text into lifelike speech, allowing you to create applications that talk, and build entirely new categories of speech-enabled products. Polly's Text-to-Speech (TTS) service uses advanced deep learning technologies to synthesize natural sounding human speech. It cannot be used to discover and protect your sensitive data in AWS.
-
-AWS Secrets Manager - AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
-
-Reference:
-
-https://aws.amazon.com/macie/
-
-Question 3: Skipped
+Question 3: 
 Which of the following statements are CORRECT regarding the AWS VPC service? (Select two)
 
+	A Security Group can have allow rules only
+	A Network Address Translation gateway (NAT gateway) is managed by AWS
+	A Security Group can have both allow and deny rules
+	A Network Address Translation instance (NAT instance) is managed by AWS
+	A network access control list (network ACL) can have allow rules only
 
-
-
-
-
-Explanation
 Correct options:
-
 A Security Group can have allow rules only
-
 A Network Address Translation gateway (NAT gateway) is managed by AWS
-
-A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. Security groups act at the instance level, not at the subnet level. You can specify allow rules, but not deny rules. You can specify separate rules for inbound and outbound traffic.
-
-Security Group Overview:  via - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
-
-A network access control list (network ACL) is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets (i.e. it works at subnet level). A network ACL has separate inbound and outbound rules, and each rule can either allow or deny traffic.
-
-network access control list (network ACL) Overview:  via - https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
-
-You can use a network address translation (NAT) gateway or a Network Address Translation instance (NAT instance) to enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances. Network Address Translation gateway (NAT gateway) is managed by AWS but Network Address Translation instance (NAT instance) is managed by you.
-
-Please see this comparison table for differences between Network Address Translation gateway (NAT gateway) and Network Address Translation instance (NAT instance):  via - https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
-
 Incorrect options:
-
 A Security Group can have both allow and deny rules
+A Network Address Translation instance (NAT instance) is managed by AWS --managed by you
+A network access control list (network ACL) can have allow rules only 
 
-A Network Address Translation instance (NAT instance) is managed by AWS
+###############################################################################
 
-A network access control list (network ACL) can have allow rules only
-
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
-
-References:
-
-https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html
-
-https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
-
-Question 4: Skipped
+Question 4: 
 Which AWS Service can be used to mitigate a Distributed Denial of Service (DDoS) attack?
-
-
-
+AWS Shield
+Amazon CloudWatch 
+AWS Systems Manager 
+AWS Key Management Service (AWS KMS) 
 
 
 Explanation
 Correct option:
-
-AWS Shield
-
-AWS Shield is a managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS. AWS Shield provides always-on detection and automatic inline mitigations that minimize application downtime and latency, so there is no need to engage AWS Support to benefit from DDoS protection. There are two tiers of AWS Shield - Standard and Advanced.
-
-All AWS customers benefit from the automatic protections of AWS Shield Standard, at no additional charge. AWS Shield Standard defends against most common, frequently occurring network and transport layer DDoS attacks that target your web site or applications. When you use AWS Shield Standard with Amazon CloudFront and Amazon Route 53, you receive comprehensive availability protection against all known infrastructure (Layer 3 and 4) attacks.
-
-For higher levels of protection against attacks targeting your applications running on Amazon Elastic Compute Cloud (EC2), Elastic Load Balancing (ELB), Amazon CloudFront, AWS Global Accelerator and Amazon Route 53 resources, you can subscribe to AWS Shield Advanced. In addition to the network and transport layer protections that come with Standard, AWS Shield Advanced provides additional detection and mitigation against large and sophisticated DDoS attacks, near real-time visibility into attacks, and integration with AWS WAF, a web application firewall.
-
+AWS Shield -- safeguards applications
 Incorrect options:
+Amazon CloudWatch - monitoring for DevOps engineers
+AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. 
+AWS Key Management Service (AWS KMS) - AWS Key Management Service (KMS) makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications. 
 
-Amazon CloudWatch - Amazon CloudWatch is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides data and actionable insights to monitor applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. This is an excellent service for building Resilient systems.
+###############################################################################
 
-AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources. With Systems Manager, you can group resources, like Amazon EC2 instances, Amazon S3 buckets, or Amazon RDS instances, by application, view operational data for monitoring and troubleshooting, and take action on your groups of resources.
-
-AWS Key Management Service (AWS KMS) - AWS Key Management Service (KMS) makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications. AWS KMS is a secure and resilient service that uses hardware security modules that have been validated under FIPS 140-2, or are in the process of being validated, to protect your keys.
-
-Reference:
-
-https://aws.amazon.com/shield/
-
-Question 5: Skipped
+Question 5: 
 A data analytics company is running a proprietary batch analytics application on AWS and wants to use a storage service which would be accessed by hundreds of EC2 instances simultaneously to append data to existing files. As a Cloud Practitioner, which AWS service would you suggest for this use-case?
 
-
-
+Amazon Elastic File System (Amazon EFS)
+Amazon Elastic Block Store (Amazon EBS) 
+Instance Store 
+Amazon Simple Storage Service (Amazon S3) 
 
 
 Explanation
 Correct option:
-
-Amazon Elastic File System (Amazon EFS)
-
 Amazon EFS is a file storage service for use with Amazon EC2. Amazon EFS provides a file system interface, file system access semantics, and concurrently-accessible storage for up to thousands of Amazon EC2 instances. Amazon EFS uses the Network File System protocol.
 
-How EFS works:  via - https://aws.amazon.com/efs/
-
 Incorrect options:
 
-Amazon Elastic Block Store (Amazon EBS) - Amazon Elastic Block Store (EBS) is an easy to use, high-performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) for both throughput and transaction-intensive workloads at any scale. EBS volumes cannot be accessed simultaneously by multiple EC2 instances, so this option is incorrect.
-
-Instance Store - An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host computer. Instance Store volumes cannot be accessed simultaneously by multiple EC2 instances, so this option is incorrect.
-
+Amazon Elastic Block Store (Amazon EBS) - high-performance block storage service EC2. EBS volumes cannot be accessed simultaneously by multiple EC2 instances.
+Instance Store - block-level storage for your instance. This storage is located on disks that are physically attached to the host computer. Instance Store volumes cannot be accessed simultaneously by multiple EC2 instances.
 Amazon Simple Storage Service (Amazon S3) - Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. S3 is object storage and it does not support file append operations, so this option is incorrect.
 
-Reference:
+###############################################################################
 
-https://aws.amazon.com/efs/
-
-Question 6: Skipped
+Question 6: 
 An IT company is planning to migrate from an on-premises environment to AWS Cloud. Which of the following expense areas would result in cost savings when the company moves to AWS Cloud? (Select two)
 
+	Data center hardware infrastructure expenditure
+	Data center physical security expenditure
+	SaaS application license fee
+	Developer salary
+	Project manager salary
 
-
-
-
-
-Explanation
 Correct options:
-
 Data center hardware infrastructure expenditure
-
 Data center physical security expenditure
-
-The company does not need to spend on the computing hardware infrastructure and data center physical security. So these expense areas would result in cost savings. The expenditure on the SaaS application license fee, developer salary, and project manager salary would remain the same.
-
-Exam Alert:
-
-Please check out the following six advantages of Cloud Computing. You would certainly be asked questions on the advantages of Cloud Computing compared to a traditional on-premises setup:  via - https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
 Incorrect options:
-
 SaaS application license fee
-
 Developer salary
-
 Project manager salary
+expenditure on the SaaS application license fee, developer salary, and project manager salary would remain the same.
 
-As explained earlier, the expenditure on the SaaS application license fee, developer salary, and project manager salary would remain the same, so these options are incorrect.
+###############################################################################
 
-Reference:
-
-https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
-Question 7: Skipped
+Question 7: 
 A startup wants to set up its IT infrastructure on AWS Cloud. The CTO would like to get an estimate of the monthly AWS bill based on the AWS services that the startup wants to use. As a Cloud Practitioner, which AWS service would you suggest for this use-case?
 
-
-
-
-
-Explanation
-Correct option:
-
 AWS Pricing Calculator
+AWS Cost & Usage Report (AWS CUR) 
+AWS Cost Explorer 
+AWS Budgets 
 
-AWS Pricing Calculator lets you explore AWS services and create an estimate for the cost of your use cases on AWS. You can model your solutions before building them, explore the price points and calculations behind your estimate, and find the available instance types and contract terms that meet your needs. This enables you to make informed decisions about using AWS. You can plan your AWS costs and usage or price out setting up a new set of instances and services. AWS Pricing Calculator can provide the estimate of the AWS service usage based on the list of AWS services.
-
- via - https://calculator.aws/#/
-
-The AWS Pricing Calculator is accessible on : https://calculator.aws/#/
-
-You should also note AWS is in the process of deprecating a similar tool called the Simple Monthly Calculator. This calculator provides an estimate of usage charges for AWS services based on certain information you provide. It helps customers and prospects estimate their monthly AWS bill more efficiently. This tool can be accessed on : https://calculator.s3.amazonaws.com/index.html
-
+Correct option:
+AWS Pricing Calculator
 Incorrect options:
+AWS Cost & Usage Report (AWS CUR) - most comprehensive set of AWS cost and usage data available, including additional metadata about AWS services, pricing, credit, fees, taxes, discounts, cost categories.
+AWS Cost Explorer - AWS Cost Explorer has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time. 
+AWS Budgets - AWS Budgets gives the ability to set custom budgets that alert you
 
-AWS Cost & Usage Report (AWS CUR) - The AWS Cost & Usage Report (AWS CUR) contains the most comprehensive set of AWS cost and usage data available, including additional metadata about AWS services, pricing, credit, fees, taxes, discounts, cost categories, Reserved Instances, and Savings Plans. The AWS Cost & Usage Report (AWS CUR) itemizes usage at the account or Organization level by product code, usage type and operation. These costs can be further organized by Cost Allocation tags and Cost Categories. The AWS Cost & Usage Report (AWS CUR) is available at an hourly, daily, or monthly level of granularity, as well as at the management or member account level. The AWS Cost & Usage Report (AWS CUR) cannot provide the estimate of the monthly AWS bill based on the list of AWS services.
+###############################################################################
 
-AWS Cost Explorer - AWS Cost Explorer has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time. AWS Cost Explorer includes a default report that helps you visualize the costs and usage associated with your top five cost-accruing AWS services, and gives you a detailed breakdown of all services in the table view. The reports let you adjust the time range to view historical data going back up to twelve months to gain an understanding of your cost trends. AWS Cost Explorer cannot provide the estimate of the monthly AWS bill based on the list of AWS services.
-
-AWS Budgets - AWS Budgets gives the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount. You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define. Budgets can be created at the monthly, quarterly, or yearly level, and you can customize the start and end dates. You can further refine your budget to track costs associated with multiple dimensions, such as AWS service, linked account, tag, and others. AWS Budgets cannot provide the estimate of the monthly AWS bill based on the list of AWS services.
-
-Reference:
-
-https://calculator.aws/#/
-
-Question 8: Skipped
+Question 8: 
 A startup wants to migrate its data and applications from the on-premises data center to AWS Cloud. Which of the following options can be used by the startup to help with this migration? (Select two)
 
-
-
-
-
-
-Explanation
-Correct options:
-
 Leverage AWS Professional Services to accelerate the infrastructure migration
+Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration
+Raise a support ticket with AWS Support for further assistance 
+Consult moderators on AWS Developer Forums 
+Use AWS Trusted Advisor to automate the infrastructure migration 
 
-The AWS Professional Services organization is a global team of experts that can help you realize your desired business outcomes when using the AWS Cloud. AWS Professional Services consultants can supplement your team with specialized skills and experience that can help you achieve quick results. Therefore, leveraging AWS Professional Services can accelerate the infrastructure migration for the startup.
-
+Correct options:
+Leverage AWS Professional Services to accelerate the infrastructure migration
 Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration
 
 The AWS Partner Network (APN) is the global partner program for technology and consulting businesses that leverage Amazon Web Services to build solutions and services for customers. The startup can work with experts from APN to build a custom solution for this infrastructure migration.
 
 Incorrect options:
+Trusted Advisor cannot automate the infrastructure migration.
 
-Raise a support ticket with AWS Support for further assistance - AWS Support cannot help with complex infrastructure migration of this nature. Hence this option is incorrect.
+################################################################################################
 
-Consult moderators on AWS Developer Forums - This is a made-up option and has been added as a distractor.
-
-Use AWS Trusted Advisor to automate the infrastructure migration - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement. Trusted Advisor cannot automate the infrastructure migration.
-
-References:
-
-https://aws.amazon.com/partners/
-
-https://aws.amazon.com/professional-services/
-
-https://aws.amazon.com/solutions/implementations/aws-landing-zone/
-
-Question 9: Skipped
+Question 9: 
 Which of the following AWS Support plans provide access to only core checks from the AWS Trusted Advisor Best Practice Checks? (Select two)
 
-
-
-
-
+	AWS Basic Support
+	AWS Developer Support
+	AWS Enterprise Support
+	AWS Business Support
+	AWS Enterprise On-Ramp Support
 
 Explanation
 Correct options:
-
 AWS Basic Support
-
-The AWS Basic Support plan only provides access to the following:
-
-Customer Service & Communities - 24x7 access to customer service, documentation, whitepapers, and support forums. AWS Trusted Advisor - Access to the core Trusted Advisor checks and guidance to provision your resources following best practices to increase performance and improve security. AWS Health - Your Account Health Dashboard : A personalized view of the health of your AWS services, and alerts when your resources are impacted.
-
 AWS Developer Support
-
-You should use the AWS Developer Support plan if you are testing or doing early development on AWS and want the ability to get email-based technical support during business hours as well as general architectural guidance as you build and test. This plan provides access to just the core Trusted Advisor checks from the Service Quota and basic Security checks.
-
-Exam Alert:
-
-Please review the differences between the AWS Developer Support, AWS Business Support, AWS Enterprise On-Ramp Support and AWS Enterprise Support plans as you can expect at least a couple of questions on the exam:
-
-
-
-
-
-
-
-via - https://aws.amazon.com/premiumsupport/plans/
-
 Incorrect options:
 
-AWS Enterprise Support - AWS Enterprise Support plan provides customers with concierge-like service where the main focus is helping the customer achieve their outcomes and find success in the cloud. With AWS Enterprise Support, you get 24x7 technical support from high-quality engineers, tools and technology to automatically manage the health of your environment, consultative architectural guidance and a designated Technical Account Manager (TAM) to coordinate access to proactive/preventative programs and AWS subject matter experts. You also get full access to AWS Trusted Advisor Best Practice Checks.
+AWS Enterprise Support - achieve their outcomes and find success in the cloud. 
+AWS Business Support - production workloads on AWS and want 24x7 phone, email and chat access to technical support .
+AWS Enterprise On-Ramp Support - production/business critical workloads in AWS and want 24x7 access to technical support 
 
-AWS Business Support - You should use the AWS Business Support plan if you have production workloads on AWS and want 24x7 phone, email and chat access to technical support and architectural guidance in the context of your specific use-cases. You also get full access to AWS Trusted Advisor Best Practice Checks.
+###################################################################################
 
-AWS Enterprise On-Ramp Support - You should use the AWS Enterprise On-Ramp Support plan if you have production/business critical workloads in AWS and want 24x7 access to technical support and need expert guidance to grow and optimize in the Cloud. You get full access to AWS Trusted Advisor Best Practice Checks.
+Question 10: A multi-national corporation wants to get expert professional advice on migrating to AWS and managing their applications on AWS Cloud. Which of the following entities would you recommend for this engagement?
 
-Reference:
-
-https://aws.amazon.com/premiumsupport/plans/
-
-Question 10: Skipped
-A multi-national corporation wants to get expert professional advice on migrating to AWS and managing their applications on AWS Cloud. Which of the following entities would you recommend for this engagement?
-
-
-
-
+	APN Consulting Partner
+	APN Technology Partner 
+	AWS Trusted Advisor
+	Concierge Support Team
 
 Explanation
 Correct option:
-
 APN Consulting Partner
-
-The AWS Partner Network (APN) is the global partner program for technology and consulting businesses that leverage Amazon Web Services to build solutions and services for customers.
-
-APN Consulting Partners are professional services firms that help customers of all types and sizes design, architect, build, migrate, and manage their workloads and applications on AWS, accelerating their migration to AWS cloud.
-
-APN Partner Types Overview:  via - https://aws.amazon.com/partners/
-
 Incorrect options:
+APN Technology Partner - APN Technology Partners provide hardware.
+AWS Trusted Advisor - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization
+Concierge Support Team - The Concierge Support Team are AWS billing and account experts 
 
-APN Technology Partner - APN Technology Partners provide hardware, connectivity services, or software solutions that are either hosted on or integrated with, the AWS Cloud. APN Technology Partners cannot help in migrating to AWS and managing applications on AWS Cloud.
+###################################################################################
 
-AWS Trusted Advisor - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement. Whether establishing new workflows, developing applications, or as part of ongoing improvement, recommendations provided by Trusted Advisor regularly help keep your solutions provisioned optimally. All AWS customers get access to the seven core Trusted Advisor checks to help increase the security and performance of the AWS environment. Trusted Advisor cannot be used to migrate to AWS and manage applications on AWS Cloud.
+Question 11: Which of the following AWS services can be used to connect a company's on-premises environment to a VPC without using the public internet?
 
-Concierge Support Team - The Concierge Support Team are AWS billing and account experts that specialize in working with enterprise accounts. They will quickly and efficiently assist you with your billing and account inquiries. The Concierge Support Team is only available for the Enterprise Support plan. Concierge Support Team cannot help in migrating to AWS and managing applications on AWS Cloud.
+	AWS Direct Connect
+	VPC Endpoint 
+	Internet Gateway 
+	AWS Site-to-Site VPN
 
-Reference:
-
-https://aws.amazon.com/partners/
-
-Question 11: Skipped
-Which of the following AWS services can be used to connect a company's on-premises environment to a VPC without using the public internet?
-
-
-
-
-
-Explanation
 Correct option:
-
-AWS Direct Connect
-
-AWS Direct Connect is a cloud service solution that makes it easy to establish a dedicated network connection from your premises to AWS. You can use AWS Direct Connect to establish a private virtual interface from your on-premise network directly to your Amazon VPC, providing you with a private, high bandwidth network connection between your network and your VPC. This connection is private and does not go over the public internet. It takes at least a month to establish this physical connection.
-
-How Direct Connect Works:  via - https://aws.amazon.com/directconnect/
-
+AWS Direct Connect - cloud service solution that makes it easy to establish a dedicated network connection from your premises to AWS. 
 Incorrect options:
-
-VPC Endpoint - A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network. VPC Endpoint cannot be used to privately connect on-premises data center to AWS Cloud.
-
-Internet Gateway - An Internet Gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. An internet gateway serves two purposes: to provide a target in your VPC route tables for internet-routable traffic and to perform network address translation (NAT) for instances. Internet Gateway cannot be used to privately connect on-premises data center to AWS Cloud.
-
+VPC Endpoint - privately connect your VPC to supported AWS services.
+Internet Gateway - allows communication between your VPC and the internet. 
 AWS Site-to-Site VPN - AWS Site-to-Site VPN creates a secure connection between your data center or branch office and your AWS cloud resources. This connection goes over the public internet.
 
-References:
+###################################################################################
 
-https://aws.amazon.com/directconnect/
+Question 12: Which of the following are correct statements regarding the AWS Global Infrastructure? (Select two)
 
-https://aws.amazon.com/vpn/
+	Each AWS Region consists of a minimum of three Availability Zones (AZ)
+	Each Availability Zone (AZ) consists of one or more discrete data centers
+	Each AWS Region consists of a minimum of two Availability Zones (AZ)
+	Each Availability Zone (AZ) consists of two or more discrete data centers
+	Each AWS Region consists of two or more Edge Locations
 
-Question 12: Skipped
-Which of the following are correct statements regarding the AWS Global Infrastructure? (Select two)
-
-
-
-
-
-
-Explanation
+Correct Ans
 Correct options:
-
 Each AWS Region consists of a minimum of three Availability Zones (AZ)
-
 Each Availability Zone (AZ) consists of one or more discrete data centers
 
-AWS has the concept of a Region, which is a physical location around the world where AWS clusters its data centers. AWS calls each group of logical data centers an Availability Zone (AZ). Each AWS Region consists of a minimum of three, isolated, and physically separate AZs within a geographic area. Each AZ has independent power, cooling, and physical security and is connected via redundant, ultra-low-latency networks.
+###################################################################################
 
-An Availability Zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region. All AZs in an AWS Region are interconnected with high-bandwidth, low-latency networking, over fully redundant, dedicated metro fiber providing high-throughput, low-latency networking between AZs.
+Question 13: Under the AWS Shared Responsibility Model, which of the following is a shared responsibility of both AWS and the customer?
 
-AWS Regions and Availability Zones Overview:  via - https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+	Configuration Management
+	Infrastructure maintenance of Amazon Simple Storage Service (Amazon S3) storage servers 
+	Guarantee data separation among various AWS customers 
+	Availability Zone (AZ) infrastructure maintenance 
 
-Incorrect options:
-
-Each AWS Region consists of a minimum of two Availability Zones (AZ)
-
-Each Availability Zone (AZ) consists of two or more discrete data centers
-
-Each AWS Region consists of two or more Edge Locations
-
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
-
-Reference:
-
-https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
-
-Question 13: Skipped
-Under the AWS Shared Responsibility Model, which of the following is a shared responsibility of both AWS and the customer?
-
-
-
-
-
-Explanation
-Correct option:
-
+Correct Ans
 Configuration Management
 
-Security and Compliance is a shared responsibility between AWS and the customer. This shared model can help relieve the customer’s operational burden as AWS operates, manages and controls the components from the host operating system and virtualization layer down to the physical security of the facilities in which the service operates.
+###################################################################################
 
-Controls that apply to both the infrastructure layer and customer layers, but in completely separate contexts or perspectives are called shared controls. In a shared control, AWS provides the requirements for the infrastructure and the customer must provide their own control implementation within their use of AWS services. Configuration Management forms a part of shared controls - AWS maintains the configuration of its infrastructure devices, but a customer is responsible for configuring their own guest operating systems, databases, and applications.
+Question 14: Which AWS service will help you receive alerts when the reservation utilization falls below the defined threshold?
 
-Shared Responsibility Model Overview:  via - https://aws.amazon.com/compliance/shared-responsibility-model/
+	AWS Budgets
+	AWS Pricing Calculator 
+	AWS CloudTrail
+	AWS Trusted Advisor 
 
-Incorrect options:
-
-Infrastructure maintenance of Amazon Simple Storage Service (Amazon S3) storage servers - AWS is responsible for protecting the infrastructure that runs all of the services offered in the AWS Cloud.
-
-Guarantee data separation among various AWS customers - AWS is responsible for protecting the infrastructure that runs all of the services offered in the AWS Cloud. This infrastructure is composed of the hardware, software, networking, and facilities that run AWS Cloud services.
-
-Availability Zone (AZ) infrastructure maintenance - AWS is responsible for protecting the infrastructure that runs all of the services offered in the AWS Cloud.
-
-Reference:
-
-https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys
-
-Question 14: Skipped
-Which AWS service will help you receive alerts when the reservation utilization falls below the defined threshold?
-
-
-
-
-
-Explanation
-Correct option:
-
+Correct options
 AWS Budgets
-
-AWS Budgets gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.
-
-You can also use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your utilization drops below the threshold you define. Reservation alerts are supported for Amazon EC2, Amazon RDS, Amazon Redshift, Amazon ElastiCache, and Amazon Elasticsearch reservations.
-
 Incorrect options:
+AWS Pricing Calculator 
+AWS CloudTrail
+AWS Trusted Advisor 
 
-AWS Pricing Calculator - AWS Pricing Calculator lets you explore AWS services and create an estimate for the cost of your use cases on AWS. You can model your solutions before building them, explore the price points and calculations behind your estimate, and find the available instance types and contract terms that meet your needs. This enables you to make informed decisions about using AWS. You cannot use this service to receive alerts when the reservation utilization falls below the defined threshold.
+###################################################################################
 
-AWS CloudTrail - AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With AWS CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. AWS CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command-line tools, and other AWS services. You cannot use this service to receive alerts when the reservation utilization falls below the defined threshold.
-
-AWS Trusted Advisor - AWS Trusted Advisor is an online tool that provides real-time guidance to help provision your resources following AWS best practices. Whether establishing new workflows, developing applications, or as part of ongoing improvement, recommendations provided by AWS Trusted Advisor regularly help keep your solutions provisioned optimally. AWS Trusted Advisor analyzes your AWS environment and provides best practice recommendations in five categories: Cost Optimization, Performance, Security, Fault Tolerance, Service Limits. You cannot use this service to receive alerts when the reservation utilization falls below the defined threshold.
-
-References:
-
-https://aws.amazon.com/aws-cost-management/aws-budgets/
-
-https://aws.amazon.com/premiumsupport/technology/trusted-advisor/best-practice-checklist/
-
-Question 15: Skipped
-A company needs a storage solution for a project wherein the data is accessed less frequently but needs rapid access when required. Which S3 storage class is the MOST cost-effective for the given use-case?
-
-
-
-
-
-Explanation
-Correct option:
+Question 15: A company needs a storage solution for a project wherein the data is accessed less frequently but needs rapid access when required. Which S3 storage class is the MOST cost-effective for the given use-case?
 
 Amazon S3 Standard-Infrequent Access (S3 Standard-IA)
+Amazon S3 Standard 
+Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering) 
+Amazon S3 Glacier (S3 Glacier) 
 
-Amazon S3 Standard-Infrequent Access (S3 Standard-IA) is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval fee. This combination of low cost and high performance make S3 Standard-IA ideal for long-term storage, backups, and as a data store for disaster recovery files.
+Correct option:
+Amazon S3 Standard-Infrequent Access (S3 Standard-IA) - data that is accessed less frequently, 
 
 Incorrect options:
 
-Amazon S3 Standard - The Amazon S3 Standard offers high durability, availability, and performance object storage for frequently accessed data. S3 standard would turn out to be costlier than S3 Standard-IA for the given use-case, so this option is not correct.
+Amazon S3 Standard - high durability, availability
+Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering) - S3 Intelligent-Tiering would turn out to be costlier
+Amazon S3 Glacier (S3 Glacier) - 99.999999999% durability
 
-Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering) - The Amazon S3 Intelligent-Tiering storage class is designed to optimize costs by automatically moving data to the most cost-effective access tier, without performance impact or operational overhead. It works by storing objects in two access tiers: one tier that is optimized for frequent access and another lower-cost tier that is optimized for infrequent access. S3 Intelligent-Tiering would turn out to be costlier than S3 Standard-IA for the given use-case, so this option is not correct.
+###################################################################################
 
-Amazon S3 Glacier (S3 Glacier) - Amazon S3 Glacier is a secure, durable, and extremely low-cost Amazon S3 cloud storage class for data archiving and long-term backup. It is designed to deliver 99.999999999% durability, and provide comprehensive security and compliance capabilities that can help meet even the most stringent regulatory requirements. S3 Glacier does not support rapid data retrieval, so this option is ruled out.
+Question 16: Which of the following AWS services has encryption enabled by default?
 
-Reference:
+	AWS CloudTrail Logs
+	Amazon Elastic File System (Amazon EFS)
+	Amazon Elastic Block Store (Amazon EBS)
+	Amazon Relational Database Service (Amazon RDS)
 
-https://aws.amazon.com/s3/storage-classes/
-
-Question 16: Skipped
-Which of the following AWS services has encryption enabled by default?
-
-
-
-
-
-Explanation
 Correct option:
-
 AWS CloudTrail Logs
-
-AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. AWS CloudTrail can be used to record AWS API calls and other activity for your AWS account and save the recorded information to log files in an Amazon Simple Storage Service (Amazon S3) bucket that you choose. By default, the log files delivered by CloudTrail to your S3 bucket are encrypted using server-side encryption with Amazon S3 managed keys (SSE-S3).
-
 Incorrect options:
+Amazon Elastic File System (Amazon EFS) - is an optional feature and has to be enabled by user if needed.
+Amazon Elastic Block Store (Amazon EBS) - is an optional feature for EBS and has to be enabled by the user.
+Amazon Relational Database Service (Amazon RDS) -  Encryption for RDS is an additional feature and the user needs to enable it.
 
-Amazon Elastic File System (Amazon EFS) - Amazon Elastic File System (Amazon EFS) provides a simple, scalable, fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources. Amazon EFS supports two forms of encryption for file systems, encryption of data in transit and encryption at rest. This is an optional feature and has to be enabled by user if needed.
+###################################################################################
 
-Amazon Elastic Block Store (Amazon EBS) - Amazon Elastic Block Store (EBS) is an easy to use, high-performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) instances for both throughput and transaction-intensive workloads at any scale. Encryption (at rest and during transit) is an optional feature for EBS and has to be enabled by the user.
+Question 17: Which type of cloud computing does Amazon Elastic Compute Cloud (EC2) represent?
 
-Amazon Relational Database Service (Amazon RDS) - Amazon Relational Database Service (Amazon RDS) can encrypt your Amazon RDS DB instances. Data that is encrypted at rest includes the underlying storage for DB instances, its automated backups, read replicas, and snapshots. Encryption for RDS is an additional feature and the user needs to enable it.
+	Infrastructure as a Service (IaaS)
+	Platform as a Service (PaaS) 
+	Software as a Service (SaaS) 
+	Network as a Service (NaaS) 
 
-Reference:
-
-https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html
-
-Question 17: Skipped
-Which type of cloud computing does Amazon Elastic Compute Cloud (EC2) represent?
-
-
-
-
-
-Explanation
-Correct option:
-
+Correct
 Infrastructure as a Service (IaaS)
-
-Cloud Computing can be broadly divided into three types - Infrastructure as a Service (IaaS), Platform as a Service (PaaS), Software as a Service (SaaS).
-
-IaaS contains the basic building blocks for cloud IT. It typically provides access to networking features, computers (virtual or on dedicated hardware), and data storage space. IaaS gives the highest level of flexibility and management control over IT resources.
-
-EC2 gives you full control over managing the underlying OS, virtual network configurations, storage, data and applications. So EC2 is an example of an IaaS service.
-
-Please review this overview of the types of Cloud Computing:  via - https://aws.amazon.com/types-of-cloud-computing/
-
 Incorrect options:
+Platform as a Service (PaaS) - Elastic Beanstalk is an example of a PaaS service. You can simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring.
+Software as a Service (SaaS) - AWS Rekognition is an example of a SaaS service.
+Network as a Service (NaaS) - distractor.
 
-Platform as a Service (PaaS) - PaaS removes the need to manage underlying infrastructure (usually hardware and operating systems), and allows you to focus on the deployment and management of your applications. You don’t need to worry about resource procurement, capacity planning, software maintenance, patching, or any of the other undifferentiated heavy lifting involved in running your application.
+###################################################################################
 
-Elastic Beanstalk is an example of a PaaS service. You can simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring.
-
-Software as a Service (SaaS) - SaaS provides you with a complete product that is run and managed by the service provider. With a SaaS offering, you don’t have to think about how the service is maintained or how the underlying infrastructure is managed. You only need to think about how you will use that particular software. AWS Rekognition is an example of a SaaS service.
-
-Network as a Service (NaaS) - This is a made-up option and has been added as a distractor.
-
-Reference:
-
-https://aws.amazon.com/types-of-cloud-computing/
-
-Question 18: Skipped
-The DevOps team at an IT company is moving 500 GB of data from an EC2 instance to an S3 bucket in the same region. Which of the following scenario captures the correct charges for this data transfer?
-
-
-
-
-
-Explanation
-Correct option:
+Question 18: The DevOps team at an IT company is moving 500 GB of data from an EC2 instance to an S3 bucket in the same region. Which of the following scenario captures the correct charges for this data transfer?
 
 The company would not be charged for this data transfer
+The company would only be charged for the outbound data transfer from EC2 instance
+The company would only be charged for the inbound data transfer into the S3 bucket
+The company would be charged for both the outbound data transfer from EC2 instance as well as the inbound data transfer into the S3 bucket
 
+Correct option:
+The company would not be charged for this data transfer
 There are three fundamental drivers of cost with AWS: compute, storage, and outbound data transfer. In most cases, there is no charge for inbound data transfer or data transfer between other AWS services within the same region. Outbound data transfer is aggregated across services and then charged at the outbound data transfer rate.
-
 Per AWS pricing, data transfer between S3 and EC2 instances within the same region is not charged, so there would be no data transfer charge for moving 500 GB of data from an EC2 instance to an S3 bucket in the same region.
 
 Incorrect options:
-
 The company would only be charged for the outbound data transfer from EC2 instance
-
 The company would only be charged for the inbound data transfer into the S3 bucket
-
 The company would be charged for both the outbound data transfer from EC2 instance as well as the inbound data transfer into the S3 bucket
 
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
+###################################################################################
 
-References:
-
-https://aws.amazon.com/s3/pricing/
-
-https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf
-
-Question 19: Skipped
-A big data analytics company is moving its IT infrastructure from an on-premises data center to AWS Cloud. The company has some server-bound software licenses that it wants to use on AWS. As a Cloud Practitioner, which of the following EC2 instance types would you recommend to the company?
+Question 19: A big data analytics company is moving its IT infrastructure from an on-premises data center to AWS Cloud. The company has some server-bound software licenses that it wants to use on AWS. As a Cloud Practitioner, which of the following EC2 instance types would you recommend to the company?
 
 
 
 
 
-Explanation
 Correct option:
-
 Dedicated Host
-
 Amazon EC2 Dedicated Hosts allow you to use your eligible software licenses from vendors such as Microsoft and Oracle on Amazon EC2. An Amazon EC2 Dedicated Host is a physical server fully dedicated for your use, so you can help address corporate compliance requirements.
-
-Exam Alert:
-
-Please review the differences between Dedicated hosts and Dedicated instances:  via - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html
 
 Incorrect options:
 
@@ -610,18 +328,13 @@ Reserved Instance (RI) - A Reserved Instance (RI) provides you with significant 
 
 On-Demand Instance - An On-Demand Instance is an instance that you use on-demand. You have full control over its lifecycle — you decide when to launch, stop, hibernate, start, reboot, or terminate it. There is no long-term commitment required when you purchase On-Demand Instances. There is no upfront payment and you pay only for the seconds that your On-Demand Instances are running. The price per second for running an On-Demand Instance is fixed. On-demand instances cannot be interrupted. You cannot use On-demand Instances for using server-bound software licenses.
 
-Reference:
+###################################################################################
 
-https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html
-
-Question 20: Skipped
+Question 20: 
 Which of the following is an INCORRECT statement about Scaling, a design principle of Reliability pillar of the AWS Well-Architected Framework?
 
+Fault tolerance is achieved by a scale up operation
 
-
-
-
-Explanation
 Correct option: Fault tolerance is achieved by a scale up operation
 
 A scale up operation is constrained to be running its processes on only one computer. In such systems, the only way to increase performance is to add more resources into one computer in the form of faster CPUs, memory or storage. Fault tolerance is not possible for such scaling operations since a single instance is prone to failure.
@@ -634,9 +347,7 @@ A scale out operation implies you scale by adding more instances to your existin
 
 Fault tolerance is achieved by a scale out operation - A scale out operation adds more instances to an existing pool of instances. This implies, there is no single point of failure. If an instance is down, the workload is taken up by other healthy instances. Distributed systems are an example of such scaling.
 
-Reference:
-
-https://wa.aws.amazon.com/wat.concept.horizontal-scaling.en.html
+###################################################################################
 
 Question 21: Skipped
 A Project Manager, working on AWS for the first time, is confused about how credits are used in AWS. There are two credits available in the manager's account. Credit one is for $100, expires July 2022, and can be used for either Amazon S3 or Amazon EC2. Credit two is for $50, expires December 2022, and can be used only for Amazon EC2. The manager's AWS account has incurred two charges: $1000 for Amazon EC2 and $500 for Amazon S3.
@@ -675,9 +386,7 @@ Then, credit two is applied to $500 for Amazon S3 usage
 
 These three options contradict the explanation provided above, so these options are incorrect.
 
-Reference:
-
-https://www.amazonaws.cn/en/support/faqs/
+###################################################################################
 
 Question 22: Skipped
 A medical research startup wants to understand the compliance of AWS services concerning HIPAA guidelines. Which AWS service can be used to review the HIPAA compliance and governance-related documents on AWS?
@@ -701,9 +410,7 @@ AWS Secrets Manager - AWS Secrets Manager helps you protect secrets needed to ac
 
 AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources. With Systems Manager, you can group resources, like Amazon EC2 instances, Amazon S3 buckets, or Amazon RDS instances, by application, view operational data for monitoring and troubleshooting, and take action on your groups of resources.
 
-Reference:
-
-https://aws.amazon.com/artifact/
+###################################################################################
 
 Question 23: Skipped
 A company wants to have control over creating and using its own keys for encryption on AWS services. Which of the following can be used for this use-case?
@@ -714,9 +421,7 @@ A company wants to have control over creating and using its own keys for encrypt
 
 Explanation
 Correct option:
-
 customer managed key (CMK)
-
 An AWS KMS key is a logical representation of a cryptographic key. A KMS key contains metadata, such as the key ID, key spec, key usage, creation date, description, and key state. Most importantly, it contains a reference to the key material that is used when you perform cryptographic operations with the KMS key.
 
 The KMS keys that you create are customer managed keys. Customer managed keys are KMS keys in your AWS account that you create, own, and manage. You have full control over these KMS keys, including establishing and maintaining their key policies, IAM policies, and grants, enabling and disabling them, rotating their cryptographic material, adding tags, creating aliases that refer to the KMS keys, and scheduling the KMS keys for deletion.
@@ -729,9 +434,31 @@ AWS managed key - AWS managed keys are KMS keys in your account that are created
 
 AWS owned key - AWS owned keys are a collection of KMS keys that an AWS service owns and manages for use in multiple AWS accounts. Although AWS owned keys are not in your AWS account, an AWS service can use an AWS owned key to protect the resources in your account.
 
-Reference:
 
-https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys
+###################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Question 24: Skipped
 A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. However, some of the units under-utilize their reserved instances while other units need more reserved instances. As a Cloud Practitioner, which of the following would you recommend as the most cost-optimal solution?
