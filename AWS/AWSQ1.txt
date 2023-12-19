@@ -293,10 +293,10 @@ Network as a Service (NaaS) - distractor.
 
 Question 18: The DevOps team at an IT company is moving 500 GB of data from an EC2 instance to an S3 bucket in the same region. Which of the following scenario captures the correct charges for this data transfer?
 
-The company would not be charged for this data transfer
-The company would only be charged for the outbound data transfer from EC2 instance
-The company would only be charged for the inbound data transfer into the S3 bucket
-The company would be charged for both the outbound data transfer from EC2 instance as well as the inbound data transfer into the S3 bucket
+	The company would not be charged for this data transfer
+	The company would only be charged for the outbound data transfer from EC2 instance
+	The company would only be charged for the inbound data transfer into the S3 bucket
+	The company would be charged for both the outbound data transfer from EC2 instance as well as the inbound data transfer into the S3 bucket
 
 Correct option:
 The company would not be charged for this data transfer
@@ -312,8 +312,10 @@ The company would be charged for both the outbound data transfer from EC2 instan
 
 Question 19: A big data analytics company is moving its IT infrastructure from an on-premises data center to AWS Cloud. The company has some server-bound software licenses that it wants to use on AWS. As a Cloud Practitioner, which of the following EC2 instance types would you recommend to the company?
 
-
-
+	Dedicated Host
+	Dedicated Instance
+	Reserved Instance (RI)
+	On-Demand Instance
 
 
 Correct option:
@@ -333,7 +335,10 @@ On-Demand Instance - An On-Demand Instance is an instance that you use on-demand
 Question 20: 
 Which of the following is an INCORRECT statement about Scaling, a design principle of Reliability pillar of the AWS Well-Architected Framework?
 
-Fault tolerance is achieved by a scale up operation
+	Fault tolerance is achieved by a scale up operation
+	A scale up operation implies you scale by adding more power (CPU, RAM) to your existing machine/node
+	A scale out operation implies you scale by adding more instances to your existing pool of resources
+	Fault tolerance is achieved by a scale out operation
 
 Correct option: Fault tolerance is achieved by a scale up operation
 
@@ -347,16 +352,14 @@ A scale out operation implies you scale by adding more instances to your existin
 
 Fault tolerance is achieved by a scale out operation - A scale out operation adds more instances to an existing pool of instances. This implies, there is no single point of failure. If an instance is down, the workload is taken up by other healthy instances. Distributed systems are an example of such scaling.
 
-###################################################################################
 
-Question 21: Skipped
+Question 21: 
 A Project Manager, working on AWS for the first time, is confused about how credits are used in AWS. There are two credits available in the manager's account. Credit one is for $100, expires July 2022, and can be used for either Amazon S3 or Amazon EC2. Credit two is for $50, expires December 2022, and can be used only for Amazon EC2. The manager's AWS account has incurred two charges: $1000 for Amazon EC2 and $500 for Amazon S3.
-
 What will be the outcome on the overall bill once the credits are used? (Select two)
 
-
-
-
+	Credit one is applied, which expires in July, to the Amazon EC2 charge which leaves you with a $900 Amazon EC2 charge and a $500 Amazon S3 charge
+	Credit one is applied, which expires in July, to Amazon S3 usage which leaves you with a $1000 Amazon EC2 charge and a $400 Amazon S3 charge
+	Only one credit can be used in one billing cycle and the customer has a choice to choose from the available ones
 
 
 Explanation
@@ -388,12 +391,12 @@ These three options contradict the explanation provided above, so these options 
 
 ###################################################################################
 
-Question 22: Skipped
+Question 22:
 A medical research startup wants to understand the compliance of AWS services concerning HIPAA guidelines. Which AWS service can be used to review the HIPAA compliance and governance-related documents on AWS?
-
-
-
-
+	AWS Artifact
+	AWS Trusted Advisor 
+	AWS Secrets Manager 
+	AWS Systems Manager 
 
 Explanation
 Correct option:
@@ -414,10 +417,10 @@ AWS Systems Manager - AWS Systems Manager gives you visibility and control of yo
 
 Question 23: Skipped
 A company wants to have control over creating and using its own keys for encryption on AWS services. Which of the following can be used for this use-case?
-
-
-
-
+	customer managed key (CMK)
+	AWS Secrets Manager
+	AWS managed key
+	AWS owned key
 
 Explanation
 Correct option:
@@ -437,336 +440,203 @@ AWS owned key - AWS owned keys are a collection of KMS keys that an AWS service 
 
 ###################################################################################
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Question 24: Skipped
+Question 24: 
 A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. However, some of the units under-utilize their reserved instances while other units need more reserved instances. As a Cloud Practitioner, which of the following would you recommend as the most cost-optimal solution?
 
-
-
+	Use AWS Organizations to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+	Use AWS Trusted Advisor to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+	Use AWS Cost Explorer to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
+	Use AWS Systems Manager to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
 
 
 Explanation
 Correct option:
-
 Use AWS Organizations to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
-
 AWS Organizations helps you to centrally manage billing; control access, compliance, and security; and share resources across your AWS accounts. Using AWS Organizations, you can automate account creation, create groups of accounts to reflect your business needs, and apply policies for these groups for governance. You can also simplify billing by setting up a single payment method for all of your AWS accounts. AWS Organizations is available to all AWS customers at no additional charge.
 
-Key Features of AWS Organizations:  via - https://aws.amazon.com/organizations/
 
 Incorrect options:
-
 Use AWS Trusted Advisor to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement. You cannot use Trusted Advisor to share the reserved EC2 instances amongst multiple AWS accounts.
-
-How Trusted Advisor Works:  via - https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
-
 Use AWS Cost Explorer to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units - AWS Cost Explorer lets you explore your AWS costs and usage at both a high level and at a detailed level of analysis, and empowering you to dive deeper using several filtering dimensions (e.g., AWS Service, Region, Linked Account). You cannot use Cost Explorer to share the reserved EC2 instances amongst multiple AWS accounts.
-
 Use AWS Systems Manager to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units - Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources. With Systems Manager, you can group resources, like Amazon EC2 instances, Amazon S3 buckets, or Amazon RDS instances, by application, view operational data for monitoring and troubleshooting, and take action on your groups of resources. You cannot use Systems Manager to share the reserved EC2 instances amongst multiple AWS accounts.
 
-How AWS Systems Manager Works:  via - https://aws.amazon.com/systems-manager/
 
-References:
-
-https://aws.amazon.com/organizations/
-
-https://aws.amazon.com/premiumsupport/technology/trusted-advisor/
-
-https://aws.amazon.com/systems-manager/
-
-Question 25: Skipped
+Question 25: 
 Which of the following are the advantages of cloud computing? (Select three)
-
-
-
-
-
+	Benefit from massive economies of scale
+	Trade capital expense for variable expense
+	Go global in minutes and deploy applications in multiple regions around the world with just a few clicks
+	Spend money on building and maintaining data centers
+	Allocate a few months of planning for your infrastructure capacity needs
+	Trade variable expense for capital expense 
 
 
 Explanation
 Correct options:
-
 Benefit from massive economies of scale
-
 Trade capital expense for variable expense
-
 Go global in minutes and deploy applications in multiple regions around the world with just a few clicks
-
-Exam Alert:
-
-Please check out the following six advantages of cloud computing. You would certainly be asked questions on the advantages of cloud computing compared to a traditional on-premises setup:  via - https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
 Incorrect options:
-
 Spend money on building and maintaining data centers - With cloud computing, you can focus on projects that differentiate your business, not the infrastructure. You don't need to spend money on building and maintaining data centers as the Cloud provider takes care of that.
-
 Allocate a few months of planning for your infrastructure capacity needs - With cloud computing, you don't need to guess on your infrastructure capacity needs. You can access as much or as little capacity as you need, and scale up and down as required with only a few minutes’ notice. There is no need to allocate a few months of infrastructure planning.
-
 Trade variable expense for capital expense - With cloud computing, you actually trade capital expense for variable expense.
 
-Reference:
 
-https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
-Question 26: Skipped
+Question 26: 
 A company wants to move to AWS cloud and release new features with quick iterations by utilizing relevant AWS services whenever required. Which of the following characteristics of AWS Cloud does it want to leverage?
+	Agility
+	Elasticity
+	Reliability
+	Scalability
 
-
-
-
-
-Explanation
 Correct option:
-
 Agility
-
 In the world of cloud computing, "Agility" refers to the ability to rapidly develop, test and launch software applications that drive business growth Another way to explain "Agility" - AWS provides a massive global cloud infrastructure that allows you to quickly innovate, experiment and iterate. Instead of waiting weeks or months for hardware, you can instantly deploy new applications. This ability is called Agility.
 
 Incorrect options:
-
 Elasticity - This refers to the ability to acquire resources as you need and release when they are no longer needed is termed as Elasticity of the Cloud.
-
 Reliability - This refers to the ability of a system to recover from infrastructure or service disruptions, by dynamically acquiring computing resources to meet demand, and mitigate disruptions.
-
 Scalability - Scalability is the measurement of a system's ability to grow to accommodate an increase in demand, or shrink down to a diminishing demand.
 
-Reference:
-
-https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html
-
-https://wa.aws.amazon.com/wat.concepts.wa-concepts.en.html
-
-Question 27: Skipped
+Question 27: 
 A multi-national company has just moved its infrastructure from its on-premises data center to AWS Cloud. As part of the shared responsibility model, AWS is responsible for which of the following?
+	Physical and Environmental controls
+	Patching guest OS
+	Configuring customer applications
+	Service and Communications Protection or Zone Security 
 
-
-
-
-
-Explanation
 Correct option:
-
 Physical and Environmental controls
-
 As part of the shared responsibility model, Physical and Environmental controls are part of the inherited controls and hence these are the responsibility of AWS.
-
-Shared Responsibility Model Overview:  via - https://aws.amazon.com/compliance/shared-responsibility-model/
-
 Incorrect options:
-
 Patching guest OS
-
 Configuring customer applications
-
 The customers must provide their own control implementation within their use of AWS services. Therefore, the customers are responsible for patching their guest OS as well as for configuring their applications.
-
 Service and Communications Protection or Zone Security - Customers are responsible for Service and Communications Protection or Zone Security which may require the customers to route or zone data within specific security environments.
 
-Please review the IT controls under the Shared Responsibility Model:  via - https://aws.amazon.com/compliance/shared-responsibility-model/
 
-Reference:
 
-https://aws.amazon.com/compliance/shared-responsibility-model/
-
-Question 28: Skipped
+Question 28: 
 The DevOps team at an e-commerce company is trying to debug performance issues for its serverless application built using a microservices architecture. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
+	AWS X-Ray
+	AWS Trusted Advisor
+	Amazon Pinpoint
+	AWS CloudFormation
 
 
-
-
-
-Explanation
 Correct option:
-
 AWS X-Ray
-
 You can use AWS X-Ray to analyze and debug serverless and distributed applications such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
-
-How AWS X-Ray Works:  via - https://aws.amazon.com/xray/
-
 Incorrect options:
-
 AWS Trusted Advisor - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits and performance improvement. Whether establishing new workflows, developing applications, or as part of ongoing improvement, recommendations provided by Trusted Advisor regularly help keep your solutions provisioned optimally. Trusted Advisor cannot be used to debug performance issues for this serverless application built using a microservices architecture.
-
 Amazon Pinpoint - Amazon Pinpoint allows marketers and developers to deliver customer-centric engagement experiences by capturing customer usage data to draw real-time insights. Pinpoint cannot be used to debug performance issues for this serverless application built using a microservices architecture.
-
 AWS CloudFormation - AWS CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all Regions and accounts. Think infrastructure as code; think CloudFormation. CloudFormation cannot be used to debug performance issues for this serverless application built using a microservices architecture.
 
-How Amazon Pinpoint Works:  via - https://aws.amazon.com/pinpoint/
 
-Reference:
 
-https://aws.amazon.com/xray/
-
-Question 29: Skipped
+Question 29: 
 A unicorn startup is building an analytics application with support for a speech-based interface. The application will accept speech-based input from users and then convey results via speech. As a Cloud Practitioner, which solution would you recommend for the given use-case?
+	Use Amazon Transcribe to convert speech to text for downstream analysis. Then use Amazon Polly to convey the text results via speech
+	Use Amazon Polly to convert speech to text for downstream analysis. Then use Amazon Transcribe to convey the text results via speech
+	Use Amazon Translate to convert speech to text for downstream analysis. Then use Amazon Polly to convey the text results via speech 
+	Use Amazon Polly to convert speech to text for downstream analysis. Then use Amazon Translate to convey the text results via speech 
 
 
-
-
-
-Explanation
 Correct option:
-
 Use Amazon Transcribe to convert speech to text for downstream analysis. Then use Amazon Polly to convey the text results via speech
-
 You can use Amazon Transcribe to add speech-to-text capability to your applications. Amazon Transcribe uses a deep learning process called automatic speech recognition (ASR) to convert speech to text quickly and accurately. Amazon Transcribe can be used to transcribe customer service calls, to automate closed captioning and subtitling, and to generate metadata for media assets.
-
-Amazon Transcribe Use-Cases:  via - https://aws.amazon.com/transcribe/
-
 You can use Amazon Polly to turn text into lifelike speech thereby allowing you to create applications that talk. Polly's Text-to-Speech (TTS) service uses advanced deep learning technologies to synthesize natural sounding human speech.
-
-Amazon Polly Benefits:  via - https://aws.amazon.com/polly/
-
 Amazon Translate is used for language translation. Amazon Translate uses neural machine translation via deep learning models to deliver more accurate and more natural-sounding translation than traditional statistical and rule-based translation algorithms.
-
 Incorrect options:
-
 Use Amazon Polly to convert speech to text for downstream analysis. Then use Amazon Transcribe to convey the text results via speech - Amazon Polly cannot be used to convert speech to text, so this option is incorrect.
-
 Use Amazon Translate to convert speech to text for downstream analysis. Then use Amazon Polly to convey the text results via speech - Amazon Translate cannot convert speech to text, so this option is incorrect.
-
 Use Amazon Polly to convert speech to text for downstream analysis. Then use Amazon Translate to convey the text results via speech - Amazon Polly cannot be used to convert speech to text, so this option is incorrect.
 
-References:
-
-https://aws.amazon.com/transcribe/
-
-https://aws.amazon.com/polly/
-
-Question 30: Skipped
+Question 30: 
 A startup wants to provision an EC2 instance for the lowest possible cost for a long-term duration but needs to make sure that the instance would never be interrupted. As a Cloud Practitioner, which of the following options would you recommend?
+	EC2 Reserved Instance (RI)
+	EC2 On-Demand Instance
+	EC2 Spot Instance
+	EC2 Dedicated Host
 
-
-
-
-
-Explanation
 Correct option:
-
 EC2 Reserved Instance (RI)
-
 An EC2 Reserved Instance (RI) provides you with significant savings (up to 75%) on your Amazon EC2 costs compared to On-Demand Instance pricing. A Reserved Instance (RI) is not a physical instance, but rather a billing discount applied to the use of On-Demand Instances in your account. You can purchase a Reserved Instance (RI) for a one-year or three-year commitment, with the three-year commitment offering a bigger discount. A reserved instance (RI) cannot be interrupted. So this is the correct option.
-
-EC2 Pricing Options Overview:  via - https://aws.amazon.com/ec2/pricing/
-
 Incorrect options:
-
 EC2 On-Demand Instance - An EC2 On-Demand Instance is an instance that you use on-demand. You have full control over its lifecycle — you decide when to launch, stop, hibernate, start, reboot, or terminate it. There is no long-term commitment required when you purchase On-Demand Instances. There is no upfront payment and you pay only for the seconds that your On-Demand Instances are running. The price per second for running an On-Demand Instance is fixed. On-demand instances cannot be interrupted. However, On-demand instances are not as cost-effective as Reserved instances, so this option is not correct.
-
 EC2 Spot Instance - An EC2 Spot Instance is an unused EC2 instance that is available for less than the On-Demand price. Because Spot Instances enable you to request unused EC2 instances at steep discounts (up to 90%), you can lower your Amazon EC2 costs significantly. Spot Instances are well-suited for data analysis, batch jobs, background processing, and optional tasks. These can be terminated at short notice, so these are not suitable for critical workloads that need to run at a specific point in time. So this option is not correct for the given use-case.
-
 EC2 Dedicated Host - An Amazon EC2 Dedicated Host allows you to use your eligible software licenses from vendors such as Microsoft and Oracle on Amazon EC2 so that you get the flexibility and cost-effectiveness of using your licenses, but with the resiliency, simplicity, and elasticity of AWS. An Amazon EC2 Dedicated Host is a physical server fully dedicated for your use, so you can help address corporate compliance requirement. It is not cost-efficient compared to an On-Demand instance. So this option is not correct.
 
-Reference:
-
-https://aws.amazon.com/ec2/pricing/
-
-Question 31: Skipped
+Question 31: 
 An intern at an IT company provisioned a Linux based On-demand EC2 instance with per-second billing but terminated it within 30 seconds as he wanted to provision another instance type. What is the duration for which the instance would be charged?
+	60 seconds
+	30 seconds
+	300 seconds
+	600 seconds
 
-
-
-
-
-Explanation
 Correct option:
-
 60 seconds
-
 There is a one-minute minimum charge for Linux based EC2 instances, so this is the correct option.
 
-Incorrect options:
 
-30 seconds
-
-300 seconds
-
-600 seconds
-
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
-
-Reference:
-
-https://aws.amazon.com/blogs/aws/new-per-second-billing-for-ec2-instances-and-ebs-volumes/
-
-Question 32: Skipped
+Question 32: 
 Which of the following is CORRECT regarding removing an AWS account from AWS Organizations?
+	The AWS account must be able to operate as a standalone account. Only then it can be removed from AWS organizations
+	Raise a support ticket with AWS Support to remove the account
+	The AWS account can be removed from AWS Systems Manager
+	The AWS account must not have any Service Control Policies (SCPs) attached to it. Only then it can be removed from AWS organizations
 
 
-
-
-
-Explanation
 Correct option:
-
 The AWS account must be able to operate as a standalone account. Only then it can be removed from AWS organizations
-
 You can remove an account from your organization only if the account has the information that is required for it to operate as a standalone account. For each account that you want to make standalone, you must accept the AWS Customer Agreement, choose a support plan, provide and verify the required contact information, and provide a current payment method. AWS uses the payment method to charge for any billable (not AWS Free Tier) AWS activity that occurs while the account isn't attached to an organization.
 
 Incorrect options:
-
 Raise a support ticket with AWS Support to remove the account - AWS Support does not need to help you in removing an AWS account from AWS Organizations.
-
 The AWS account can be removed from AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks such as running commands, managing patches, and configuring servers across AWS Cloud as well as on-premises infrastructure. Systems Manager cannot be used to remove an AWS account from AWS Organizations.
-
 The AWS account must not have any Service Control Policies (SCPs) attached to it. Only then it can be removed from AWS organizations - This is not a pre-requisite to remove the AWS account. The principals in the AWS account are no longer affected by any service control policies (SCPs) that were defined in the organization. This means that restrictions imposed by those SCPs are gone, and the users and roles in the account might have more permissions than they had before.
 
-Reference:
 
-https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html
-
-Question 33: Skipped
+Question 33: 
 Which AWS Route 53 routing policy would you use to route traffic to multiple resources and also choose how much traffic is routed to each resource?
+	Weighted routing
+	Failover routing 
+	Simple routing 
+	latency-based routing
 
-
-
-
-
-Explanation
 Correct option:
-
 Weighted routing
-
 Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service. It is designed to give developers and businesses an extremely reliable and cost-effective way to route end users to Internet applications by translating names like www.example.com into the numeric IP addresses like 192.0.2.1 that computers use to connect to each other.
-
 Weighted routing lets you associate multiple resources with a single domain name (example.com) or subdomain name (acme.example.com) and choose how much traffic is routed to each resource. This can be useful for a variety of purposes, including load balancing and testing new versions of software. To configure weighted routing, you create records that have the same name and type for each of your resources. You assign each record a relative weight that corresponds with how much traffic you want to send to each resource. Amazon Route 53 sends traffic to a resource based on the weight that you assign to the record as a proportion of the total weight for all records in the group.
 
-Route 53 Routing Policy Overview:  via - https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html
-
 Incorrect options:
-
 Failover routing - This routing policy is used when you want to configure active-passive failover.
-
 Simple routing - With simple routing, you typically route traffic to a single resource, for example, to a web server for your website.
-
 latency-based routing - This routing policy is used when you have resources in multiple AWS Regions and you want to route traffic to the region that provides the best latency.
 
-Reference:
 
-https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html
+
+
+
+
+
+
+
+
+
+
+#######################################################################################################
+
+
+
+
+
+
+
+
+
+
+
 
 Question 34: Skipped
 Which of the following AWS Support plans provide access to guidance, configuration, and troubleshooting of AWS interoperability with third-party software? (Select two)
@@ -1530,14 +1400,17 @@ Reference:
 
 https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf
 
-Question 57: Skipped
+Question 57:
 Which of the following is the MOST cost-effective option to purchase an EC2 Reserved Instance (RI)?
+	All upfront payment option with the standard 1-year term
+	No upfront payment option with standard 1-year term
+	No upfront payment option with standard 3-years term
+	Partial upfront payment option with standard 3-years term
 
 
 
 
 
-Explanation
 Correct option:
 
 Partial upfront payment option with standard 3-years term
@@ -1560,28 +1433,18 @@ Exam Alert:
 
 For the exam, there is no need to memorize these savings numbers. All you need to remember is that a 3 years term would always be more cost-effective than a 1-year term. Then within a term, "all upfront" is better than "partial upfront" which in turn is better than "no upfront" from a cost savings perspective.
 
-Incorrect options:
 
-All upfront payment option with the standard 1-year term
-
-No upfront payment option with standard 1-year term
-
-No upfront payment option with standard 3-years term
-
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
-
-Reference:
-
-https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf
 
 Question 58: Skipped
 Which AWS Support plan provides architectural guidance contextual to your specific use-cases?
+	AWS Business Support
+	AWS Developer Support
+	AWS Enterprise Support 
+	AWS Enterprise On-Ramp Support
 
 
 
 
-
-Explanation
 Correct option:
 
 AWS Business Support
@@ -1596,18 +1459,14 @@ AWS Enterprise Support - AWS Enterprise Support provides customers with concierg
 
 AWS Enterprise On-Ramp Support - You should use the AWS Enterprise On-Ramp Support plan if you have production/business critical workloads in AWS and want 24x7 access to technical support and need expert guidance to grow and optimize in the Cloud. This plan supports architectural guidance contextual to your application (one per year).
 
-Reference:
 
-https://aws.amazon.com/premiumsupport/plans/
-
-Question 59: Skipped
+Question 59: 
 An e-commerce company has deployed an RDS database in a single Availability Zone (AZ). The engineering team wants to ensure that in case of an AZ outage, the database should continue working on the same endpoint without any manual administrative intervention. Which of the following solutions can address this use-case?
+	Configure the database in RDS Multi-AZ deployment with automatic failover to the standby
+	Deploy the database via AWS Elastic Beanstalk
+	Configure the database in RDS read replica mode with automatic failover to the standby
+	Provision the database via AWS CloudFormation
 
-
-
-
-
-Explanation
 Correct option:
 
 Configure the database in RDS Multi-AZ deployment with automatic failover to the standby
@@ -1622,18 +1481,14 @@ Configure the database in RDS read replica mode with automatic failover to the s
 
 Provision the database via AWS CloudFormation - You can provision the database via CloudFormation for sure, however, it does not provide any automatic recovery in case of a disaster.
 
-References:
-
-https://aws.amazon.com/rds/features/multi-az/
 
 Question 60: Skipped
 Which of the following Amazon S3 storage classes takes the most time to retrieve data (also known as first byte latency)?
+	Amazon S3 Glacier Deep Archive
+	Amazon S3 Standard
+	Amazon S3 Intelligent-Tiering
+	Amazon S3 Glacier Flexible Retrieval
 
-
-
-
-
-Explanation
 Correct option:
 
 Amazon S3 Glacier Deep Archive
@@ -1650,146 +1505,82 @@ Amazon S3 Intelligent-Tiering - The Amazon S3 Intelligent-Tiering storage class 
 
 Amazon S3 Glacier Flexible Retrieval - Amazon S3 Glacier Flexible Retrieval delivers low-cost storage, up to 10% lower cost (than Amazon S3 Glacier Instant Retrieval), for archive data that is accessed 1—2 times per year and is retrieved asynchronously. For archive data that does not require immediate access but needs the flexibility to retrieve large sets of data at no cost, such as backup or disaster recovery use cases, Amazon S3 Glacier Flexible Retrieval (formerly Amazon S3 Glacier) is the ideal storage class.
 
-Reference:
-
-https://aws.amazon.com/s3/storage-classes/
 
 Question 61: Skipped
 AWS Web Application Firewall (WAF) offers protection from common web exploits at which layer?
+	Layer 7
+	Layer 3
+	Layer 4
+	Layer 4 and 7
 
-
-
-
-
-Explanation
 Correct option:
-
 Layer 7
-
 AWS WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to an Amazon API Gateway API, Amazon CloudFront or an Application Load Balancer. HTTP and HTTPS requests are part of the Application layer, which is layer 7.
-
 Incorrect options:
-
 Layer 3 - Layer 3 is the Network layer and this layer decides which physical path data will take when it moves on the network. AWS Shield offers protection at this layer. WAF does not offer protection at this layer.
-
 Layer 4 - Layer 4 is the Transport layer and this layer data transmission occurs using TCP or UDP protocols. AWS Shield offers protection at this layer. WAF does not offer protection at this layer.
-
 Layer 4 and 7 - This option has been added as a distractor.
 
-Reference: https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html
 
-Question 62: Skipped
+
+Question 62:
 Which of the following is a benefit of using AWS managed services such as Amazon Relational Database Service (Amazon RDS)?
+	The performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance
+	The customer needs to patch the underlying OS
+	The customer needs to manage database backups
+	There is no need to optimize database instance type and size
 
 
-
-
-
-Explanation
 Correct option:
-
 The performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance
-
 Amazon Relational Database Service (Amazon RDS) makes it easy to set up, operate, and scale a relational database in the cloud. It provides cost-efficient and resizable capacity while automating time-consuming administration tasks such as hardware provisioning, database setup, patching, and backups.
-
 Amazon RDS provides a selection of instance types optimized to fit different relational database use cases. Instance types comprise varying combinations of CPU, memory, storage, and networking capacity and give you the flexibility to choose the appropriate mix of resources for your database to optimize the database for your use-case by selecting the correct instance type and size.
-
 As the RDS instances are optimized for memory, performance, or I/O, therefore the performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance.
 
-Incorrect options:
-
-The customer needs to patch the underlying OS
-
-The customer needs to manage database backups
-
-There is no need to optimize database instance type and size
-
-These three options contradict the details provided earlier in the explanation, so these options are incorrect.
-
-Reference:
-
-https://aws.amazon.com/rds/instance-types/
-
-Question 63: Skipped
+Question 63: 
 A research group wants to use EC2 instances to run a scientific computation application that has a fault tolerant architecture. The application needs high-performance hardware disks that provide fast I/O performance. As a Cloud Practitioner, which of the following storage options would you recommend as the MOST cost-effective solution?
+	Instance Store
+	Amazon Elastic File System (Amazon EFS) 
+	Amazon Elastic Block Store (EBS)
+	Amazon Simple Storage Service (Amazon S3) 
 
-
-
-
-
-Explanation
 Correct option:
-
 Instance Store
-
 An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host computer. This is a good option when you need storage with very low latency, but you don't need the data to persist when the instance terminates or you can take advantage of fault-tolerant architectures. For this use-case, the computation application itself has a fault tolerant architecture, so it can automatically handle any failures of Instance Store volumes.
-
 As the Instance Store volumes are included as part of the instance's usage cost, therefore this is the correct option.
 
-EC2 Instances Store Overview:  via - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
-
 Incorrect options:
-
 Amazon Elastic File System (Amazon EFS) - Amazon Elastic File System (Amazon EFS) provides a simple, scalable, fully managed, elastic NFS file system. EFS is not available as a hardware disk on the instance, so this option is not correct.
-
 Amazon Elastic Block Store (EBS) - Amazon Elastic Block Store (EBS) is an easy to use, high-performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) for both throughput and transaction-intensive workloads at any scale. EBS is not available as a hardware disk on the instance, so this option is not correct.
-
 Amazon Simple Storage Service (Amazon S3) - Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. S3 is not available as a hardware disk on the instance, so this option is not correct.
 
-Reference:
-
-https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
-
-Question 64: Skipped
+Question 64: 
 Which tool/service will help you access AWS services using programming language-specific APIs?
+	AWS Software Developer Kit (SDK)
+	AWS Management Console
+	AWS Command Line Interface (CLI)
+	Integrated Development Environments (IDE)
 
-
-
-
-
-Explanation
 Correct option:
-
 AWS Software Developer Kit (SDK)
-
 SDKs take the complexity out of coding by providing language-specific APIs for AWS services. For example, the AWS SDK for JavaScript simpliﬁes the use of AWS Services by providing a set of libraries that are consistent and familiar for JavaScript developers. It provides support for API lifecycle considerations such as credential management, retries, data marshaling, serialization, and deserialization. AWS SDKs are offered in several programming languages to make it simple for developers working on different programming and scripting languages. So, AWS SDK can help with using AWS services from within an application using language-specific APIs.
-
 Incorrect options:
-
 AWS Management Console - The AWS Management Console is a web application that comprises and refers to a broad collection of service consoles for managing Amazon Web Services. When you first sign in, you see the console home page. The home page provides access to each service console as well as an intuitive user interface for exploring AWS and getting helpful tips.
-
 AWS Command Line Interface (CLI) - The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts. CLI cannot be used with language-specific APIs.
-
 Integrated Development Environments (IDE) - An integrated development environment (IDE) provides a set of coding productivity tools such as a source code editor, a debugger, and build tools. Cloud9 IDE is an offering from AWS under IDEs.
 
-References:
-
-https://aws.amazon.com/tools/
-
-https://aws.amazon.com/cli/
-
-Question 65: Skipped
+Question 65: 
 Which of the following AWS services should be used to automatically distribute incoming traffic across multiple targets?
+	AWS Elastic Load Balancing (ELB)
+	AWS Elastic Beanstalk 
+	Amazon OpenSearch Service 
+	AWS Auto Scaling
 
-
-
-
-
-Explanation
 Correct option:
-
 AWS Elastic Load Balancing (ELB)
-
 Elastic Load Balancing (ELB) is used to automatically distribute your incoming application traffic across all the EC2 instances that you are running. You can use Elastic Load Balancing to manage incoming requests by optimally routing traffic so that no one instance is overwhelmed. Your load balancer acts as a single point of contact for all incoming web traffic to your application. When an instance is added, it needs to register with the load balancer or no traffic is routed to it. When an instance is removed, it must deregister from the load balancer or traffic continues to be routed to it.
-
 Incorrect options:
-
 AWS Elastic Beanstalk - AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web applications and services developed in a variety of programming languages. You can simply upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring. You cannot use Beanstalk to distribute incoming traffic across multiple targets.
-
 Amazon OpenSearch Service - Amazon OpenSearch Service makes it easy for you to perform interactive log analytics, real-time application monitoring, website search, and more. OpenSearch is an open source, distributed search and analytics suite derived from Elasticsearch.
-
 AWS Auto Scaling - AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost. Using AWS Auto Scaling, it’s easy to setup application scaling for multiple resources across multiple services in minutes. This is a scaling service that helps you spin up resources as and when you need them and scale down when the high demand reduces. Auto Scaling can be used with Elastic Load Balacing to build high performance applications.
 
-Reference:
-
-https://aws.amazon.com/elasticloadbalancing/
