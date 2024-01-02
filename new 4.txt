@@ -1,0 +1,29 @@
+dec 2023 -- jaldurg
+dec 2022 -- kamshet
+dec 2021 -- lonavala
+dec 2020 -- only harsh shivansh
+dec 2019 -- cancel ghar me
+dec 2018 -- gaurav k ghar me didi aur bhai k saath
+dec 2017 -- Gaurav k ghar
+dec 2016 -- Gaurav k ghar
+dec 2015 -- West wing home 
+dec 2014 -- gaurav k ghar (prince)
+dec 2013 -- gaurav k ghar (bhatnagar)
+dec 2012 -- rajwada 
+dec 2011 -- balewadi 
+
+
+AVWAP()
+pivot
+sd1
+sd2
+pivot points 
+
+
+
+
+=CONCATENATE(MONTH(A2),"-",DAY(A2), "-",MINUTE(A2),"-",HOUR(A2),"-",SECOND(A2),"-CALL-",AI2,"-",MONTH(AL2),"-",DAY(AL2), "-",MINUTE(AL2),"-",HOUR(AL2),"-",SECOND(AL2))
+
+
+delta
+theta
