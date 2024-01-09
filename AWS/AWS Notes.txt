@@ -1080,476 +1080,436 @@ Q104. Developer Services • Summary
 ############################################################################################	
 
 Q105. Amazon Rekognition
-• Find objects, people, text, scenes in images and videos using ML
-• Facial analysis and facial search to do user verification, people counting
-• Create a database of “familiar faces” or compare against celebrities
-• Use cases:
-	• Labeling
-	• Content Moderation
-	• Text Detection
-	• Face Detection and Analysis (gender, age range, emotions…)
-	• Face Search and Verification
-	• Celebrity Recognition
-	• Pathing (ex: for sports game analysis)
+	• Find objects, people, text, scenes in images and videos using ML
+	• Facial analysis and facial search to do user verification, people counting
+	• Create a database of “familiar faces” or compare against celebrities
+	• Use cases:
+		• Labeling
+		• Content Moderation
+		• Text Detection
+		• Face Detection and Analysis (gender, age range, emotions…)
+		• Face Search and Verification
+		• Celebrity Recognition
+		• Pathing (ex: for sports game analysis)
 
-Amazon Transcribe
-• Automatically convert speech to text
-• Uses a deep learning process called automatic speech recognition (ASR) to
-convert speech to text quickly and accurately
-• Automatically remove Personally Identifiable Information (PII) using Redaction
-• Supports Automatic Language Identification for multi•lingual audio
-• Use cases:
-	• transcribe customer service calls
-	• automate closed captioning and subtitling
-	• generate metadata for media assets to create
+Q106. Amazon Transcribe
+	• Automatically convert speech to text
+	• Uses a deep learning process called automatic speech recognition (ASR) to
+	convert speech to text quickly and accurately
+	• Automatically remove Personally Identifiable Information (PII) using Redaction
+	• Supports Automatic Language Identification for multi•lingual audio
+	• Use cases:
+		• transcribe customer service calls
+		• automate closed captioning and subtitling
+		• generate metadata for media assets to create
 
+Q107. Amazon Polly
+	• Turn text into lifelike speech using deep learning
+	• Allowing you to create applications
 
-Amazon Polly
-• Turn text into lifelike speech using deep learning
-• Allowing you to create applications
+Q108. Amazon Translate
+	• Natural and accurate language translation
+	• Amazon Translate allows you to localize content • such as websites and  applications • for international users, and to easily translate large  volumes of text efficiently.
 
-Amazon Translate
-• Natural and accurate language translation
-• Amazon Translate allows you to localize content • such as websites and
-applications • for international users, and to easily translate large
-volumes of text efficiently.
-
-
-Amazon Lex & Connect
+Q109. Amazon Lex & Connect
 	• Amazon Lex: (same technology that powers Alexa)
-	• Automatic Speech Recognition (ASR) to convert speech to text
-	• Natural Language Understanding to recognize the intent of text, callers
-	• Helps build chatbots, call center bots
-• Amazon Connect:
-	• Receive calls, create contact flows, cloud•based virtual contact center
-	• Can integrate with other CRM systems or AWS
-	• No upfront payments, 80% cheaper than traditional contact center solutions
+		• Automatic Speech Recognition (ASR) to convert speech to text
+		• Natural Language Understanding to recognize the intent of text, callers
+		• Helps build chatbots, call center bots
+	• Amazon Connect:
+		• Receive calls, create contact flows, cloud•based virtual contact center
+		• Can integrate with other CRM systems or AWS
+		• No upfront payments, 80% cheaper than traditional contact center solutions
 
-Amazon Comprehend
-• For Natural Language Processing – NLP
-• Fully managed and serverless service
-• Uses machine learning to find insights and relationships in text
-• Language of the text
-• Extracts key phrases, places, people, brands, or events
-• Understands how positive or negative the text is
-• Analyzes text using tokenization and parts of speech
-• Automatically organizes a collection of text files by topic
-• Sample use cases:
-	• analyze customer interactions (emails) to find what leads to a positive or negative experience
-	• Create and groups articles by topics that Comprehend will uncover
-
-
-Amazon SageMaker
-• Fully managed service for developers / data scientists to build ML models
-• Typically, difficult to do all the processes in one place + provision servers
-• Machine learning process (simplified): predicting your exam score
-
-Amazon Forecast
-• Fully managed service that uses ML to deliver highly accurate forecasts
-• Example: predict the future sales of a raincoat
-• 50% more accurate than looking at the data itself
-• Reduce forecasting time from months to hours
-• Use cases: Product Demand Planning, Financial Planning, Resource Planning, …
-
-Amazon Kendra
-• Fully managed document search service powered by Machine Learning
-• Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs…)
-• Natural language search capabilities
-• Learn from user interactions/feedback to promote preferred results (Incremental Learning)
-• Ability to manually fine•tune search results (importance of data, freshness, custom, …)
-
-Amazon Personalize
-• Fully managed ML•service to build apps with real•time personalized recommendations
-• Example: personalized product recommendations/re•ranking, customized direct marketing
-• Example: User bought gardening tools, provide recommendations on the next one to buy
-• Same technology used by Amazon.com
-• Integrates into existing websites, applications, SMS, email marketing systems, …
-• Implement in days, not months (you don’t need to build, train, and deploy ML solutions)
-• Use cases: retail stores, media and entertainment…
-
-Amazon Textract
-• Automatically extracts text, handwriting, and data from any scanned
-documents using AI and ML
-• Extract data from forms and tables
-• Read and process any type of document (PDFs, images, …)
-• Use cases:
-• Financial Services (e.g., invoices, financial reports)
-• Healthcare (e.g., medical records, insurance claims)
-• Public Sector (e.g., tax forms, ID documents, passports)
-Amazon Textract
-{
-“Document ID”: “123456789•005”,
-“Name”: “”,
-“SEX”: “F”,
-“DOB”: “23.05.1997”,
-…
-}
-analyze result
+Q110. Amazon Comprehend
+	• For Natural Language Processing – NLP
+	• Fully managed and serverless service
+	• Uses machine learning to find insights and relationships in text
+	• Language of the text
+	• Extracts key phrases, places, people, brands, or events
+	• Understands how positive or negative the text is
+	• Analyzes text using tokenization and parts of speech
+	• Automatically organizes a collection of text files by topic
+	• Sample use cases:
+		• analyze customer interactions (emails) to find what leads to a positive or negative experience
+		• Create and groups articles by topics that Comprehend will uncover
 
 
-AWS Machine Learning • Summary
-• Rekognition: face detection, labeling, celebrity recognition
-• Transcribe: audio to text (ex: subtitles)
-• Polly: text to audio
-• Translate: translations
-• Lex: build conversational bots – chatbots
-• Connect: cloud contact center
-• Comprehend: natural language processing
-• SageMaker: machine learning for every developer and data scientist
-• Forecast: build highly accurate forecasts
-• Kendra: ML•powered search engine
-• Personalize: real•time personalized recommendations
-• Textract: detect text and data in documents
+Q111. Amazon SageMaker
+	• Fully managed service for developers / data scientists to build ML models
+	• Typically, difficult to do all the processes in one place + provision servers
+	• Machine learning process (simplified): predicting your exam score
+
+Q112. Amazon Forecast
+	• Fully managed service that uses ML to deliver highly accurate forecasts
+	• Example: predict the future sales of a raincoat
+	• 50% more accurate than looking at the data itself
+	• Reduce forecasting time from months to hours
+	• Use cases: Product Demand Planning, Financial Planning, Resource Planning, …
+
+Q113. Amazon Kendra
+	• Fully managed document search service powered by Machine Learning
+	• Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs…)
+	• Natural language search capabilities
+	• Learn from user interactions/feedback to promote preferred results (Incremental Learning)
+	• Ability to manually fine•tune search results (importance of data, freshness, custom, …)
+
+Q114. Amazon Personalize
+	• Fully managed ML•service to build apps with real•time personalized recommendations
+	• Example: personalized product recommendations/re•ranking, customized direct marketing
+	• Example: User bought gardening tools, provide recommendations on the next one to buy
+	• Same technology used by Amazon.com
+	• Integrates into existing websites, applications, SMS, email marketing systems, …
+	• Implement in days, not months (you don’t need to build, train, and deploy ML solutions)
+	• Use cases: retail stores, media and entertainment…
+
+Q115. Amazon Textract
+	• Automatically extracts text, handwriting, and data from any scanned
+	documents using AI and ML
+	• Extract data from forms and tables
+	• Read and process any type of document (PDFs, images, …)
+	• Use cases:
+	• Financial Services (e.g., invoices, financial reports)
+	• Healthcare (e.g., medical records, insurance claims)
+	• Public Sector (e.g., tax forms, ID documents, passports)
+	Amazon Textract
+	{
+	“Document ID”: “123456789•005”,
+	“Name”: “”,
+	“SEX”: “F”,
+	“DOB”: “23.05.1997”,
+	…
+	}
+	analyze result
+
+Q116. AWS Machine Learning • Summary
+	• Rekognition: face detection, labeling, celebrity recognition
+	• Transcribe: audio to text (ex: subtitles)
+	• Polly: text to audio
+	• Translate: translations
+	• Lex: build conversational bots – chatbots
+	• Connect: cloud contact center
+	• Comprehend: natural language processing
+	• SageMaker: machine learning for every developer and data scientist
+	• Forecast: build highly accurate forecasts
+	• Kendra: ML•powered search engine
+	• Personalize: real•time personalized recommendations
+	• Textract: detect text and data in documents
 
 ############################################################################################
 #######################Section 13 Cloud Integration 18min ########################
 ############################################################################################
 
-Section Introduction
-• Synchronous between applications can be problematic if there are
-sudden spikes of traffic
-• What if you need to suddenly encode 1000 videos but usually it’s 10?
-• In that case, it’s better to decouple your applications:
-• using SQS: queue model
-• using SNS: pub/sub model
-• using Kinesis: real•time data streaming model
-• These services can scale independently from our application!
+Q117. Section Introduction
+	• Synchronous between applications can be problematic if there are 	sudden spikes of traffic
+	• What if you need to suddenly encode 1000 videos but usually it’s 10?
+	• In that case, it’s better to decouple your applications:
+	• using SQS: queue model
+	• using SNS: pub/sub model
+	• using Kinesis: real•time data streaming model
+	• These services can scale independently from our application!
 
-Amazon SQS – Standard Queue
-• Oldest AWS offering (over 10 years old)
-• Fully managed service (~serverless), use to decouple applications
-• Scales from 1 message per second to 10,000s per second
-• Default retention of messages: 4 days, maximum of 14 days
-• No limit to how many messages can be in the queue
-• Messages are deleted after they’re read by consumers
-• Low latency (<10 ms on publish and receive)
-• Consumers share the work to read messages & scale horizontally
+Q118. Amazon SQS – Standard Queue
+	• Oldest AWS offering (over 10 years old)
+	• Fully managed service (~serverless), use to decouple applications
+	• Scales from 1 message per second to 10,000s per second
+	• Default retention of messages: 4 days, maximum of 14 days
+	• No limit to how many messages can be in the queue
+	• Messages are deleted after they’re read by consumers
+	• Low latency (<10 ms on publish and receive)
+	• Consumers share the work to read messages & scale horizontally
 
-Amazon SQS – FIFO Queue
-• FIFO = First In First Out (ordering of messages in the queue)
-• Messages are processed in order by the consumer
+Q119. Amazon SQS – FIFO Queue
+	• FIFO = First In First Out (ordering of messages in the queue)
+	• Messages are processed in order by the consumer
 
-Amazon Kinesis
-• For the exam: Kinesis = real•time big data streaming
-• Managed service to collect, process, and analyze real•time streaming
-data at any scale
-• Too detailed for the Cloud Practitioner exam but good to know:
-• Kinesis Data Streams: low latency streaming to ingest data at scale from
-hundreds of thousands of sources
-• Kinesis Data Firehose: load streams into S3, Redshift, ElasticSearch, etc…
-• Kinesis Data Analytics: perform real•time analytics on streams using SQL
-• Kinesis Video Streams: monitor real•time video streams for analytics or ML
+Q120. Amazon Kinesis
+	• For the exam: Kinesis = real•time big data streaming
+	• Managed service to collect, process, and analyze real•time streaming 	data at any scale
+	• Too detailed for the Cloud Practitioner exam but good to know:
+	• Kinesis Data Streams: low latency streaming to ingest data at scale from 	hundreds of thousands of sources
+	• Kinesis Data Firehose: load streams into S3, Redshift, ElasticSearch, etc…
+	• Kinesis Data Analytics: perform real•time analytics on streams using SQL
+	• Kinesis Video Streams: monitor real•time video streams for analytics or ML
 
 
-Amazon SNS
-• What if you want to send one message to many receivers?
-• The “event publishers” only sends message to one SNS topic
-• As many “event subscribers” as we want to listen to the SNS topic notifications
-• Each subscriber to the topic will get all the messages
-• Up to 12,500,000 subscriptions per topic, 100,000 topics limit
+Q121. Amazon SNS
+	• What if you want to send one message to many receivers?
+	• The “event publishers” only sends message to one SNS topic
+	• As many “event subscribers” as we want to listen to the SNS topic notifications
+	• Each subscriber to the topic will get all the messages
+	• Up to 12,500,000 subscriptions per topic, 100,000 topics limit
 
 
-Amazon MQ
-• SQS, SNS are “cloud•native” services: proprietary protocols from AWS
-• Traditional applications running from on•premises may use open protocols
-such as: MQTT, AMQP, STOMP, Openwire, WSS
-• When migrating to the cloud, instead of re•engineering the application to
-use SQS and SNS, we can use Amazon MQ
-• Amazon MQ is a managed message broker service for
-• Amazon MQ doesn’t “scale” as much as SQS / SNS
-• Amazon MQ runs on servers, can run in Multi•AZ with failover
-• Amazon MQ has both queue feature (~SQS) and topic features (~SNS)
+Q122. Amazon MQ
+	• SQS, SNS are “cloud•native” services: proprietary protocols from AWS
+	• Traditional applications running from on•premises may use open protocols 	such as: MQTT, AMQP, STOMP, Openwire, WSS
+	• When migrating to the cloud, instead of re•engineering the application to 	use SQS and SNS, we can use Amazon MQ
+	• Amazon MQ is a managed message broker service for
+	• Amazon MQ doesn’t “scale” as much as SQS / SNS
+	• Amazon MQ runs on servers, can run in Multi•AZ with failover
+	• Amazon MQ has both queue feature (~SQS) and topic features (~SNS)
 
-Integration Section – Summary
-• SQS:
-• Queue service in AWS
-• Multiple Producers, messages are kept up to 14 days
-• Multiple Consumers share the read and delete messages when done
-• Used to decouple applications in AWS
-• SNS:
-• Notification service in AWS
-• Subscribers: Email, Lambda, SQS, HTTP, Mobile…
-• Multiple Subscribers, send all messages to all of them
-• No message retention
-• Kinesis: real•time data streaming, persistence and analysis
-• Amazon MQ: managed message broker for ActiveMQ and RabbitMQ in the
-cloud (MQTT, AMQP.. protocols)
+Q123. Integration Section – Summary
+	• SQS:
+	• Queue service in AWS
+	• Multiple Producers, messages are kept up to 14 days
+	• Multiple Consumers share the read and delete messages when done
+	• Used to decouple applications in AWS
+	• SNS:
+	• Notification service in AWS
+	• Subscribers: Email, Lambda, SQS, HTTP, Mobile…
+	• Multiple Subscribers, send all messages to all of them
+	• No message retention
+	• Kinesis: real•time data streaming, persistence and analysis
+	• Amazon MQ: managed message broker for ActiveMQ and RabbitMQ in the cloud (MQTT, AMQP.. protocols)
 
 ############################################################################################
 #######################Section 19 Advanced Identity  9 min########################
 ############################################################################################	
 
-AWS STS (Security Token Service)
-	• Enables you to create temporary, limitedprivileges
-	credentials to access your AWS
-	resources
-	• Short•term credentials: you configure
-	expiration period
-• Use cases
-	• Identity federation: manage user identities in
-	external systems, and provide them with STS
-	tokens to access AWS resources
-	• IAM Roles for cross/same account access
-	• IAM Roles for Amazon EC2: provide temporary
-	credentials for EC2 instances to access AWS
-	resources
+Q124. AWS STS (Security Token Service)
+		• Enables you to create temporary, limitedprivileges 		credentials to access your AWS 		resources
+		• Short•term credentials: you configure 		expiration period
+	• Use cases
+		• Identity federation: manage user identities in 		external systems, and provide them with STS 		tokens to access AWS resources
+		• IAM Roles for cross/same account access
+		• IAM Roles for Amazon EC2: provide temporary 		credentials for EC2 instances to access AWS 		resources
 
-
-Amazon Cognito (simplified)
+Q125. Amazon Cognito (simplified)
 	• Identity for your Web and Mobile applications users (potentially millions)
 	• Instead of creating them an IAM user, you create a user in Cognito (login with fb google and other social media)
 
 
-What is Microsoft Active Directory (AD)?
-	• Found on any Windows Server
-	with AD Domain Services
-	• Database of objects: User
-	Accounts, Computers, Printers,
-	File Shares, Security Groups
-	• Centralized security
-	management, create account,
-	assign permissions
+Q126. What is Microsoft Active Directory (AD)?
+	• Found on any Windows Server 	with AD Domain Services
+	• Database of objects: User 	Accounts, Computers, Printers,  	File Shares, Security Groups
+	• Centralized security 	management, create account, 	assign permissions
 
-AWS Directory Services
+Q127. AWS Directory Services
 	• AWS Managed Microsoft AD
-	• Create your own AD in AWS, manage users
-	locally, supports MFA
+	• Create your own AD in AWS, manage users 	locally, supports MFA
 	• Establish “trust” connections with your onpremise
-	AD
-• AD Connector
-	• Directory Gateway (proxy) to redirect to onpremise
-	AD, supports MFA
-	• Users are managed on the on•premise AD
-• Simple AD
-	• AD•compatible managed directory on AWS
-	• Cannot be joined with on•premise AD
+
+Q128. AD
+	• AD Connector
+		• Directory Gateway (proxy) to redirect to onpremise 		AD, supports MFA
+		• Users are managed on the on•premise AD
+	• Simple AD
+		• AD•compatible managed directory on AWS
+		• Cannot be joined with on•premise AD
 
 
-AWS IAM Identity Center
-(successor to AWS Single Sign•On)
+Q129. AWS IAM Identity Center (successor to AWS Single Sign•On)
 	• One login (single sign•on) for all your
 	• AWS accounts in AWS Organizations
 	• Business cloud applications (e.g., Salesforce, Box, Microsoft 365, …)
 	• SAML2.0•enabled applications
 	• EC2 Windows Instances
-• Identity providers
-	• Built•in identity store in IAM Identity Center
-	• 3rd party: Active Directory (AD), OneLogin, Okta…
+	• Identity providers
+		• Built•in identity store in IAM Identity Center
+		• 3rd party: Active Directory (AD), OneLogin, Okta…
 
 
-Advanced Identity • Summary
-• IAM
-	• Identity and Access Management inside your AWS account
-	• For users that you trust and belong to your company
-• Organizations: Manage multiple accounts
-• Security Token Service (STS): temporary, limited•privileges credentials to access AWS resources
-• Cognito: create a database of users for your mobile & web applications
-• Directory Services: integrate Microsoft Active Directory in AWS
-• IAM Identity Center: one login for multiple AWS accounts & applications
+Q130. Advanced Identity • Summary
+	• IAM
+		• Identity and Access Management inside your AWS account
+		• For users that you trust and belong to your company
+	• Organizations: Manage multiple accounts
+	• Security Token Service (STS): temporary, limited•privileges credentials to access AWS resources
+	• Cognito: create a database of users for your mobile & web applications
+	• Directory Services: integrate Microsoft Active Directory in AWS
+	• IAM Identity Center: one login for multiple AWS accounts & applications
 
 
 #########################################################################################
 #######################Section 20 Other Services  29 min########################
 ############################################################################################	
 
+Q131. Amazon WorkSpaces
+	• Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops
+	• Great to eliminate management of on•premise VDI (Virtual Desktop  Infrastructure)
+	• Fast and quickly scalable to thousands of users
+	• Secured data – integrates with KMS
+	• Pay•as•you•go service with monthly or hourly rates
 
-Amazon WorkSpaces
-• Managed Desktop as a Service (DaaS) solution to easily provision Windows
-or Linux desktops
-• Great to eliminate management of on•premise VDI (Virtual Desktop
-Infrastructure)
-• Fast and quickly scalable to thousands of users
-• Secured data – integrates with KMS
-• Pay•as•you•go service with monthly or hourly rates
+Q132. Amazon AppStream 2.0
+	• Desktop Application Streaming Service
+	• Deliver to any computer, without acquiring, provisioning infrastructure
+	• The application is delivered from within a web browser
 
-Amazon AppStream 2.0
-• Desktop Application Streaming Service
-• Deliver to any computer, without acquiring, provisioning infrastructure
-• The application is delivered from within a web browser
+Q133. Amazon AppStream 2.0 vs WorkSpaces
+	• Workspaces
+	• Fully managed VDI and desktop available
+	• The users connect to the VDI and open native or WAM applications
+	• Workspaces are on•demand or always on
+	• AppStream 2.0
+	• Stream a desktop application to web browsers (no need to connect to a VDI)
+	• Works with any device (that has a web browser)
+	• Allow to configure an instance type per application type (CPU, RAM, GPU)
 
-Amazon AppStream 2.0 vs WorkSpaces
-• Workspaces
-• Fully managed VDI and desktop available
-• The users connect to the VDI and open native or WAM applications
-• Workspaces are on•demand or always on
-• AppStream 2.0
-• Stream a desktop application to web browsers (no need to connect to a VDI)
-• Works with any device (that has a web browser)
-• Allow to configure an instance type per application type (CPU, RAM, GPU)
+Q134. AWS IoT Core
+	• IoT stands for “Internet of Things” – the network of internet•connected devices that
+	are able to collect and transfer data
+	• AWS IoT Core allows you to easily connect  IoT devices to the AWS Cloud
+	• Serverless, secure & scalable to billions of  devices and trillions of messages
+	• Your applications can communicate with your  devices even when they aren’t connected
+	• Integrates with a lot of AWS services 	(Lambda, S3, SageMaker, etc.)
+	• Build IoT applications that gather, process, analyze, and act on data
 
+Q135. Amazon Elastic Transcoder
+	• Elastic Transcoder is used to convert media files stored in S3 into media
+	files in the formats required by consumer playback devices (phones
+	etc..)
+	• Benefits:
+	• Easy to use
+	• Highly scalable – can handle large volumes of media files and large file sizes
+	• Cost effective – duration•based pricing model
+	• Fully managed & secure, pay for what you use
 
-AWS IoT Core
-• IoT stands for “Internet of Things” – the
-network of internet•connected devices that
-are able to collect and transfer data
-• AWS IoT Core allows you to easily connect
-IoT devices to the AWS Cloud
-• Serverless, secure & scalable to billions of
-devices and trillions of messages
-• Your applications can communicate with your
-devices even when they aren’t connected
-• Integrates with a lot of AWS services
-(Lambda, S3, SageMaker, etc.)
-• Build IoT applications that gather, process,
-analyze, and act on data
+Q136. AWS AppSync
+	• Store and sync data across mobile and web apps in real•time
+	• Makes use of GraphQL (mobile technology from Facebook)
+	• Client Code can be generated automatically
+	• Integrations with DynamoDB / Lambda
+	• Real•time subscriptions
+	• Offline data synchronization (replaces Cognito Sync)
+	• Fine Grained Security
+	• AWS Amplify can leverage AWS AppSync in the background!
 
+Q137. AWS Amplify
+	• A set of tools and services that helps you develop and deploy
+	scalable full stack web and mobile applications
+	• Authentication, Storage, API (REST, GraphQL), CI/CD, PubSub, Analytics,
+	AI/ML Predictions, Monitoring, Source Code from AWS, GitHub, etc…
 
-Amazon Elastic Transcoder
-• Elastic Transcoder is used to convert media files stored in S3 into media
-files in the formats required by consumer playback devices (phones
-etc..)
-• Benefits:
-• Easy to use
-• Highly scalable – can handle large volumes of media files and large file sizes
-• Cost effective – duration•based pricing model
-• Fully managed & secure, pay for what you use
+Q138. AWS Device Farm
+	• Fully•managed service that tests your web and mobile apps against
+	desktop browsers, real mobile devices, and tablets
+	• Run tests concurrently on multiple devices (speed up execution)
+	• Ability to configure device settings (GPS, language, Wi•Fi, Bluetooth, …)
 
-AWS AppSync
-• Store and sync data across mobile and web apps in real•time
-• Makes use of GraphQL (mobile technology from Facebook)
-• Client Code can be generated automatically
-• Integrations with DynamoDB / Lambda
-• Real•time subscriptions
-• Offline data synchronization (replaces Cognito Sync)
-• Fine Grained Security
-• AWS Amplify can leverage AWS AppSync in the background!
+Q139. AWS Backup
+	• Fully•managed service to centrally manage and automate backups across
+	AWS services
+	• On•demand and scheduled backups
+	• Supports PITR (Point•in•time Recovery)
+	• Retention Periods, Lifecycle Management, Backup Policies, …
+	• Cross•Region Backup
+	• Cross•Account Backup (using AWS Organizations)
 
-AWS Amplify
-• A set of tools and services that helps you develop and deploy
-scalable full stack web and mobile applications
-• Authentication, Storage, API (REST, GraphQL), CI/CD, PubSub, Analytics,
-AI/ML Predictions, Monitoring, Source Code from AWS, GitHub, etc…
+Q140. AWS Elastic Disaster Recovery (DRS)
+	• Used to be named “CloudEndure Disaster Recovery”
+	• Quickly and easily recover your physical, virtual, and cloud•based servers into AWS
+	• Example: protect your most critical databases (including Oracle, MySQL, and SQL Server),
+	enterprise apps (SAP), protect your data from ransomware attacks, …
+	• Continuous block•level replication for your servers
 
-AWS Device Farm
-• Fully•managed service that tests your web and mobile apps against
-desktop browsers, real mobile devices, and tablets
-• Run tests concurrently on multiple devices (speed up execution)
-• Ability to configure device settings (GPS, language, Wi•Fi, Bluetooth, …)
+Q141. AWS DataSync
+	• Move large amount of data from on•premises to AWS
+	• Can synchronize to: Amazon S3 (any storage classes – including
+	Glacier), Amazon EFS, Amazon FSx for Windows
+	• Replication tasks can be scheduled hourly, daily, weekly
+	• The replication tasks are incremental after the first full load
 
+Q142. AWS Application Discovery Service
+	• Plan migration projects by gathering information about on•premises data centers
+	• Server utilization data and dependency mapping are important for migrations
+	• Agentless Discovery (AWS Agentless Discovery Connector)
+	• VM inventory, configuration, and performance history such as CPU, memory, and disk usage
+	• Agent•based Discovery (AWS Application Discovery Agent)
+	• System configuration, system performance, running processes, and details of the network
+	connections between systems
+	• Resulting data can be viewed within AWS Migration Hub
 
+Q143. AWS Application Migration Service (MGN)
+	• The “AWS evolution” of CloudEndure Migration, replacing AWS Server Migration Service (SMS)
+	• Lift•and•shift (rehost) solution which simplify migrating applications to AWS
+	• Converts your physical, virtual, and cloud•based servers to run natively on AWS
+	• Supports wide range of platforms, Operating Systems, and databases
+	• Minimal downtime, reduced costs
 
-AWS Backup
-• Fully•managed service to centrally manage and automate backups across
-AWS services
-• On•demand and scheduled backups
-• Supports PITR (Point•in•time Recovery)
-• Retention Periods, Lifecycle Management, Backup Policies, …
-• Cross•Region Backup
-• Cross•Account Backup (using AWS Organizations)
+Q144. AWS Migration Evaluator
+	• Helps you build a data•driven business case for migration to AWS
+	• Provides a clear baseline of what your organization is running today
+	• Install Agentless Collector to conduct broad•based discovery
+	• Take a snapshot of on•premises foot•print, server dependepncies, …
+	• Analyze current state, define target state, then develop migration plan
 
-AWS Elastic Disaster Recovery (DRS)
-• Used to be named “CloudEndure Disaster Recovery”
-• Quickly and easily recover your physical, virtual, and cloud•based servers into AWS
-• Example: protect your most critical databases (including Oracle, MySQL, and SQL Server),
-enterprise apps (SAP), protect your data from ransomware attacks, …
-• Continuous block•level replication for your servers
+Q145. AWS Migration Hub
+	• Central location to collect servers and applications inventory data for the
+	assessment, planning, and tracking of migrations to AWS
+	• Helps accelerate your migration to AWS, automate lift•and•shift
+	• AWS Migration Hub Orchestrator – provides pre•built templates to save time and
+	effort migrating enterprise apps (e.g., SAP, Microsoft SQL Server…)
+	• Supports migrations status updates from Application Migration Service (MGN)
+	and Database Migration Service (DMS)
 
-AWS DataSync
-• Move large amount of data from on•premises to AWS
-• Can synchronize to: Amazon S3 (any storage classes – including
-Glacier), Amazon EFS, Amazon FSx for Windows
-• Replication tasks can be scheduled hourly, daily, weekly
-• The replication tasks are incremental after the first full load
+Q146. AWS Fault Injection Simulator (FIS)
+	• A fully managed service for running fault injection experiments on AWS workloads
+	• Based on Chaos Engineering – stressing an application by creating disruptive events
+	(e.g., sudden increase in CPU or memory), observing how the system responds, and
+	implementing improvements
+	• Helps you uncover hidden bugs and performance bottlenecks
+	• Supports the following AWS services: EC2, ECS, EKS, RDS…
+	• Use pre•built templates that generate the desired disruptions
 
-AWS Application Discovery Service
-• Plan migration projects by gathering information about on•premises data centers
-• Server utilization data and dependency mapping are important for migrations
-• Agentless Discovery (AWS Agentless Discovery Connector)
-• VM inventory, configuration, and performance history such as CPU, memory, and disk usage
-• Agent•based Discovery (AWS Application Discovery Agent)
-• System configuration, system performance, running processes, and details of the network
-connections between systems
-• Resulting data can be viewed within AWS Migration Hub
-
-AWS Application Migration Service (MGN)
-• The “AWS evolution” of CloudEndure Migration, replacing AWS Server Migration Service (SMS)
-• Lift•and•shift (rehost) solution which simplify migrating applications to AWS
-• Converts your physical, virtual, and cloud•based servers to run natively on AWS
-• Supports wide range of platforms, Operating Systems, and databases
-• Minimal downtime, reduced costs
-
-AWS Migration Evaluator
-• Helps you build a data•driven business case for migration to AWS
-• Provides a clear baseline of what your organization is running today
-• Install Agentless Collector to conduct broad•based discovery
-• Take a snapshot of on•premises foot•print, server dependepncies, …
-• Analyze current state, define target state, then develop migration plan
-
-AWS Migration Hub
-• Central location to collect servers and applications inventory data for the
-assessment, planning, and tracking of migrations to AWS
-• Helps accelerate your migration to AWS, automate lift•and•shift
-• AWS Migration Hub Orchestrator – provides pre•built templates to save time and
-effort migrating enterprise apps (e.g., SAP, Microsoft SQL Server…)
-• Supports migrations status updates from Application Migration Service (MGN)
-and Database Migration Service (DMS)
-
-AWS Fault Injection Simulator (FIS)
-• A fully managed service for running fault injection experiments on AWS workloads
-• Based on Chaos Engineering – stressing an application by creating disruptive events
-(e.g., sudden increase in CPU or memory), observing how the system responds, and
-implementing improvements
-• Helps you uncover hidden bugs and performance bottlenecks
-• Supports the following AWS services: EC2, ECS, EKS, RDS…
-• Use pre•built templates that generate the desired disruptions
-
-AWS Step Functions
-• Build serverless visual workflow to
-orchestrate your Lambda functions
-• Features: sequence, parallel, conditions,
-timeouts, error handling, …
-• Can integrate with EC2, ECS, On•premises
-servers, API Gateway, SQS queues, etc…
-• Possibility of implementing human approval
-feature
-• Use cases: order fulfillment, data processing,
-web applications, any workflow
+Q147. AWS Step Functions
+	• Build serverless visual workflow to
+	orchestrate your Lambda functions
+	• Features: sequence, parallel, conditions,
+	timeouts, error handling, …
+	• Can integrate with EC2, ECS, On•premises
+	servers, API Gateway, SQS queues, etc…
+	• Possibility of implementing human approval
+	feature
+	• Use cases: order fulfillment, data processing,
+	web applications, any workflow
 
 
-AWS Ground Station
-• Fully managed service that lets you control
-satellite communications, process data, and
-scale your satellite operations
-• Provides a global network of satellite
-ground stations near AWS regions
-• Allows you to download satellite data to
-your AWS VPC within seconds
-• Send satellite data to S3 or EC2 instance
-• Use cases: weather forecasting, surface
-imaging, communications, video broadcasts
+Q148. AWS Ground Station
+	• Fully managed service that lets you control
+	satellite communications, process data, and
+	scale your satellite operations
+	• Provides a global network of satellite
+	ground stations near AWS regions
+	• Allows you to download satellite data to
+	your AWS VPC within seconds
+	• Send satellite data to S3 or EC2 instance
+	• Use cases: weather forecasting, surface
+	imaging, communications, video broadcasts
 
-Amazon Pinpoint
-• Scalable 2•way (outbound/inbound) marketing
-communications service
-• Supports email, SMS, push, voice, and in•app messaging
-• Ability to segment and personalize messages with the
-right content to customers
-• Possibility to receive replies
-• Scales to billions of messages per day
-• Use cases: run campaigns by sending marketing, bulk,
-transactional SMS messages
-• Versus Amazon SNS or Amazon SES
-• In SNS & SES you managed each message's audience,
-content, and delivery schedule
-• In Amazon Pinpoint, you create message templates,
-delivery schedules, highly•targeted segments, and full
-campaigns
-
+Q149. Amazon Pinpoint
+	• Scalable 2•way (outbound/inbound) marketing
+	communications service
+	• Supports email, SMS, push, voice, and in•app messaging
+	• Ability to segment and personalize messages with the
+	right content to customers
+	• Possibility to receive replies
+	• Scales to billions of messages per day
+	• Use cases: run campaigns by sending marketing, bulk,
+	transactional SMS messages
+	• Versus Amazon SNS or Amazon SES
+	• In SNS & SES you managed each message's audience,
+	content, and delivery schedule
+	• In Amazon Pinpoint, you create message templates,
+	delivery schedules, highly•targeted segments, and full
+	campaigns
 
 ############################################################################################
 #######################Section 15 VPC and Networking  33 min ########################
 ############################################################################################	
 
 VPC – Crash Course
-• At the AWS Certified Cloud Practitioner Level, you should know about:
-• VPC, Subnets, Internet Gateways & NAT Gateways
-• Security Groups, Network ACL (NACL), VPC Flow Logs
-• VPC Peering, VPC Endpoints
-• Site to Site VPN & Direct Connect
-• Transit Gateway
-• I will just give you an overview, less than 1 or 2 questions at your exam.
-• We’ll have a look at the “default VPC” (created by default by AWS for you)
-• There is a summary lecture at the end. It’s okay if you don’t understand it all
+	• At the AWS Certified Cloud Practitioner Level, you should know about:
+	• VPC, Subnets, Internet Gateways & NAT Gateways
+	• Security Groups, Network ACL (NACL), VPC Flow Logs
+	• VPC Peering, VPC Endpoints
+	• Site to Site VPN & Direct Connect
+	• Transit Gateway
+	• I will just give you an overview, less than 1 or 2 questions at your exam.
+	• We’ll have a look at the “default VPC” (created by default by AWS for you)
+	• There is a summary lecture at the end. It’s okay if you don’t understand it all
 
 IP Addresses in AWS
 • IPv4 – Internet Protocol version 4 (4.3 Billion Addresses)
