@@ -3148,7 +3148,7 @@ Pricing Models in AWS
 • AWS has 4 pricing models:
 • Pay as you go: pay for what you use, remain agile, responsive, meet scale demands
 • Save when you reserve: minimize risks, predictably manage budgets, comply with long•terms requirements
-• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved
+• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved 
 Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 
 Nodes
 • Pay less by using more: volume•based discounts
