@@ -1291,9 +1291,7 @@ Q130. Advanced Identity • Summary
 
 Q131. Amazon WorkSpaces
 	• Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops
-	• Great to eliminate management of on•premise VDI (Virtual Desktop  Infrastructure)
 	• Fast and quickly scalable to thousands of users
-	• Secured data – integrates with KMS
 	• Pay•as•you•go service with monthly or hourly rates
 
 Q132. Amazon AppStream 2.0
@@ -1302,43 +1300,18 @@ Q132. Amazon AppStream 2.0
 	• The application is delivered from within a web browser
 
 Q133. Amazon AppStream 2.0 vs WorkSpaces
-	• Workspaces
-	• Fully managed VDI and desktop available
-	• The users connect to the VDI and open native or WAM applications
-	• Workspaces are on•demand or always on
-	• AppStream 2.0
-	• Stream a desktop application to web browsers (no need to connect to a VDI)
-	• Works with any device (that has a web browser)
-	• Allow to configure an instance type per application type (CPU, RAM, GPU)
+	• if your primary goal is to deliver specific applications to users without managing the full desktop environment, 
+		AppStream 2.0 might be a better fit. If you need to provide users with complete desktop environments and more 
+		control over their computing environment, WorkSpaces may be the preferred choice
 
 Q134. AWS IoT Core
-	• IoT stands for “Internet of Things” – the network of internet•connected devices that
-	are able to collect and transfer data
-	• AWS IoT Core allows you to easily connect  IoT devices to the AWS Cloud
-	• Serverless, secure & scalable to billions of  devices and trillions of messages
-	• Your applications can communicate with your  devices even when they aren’t connected
-	• Integrates with a lot of AWS services 	(Lambda, S3, SageMaker, etc.)
-	• Build IoT applications that gather, process, analyze, and act on data
+	• Managed service for Internet of Things (IoT) that enables secure and scalable communication between IoT devices and the cloud.
 
 Q135. Amazon Elastic Transcoder
-	• Elastic Transcoder is used to convert media files stored in S3 into media
-	files in the formats required by consumer playback devices (phones
-	etc..)
-	• Benefits:
-	• Easy to use
-	• Highly scalable – can handle large volumes of media files and large file sizes
-	• Cost effective – duration•based pricing model
-	• Fully managed & secure, pay for what you use
+	• Scalable and cost-effective service for transcoding media files into various formats suitable for different devices.
 
 Q136. AWS AppSync
-	• Store and sync data across mobile and web apps in real•time
-	• Makes use of GraphQL (mobile technology from Facebook)
-	• Client Code can be generated automatically
-	• Integrations with DynamoDB / Lambda
-	• Real•time subscriptions
-	• Offline data synchronization (replaces Cognito Sync)
-	• Fine Grained Security
-	• AWS Amplify can leverage AWS AppSync in the background!
+	•  Fully managed service that simplifies the development of scalable and secure GraphQL APIs by connecting with various data sources.
 
 Q137. AWS Amplify
 	• A set of tools and services that helps you develop and deploy
@@ -1370,8 +1343,7 @@ Q140. AWS Elastic Disaster Recovery (DRS)
 
 Q141. AWS DataSync
 	• Move large amount of data from on•premises to AWS
-	• Can synchronize to: Amazon S3 (any storage classes – including
-	Glacier), Amazon EFS, Amazon FSx for Windows
+	• Can synchronize to: Amazon S3 (any storage classes – including 	Glacier), Amazon EFS, Amazon FSx for Windows
 	• Replication tasks can be scheduled hourly, daily, weekly
 	• The replication tasks are incremental after the first full load
 
@@ -1400,64 +1372,28 @@ Q144. AWS Migration Evaluator
 	• Analyze current state, define target state, then develop migration plan
 
 Q145. AWS Migration Hub
-	• Central location to collect servers and applications inventory data for the
-	assessment, planning, and tracking of migrations to AWS
-	• Helps accelerate your migration to AWS, automate lift•and•shift
-	• AWS Migration Hub Orchestrator – provides pre•built templates to save time and
-	effort migrating enterprise apps (e.g., SAP, Microsoft SQL Server…)
-	• Supports migrations status updates from Application Migration Service (MGN)
-	and Database Migration Service (DMS)
+	• Centralized hub for planning, tracking, and managing application migrations across multiple AWS and partner solutions.
 
 Q146. AWS Fault Injection Simulator (FIS)
 	• A fully managed service for running fault injection experiments on AWS workloads
-	• Based on Chaos Engineering – stressing an application by creating disruptive events
-	(e.g., sudden increase in CPU or memory), observing how the system responds, and
+	• Based on Chaos Engineering – stressing an application by creating disruptive events 	(e.g., sudden increase in CPU or memory), observing how the system responds, and
 	implementing improvements
 	• Helps you uncover hidden bugs and performance bottlenecks
 	• Supports the following AWS services: EC2, ECS, EKS, RDS…
 	• Use pre•built templates that generate the desired disruptions
 
 Q147. AWS Step Functions
-	• Build serverless visual workflow to
-	orchestrate your Lambda functions
-	• Features: sequence, parallel, conditions,
-	timeouts, error handling, …
-	• Can integrate with EC2, ECS, On•premises
-	servers, API Gateway, SQS queues, etc…
-	• Possibility of implementing human approval
-	feature
-	• Use cases: order fulfillment, data processing,
-	web applications, any workflow
-
+	• Build serverless visual workflow to 	orchestrate your Lambda functions
+	• Features: sequence, parallel, conditions, 	timeouts, error handling, …
+	• Can integrate with EC2, ECS, On•premises 	servers, API Gateway, SQS queues, etc…
+	• Possibility of implementing human approval 	feature
+	• Use cases: order fulfillment, data processing, 	web applications, any workflow
 
 Q148. AWS Ground Station
-	• Fully managed service that lets you control
-	satellite communications, process data, and
-	scale your satellite operations
-	• Provides a global network of satellite
-	ground stations near AWS regions
-	• Allows you to download satellite data to
-	your AWS VPC within seconds
-	• Send satellite data to S3 or EC2 instance
-	• Use cases: weather forecasting, surface
-	imaging, communications, video broadcasts
+	• Fully managed service that lets you control 	satellite communications, process data, and scale your satellite operations
 
 Q149. Amazon Pinpoint
-	• Scalable 2•way (outbound/inbound) marketing
-	communications service
-	• Supports email, SMS, push, voice, and in•app messaging
-	• Ability to segment and personalize messages with the
-	right content to customers
-	• Possibility to receive replies
-	• Scales to billions of messages per day
-	• Use cases: run campaigns by sending marketing, bulk,
-	transactional SMS messages
-	• Versus Amazon SNS or Amazon SES
-	• In SNS & SES you managed each message's audience,
-	content, and delivery schedule
-	• In Amazon Pinpoint, you create message templates,
-	delivery schedules, highly•targeted segments, and full
-	campaigns
+	• Fully integrated marketing and analytics service for building personalized and targeted campaigns across various communication channels.
 
 ############################################################################################
 #######################Section 15 VPC and Networking  33 min ########################
@@ -2078,14 +2014,6 @@ AWS Glue
 • Fully serverless service
 • Glue Data Catalog: catalog of datasets
 • can be used by Athena, Redshift, EMR
-S3 Bucket
-Amazon RDS
-Extract
-Transform
-Glue ETL
-Redshift
-Load
-
 
 DMS – Database Migration Service
 • Quickly and securely migrate databases
@@ -2095,17 +2023,7 @@ during the migration
 • Supports:
 • Homogeneous migrations: ex Oracle to
 Oracle
-• Heterogeneous migrations: ex Microsoft
-SQL Server to Aurora
-EC2 instance
-Running DMS
-Source DB
-Target DB
-
-
-
-
-
+• Heterogeneous migrations: ex Microsoft SQL Server to Aurora
 
 Databases & Analytics Summary in AWS
 • Relational Databases • OLTP: RDS & Aurora (SQL)
@@ -3222,19 +3140,16 @@ Manager Configurations…
 AWS Service Catalog
 • Users that are new to AWS have too many options, and may create
 stacks that are not compliant / in line with the rest of the organization
-• Some users just want a quick self•service portal to launch a set of
-authorized products pre•defined by admins
+• Some users just want a quick self•service portal to launch a set of authorized products pre•defined by admins
 • Includes: virtual machines, databases, storage options, etc…
 • Enter AWS Service Catalog!
 
 Pricing Models in AWS
 • AWS has 4 pricing models:
-• Pay as you go: pay for what you use, remain agile, responsive, meet scale
-demands
-• Save when you reserve: minimize risks, predictably manage budgets,
-comply with long•terms requirements
+• Pay as you go: pay for what you use, remain agile, responsive, meet scale demands
+• Save when you reserve: minimize risks, predictably manage budgets, comply with long•terms requirements
 • Reservations are available for EC2 Reserved Instances, DynamoDB Reserved
-Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved
+Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 
 Nodes
 • Pay less by using more: volume•based discounts
 • Pay less as AWS grows
@@ -3384,14 +3299,9 @@ Savings Plan
 
 
 AWS Compute Optimizer
-	• Reduce costs and improve performance by
-	recommending optimal AWS resources for your
-	workloads
-	• Helps you choose optimal configurations and rightsize
-	your workloads (over/under provisioned)
-	• Uses Machine Learning to analyze your resources’
-	configurations and their utilization CloudWatch
-	metrics
+	• Reduce costs and improve performance by 	recommending optimal AWS resources for your 	workloads
+	• Helps you choose optimal configurations and rightsize 	your workloads (over/under provisioned)
+	• Uses Machine Learning to analyze your resources’ 	configurations and their utilization CloudWatch 	metrics
 	• Supported resources
 	• EC2 instances
 	• EC2 Auto Scaling Groups
@@ -3438,14 +3348,10 @@ Tagging and Resource Groups
 
 Cost and Usage Reports
 	• Dive deeper into your AWS costs and usage
-	• The AWS Cost & Usage Report contains the most comprehensive set
-	of AWS cost and usage data available, including additional metadata
-	about AWS services, pricing, and reservations (e.g., Amazon EC2
-	Reserved Instances (RIs)).
-	• The AWS Cost & Usage Report lists AWS usage for each service
-	category used by an account and its IAM users in hourly or daily line
-	items, as well as any tags that you have activated for cost allocation
-	purposes.
+	• The AWS Cost & Usage Report contains the most comprehensive set 	of AWS cost and usage data available, including additional metadata
+	about AWS services, pricing, and reservations (e.g., Amazon EC2	Reserved Instances (RIs)).
+	• The AWS Cost & Usage Report lists AWS usage for each service 	category used by an account and its IAM users in hourly or daily line
+	items, as well as any tags that you have activated for cost allocation 	purposes.
 	• Can be integrated with Athena, Redshift or QuickSight
 
 Cost Explorer
@@ -3457,15 +3363,10 @@ Cost Explorer
 	• Forecast usage up to 12 months based on previous usage
 
 Billing Alarms in CloudWatch
-	• Billing data metric is stored
-	in CloudWatch us•east•1
-	• Billing data are for overall
-	worldwide AWS costs
-	• It’s for actual cost, not for
-	projected costs
-	• Intended a simple alarm (not
-	as powerful as AWS
-	Budgets)
+	• Billing data metric is stored 	in CloudWatch us•east•1
+	• Billing data are for overall 	worldwide AWS costs
+	• It’s for actual cost, not for 	projected costs
+	• Intended a simple alarm (not 	as powerful as AWS 	Budgets)
 
 AWS Budgets
 	• Create budget and send alarms when costs exceeds the budget
@@ -3482,8 +3383,7 @@ AWS Budgets
 
 AWS Cost Anomaly Detection
 	• Continuously monitor your cost and usage using ML to detect unusual spends
-	• It learns your unique, historic spend patterns to detect one•time cost spike and/or
-	continuous cost increases (you don’t need to define thresholds)
+	• It learns your unique, historic spend patterns to detect one•time cost spike and/or 	continuous cost increases (you don’t need to define thresholds)
 	• Monitor AWS services, member accounts, cost allocation tags, or cost categories
 	• Sends you the anomaly detection report with root•cause analysis
 	• Get notified with individual alerts or daily/weekly summary (using SNS)
@@ -3495,10 +3395,9 @@ AWS Service Quotas
 	• Request a quota increase from AWS Service Quotas or shutdown resources before limit is reached
 
 Trusted Advisor
-	• No need to install anything – high level
+	• No need to install anything – high level 
 	AWS account assessment
-	• Analyze your AWS accounts and provides
-	recommendation on 5 categories
+	• Analyze your AWS accounts and provides 	recommendation on 5 categories
 	• Cost optimization
 	• Performance
 	• Security
@@ -3519,17 +3418,12 @@ Trusted Advisor – Support Plans
 	FULL CHECKS
 	Business & Enterprise Support plan
 	• Full Checks available on the 5 categories
-	• Ability to set CloudWatch alarms when
-	reaching limits
-	• Programmatic Access using AWS Support
-	API
+	• Ability to set CloudWatch alarms when	reaching limits
+	• Programmatic Access using AWS Support	API
 
 AWS Basic Support Plan
-	• Customer Service & Communities • 24x7 access to customer service,
-	documentation, whitepapers, and support forums.
-	• AWS Trusted Advisor • Access to the 7 core Trusted Advisor checks
-	and guidance to provision your resources following best practices to
-	increase performance and improve security.
+	• Customer Service & Communities • 24x7 access to customer service,	documentation, whitepapers, and support forums.
+	• AWS Trusted Advisor • Access to the 7 core Trusted Advisor checks 	and guidance to provision your resources following best practices to 	increase performance and improve security.
 	• AWS Personal Health Dashboard • A personalized view of the health
 	of AWS services, and alerts when your resources are impacted.
 
@@ -3589,8 +3483,7 @@ Account Best Practices – Summary
 	• Trusted Advisor to get insights, Support Plan adapted to your needs
 	• Send Service Logs and Access Logs to S3 or CloudWatch Logs
 	• CloudTrail to record API calls made within your account
-	• If your Account is compromised: change the root password, delete and rotate all passwords / keys,
-	contact the AWS support
+	• If your Account is compromised: change the root password, delete and rotate all passwords / keys, 	contact the AWS support
 	• Allow users to create pre•defined stacks defined by admins using AWS Service Catalog
 
 Billing and Costing Tools – Summary
