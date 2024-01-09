@@ -774,7 +774,6 @@ Q75. Amazon S3 – Summary
 	• Snow Family: import data onto S3 through a physical device, edge computing
 	• OpsHub: desktop application to manage Snow Family devices
 	• Storage Gateway: hybrid solution to extend on-premises storage to S3
-
 	
 ############################################################################################
 			#######################Other Compute Section########################
@@ -837,9 +836,9 @@ Q83. AWS Lambda language support
 	• Lambda Container Image
 	• The container image must implement the Lambda Runtime API, so its very limited images are supported
 	• ECS / Fargate is preferred for running arbitrary Docker images
-Use cases:
-	• Create Thumbnails for images uploaded onto S3
-	• Run a Serverless cron job
+	Use cases:
+		• Create Thumbnails for images uploaded onto S3
+		• Run a Serverless cron job
 
 Q84. AWS Lambda Pricing: example
 	• Pay per calls:
@@ -901,7 +900,7 @@ Q88. What is CloudFormation
 		• I want a load balancer (ELB) in front of these machines
 		• Then CloudFormation creates those for you, in the right order, with the exact configuration that you specify
 		
-Q89. Benefits of AWS CloudFormation (1/2)
+Q89. Benefits of AWS CloudFormation
 	• Infrastructure as code
 		• No resources are manually created, which is excellent for control
 		• Changes to the infrastructure are reviewed through code
@@ -1006,23 +1005,14 @@ Q97. AWS CodeArtifact
 
 Q98. AWS CodeStar
 	• Unified UI to easily manage software development activities in one place
-	• “Quick way” to get started to correctly set•up CodeCommit, CodePipeline,
-	CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc…
+	• “Quick way” to get started to correctly set•up CodeCommit, CodePipeline, 	CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc…
 	• Can edit the code ”in•the•cloud” using AWS Cloud9	
 	
 Q99. AWS Cloud9
-	• AWS Cloud9 is a cloud IDE (Integrated
-	Development Environment) for writing, running
-	and debugging code
-	• “Classic” IDE (like IntelliJ, Visual Studio Code…)
-	are downloaded on a computer before being
-	used
-	• A cloud IDE can be used within a web browser,
-	meaning you can work on your projects from
-	your office, home, or anywhere with internet
-	with no setup necessary
-	• AWS Cloud9 also allows for code collaboration
-	in real•time (pair programming)	
+	• AWS Cloud9 is a cloud IDE (Integrated Development Environment) for writing, running 	and debugging code
+	• “Classic” IDE (like IntelliJ, Visual Studio Code…) 	are downloaded on a computer before being 	used
+	• A cloud IDE can be used within a web browser, meaning you can work on your projects from 	your office, home, or anywhere with internet 	with no setup necessary
+	• AWS Cloud9 also allows for code collaboration in real•time (pair programming)	
 
 Q100. AWS Systems Manager (SSM)
 	• Helps you manage your EC2 and On•Premises systems at scale
@@ -1036,17 +1026,14 @@ Q100. AWS Systems Manager (SSM)
 	• Works for Linux, Windows, MacOS, and Raspberry Pi OS (Raspbian	
 
 Q101. Systems Manager – SSM Session Manager
-	• Allows you to start a secure shell on your EC2 and
-	on•premises servers
-	• No SSH access, bastion hosts, or SSH keys
-	needed
+	• Allows you to start a secure shell on your EC2 and 	on•premises servers
+	• No SSH access, bastion hosts, or SSH keys 	needed
 	• No port 22 needed (better security)
 	• Supports Linux, macOS, and Windows
 	• Send session log data to S3 or CloudWatch Logs
 
 Q102. AWS OpsWorks
-	• Chef & Puppet help you perform server configuration automatically, or
-	repetitive actions
+	• Chef & Puppet help you perform server configuration automatically, or repetitive actions
 	• They work great with EC2 & On•Premises VM
 	• AWS OpsWorks = Managed Chef & Puppet
 	• It’s an alternative to AWS SSM
@@ -1081,34 +1068,19 @@ Q104. Developer Services • Summary
 
 Q105. Amazon Rekognition
 	• Find objects, people, text, scenes in images and videos using ML
-	• Facial analysis and facial search to do user verification, people counting
-	• Create a database of “familiar faces” or compare against celebrities
 	• Use cases:
 		• Labeling
 		• Content Moderation
 		• Text Detection
 		• Face Detection and Analysis (gender, age range, emotions…)
-		• Face Search and Verification
-		• Celebrity Recognition
-		• Pathing (ex: for sports game analysis)
-
+	
 Q106. Amazon Transcribe
-	• Automatically convert speech to text
-	• Uses a deep learning process called automatic speech recognition (ASR) to
-	convert speech to text quickly and accurately
-	• Automatically remove Personally Identifiable Information (PII) using Redaction
-	• Supports Automatic Language Identification for multi•lingual audio
-	• Use cases:
-		• transcribe customer service calls
-		• automate closed captioning and subtitling
-		• generate metadata for media assets to create
-
+	• Automatically convert speech to text ,Uses a deep learning process called automatic speech recognition (ASR) to convert speech to text quickly and accurately
+	
 Q107. Amazon Polly
 	• Turn text into lifelike speech using deep learning
-	• Allowing you to create applications
 
 Q108. Amazon Translate
-	• Natural and accurate language translation
 	• Amazon Translate allows you to localize content • such as websites and  applications • for international users, and to easily translate large  volumes of text efficiently.
 
 Q109. Amazon Lex & Connect
@@ -1123,28 +1095,19 @@ Q109. Amazon Lex & Connect
 
 Q110. Amazon Comprehend
 	• For Natural Language Processing – NLP
-	• Fully managed and serverless service
 	• Uses machine learning to find insights and relationships in text
-	• Language of the text
-	• Extracts key phrases, places, people, brands, or events
 	• Understands how positive or negative the text is
-	• Analyzes text using tokenization and parts of speech
-	• Automatically organizes a collection of text files by topic
 	• Sample use cases:
 		• analyze customer interactions (emails) to find what leads to a positive or negative experience
 		• Create and groups articles by topics that Comprehend will uncover
 
-
 Q111. Amazon SageMaker
 	• Fully managed service for developers / data scientists to build ML models
-	• Typically, difficult to do all the processes in one place + provision servers
 	• Machine learning process (simplified): predicting your exam score
 
 Q112. Amazon Forecast
 	• Fully managed service that uses ML to deliver highly accurate forecasts
 	• Example: predict the future sales of a raincoat
-	• 50% more accurate than looking at the data itself
-	• Reduce forecasting time from months to hours
 	• Use cases: Product Demand Planning, Financial Planning, Resource Planning, …
 
 Q113. Amazon Kendra
