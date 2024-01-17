@@ -41,8 +41,7 @@ Q2. Types of Cloud Computing
 						Networking
 	
 Q3. Pricing of the Cloud – Quick Overview
-	• AWS has 3 pricing fundamentals, following the pay•as•you•go pricing
-	model
+	• AWS has 3 pricing fundamentals, following the pay•as•you•go pricingmodel
 	• Compute:
 		• Pay for compute time
 	• Storage:
@@ -230,8 +229,7 @@ Q18. EC2 User Data
 	• The EC2 User Data Script runs with the root user
 
 Q19. EC2 Instance Types • Overview
-	• You can use different types of EC2 instances that are optimised for
-	different use cases (https://aws.amazon.com/ec2/instance•types/)
+	• You can use different types of EC2 instances that are optimised for different use cases (https://aws.amazon.com/ec2/instance•types/)
 	• AWS has the following naming convention:
 	m5.2xlarge
 	• m: instance class
@@ -400,7 +398,8 @@ Q36. EFS Infrequent Access (EFS•IA)
 Q37. Amazon FSx – Overview
 	• Launch 3rd party high•performance file systems on AWS
 	• Fully managed service
-		FSx for Lustre FSx for 	Windows File 	Server
+		FSx for Lustre 
+		FSx for Windows File Server
 		FSx for NetApp ONTAP
 
 Q38. Amazon FSx for Windows File Server
@@ -452,8 +451,7 @@ Q42. Scalability vs Elasticity (vs Agility)
 	resources available to your developers from weeks to just minutes
 
 Q43. What is load balancing?
-	• Load balancers are servers that forward internet traffic to multiple
-	servers (EC2 Instances) downstream.
+	• Load balancers are servers that forward internet traffic to multiple 	servers (EC2 Instances) downstream.
 
 Q44. Why use a load balancer?
 	• Spread load across multiple downstream instances
@@ -1232,8 +1230,8 @@ Q123. Integration Section – Summary
 ############################################################################################	
 
 Q124. AWS STS (Security Token Service)
-		• Enables you to create temporary, limitedprivileges 		credentials to access your AWS 		resources
-		• Short•term credentials: you configure 		expiration period
+		• Enables you to create temporary, limitedprivileges credentials to access your AWS resources
+		• Short•term credentials: you configure expiration period
 	• Use cases
 		• Identity federation: manage user identities in 		external systems, and provide them with STS 		tokens to access AWS resources
 		• IAM Roles for cross/same account access
@@ -1487,14 +1485,14 @@ Q159. AWS PrivateLink (VPC Endpoint Services)
 
 Q160. Site to Site VPN & Direct Connect
 	• Site to Site VPN
-	• Connect an on•premises VPN to AWS
-	• The connection is automatically 	encrypted
-	• Goes over the public internet
+		• Connect an on•premises VPN to AWS
+		• The connection is automatically 	encrypted
+		• Goes over the public internet
 	• Direct Connect (DX)
-	• Establish a physical connection between 	on•premises and AWS
-	• The connection is private, secure and fast
-	• Goes over a private network
-	• Takes at least a month to establish
+		• Establish a physical connection between 	on•premises and AWS
+		• The connection is private, secure and fast
+		• Goes over a private network
+		• Takes at least a month to establish
 
 Q161. Site•to•Site VPN
 	• On•premises: must use a Customer Gateway (CGW)
@@ -2094,513 +2092,498 @@ Q246. Section Summary: Security & Compliance
 #######################Section 21 AWS Architeure and Ecosystem  52 min########################
 ############################################################################################	
 
-Well Architected Framework
-General Guiding Principles
-• Stop guessing your capacity needs
-• Test systems at production scale
-• Automate to make architectural experimentation easier
-• Allow for evolutionary architectures
-• Design based on changing requirements
-• Drive architectures using data
-• Improve through game days
-• Simulate applications for flash sale days
+Q247. Well Architected Framework General Guiding Principles
+	• Stop guessing your capacity needs
+	• Test systems at production scale
+	• Automate to make architectural experimentation easier
+	• Allow for evolutionary architectures
+	• Design based on changing requirements
+	• Drive architectures using data
+	• Improve through game days
+	• Simulate applications for flash sale days
 
-AWS Cloud Best Practices – Design Principles
-• Scalability: vertical & horizontal
-• Disposable Resources: servers should be disposable & easily configured
-• Automation: Serverless, Infrastructure as a Service, Auto Scaling…
-• Loose Coupling:
-• Monolith are applications that do more and more over time, become bigger
-• Break it down into smaller, loosely coupled components
-• A change or a failure in one component should not cascade to other components
-• Services, not Servers:
-• Don’t use just EC2
-• Use managed services, databases, serverless, etc !
+Q248. AWS Cloud Best Practices – Design Principles
+	• Scalability: vertical & horizontal
+	• Disposable Resources: servers should be disposable & easily configured
+	• Automation: Serverless, Infrastructure as a Service, Auto Scaling…
+	• Loose Coupling:
+	• Monolith are applications that do more and more over time, become bigger
+	• Break it down into smaller, loosely coupled components
+	• A change or a failure in one component should not cascade to other components
+	• Services, not Servers:
+	• Don’t use just EC2
+	• Use managed services, databases, serverless, etc !
 
-Well Architected Framework
-6 Pillars
-• 1) Operational Excellence
-• 2) Security
-• 3) Reliability
-• 4) Performance Efficiency
-• 5) Cost Optimization
-• 6) Sustainability
-• They are not something to balance, or trade•offs, they’re a synergy
+Q249. Well Architected Framework
+	6 Pillars
+	• 1) Operational Excellence
+	• 2) Security
+	• 3) Reliability
+	• 4) Performance Efficiency
+	• 5) Cost Optimization
+	• 6) Sustainability
+	• They are not something to balance, or trade•offs, they’re a synergy
 
-1) Operational Excellence
-• Includes the ability to run and monitor systems to deliver business value
-and to continually improve supporting processes and procedures
-• Design Principles
-• Perform operations as code • Infrastructure as code
-• Annotate documentation • Automate the creation of annotated
-documentation after every build
-• Make frequent, small, reversible changes • So that in case of any failure, you can
-reverse it
-• Refine operations procedures frequently • And ensure that team members are
-familiar with it
-• Anticipate failure
-• Learn from all operational failures
+Q250. 1) Operational Excellence
+	• Includes the ability to run and monitor systems to deliver business value
+	and to continually improve supporting processes and procedures
+	• Design Principles
+	• Perform operations as code • Infrastructure as code
+	• Annotate documentation • Automate the creation of annotated
+	documentation after every build
+	• Make frequent, small, reversible changes • So that in case of any failure, you can
+	reverse it
+	• Refine operations procedures frequently • And ensure that team members are
+	familiar with it
+	• Anticipate failure
+	• Learn from all operational failures
 
-Operational Excellence
-AWS Services
-• Prepare
-• Operate
-• Evolve
-AWS CloudFormation
-AWS CloudFormation
-AWS CloudFormation
-AWS Config
-AWS Config AWS CloudTrail Amazon CloudWatch AWS X•Ray
-AWS CodeBuild AWS CodeCommit AWS CodeDeploy AWS CodePipeline
-
-
-2) Security
-• Includes the ability to protect information, systems, and assets while delivering
-business value through risk assessments and mitigation strategies
-• Design Principles
-• Implement a strong identity foundation • Centralize privilege management and reduce (or even
-eliminate) reliance on long•term credentials • Principle of least privilege • IAM
-• Enable traceability • Integrate logs and metrics with systems to automatically respond and take
-action
-• Apply security at all layers • Like edge network, VPC, subnet, load balancer, every instance,
-operating system, and application
-• Automate security best practices
-• Protect data in transit and at rest • Encryption, tokenization, and access control
-• Keep people away from data • Reduce or eliminate the need for direct access or manual
-processing of data
-• Prepare for security events • Run incident response simulations and use tools with automation
-to increase your speed for detection, investigation, and recovery
-• Shared Responsibility Model
-
-Security
-AWS Services
-• Identity and Access Management
-• Detective Controls
-• Infrastructure Protection
-• Data Protection:
-• Incident Response
-IAM AWS•STS MFA token AWS Organizations
-AWS Config AWS CloudTrail Amazon CloudWatch
-Amazon CloudFront Amazon VPC AWS Shield AWS WAF Amazon Inspector
-KMS S3 Elastic Load Balancing (ELB) Amazon EBS Amazon RDS
-IAM AWS CloudFormation Amazon CloudWatch Events
-
-3) Reliability
-• Ability of a system to recover from infrastructure or service disruptions,
-dynamically acquire computing resources to meet demand, and mitigate
-disruptions such as misconfigurations or transient network issues
-• Design Principles
-• Test recovery procedures • Use automation to simulate different failures or to recreate
-scenarios that led to failures before
-• Automatically recover from failure • Anticipate and remediate failures before they
-occur
-• Scale horizontally to increase aggregate system availability • Distribute requests
-across multiple, smaller resources to ensure that they don't share a common point of
-failure
-• Stop guessing capacity • Maintain the optimal level to satisfy demand without over or
-under provisioning • Use Auto Scaling
-• Manage change in automation • Use automation to make changes to infrastructure
-
-Reliability
-AWS Services
-• Foundations
-• Change Management
-• Failure Management
-IAM Amazon VPC Service Quotas AWS Trusted Advisor
-AWS Auto Scaling Amazon CloudWatch AWS CloudTrail AWS Config
-Backups AWS CloudFormation Amazon S3 Amazon S3 Glacier Amazon Route 53
+Q251. Operational Excellence
+	AWS Services
+	• Prepare
+	• Operate
+	• Evolve
+	AWS CloudFormation
+	AWS CloudFormation
+	AWS CloudFormation
+	AWS Config
+	AWS Config AWS CloudTrail Amazon CloudWatch AWS X•Ray
+	AWS CodeBuild AWS CodeCommit AWS CodeDeploy AWS CodePipeline
 
 
-4) Performance Efficiency
-• Includes the ability to use computing resources efficiently to meet
-system requirements, and to maintain that efficiency as demand changes
-and technologies evolve
-• Design Principles
-• Democratize advanced technologies • Advance technologies become services
-and hence you can focus more on product development
-• Go global in minutes • Easy deployment in multiple regions
-• Use serverless architectures • Avoid burden of managing servers
-• Experiment more often • Easy to carry out comparative testing
-• Mechanical sympathy • Be aware of all AWS services
+Q252. 2) Security
+	• Includes the ability to protect information, systems, and assets while delivering
+	business value through risk assessments and mitigation strategies
+	• Design Principles
+	• Implement a strong identity foundation • Centralize privilege management and reduce (or even
+	eliminate) reliance on long•term credentials • Principle of least privilege • IAM
+	• Enable traceability • Integrate logs and metrics with systems to automatically respond and take
+	action
+	• Apply security at all layers • Like edge network, VPC, subnet, load balancer, every instance,
+	operating system, and application
+	• Automate security best practices
+	• Protect data in transit and at rest • Encryption, tokenization, and access control
+	• Keep people away from data • Reduce or eliminate the need for direct access or manual
+	processing of data
+	• Prepare for security events • Run incident response simulations and use tools with automation
+	to increase your speed for detection, investigation, and recovery
+	• Shared Responsibility Model
 
-Performance Efficiency
-AWS Services
-• Selection
-• Review
-• Monitoring
-• Tradeoffs
-AWS Auto Scaling Amazon Elastic Block Store
-(EBS)
-Amazon Simple Storage
-Service (S3)
-AWS Lambda Amazon RDS
-AWS CloudFormation
-Amazon CloudWatch AWS Lambda
-Amazon RDS Amazon ElastiCache AWS Snowball Amazon CloudFront
+Q253. Security
+	AWS Services
+	• Identity and Access Management
+	• Detective Controls
+	• Infrastructure Protection
+	• Data Protection:
+	• Incident Response
+	IAM AWS•STS MFA token AWS Organizations
+	AWS Config AWS CloudTrail Amazon CloudWatch
+	Amazon CloudFront Amazon VPC AWS Shield AWS WAF Amazon Inspector
+	KMS S3 Elastic Load Balancing (ELB) Amazon EBS Amazon RDS
+	IAM AWS CloudFormation Amazon CloudWatch Events
 
-5) Cost Optimization
-• Includes the ability to run systems to deliver business value at the lowest
-price point
-• Design Principles
-• Adopt a consumption mode • Pay only for what you use
-• Measure overall efficiency • Use CloudWatch
-• Stop spending money on data center operations • AWS does the
-infrastructure part and enables customer to focus on organization projects
-• Analyze and attribute expenditure • Accurate identification of system usage
-and costs, helps measure return on investment (ROI) • Make sure to use tags
-• Use managed and application level services to reduce cost of ownership • As
-managed services operate at cloud scale, they can offer a lower cost per
-transaction or service
+Q254. 3) Reliability
+	• Ability of a system to recover from infrastructure or service disruptions,
+	dynamically acquire computing resources to meet demand, and mitigate
+	disruptions such as misconfigurations or transient network issues
+	• Design Principles
+	• Test recovery procedures • Use automation to simulate different failures or to recreate
+	scenarios that led to failures before
+	• Automatically recover from failure • Anticipate and remediate failures before they
+	occur
+	• Scale horizontally to increase aggregate system availability • Distribute requests
+	across multiple, smaller resources to ensure that they don't share a common point of
+	failure
+	• Stop guessing capacity • Maintain the optimal level to satisfy demand without over or
+	under provisioning • Use Auto Scaling
+	• Manage change in automation • Use automation to make changes to infrastructure
 
-Cost Optimization
-AWS Services
-• Expenditure Awareness
-• Cost•Effective Resources
-• Matching supply and demand
-• Optimizing Over Time
-AWS Budgets AWS Cost and Usage Report AWS Cost Explorer Reserved Instance Reporting
-Spot instance Reserved instance
-Amazon S3 Glacier
-AWS Trusted Advisor
-AWS Auto Scaling AWS Lambda
-AWS Cost and Usage Report
-
-
-6) Sustainability
-• The sustainability pillar focuses on minimizing the environmental impacts of running
-cloud workloads.
-• Design Principles
-• Understand your impact – establish performance indicators, evaluate improvements
-• Establish sustainability goals – Set long•term goals for each workload, model return on
-investment (ROI)
-• Maximize utilization – Right size each workload to maximize the energy efficiency of the
-underlying hardware and minimize idle resources.
-• Anticipate and adopt new, more efficient hardware and software offerings – and design for
-flexibility to adopt new technologies over time.
-• Use managed services – Shared services reduce the amount of infrastructure; Managed services
-help automate sustainability best practices as moving infrequent accessed data to cold storage
-and adjusting compute capacity.
-• Reduce the downstream impact of your cloud workloads – Reduce the amount of energy or
-resources required to use your services and reduce the need for your customers to upgrade
-their devices
-
-Sustainability
-AWS Services
-• EC2 Auto Scaling, Serverless Offering
-(Lambda, Fargate)
-• Cost Explorer, AWS Graviton 2, EC2 T
-instances, @Spot Instances
-• EFS•IA, Amazon S3 Glacier, EBS Cold HDD
-volumes
-• S3 Lifecycle Configurations, S3 Intelligent
-Tiering
-• Amazon Data Lifecycle Manager
-• Read Local, Write Global: RDS Read Replicas,
-Aurora Global DB, DynamoDB Global Table,
-CloudFront
-EC2 Auto Scaling Lambda Fargate
-Cost Explorer EC2 (Graviton, T) Spot Instances
-EFS•IA S3 Glacier EBS Cold HDD
-S3 Intelligent Tiering Data Lifecycle Manager
-RDS Aurora DynamoDB CloudFront
-
-AWS Well•Architected Tool
-• Free tool to review your architectures against the 6 pillars Well•Architected
-Framework and adopt architectural best practices
-• How does it work?
-• Select your workload and answer questions
-• Review your answers against the 6 pillars
-• Obtain advice: get videos and documentations, generate a report, see the results in a dashboard
-• Let’s have a look: https://console.aws.amazon.com/wellarchitected
-
-AWS Cloud Adoption Framework (AWS CAF)
-• Helps you build and then execute a comprehensive
-plan for your digital transformation through
-innovative use of AWS
-• Created by AWS Professionals by taking advantage of
-AWS Best Practices and lessons learned from 1000s
-of customers
-• AWS CAF identifies specific organizational capabilities
-that underpin successful cloud transformations
-• AWS CAF groups its capabilities in six perspectives:
-Business, People, Governance, Platform, Security,
-and Operations
-
-CAF Perspectives and Foundational Capabilities
-Business Capabilities
-• Business Perspective helps ensure that your cloud investments
-accelerate your digital transformation ambitions and business outcomes.
-• People Perspective serves as a bridge between technology and
-business, accelerating the cloud journey to help organizations more
-rapidly evolve to a culture of continuous growth, learning, and where
-change becomes business•as•normal, with focus on culture,
-organizational structure, leadership, and workforce.
-• Governance Perspective helps you orchestrate your cloud initiatives
-while maximizing organizational benefits and minimizing transformationrelated
-risks.
-
-CAF Perspectives and Foundational Capabilities
-Technical Capabilities
-• Platform Perspective helps you build an enterprise•grade, scalable,
-hybrid cloud platform; modernize existing workloads; and implement
-new cloud•native solutions.
-• Security Perspective helps you achieve the confidentiality, integrity, and
-availability of your data and cloud workloads.
-• Operations Perspective helps ensure that your cloud services are
-delivered at a level that meets the needs of your business.
-AWS CAF – Transformation Domains
-• Technology • using the cloud to migrate and modernize legacy
-infrastructure, applications, data and analytics platforms…
-• Process • digitizing, automating, and optimizing your business operations
-• leveraging new data and analytics platforms to create actionable insights
-• using machine learning (ML) to improve your customer service experience…
-• Organization • Reimagining your operating model
-• Organizing your teams around products and value streams
-• Leveraging agile methods to rapidly iterate and evolve
-• Product – reimagining your business model by creating new value
-propositions (products & services) and revenue models
-
-AWS CAF – Transformation Phases
-• Envision – demonstrate how the Cloud will accelerate business
-outcomes by identifying transformation opportunities and create a
-foundation for your digital transformation
-• Align – identify capability gaps across the 6 AWS CAF Perspectives
-which results in an Action Plan
-• Launch – build and deliver pilot initiatives in production and
-demonstrate incremental business value
-• Scale – expand pilot initiatives to the desired scale while realizing the
-desired business benefits
-
-AWS Right Sizing
-• EC2 has many instance types, but choosing the most powerful instance type isn’t the
-best choice, because the cloud is elastic
-• Right sizing is the process of matching instance types and sizes to your workload
-performance and capacity requirements at the lowest possible cost
-• Scaling up is easy so always start small
-• It’s also the process of looking at deployed instances and identifying opportunities to
-eliminate or downsize without compromising capacity or other requirements, which
-results in lower costs
-• It’s important to Right Size…
-• before a Cloud Migration
-• continuously after the cloud onboarding process (requirements change over time)
-• CloudWatch, Cost Explorer, Trusted Advisor, 3rd party tools can help
-
-AWS Ecosystem – Free resources
-• AWS Blogs: https://aws.amazon.com/blogs/aws/
-• AWS Forums (community): https://forums.aws.amazon.com/index.jspa
-• AWS Whitepapers & Guides: https://aws.amazon.com/whitepapers
-• AWS Partner Solutions (formerly Quick Starts):
-https://aws.amazon.com/quickstart/
-• Automated, gold•standard deployments in the AWS Cloud
-• Build your production environment quickly with templates
-• Example: WordPress on AWS https://fwd.aws/P3yyv?did=qs_card&trk=qs_card
-• Leverages CloudFormation
-• AWS Solutions: https://aws.amazon.com/solutions/
-• Vetted Technology Solutions for the AWS Cloud
-• Example • AWS Landing Zone: secure, multi•account AWS environment
-• https://aws.amazon.com/solutions/implementations/aws•landing•zone/
-• “Replaced” by AWS Control Tower
+Q255. Reliability
+	AWS Services
+	• Foundations
+	• Change Management
+	• Failure Management
+	IAM Amazon VPC Service Quotas AWS Trusted Advisor
+	AWS Auto Scaling Amazon CloudWatch AWS CloudTrail AWS Config
+	Backups AWS CloudFormation Amazon S3 Amazon S3 Glacier Amazon Route 53
 
 
-© Stephane Maarek
-NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
-AWS Ecosystem • AWS Support
-• Business hours email access to Cloud Support Associates
-• General guidance: < 24 business hours
-• System impaired: < 12 business hours
-• 24x7 phone, email, and chat access to Cloud Support Engineers
-• Production system impaired: < 4 hours
-• Production system down: < 1 hour
-• Access to a Technical Account Manager (TAM)
-• Concierge Support Team (for billing and account best practices)
-• Business•critical system down: < 15 minutes
-DEVELOPER
-BUSINESS
-ENTERPRISE
+Q256. 4) Performance Efficiency
+	• Includes the ability to use computing resources efficiently to meet
+	system requirements, and to maintain that efficiency as demand changes
+	and technologies evolve
+	• Design Principles
+	• Democratize advanced technologies • Advance technologies become services
+	and hence you can focus more on product development
+	• Go global in minutes • Easy deployment in multiple regions
+	• Use serverless architectures • Avoid burden of managing servers
+	• Experiment more often • Easy to carry out comparative testing
+	• Mechanical sympathy • Be aware of all AWS services
+
+Q257. Performance Efficiency
+	AWS Services
+	• Selection
+	• Review
+	• Monitoring
+	• Tradeoffs
+	AWS Auto Scaling Amazon Elastic Block Store
+	(EBS)
+	Amazon Simple Storage
+	Service (S3)
+	AWS Lambda Amazon RDS
+	AWS CloudFormation
+	Amazon CloudWatch AWS Lambda
+	Amazon RDS Amazon ElastiCache AWS Snowball Amazon CloudFront
+
+Q258. 5) Cost Optimization
+	• Includes the ability to run systems to deliver business value at the lowest
+	price point
+	• Design Principles
+	• Adopt a consumption mode • Pay only for what you use
+	• Measure overall efficiency • Use CloudWatch
+	• Stop spending money on data center operations • AWS does the
+	infrastructure part and enables customer to focus on organization projects
+	• Analyze and attribute expenditure • Accurate identification of system usage
+	and costs, helps measure return on investment (ROI) • Make sure to use tags
+	• Use managed and application level services to reduce cost of ownership • As
+	managed services operate at cloud scale, they can offer a lower cost per
+	transaction or service
+
+Q259. Cost Optimization
+	AWS Services
+	• Expenditure Awareness
+	• Cost•Effective Resources
+	• Matching supply and demand
+	• Optimizing Over Time
+	AWS Budgets AWS Cost and Usage Report AWS Cost Explorer Reserved Instance Reporting
+	Spot instance Reserved instance
+	Amazon S3 Glacier
+	AWS Trusted Advisor
+	AWS Auto Scaling AWS Lambda
+	AWS Cost and Usage Report
 
 
-AWS Marketplace
-• Digital catalog with thousands of software listings from
-independent software vendors (3rd party)
-• Example:
-• Custom AMI (custom OS, firewalls, technical solutions…)
-• CloudFormation templates
-• Software as a Service
-• Containers
-• If you buy through the AWS Marketplace, it goes into your AWS bill
-• You can sell your own solutions on the AWS Marketplace
+Q260. 6) Sustainability
+	• The sustainability pillar focuses on minimizing the environmental impacts of running
+	cloud workloads.
+	• Design Principles
+	• Understand your impact – establish performance indicators, evaluate improvements
+	• Establish sustainability goals – Set long•term goals for each workload, model return on
+	investment (ROI)
+	• Maximize utilization – Right size each workload to maximize the energy efficiency of the
+	underlying hardware and minimize idle resources.
+	• Anticipate and adopt new, more efficient hardware and software offerings – and design for
+	flexibility to adopt new technologies over time.
+	• Use managed services – Shared services reduce the amount of infrastructure; Managed services
+	help automate sustainability best practices as moving infrequent accessed data to cold storage
+	and adjusting compute capacity.
+	• Reduce the downstream impact of your cloud workloads – Reduce the amount of energy or
+	resources required to use your services and reduce the need for your customers to upgrade
+	their devices
 
-AWS Training
-• AWS Digital (online) and Classroom Training (in•person or virtual)
-• AWS Private Training (for your organization)
-• Training and Certification for the U.S Government
-• Training and Certification for the Enterprise
-• AWS Academy: helps universities teach AWS
-• And your favorite online teacher…
-teaching you all about AWS Certifications and more!
+Q261. Sustainability
+	AWS Services
+	• EC2 Auto Scaling, Serverless Offering
+	(Lambda, Fargate)
+	• Cost Explorer, AWS Graviton 2, EC2 T
+	instances, @Spot Instances
+	• EFS•IA, Amazon S3 Glacier, EBS Cold HDD
+	volumes
+	• S3 Lifecycle Configurations, S3 Intelligent
+	Tiering
+	• Amazon Data Lifecycle Manager
+	• Read Local, Write Global: RDS Read Replicas,
+	Aurora Global DB, DynamoDB Global Table,
+	CloudFront
+	EC2 Auto Scaling Lambda Fargate
+	Cost Explorer EC2 (Graviton, T) Spot Instances
+	EFS•IA S3 Glacier EBS Cold HDD
+	S3 Intelligent Tiering Data Lifecycle Manager
+	RDS Aurora DynamoDB CloudFront
 
-AWS Professional Services & Partner Network
-• The AWS Professional Services organization is a global team of experts
-• They work alongside your team and a chosen member of the APN
-• APN = AWS Partner Network
-• APN Technology Partners: providing hardware, connectivity, and software
-• APN Consulting Partners: professional services firm to help build on AWS
-• APN Training Partners: find who can help you learn AWS
-• AWS Competency Program: AWS Competencies are granted to APN
-Partners who have demonstrated technical proficiency and proven
-customer success in specialized solution areas.
-• AWS Navigate Program: help Partners become better Partners
+Q262. AWS Well•Architected Tool
+	• Free tool to review your architectures against the 6 pillars Well•Architected
+	Framework and adopt architectural best practices
+	• How does it work?
+	• Select your workload and answer questions
+	• Review your answers against the 6 pillars
+	• Obtain advice: get videos and documentations, generate a report, see the results in a dashboard
+	• Let’s have a look: https://console.aws.amazon.com/wellarchitected
 
-AWS Knowledge Center
-• Contains the most frequent & common questions and requests
+Q263. AWS Cloud Adoption Framework (AWS CAF)
+	• Helps you build and then execute a comprehensive
+	plan for your digital transformation through
+	innovative use of AWS
+	• Created by AWS Professionals by taking advantage of
+	AWS Best Practices and lessons learned from 1000s
+	of customers
+	• AWS CAF identifies specific organizational capabilities
+	that underpin successful cloud transformations
+	• AWS CAF groups its capabilities in six perspectives:
+	Business, People, Governance, Platform, Security,
+	and Operations
 
-AWS IQ
-• Quickly find professional help for your AWS projects
-• Engage and pay AWS Certified 3rd party experts for on•demand project work
-• Video•conferencing, contract management, secure collaboration, integrated billing
-• For Customers
-• For Experts
-Submit Request
-describe your project
-Review Responses
-Connect to experts
-(requirements & timelines)
-Select Expert
-Based on rates,
-experience, …
-Work Securely
-Give experts appropriate
-access to your AWS account
-Pay per Milestone
-Charges added into
-your AWS Bill
-Work Securely
-Get appropriate access
-to customers AWS account
-Get Paid
-Request payment after
-milestones are met
+Q264. CAF Perspectives and Foundational Capabilities
+	Business Capabilities
+	• Business Perspective helps ensure that your cloud investments
+	accelerate your digital transformation ambitions and business outcomes.
+	• People Perspective serves as a bridge between technology and
+	business, accelerating the cloud journey to help organizations more
+	rapidly evolve to a culture of continuous growth, learning, and where
+	change becomes business•as•normal, with focus on culture,
+	organizational structure, leadership, and workforce.
+	• Governance Perspective helps you orchestrate your cloud initiatives
+	while maximizing organizational benefits and minimizing transformationrelated
+	risks.
+
+Q265. CAF Perspectives and Foundational Capabilities
+	Technical Capabilities
+	• Platform Perspective helps you build an enterprise•grade, scalable,
+	hybrid cloud platform; modernize existing workloads; and implement
+	new cloud•native solutions.
+	• Security Perspective helps you achieve the confidentiality, integrity, and
+	availability of your data and cloud workloads.
+	• Operations Perspective helps ensure that your cloud services are
+	delivered at a level that meets the needs of your business.
+	AWS CAF – Transformation Domains
+	• Technology • using the cloud to migrate and modernize legacy
+	infrastructure, applications, data and analytics platforms…
+	• Process • digitizing, automating, and optimizing your business operations
+	• leveraging new data and analytics platforms to create actionable insights
+	• using machine learning (ML) to improve your customer service experience…
+	• Organization • Reimagining your operating model
+	• Organizing your teams around products and value streams
+	• Leveraging agile methods to rapidly iterate and evolve
+	• Product – reimagining your business model by creating new value
+	propositions (products & services) and revenue models
+
+Q266. AWS CAF – Transformation Phases
+	• Envision – demonstrate how the Cloud will accelerate business
+	outcomes by identifying transformation opportunities and create a
+	foundation for your digital transformation
+	• Align – identify capability gaps across the 6 AWS CAF Perspectives
+	which results in an Action Plan
+	• Launch – build and deliver pilot initiatives in production and
+	demonstrate incremental business value
+	• Scale – expand pilot initiatives to the desired scale while realizing the
+	desired business benefits
+
+Q267. AWS Right Sizing
+	• EC2 has many instance types, but choosing the most powerful instance type isn’t the
+	best choice, because the cloud is elastic
+	• Right sizing is the process of matching instance types and sizes to your workload
+	performance and capacity requirements at the lowest possible cost
+	• Scaling up is easy so always start small
+	• It’s also the process of looking at deployed instances and identifying opportunities to
+	eliminate or downsize without compromising capacity or other requirements, which
+	results in lower costs
+	• It’s important to Right Size…
+	• before a Cloud Migration
+	• continuously after the cloud onboarding process (requirements change over time)
+	• CloudWatch, Cost Explorer, Trusted Advisor, 3rd party tools can help
+
+Q268. AWS Ecosystem – Free resources
+	• AWS Blogs: https://aws.amazon.com/blogs/aws/
+	• AWS Forums (community): https://forums.aws.amazon.com/index.jspa
+	• AWS Whitepapers & Guides: https://aws.amazon.com/whitepapers
+	• AWS Partner Solutions (formerly Quick Starts):
+	https://aws.amazon.com/quickstart/
+	• Automated, gold•standard deployments in the AWS Cloud
+	• Build your production environment quickly with templates
+	• Example: WordPress on AWS https://fwd.aws/P3yyv?did=qs_card&trk=qs_card
+	• Leverages CloudFormation
+	• AWS Solutions: https://aws.amazon.com/solutions/
+	• Vetted Technology Solutions for the AWS Cloud
+	• Example • AWS Landing Zone: secure, multi•account AWS environment
+	• https://aws.amazon.com/solutions/implementations/aws•landing•zone/
+	• “Replaced” by AWS Control Tower
 
 
-AWS re:Post
-• AWS•managed Q&A service offering crowd•sourced,
-expert•reviewed answers to your technical questions
-about AWS that replaces the original AWS Forums
-• Part of the AWS Free Tier
-• Community members can earn reputation points to
-build up their community expert status by providing
-accepted answers and reviewing answers from other
-users
-• Questions from AWS Premium Support customers
-that do not receive a response from the community
-are passed on to AWS Support engineers
-• AWS re:Post is not intended to be used for questions
-that are time•sensitive or involve any proprietary
-information
+Q269. AWS Ecosystem • AWS Support
+	• Business hours email access to Cloud Support Associates
+	• General guidance: < 24 business hours
+	• System impaired: < 12 business hours
+	• 24x7 phone, email, and chat access to Cloud Support Engineers
+	• Production system impaired: < 4 hours
+	• Production system down: < 1 hour
+	• Access to a Technical Account Manager (TAM)
+	• Concierge Support Team (for billing and account best practices)
+	• Business•critical system down: < 15 minutes
+	DEVELOPER
+	BUSINESS
+	ENTERPRISE
 
 
-AWS Managed Services (AMS)
-• Provides infrastructure and application support on AWS.
-• AMS offers a team of AWS experts who manage and operate your
-infrastructure for security, reliability, and availability
-• Helps organizations offload routine management tasks and focus on their
-business objectives.
-• Fully managed service, so AWS handles common activities such as change
-requests, monitoring, patch management, security, and backup services
-• Implements best practices and maintains your AWS infrastructure to reduce
-your operational overhead and risk
-• AMS business hours are 24/365
+Q270. AWS Marketplace
+	• Digital catalog with thousands of software listings from
+	independent software vendors (3rd party)
+	• Example:
+	• Custom AMI (custom OS, firewalls, technical solutions…)
+	• CloudFormation templates
+	• Software as a Service
+	• Containers
+	• If you buy through the AWS Marketplace, it goes into your AWS bill
+	• You can sell your own solutions on the AWS Marketplace
+
+Q271. AWS Training
+	• AWS Digital (online) and Classroom Training (in•person or virtual)
+	• AWS Private Training (for your organization)
+	• Training and Certification for the U.S Government
+	• Training and Certification for the Enterprise
+	• AWS Academy: helps universities teach AWS
+	• And your favorite online teacher…
+	teaching you all about AWS Certifications and more!
+
+Q272. AWS Professional Services & Partner Network
+	• The AWS Professional Services organization is a global team of experts
+	• They work alongside your team and a chosen member of the APN
+	• APN = AWS Partner Network
+	• APN Technology Partners: providing hardware, connectivity, and software
+	• APN Consulting Partners: professional services firm to help build on AWS
+	• APN Training Partners: find who can help you learn AWS
+	• AWS Competency Program: AWS Competencies are granted to APN
+	Partners who have demonstrated technical proficiency and proven
+	customer success in specialized solution areas.
+	• AWS Navigate Program: help Partners become better Partners
+
+Q273. AWS Knowledge Center
+	• Contains the most frequent & common questions and requests
+
+Q274. AWS IQ
+	• Quickly find professional help for your AWS projects
+	• Engage and pay AWS Certified 3rd party experts for on•demand project work
+	• Video•conferencing, contract management, secure collaboration, integrated billing
+	• For Customers
+	• For Experts
+	Submit Request
+	describe your project
+	Review Responses
+	Connect to experts
+	(requirements & timelines)
+	Select Expert
+	Based on rates,
+	experience, …
+	Work Securely
+	Give experts appropriate
+	access to your AWS account
+	Pay per Milestone
+	Charges added into
+	your AWS Bill
+	Work Securely
+	Get appropriate access
+	to customers AWS account
+	Get Paid
+	Request payment after
+	milestones are met
+
+
+Q275. AWS re:Post
+	• AWS•managed Q&A service offering crowd•sourced, 	expert•reviewed answers to your technical questions
+	about AWS that replaces the original AWS Forums
+	• Part of the AWS Free Tier
+	• Community members can earn reputation points to 	build up their community expert status by providing 	accepted answers and reviewing answers from other 	users
+	• Questions from AWS Premium Support customers 	that do not receive a response from the community 	are passed on to AWS Support engineers
+	• AWS re:Post is not intended to be used for questions 	that are time•sensitive or involve any proprietary 	information
+
+
+Q276. AWS Managed Services (AMS)
+	• Provides infrastructure and application support on AWS.
+	• AMS offers a team of AWS experts who manage and operate your 	infrastructure for security, reliability, and availability
+	• Helps organizations offload routine management tasks and focus on their 	business objectives.
+	• Fully managed service, so AWS handles common activities such as change 	requests, monitoring, patch management, security, and backup services
+	• Implements best practices and maintains your AWS infrastructure to reduce 	your operational overhead and risk
+	• AMS business hours are 24/365
 
 ############################################################################################
 #######################Section 18 Account Management Billing and Support  88 min########################
 ############################################################################################	
 
-AWS Organizations
-• Global service
-• Allows to manage multiple AWS accounts
-• The main account is the master account
-• Cost Benefits:
-• Consolidated Billing across all accounts • single payment method
-• Pricing benefits from aggregated usage (volume discount for EC2, S3…)
-• Pooling of Reserved EC2 instances for optimal savings
-• API is available to automate AWS account creation
-• Restrict account privileges using Service Control Policies (SCP)
+Q277. AWS Organizations
+	• Global service
+	• Allows to manage multiple AWS accounts
+	• The main account is the master account
+	• Cost Benefits:
+	• Consolidated Billing across all accounts • single payment method
+	• Pricing benefits from aggregated usage (volume discount for EC2, S3…)
+	• Pooling of Reserved EC2 instances for optimal savings
+	• API is available to automate AWS account creation
+	• Restrict account privileges using Service Control Policies (SCP)
 
-Multi Account Strategies
-• Create accounts per department, per cost center, per dev / test /
-prod, based on regulatory restrictions (using SCP), for better
-resource isolation (ex: VPC), to have separate per•account
-service limits, isolated account for logging
-• Multi Account vs One Account Multi VPC
-• Use tagging standards for billing purposes
-• Enable CloudTrail on all accounts, send logs to central S3 account
-• Send CloudWatch Logs to central logging account
+Q278. Multi Account Strategies
+	• Create accounts per department, per cost center, per dev / test /
+	prod, based on regulatory restrictions (using SCP), for better
+	resource isolation (ex: VPC), to have separate per•account
+	service limits, isolated account for logging
+	• Multi Account vs One Account Multi VPC
+	• Use tagging standards for billing purposes
+	• Enable CloudTrail on all accounts, send logs to central S3 account
+	• Send CloudWatch Logs to central logging account
 
-Service Control Policies (SCP)
-• Whitelist or blacklist IAM actions
-• Applied at the OU or Account level
-• Does not apply to the Master Account
-• SCP is applied to all the Users and Roles of the Account, including Root user
-• The SCP does not affect service•linked roles
-• Service•linked roles enable other AWS services to integrate with AWS Organizations
-and can't be restricted by SCPs.
-• SCP must have an explicit Allow (does not allow anything by default)
-• Use cases:
-• Restrict access to certain services (for example: can’t use EMR)
-• Enforce PCI compliance by explicitly disabling services
+Q279. Service Control Policies (SCP)
+	• Whitelist or blacklist IAM actions
+	• Applied at the OU or Account level
+	• Does not apply to the Master Account
+	• SCP is applied to all the Users and Roles of the Account, including Root user
+	• The SCP does not affect service•linked roles
+	• Service•linked roles enable other AWS services to integrate with AWS Organizations
+	and can't be restricted by SCPs.
+	• SCP must have an explicit Allow (does not allow anything by default)
+	• Use cases:
+	• Restrict access to certain services (for example: can’t use EMR)
+	• Enforce PCI compliance by explicitly disabling services
 
 
-AWS Organization – Consolidated Billing
-• When enabled, provides you with:
-• Combined Usage – combine the usage across all AWS accounts in the AWS Organization to
-share the volume pricing, Reserved Instances and Savings Plans discounts
-• One Bill – get one bill for all AWS Accounts in the AWS Organization
-• The management account can turn off Reserved Instances discount sharing for any
-account in the AWS Organization, including itself
+Q280. AWS Organization – Consolidated Billing
+	• When enabled, provides you with:
+	• Combined Usage – combine the usage across all AWS accounts in the AWS Organization to
+	share the volume pricing, Reserved Instances and Savings Plans discounts
+	• One Bill – get one bill for all AWS Accounts in the AWS Organization
+	• The management account can turn off Reserved Instances discount sharing for any
+	account in the AWS Organization, including itself
 
-AWS Control Tower
-• Easy way to set up and govern a secure and compliant multi•account
-AWS environment based on best practices
-• Benefits:
-• Automate the set up of your environment in a few clicks
-• Automate ongoing policy management using guardrails
-• Detect policy violations and remediate them
-• Monitor compliance through an interactive dashboard
-• AWS Control Tower runs on top of AWS Organizations:
-• It automatically sets up AWS Organizations to organize accounts and implement
-SCPs (Service Control Policies)
+Q281. AWS Control Tower
+	• Easy way to set up and govern a secure and compliant multi•account
+	AWS environment based on best practices
+	• Benefits:
+	• Automate the set up of your environment in a few clicks
+	• Automate ongoing policy management using guardrails
+	• Detect policy violations and remediate them
+	• Monitor compliance through an interactive dashboard
+	• AWS Control Tower runs on top of AWS Organizations:
+	• It automatically sets up AWS Organizations to organize accounts and implement
+	SCPs (Service Control Policies)
 
-AWS Resource Access Manager (AWS RAM)
-• Share AWS resources that
-you own with other AWS
-accounts
-• Share with any account or
-within your Organization
-• Avoid resource duplication!
-• Supported resources include
-Aurora, VPC Subnets, Transit
-Gateway, Route 53, EC2
-Dedicated Hosts, License
-Manager Configurations…
+Q282. AWS Resource Access Manager (AWS RAM)
+	• Share AWS resources that
+	you own with other AWS
+	accounts
+	• Share with any account or
+	within your Organization
+	• Avoid resource duplication!
+	• Supported resources include
+	Aurora, VPC Subnets, Transit
+	Gateway, Route 53, EC2
+	Dedicated Hosts, License
+	Manager Configurations…
 
-AWS Service Catalog
-• Users that are new to AWS have too many options, and may create
-stacks that are not compliant / in line with the rest of the organization
-• Some users just want a quick self•service portal to launch a set of authorized products pre•defined by admins
-• Includes: virtual machines, databases, storage options, etc…
-• Enter AWS Service Catalog!
+Q283. AWS Service Catalog
+	• Users that are new to AWS have too many options, and may create
+	stacks that are not compliant / in line with the rest of the organization
+	• Some users just want a quick self•service portal to launch a set of authorized products pre•defined by admins
+	• Includes: virtual machines, databases, storage options, etc…
+	• Enter AWS Service Catalog!
 
-Pricing Models in AWS
-• AWS has 4 pricing models:
-• Pay as you go: pay for what you use, remain agile, responsive, meet scale demands
-• Save when you reserve: minimize risks, predictably manage budgets, comply with long•terms requirements
-• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved 
-Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 
-Nodes
-• Pay less by using more: volume•based discounts
-• Pay less as AWS grows
+Q284. Pricing Models in AWS
+	• AWS has 4 pricing models:
+	• Pay as you go: pay for what you use, remain agile, responsive, meet scale demands
+	• Save when you reserve: minimize risks, predictably manage budgets, comply with long•terms requirements
+	• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved 
+	Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 
+	Nodes
+	• Pay less by using more: volume•based discounts
+	• Pay less as AWS grows
 
-Free services & free tier in AWS
+Q285. Free services & free tier in AWS
 	• IAM
 	• VPC
 	• Consolidated Billing
@@ -2611,7 +2594,7 @@ Free services & free tier in AWS
 	• EC2 t2.micro instance for a year
 	• S3, EBS, ELB, AWS Data transfer
 
-Compute Pricing – EC2
+Q286. Compute Pricing – EC2
 	• Only charged for what you use
 	• Number of instances
 	• Instance configuration:
@@ -2623,7 +2606,7 @@ Compute Pricing – EC2
 	• ELB running time and amount of data processed
 	• Detailed monitoring
 
-Compute Pricing – EC2
+Q287. Compute Pricing – EC2
 	• On•demand instances:
 	• Minimum of 60s
 	• Pay per second (Linux/Windows) or per hour (other)
@@ -2639,7 +2622,7 @@ Compute Pricing – EC2
 	• Reservation for 1 year or 3 years commitment
 	• Savings plans as an alternative to save on sustained usage
 
-Compute Pricing – Lambda & ECS
+Q288. Compute Pricing – Lambda & ECS
 	• Lambda:
 	• Pay per call
 	• Pay per duration
@@ -2650,7 +2633,7 @@ Compute Pricing – Lambda & ECS
 	• Fargate Launch Type Model: Pay for vCPU and memory
 	resources allocated to your applications in your containers
 
-Storage Pricing – S3
+Q289. Storage Pricing – S3
 	• Storage class: S3 Standard, S3 Infrequent Access, S3 One•Zone IA, S3
 	Intelligent Tiering, S3 Glacier and S3 Glacier Deep Archive
 	• Number and size of objects: Price can be tiered (based on volume)
@@ -2661,7 +2644,7 @@ Storage Pricing – S3
 	• Similar service: EFS (pay per use, has infrequent access & lifecycle rules)
 
 
-Storage Pricing • EBS
+Q290. Storage Pricing • EBS
 	• Volume type (based on performance)
 	• Storage volume in GB per month provisionned
 	• IOPS:
@@ -2674,7 +2657,7 @@ Storage Pricing • EBS
 	• Outbound data transfer are tiered for volume discounts
 	• Inbound is free
 
-Database Pricing • RDS
+Q291. Database Pricing • RDS
 	• Per hour billing
 	• Database characteristics:
 	• Engine
@@ -2686,7 +2669,7 @@ Database Pricing • RDS
 	• Backup Storage: There is no additional charge for backup storage up to
 	100% of your total database storage for a region
 
-Database Pricing • RDS
+Q292. Database Pricing • RDS
 	• Additional storage (per GB per month)
 	• Number of input and output requests per month
 	• Deployment type (storage and I/O are variable):
@@ -2696,13 +2679,13 @@ Database Pricing • RDS
 	• Outbound data transfer are tiered for volume discounts
 	• Inbound is free
 
-Content Delivery – CloudFront
+Q293. Content Delivery – CloudFront
 	• Pricing is different across different geographic regions
 	• Aggregated for each edge location, then applied to your bill
 	• Data Transfer Out (volume discount)
 	• Number of HTTP/HTTPS requests
 
-Networking Costs in AWS per GB • Simplified
+Q294. Networking Costs in AWS per GB • Simplified
 	Region
 	Availability Zone Availability Zone
 	Region
@@ -2727,7 +2710,7 @@ Networking Costs in AWS per GB • Simplified
 	high availability)
 
 
-Savings Plan
+Q295. Savings Plan
 	• Commit a certain $ amount per hour for 1 or 3 years
 	• Easiest way to setup long•term commitments on AWS
 	• EC2 Savings Plan
@@ -2744,7 +2727,7 @@ Savings Plan
 	• Estimate pricing at https://aws.amazon.com/savingsplans/pricing/
 
 
-AWS Compute Optimizer
+Q296. AWS Compute Optimizer
 	• Reduce costs and improve performance by 	recommending optimal AWS resources for your 	workloads
 	• Helps you choose optimal configurations and rightsize 	your workloads (over/under provisioned)
 	• Uses Machine Learning to analyze your resources’ 	configurations and their utilization CloudWatch 	metrics
@@ -2757,7 +2740,7 @@ AWS Compute Optimizer
 	• Recommendations can be exported to S3
 
 
-Billing and Costing Tools
+Q297. Billing and Costing Tools
 	• Estimating costs in the cloud:
 	• Pricing Calculator
 	• Tracking costs in the cloud:
@@ -2769,11 +2752,11 @@ Billing and Costing Tools
 	• Billing Alarms
 	• Budgets
 
-AWS Pricing Calculator
+Q298. AWS Pricing Calculator
 	• Available at https://calculator.aws/
 	• Estimate the cost for your solution architecture
 
-Cost Allocation Tags
+Q299. Cost Allocation Tags
 	• Use cost allocation tags to track your AWS costs on a detailed level
 	• AWS generated tags
 	• Automatically applied to the resource you create
@@ -2782,7 +2765,7 @@ Cost Allocation Tags
 	• Defined by the user
 	• Starts with Prefix user:
 
-Tagging and Resource Groups
+Q300. Tagging and Resource Groups
 	• Tags are used for organizing resources:
 	• EC2: instances, images, load balancers, security groups…
 	• RDS, VPC resources, Route 53, IAM users, etc…
@@ -2792,7 +2775,7 @@ Tagging and Resource Groups
 	• Create, maintain, and view a collection of resources that share common tags
 	• Manage these tags using the Tag Editor
 
-Cost and Usage Reports
+Q301. Cost and Usage Reports
 	• Dive deeper into your AWS costs and usage
 	• The AWS Cost & Usage Report contains the most comprehensive set 	of AWS cost and usage data available, including additional metadata
 	about AWS services, pricing, and reservations (e.g., Amazon EC2	Reserved Instances (RIs)).
@@ -2800,7 +2783,7 @@ Cost and Usage Reports
 	items, as well as any tags that you have activated for cost allocation 	purposes.
 	• Can be integrated with Athena, Redshift or QuickSight
 
-Cost Explorer
+Q302. Cost Explorer
 	• Visualize, understand, and manage your AWS costs and usage over time
 	• Create custom reports that analyze cost and usage data.
 	• Analyze your data at a high level: total costs and usage across all accounts
@@ -2808,13 +2791,13 @@ Cost Explorer
 	• Choose an optimal Savings Plan (to lower prices on your bill)
 	• Forecast usage up to 12 months based on previous usage
 
-Billing Alarms in CloudWatch
+Q303. Billing Alarms in CloudWatch
 	• Billing data metric is stored 	in CloudWatch us•east•1
 	• Billing data are for overall 	worldwide AWS costs
 	• It’s for actual cost, not for 	projected costs
 	• Intended a simple alarm (not 	as powerful as AWS 	Budgets)
 
-AWS Budgets
+Q304. AWS Budgets
 	• Create budget and send alarms when costs exceeds the budget
 	• 4 types of budgets: Usage, Cost, Reservation, Savings Plans
 	• For Reserved Instances (RI)
@@ -2827,20 +2810,20 @@ AWS Budgets
 	• 2 budgets are free, then $0.02/day/budget
 
 
-AWS Cost Anomaly Detection
+Q305. AWS Cost Anomaly Detection
 	• Continuously monitor your cost and usage using ML to detect unusual spends
 	• It learns your unique, historic spend patterns to detect one•time cost spike and/or 	continuous cost increases (you don’t need to define thresholds)
 	• Monitor AWS services, member accounts, cost allocation tags, or cost categories
 	• Sends you the anomaly detection report with root•cause analysis
 	• Get notified with individual alerts or daily/weekly summary (using SNS)
 
-AWS Service Quotas
+Q306. AWS Service Quotas
 	• Notify you when you’re close to a service quota value threshold
 	• Create CloudWatch Alarms on the Service Quotas console
 	• Example: Lambda concurrent executions
 	• Request a quota increase from AWS Service Quotas or shutdown resources before limit is reached
 
-Trusted Advisor
+Q307. Trusted Advisor
 	• No need to install anything – high level 
 	AWS account assessment
 	• Analyze your AWS accounts and provides 	recommendation on 5 categories
@@ -2850,7 +2833,7 @@ Trusted Advisor
 	• Fault tolerance
 	• Service limits
 
-Trusted Advisor – Support Plans
+Q308. Trusted Advisor – Support Plans
 	7 CORE CHECKS
 	Basic & Developer Support plan
 	• S3 Bucket Permissions
@@ -2867,14 +2850,14 @@ Trusted Advisor – Support Plans
 	• Ability to set CloudWatch alarms when	reaching limits
 	• Programmatic Access using AWS Support	API
 
-AWS Basic Support Plan
+Q309. AWS Basic Support Plan
 	• Customer Service & Communities • 24x7 access to customer service,	documentation, whitepapers, and support forums.
 	• AWS Trusted Advisor • Access to the 7 core Trusted Advisor checks 	and guidance to provision your resources following best practices to 	increase performance and improve security.
 	• AWS Personal Health Dashboard • A personalized view of the health
 	of AWS services, and alerts when your resources are impacted.
 
 
-AWS Developer Support Plan
+Q310. AWS Developer Support Plan
 	• All Basic Support Plan +
 	• Business hours email access to Cloud Support Associates
 	• Unlimited cases / 1 primary contact
@@ -2882,7 +2865,7 @@ AWS Developer Support Plan
 	• General guidance: < 24 business hours
 	• System impaired: < 12 business hours
 
-AWS Business Support Plan (24/7)
+Q311. AWS Business Support Plan (24/7)
 	• Intended to be used if you have production workloads
 	• Trusted Advisor – Full set of checks + API access
 	• 24x7 phone, email, and chat access to Cloud Support Engineers
@@ -2894,7 +2877,7 @@ AWS Business Support Plan (24/7)
 	• Production system impaired: < 4 hours
 	• Production system down: < 1 hour
 
-AWS Enterprise On•Ramp Support Plan (24/7)
+Q312. AWS Enterprise On•Ramp Support Plan (24/7)
 	• Intended to be used if you have production or business critical workloads
 	• All of Business Support Plan +
 	• Access to a pool of Technical Account Managers (TAM)
@@ -2906,7 +2889,7 @@ AWS Enterprise On•Ramp Support Plan (24/7)
 	• Production system down: < 1 hour
 	• Business•critical system down: < 30 minutes
 
-AWS Enterprise Support Plan (24/7)
+Q313. AWS Enterprise Support Plan (24/7)
 	• Intended to be used if you have mission critical workloads
 	• All of Business Support Plan +
 	• Access to a designated Technical Account Manager (TAM)
@@ -2918,7 +2901,7 @@ AWS Enterprise Support Plan (24/7)
 	• Production system down: < 1 hour
 	• Business•critical system down: < 15 minutes
 
-Account Best Practices – Summary
+Q314. Account Best Practices – Summary
 	• Operate multiple accounts using Organizations
 	• Use SCP (service control policies) to restrict account power
 	• Easily setup multiple accounts with best•practices with AWS Control Tower
@@ -2932,7 +2915,7 @@ Account Best Practices – Summary
 	• If your Account is compromised: change the root password, delete and rotate all passwords / keys, 	contact the AWS support
 	• Allow users to create pre•defined stacks defined by admins using AWS Service Catalog
 
-Billing and Costing Tools – Summary
+Q315. Billing and Costing Tools – Summary
 	• Compute Optimizer: recommends resources’ configurations to reduce cost
 	• Pricing Calculator: cost of services on AWS
 	• Billing Dashboard: high level overview + free tier dashboard
