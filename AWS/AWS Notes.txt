@@ -2107,221 +2107,45 @@ Q248. AWS Cloud Best Practices – Design Principles
 	• Disposable Resources: servers should be disposable & easily configured
 	• Automation: Serverless, Infrastructure as a Service, Auto Scaling…
 	• Loose Coupling:
-	• Monolith are applications that do more and more over time, become bigger
-	• Break it down into smaller, loosely coupled components
-	• A change or a failure in one component should not cascade to other components
+		• Monolith are applications that do more and more over time, become bigger
+		• Break it down into smaller, loosely coupled components
+		• A change or a failure in one component should not cascade to other components
 	• Services, not Servers:
-	• Don’t use just EC2
-	• Use managed services, databases, serverless, etc !
+		• Don’t use just EC2
+		• Use managed services, databases, serverless, etc !
 
-Q249. Well Architected Framework
-	6 Pillars
-	• 1) Operational Excellence
-	• 2) Security
-	• 3) Reliability
-	• 4) Performance Efficiency
-	• 5) Cost Optimization
-	• 6) Sustainability
-	• They are not something to balance, or trade•offs, they’re a synergy
-
-Q250. 1) Operational Excellence
-	• Includes the ability to run and monitor systems to deliver business value
-	and to continually improve supporting processes and procedures
-	• Design Principles
-	• Perform operations as code • Infrastructure as code
-	• Annotate documentation • Automate the creation of annotated
-	documentation after every build
-	• Make frequent, small, reversible changes • So that in case of any failure, you can
-	reverse it
-	• Refine operations procedures frequently • And ensure that team members are
-	familiar with it
-	• Anticipate failure
-	• Learn from all operational failures
-
-Q251. Operational Excellence
-	AWS Services
-	• Prepare
-	• Operate
-	• Evolve
-	AWS CloudFormation
-	AWS CloudFormation
-	AWS CloudFormation
-	AWS Config
-	AWS Config AWS CloudTrail Amazon CloudWatch AWS X•Ray
-	AWS CodeBuild AWS CodeCommit AWS CodeDeploy AWS CodePipeline
-
-
-Q252. 2) Security
-	• Includes the ability to protect information, systems, and assets while delivering
-	business value through risk assessments and mitigation strategies
-	• Design Principles
-	• Implement a strong identity foundation • Centralize privilege management and reduce (or even
-	eliminate) reliance on long•term credentials • Principle of least privilege • IAM
-	• Enable traceability • Integrate logs and metrics with systems to automatically respond and take
-	action
-	• Apply security at all layers • Like edge network, VPC, subnet, load balancer, every instance,
-	operating system, and application
-	• Automate security best practices
-	• Protect data in transit and at rest • Encryption, tokenization, and access control
-	• Keep people away from data • Reduce or eliminate the need for direct access or manual
-	processing of data
-	• Prepare for security events • Run incident response simulations and use tools with automation
-	to increase your speed for detection, investigation, and recovery
-	• Shared Responsibility Model
-
-Q253. Security
-	AWS Services
-	• Identity and Access Management
-	• Detective Controls
-	• Infrastructure Protection
-	• Data Protection:
-	• Incident Response
-	IAM AWS•STS MFA token AWS Organizations
-	AWS Config AWS CloudTrail Amazon CloudWatch
-	Amazon CloudFront Amazon VPC AWS Shield AWS WAF Amazon Inspector
-	KMS S3 Elastic Load Balancing (ELB) Amazon EBS Amazon RDS
-	IAM AWS CloudFormation Amazon CloudWatch Events
-
-Q254. 3) Reliability
-	• Ability of a system to recover from infrastructure or service disruptions,
-	dynamically acquire computing resources to meet demand, and mitigate
-	disruptions such as misconfigurations or transient network issues
-	• Design Principles
-	• Test recovery procedures • Use automation to simulate different failures or to recreate
-	scenarios that led to failures before
-	• Automatically recover from failure • Anticipate and remediate failures before they
-	occur
-	• Scale horizontally to increase aggregate system availability • Distribute requests
-	across multiple, smaller resources to ensure that they don't share a common point of
-	failure
-	• Stop guessing capacity • Maintain the optimal level to satisfy demand without over or
-	under provisioning • Use Auto Scaling
-	• Manage change in automation • Use automation to make changes to infrastructure
-
-Q255. Reliability
-	AWS Services
-	• Foundations
-	• Change Management
-	• Failure Management
-	IAM Amazon VPC Service Quotas AWS Trusted Advisor
-	AWS Auto Scaling Amazon CloudWatch AWS CloudTrail AWS Config
-	Backups AWS CloudFormation Amazon S3 Amazon S3 Glacier Amazon Route 53
-
-
-Q256. 4) Performance Efficiency
-	• Includes the ability to use computing resources efficiently to meet
-	system requirements, and to maintain that efficiency as demand changes
-	and technologies evolve
-	• Design Principles
-	• Democratize advanced technologies • Advance technologies become services
-	and hence you can focus more on product development
-	• Go global in minutes • Easy deployment in multiple regions
-	• Use serverless architectures • Avoid burden of managing servers
-	• Experiment more often • Easy to carry out comparative testing
-	• Mechanical sympathy • Be aware of all AWS services
-
-Q257. Performance Efficiency
-	AWS Services
-	• Selection
-	• Review
-	• Monitoring
-	• Tradeoffs
-	AWS Auto Scaling Amazon Elastic Block Store
-	(EBS)
-	Amazon Simple Storage
-	Service (S3)
-	AWS Lambda Amazon RDS
-	AWS CloudFormation
-	Amazon CloudWatch AWS Lambda
-	Amazon RDS Amazon ElastiCache AWS Snowball Amazon CloudFront
-
-Q258. 5) Cost Optimization
-	• Includes the ability to run systems to deliver business value at the lowest
-	price point
-	• Design Principles
-	• Adopt a consumption mode • Pay only for what you use
-	• Measure overall efficiency • Use CloudWatch
-	• Stop spending money on data center operations • AWS does the
-	infrastructure part and enables customer to focus on organization projects
-	• Analyze and attribute expenditure • Accurate identification of system usage
-	and costs, helps measure return on investment (ROI) • Make sure to use tags
-	• Use managed and application level services to reduce cost of ownership • As
-	managed services operate at cloud scale, they can offer a lower cost per
-	transaction or service
-
-Q259. Cost Optimization
-	AWS Services
-	• Expenditure Awareness
-	• Cost•Effective Resources
-	• Matching supply and demand
-	• Optimizing Over Time
-	AWS Budgets AWS Cost and Usage Report AWS Cost Explorer Reserved Instance Reporting
-	Spot instance Reserved instance
-	Amazon S3 Glacier
-	AWS Trusted Advisor
-	AWS Auto Scaling AWS Lambda
-	AWS Cost and Usage Report
-
-
-Q260. 6) Sustainability
-	• The sustainability pillar focuses on minimizing the environmental impacts of running
-	cloud workloads.
-	• Design Principles
-	• Understand your impact – establish performance indicators, evaluate improvements
-	• Establish sustainability goals – Set long•term goals for each workload, model return on
-	investment (ROI)
-	• Maximize utilization – Right size each workload to maximize the energy efficiency of the
-	underlying hardware and minimize idle resources.
-	• Anticipate and adopt new, more efficient hardware and software offerings – and design for
-	flexibility to adopt new technologies over time.
-	• Use managed services – Shared services reduce the amount of infrastructure; Managed services
-	help automate sustainability best practices as moving infrequent accessed data to cold storage
-	and adjusting compute capacity.
-	• Reduce the downstream impact of your cloud workloads – Reduce the amount of energy or
-	resources required to use your services and reduce the need for your customers to upgrade
-	their devices
-
-Q261. Sustainability
-	AWS Services
-	• EC2 Auto Scaling, Serverless Offering
-	(Lambda, Fargate)
-	• Cost Explorer, AWS Graviton 2, EC2 T
-	instances, @Spot Instances
-	• EFS•IA, Amazon S3 Glacier, EBS Cold HDD
-	volumes
-	• S3 Lifecycle Configurations, S3 Intelligent
-	Tiering
-	• Amazon Data Lifecycle Manager
-	• Read Local, Write Global: RDS Read Replicas,
-	Aurora Global DB, DynamoDB Global Table,
-	CloudFront
-	EC2 Auto Scaling Lambda Fargate
-	Cost Explorer EC2 (Graviton, T) Spot Instances
-	EFS•IA S3 Glacier EBS Cold HDD
-	S3 Intelligent Tiering Data Lifecycle Manager
-	RDS Aurora DynamoDB CloudFront
+Q249. Well-Architected Framework - 6 Pillars:
+	• Operational Excellence: 	
+		• Ability to run and monitor systems efficiently.
+		• Design Principles: Operations as code, frequent reversible changes, anticipate failure.
+		• AWS CloudFormation, AWS Config, AWS CloudTrail, Amazon CloudWatch, AWS X-Ray, AWS CodeBuild, AWS CodeCommit, AWS CodeDeploy, AWS CodePipeline.
+	• Security: 	
+		• Protecting information and assets, implementing strong identity foundation.
+		• Design Principles: Least privilege, traceability, automate security best practices.
+		• IAM, AWS STS, MFA token, AWS Organizations, AWS Config, AWS CloudTrail, Amazon CloudWatch, Amazon CloudFront, Amazon VPC, AWS Shield, AWS WAF, Amazon Inspector, KMS, S3, Elastic Load Balancing (ELB), Amazon EBS, Amazon RDS.
+	• Reliability: 
+		• System's ability to recover from disruptions, dynamically acquire resources.
+		• Design Principles: Test recovery procedures, scale horizontally, stop guessing capacity.
+		• IAM, Amazon VPC, Service Quotas, AWS Trusted Advisor, AWS Auto Scaling, Amazon CloudWatch, AWS CloudTrail, AWS Config, Backups, AWS CloudFormation, Amazon S3, Amazon S3 Glacier, Amazon Route 53.
+	• Performance Efficiency: 
+		• Efficiently use computing resources to meet system requirements.
+		• Design Principles: Democratize advanced technologies, go global in minutes, use serverless architectures.
+		• AWS Auto Scaling, Amazon EBS, Amazon S3, AWS Lambda, Amazon RDS, Amazon CloudFormation, Amazon CloudWatch, AWS Lambda, Amazon RDS, Amazon ElastiCache, AWS Snowball, Amazon CloudFront.
+	• Cost Optimization: 	
+		• Run systems at the lowest price point.
+		• Design Principles: Adopt a consumption model, measure overall efficiency, use managed services.
+		• AWS Budgets, AWS Cost and Usage Report, AWS Cost Explorer, Reserved Instance Reporting, Spot Instances, Reserved Instance, Amazon S3 Glacier, AWS Trusted Advisor, AWS Auto Scaling, AWS Lambda, AWS Cost and Usage Report.
+	• Sustainability:	
+		• Minimizing environmental impacts of running cloud workloads.
+		• Design Principles: Understand your impact, establish sustainability goals, maximize utilization.
+		• EC2 Auto Scaling, Serverless Offering (Lambda, Fargate), Cost Explorer, AWS Graviton 2, EC2 T instances, Spot Instances, EFS-IA, Amazon S3 Glacier, EBS Cold HDD volumes, S3 Lifecycle Configurations, S3 Intelligent Tiering, Amazon Data Lifecycle Manager, Read Local, Write Global (RDS Read Replicas, Aurora Global DB, DynamoDB Global Table, CloudFront).
 
 Q262. AWS Well•Architected Tool
 	• Free tool to review your architectures against the 6 pillars Well•Architected
-	Framework and adopt architectural best practices
-	• How does it work?
-	• Select your workload and answer questions
-	• Review your answers against the 6 pillars
-	• Obtain advice: get videos and documentations, generate a report, see the results in a dashboard
-	• Let’s have a look: https://console.aws.amazon.com/wellarchitected
-
+	
 Q263. AWS Cloud Adoption Framework (AWS CAF)
-	• Helps you build and then execute a comprehensive
-	plan for your digital transformation through
+	• Helps you build and then execute a comprehensive 	plan for your digital transformation through
 	innovative use of AWS
-	• Created by AWS Professionals by taking advantage of
-	AWS Best Practices and lessons learned from 1000s
-	of customers
-	• AWS CAF identifies specific organizational capabilities
-	that underpin successful cloud transformations
-	• AWS CAF groups its capabilities in six perspectives:
-	Business, People, Governance, Platform, Security,
-	and Operations
 
 Q264. CAF Perspectives and Foundational Capabilities
 	Business Capabilities
@@ -2425,15 +2249,6 @@ Q270. AWS Marketplace
 	• If you buy through the AWS Marketplace, it goes into your AWS bill
 	• You can sell your own solutions on the AWS Marketplace
 
-Q271. AWS Training
-	• AWS Digital (online) and Classroom Training (in•person or virtual)
-	• AWS Private Training (for your organization)
-	• Training and Certification for the U.S Government
-	• Training and Certification for the Enterprise
-	• AWS Academy: helps universities teach AWS
-	• And your favorite online teacher…
-	teaching you all about AWS Certifications and more!
-
 Q272. AWS Professional Services & Partner Network
 	• The AWS Professional Services organization is a global team of experts
 	• They work alongside your team and a chosen member of the APN
@@ -2451,40 +2266,10 @@ Q273. AWS Knowledge Center
 
 Q274. AWS IQ
 	• Quickly find professional help for your AWS projects
-	• Engage and pay AWS Certified 3rd party experts for on•demand project work
-	• Video•conferencing, contract management, secure collaboration, integrated billing
-	• For Customers
-	• For Experts
-	Submit Request
-	describe your project
-	Review Responses
-	Connect to experts
-	(requirements & timelines)
-	Select Expert
-	Based on rates,
-	experience, …
-	Work Securely
-	Give experts appropriate
-	access to your AWS account
-	Pay per Milestone
-	Charges added into
-	your AWS Bill
-	Work Securely
-	Get appropriate access
-	to customers AWS account
-	Get Paid
-	Request payment after
-	milestones are met
-
 
 Q275. AWS re:Post
 	• AWS•managed Q&A service offering crowd•sourced, 	expert•reviewed answers to your technical questions
 	about AWS that replaces the original AWS Forums
-	• Part of the AWS Free Tier
-	• Community members can earn reputation points to 	build up their community expert status by providing 	accepted answers and reviewing answers from other 	users
-	• Questions from AWS Premium Support customers 	that do not receive a response from the community 	are passed on to AWS Support engineers
-	• AWS re:Post is not intended to be used for questions 	that are time•sensitive or involve any proprietary 	information
-
 
 Q276. AWS Managed Services (AMS)
 	• Provides infrastructure and application support on AWS.
@@ -2503,68 +2288,30 @@ Q277. AWS Organizations
 	• Allows to manage multiple AWS accounts
 	• The main account is the master account
 	• Cost Benefits:
-	• Consolidated Billing across all accounts • single payment method
-	• Pricing benefits from aggregated usage (volume discount for EC2, S3…)
-	• Pooling of Reserved EC2 instances for optimal savings
-	• API is available to automate AWS account creation
-	• Restrict account privileges using Service Control Policies (SCP)
-
-Q278. Multi Account Strategies
-	• Create accounts per department, per cost center, per dev / test /
-	prod, based on regulatory restrictions (using SCP), for better
-	resource isolation (ex: VPC), to have separate per•account
-	service limits, isolated account for logging
-	• Multi Account vs One Account Multi VPC
-	• Use tagging standards for billing purposes
-	• Enable CloudTrail on all accounts, send logs to central S3 account
-	• Send CloudWatch Logs to central logging account
+	• Consolidated Billing across all accounts • single payment method\
 
 Q279. Service Control Policies (SCP)
 	• Whitelist or blacklist IAM actions
 	• Applied at the OU or Account level
 	• Does not apply to the Master Account
-	• SCP is applied to all the Users and Roles of the Account, including Root user
-	• The SCP does not affect service•linked roles
-	• Service•linked roles enable other AWS services to integrate with AWS Organizations
-	and can't be restricted by SCPs.
 	• SCP must have an explicit Allow (does not allow anything by default)
 	• Use cases:
 	• Restrict access to certain services (for example: can’t use EMR)
 	• Enforce PCI compliance by explicitly disabling services
 
-
-Q280. AWS Organization – Consolidated Billing
-	• When enabled, provides you with:
-	• Combined Usage – combine the usage across all AWS accounts in the AWS Organization to
-	share the volume pricing, Reserved Instances and Savings Plans discounts
-	• One Bill – get one bill for all AWS Accounts in the AWS Organization
-	• The management account can turn off Reserved Instances discount sharing for any
-	account in the AWS Organization, including itself
-
 Q281. AWS Control Tower
 	• Easy way to set up and govern a secure and compliant multi•account
 	AWS environment based on best practices
 	• Benefits:
-	• Automate the set up of your environment in a few clicks
-	• Automate ongoing policy management using guardrails
-	• Detect policy violations and remediate them
 	• Monitor compliance through an interactive dashboard
 	• AWS Control Tower runs on top of AWS Organizations:
-	• It automatically sets up AWS Organizations to organize accounts and implement
-	SCPs (Service Control Policies)
+	• It automatically sets up AWS Organizations to organize accounts and implement 	SCPs (Service Control Policies)
 
 Q282. AWS Resource Access Manager (AWS RAM)
-	• Share AWS resources that
-	you own with other AWS
-	accounts
-	• Share with any account or
-	within your Organization
-	• Avoid resource duplication!
-	• Supported resources include
-	Aurora, VPC Subnets, Transit
-	Gateway, Route 53, EC2
-	Dedicated Hosts, License
-	Manager Configurations…
+	• Share AWS resources that 	you own with other AWS 	accounts
+	• Share with any account or within your Organization
+	• Supported resources include 
+	Aurora, VPC Subnets, Transit Gateway, Route 53, EC2	Dedicated Hosts, License Manager Configurations…
 
 Q283. AWS Service Catalog
 	• Users that are new to AWS have too many options, and may create
@@ -2577,9 +2324,7 @@ Q284. Pricing Models in AWS
 	• AWS has 4 pricing models:
 	• Pay as you go: pay for what you use, remain agile, responsive, meet scale demands
 	• Save when you reserve: minimize risks, predictably manage budgets, comply with long•terms requirements
-	• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved 
-	Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 
-	Nodes
+	• Reservations are available for EC2 Reserved Instances, DynamoDB Reserved 	Capacity, ElastiCache Reserved Nodes, RDS Reserved Instance, Redshift Reserved 	Nodes 
 	• Pay less by using more: volume•based discounts
 	• Pay less as AWS grows
 
@@ -2634,11 +2379,9 @@ Q288. Compute Pricing – Lambda & ECS
 	resources allocated to your applications in your containers
 
 Q289. Storage Pricing – S3
-	• Storage class: S3 Standard, S3 Infrequent Access, S3 One•Zone IA, S3
-	Intelligent Tiering, S3 Glacier and S3 Glacier Deep Archive
+	• Storage class: S3 Standard, S3 Infrequent Access, S3 One•Zone IA, S3 	Intelligent Tiering, S3 Glacier and S3 Glacier Deep Archive
 	• Number and size of objects: Price can be tiered (based on volume)
 	• Number and type of requests
-	• Data transfer OUT of the S3 region
 	• S3 Transfer Acceleration
 	• Lifecycle transitions
 	• Similar service: EFS (pay per use, has infrequent access & lifecycle rules)
@@ -2685,31 +2428,6 @@ Q293. Content Delivery – CloudFront
 	• Data Transfer Out (volume discount)
 	• Number of HTTP/HTTPS requests
 
-Q294. Networking Costs in AWS per GB • Simplified
-	Region
-	Availability Zone Availability Zone
-	Region
-	Availability Zone
-	$0.02
-	Inter•region
-	$0.02 if using
-	Public IP / Elastic IP
-	Free if using
-	private IP
-	$0.01 if
-	Using private IP
-	• Use Private IP
-	instead of Public
-	IP for good
-	savings and
-	better network
-	performance
-	• Use same AZ for
-	maximum savings
-	(at the cost of
-	high availability)
-
-
 Q295. Savings Plan
 	• Commit a certain $ amount per hour for 1 or 3 years
 	• Easiest way to setup long•term commitments on AWS
@@ -2725,7 +2443,6 @@ Q295. Savings Plan
 	• Machine Learning Savings Plan: SageMaker…
 	• Setup from the AWS Cost Explorer console
 	• Estimate pricing at https://aws.amazon.com/savingsplans/pricing/
-
 
 Q296. AWS Compute Optimizer
 	• Reduce costs and improve performance by 	recommending optimal AWS resources for your 	workloads
@@ -2824,8 +2541,7 @@ Q306. AWS Service Quotas
 	• Request a quota increase from AWS Service Quotas or shutdown resources before limit is reached
 
 Q307. Trusted Advisor
-	• No need to install anything – high level 
-	AWS account assessment
+	• No need to install anything – high level 	AWS account assessment
 	• Analyze your AWS accounts and provides 	recommendation on 5 categories
 	• Cost optimization
 	• Performance

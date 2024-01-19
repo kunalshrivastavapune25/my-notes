@@ -1,317 +1,252 @@
-Amazon Web Services (AWS) Overview:
-What is AWS?
-Amazon Web Services (AWS) is a cloud computing plform provided by Amazon.
-It offers a wide range of cloud services, including computing power, storage, databases, machine learning, analytics, and more.
-AWS Services:
-
-	Compute Services:
-		Amazon EC2 (Elastic Compute Cloud): Virtual servers in the cloud.
-		AWS Lambda: Serverless computing.
-
-	Storage Services:
-		Amazon S3 (Simple Storage Service): Object storage.
-		Amazon EBS (Elastic Block Store): Block-level storage volumes for use with EC2 instances.
-
-	Database Services:
-		Amazon RDS (Relational Database Service): Managed relational databases.
-		Amazon DynamoDB: Fully managed NoSQL database service.
-
-	Networking Services:
-		Amazon VPC (Virtual Private Cloud): Networking for AWS resources.
-		Amazon Route 53: Domain Name System (DNS) web service.
-
-	Machine Learning and AI Services:
-		Amazon SageMaker: Build, train, and deploy machine learning models.
-		Amazon Comprehend: Natural language processing.
-
-	Management and Monitoring:
-		AWS CloudWatch: Monitoring and management service.
-		AWS CloudTrail: Auditing and monitoring for AWS accounts.
-
-	Security Services:
-		AWS IAM (Identity and Access Management): User and access management.
-		AWS Key Management Service (KMS): Managed encryption keys.
-
-	AWS Global Infrastructure:
-		AWS operates in multiple regions and availability zones globally.
-		Regions are geographic areas, and availability zones are data centers within those regions.
-		Billing and Pricing:
-
-	AWS offers a pay-as-you-go pricing model.
-		Pricing varies based on the services used, region, and usage patterns.
-
-
-IaaS, PaaS, and SaaS are three different categories of cloud computing services that provide varying levels of abstraction and management responsibility for users.
-
-IaaS (Infrastructure as a Service):
-
-Definition: IaaS provides virtualized computing resources over the internet. It offers virtual machines, storage, and networking, allowing users to run applications and manage their own operating systems.
-Example (AWS): Amazon EC2 (Elastic Compute Cloud), Amazon S3 (Simple Storage Service).
-PaaS (Platform as a Service):
-
-Definition: PaaS delivers a platform allowing customers to develop, run, and manage applications without dealing with the complexities of infrastructure. It typically includes a runtime, development tools, and services for application hosting.
-Example (AWS): AWS Elastic Beanstalk, AWS Lambda, Google App Engine.
-SaaS (Software as a Service):
-
-Definition: SaaS provides ready-to-use software applications over the internet. Users can access and use the software without worrying about underlying infrastructure, maintenance, or updates.
-Example (AWS): Amazon Chime, Salesforce, Google Workspace.
-In summary:
-
-IaaS: Infrastructure is provided, and users manage applications, data, runtime, middleware, and operating systems.
-PaaS: Platform and tools are provided to build, deploy, and manage applications, and users manage the applications and data.
-SaaS: Fully functional software applications are provided, and users only need to use the application without managing any underlying infrastructure or components.
-FaaS stands for "Function as a Service." It is a category of cloud computing services that allows developers to execute individual functions or pieces of code in response to specific events without managing the underlying infrastructure. FaaS is a serverless computing model where developers can focus on writing code in the form of functions without dealing with the complexities of server provisioning, scaling, and maintenance.
-
-
-Q3. The Deployment Models of the Cloud
-	Private Cloud:
-		• Cloud services used by a single organization, not exposed to the public.
-		• Complete control
-		• Security for sensitive applications
-		• Meet specific business needs
-		EG. ROCKSPACE
-	Public Cloud:
-		• Cloud resources owned and operated by a thirdparty cloud service provider delivered over the Internet.
-		• Six Advantages of Cloud Computing
-		EG. Gogle Cloud, AWS
-	Hybrid Cloud:
-		• Keep some servers on premises and extend some capabilities to the Cloud
-		• Control over sensitive assets in your private infrastructure
-		• Flexibility and costeffectiveness of the public cloud
-
-
-Q7. Types of Cloud Computing
-	• Infrastructure as a Service (IaaS)
-		• Provide building blocks for cloud IT
-		• Provides networking, computers, data storage space
-		• Highest level of flexibility
-		• Easy parallel with traditional on-premises IT
-		• Amazon EC2 (on AWS)
-		• GCP, Azure, Rackspace, Digital Ocean, Linode
-	• Platform as a Service (PaaS)
-		• Removes the need for your organization to manage the underlying infrastructure
-		• Focus on the deployment and management of your applications
-		• Elastic Beanstalk (on AWS)
-		• Heroku, Google App Engine (GCP), Windows Azure (Microsoft)
-	• Software as a Service (SaaS)
-		• Completed product that is run and managed by the service provider
-		• Google Apps (Gmail), Dropbox, Zoom
-		• Many AWS services (ex: Rekognition for Machine Learning)
-	
-		SAAS Manages nothing	
-		 IAAS  PAAS     Applications
-		 IAAS  PAAS     Data
-		 IAAS           Runtime
-		 IAAS           Middleware
-		 IAAS           O/S
-						Virtualization
-						Servers
-						Storage
-						Networking
-
-Q8. Pricing of the Cloud – Quick Overview
-	• AWS has 3 pricing fundamentals, following the pay-as-you-go pricing
-	model
-	• Compute:
-		• Pay for compute time
-	• Storage:
-		• Pay for data stored in the Cloud
-	• Data transfer OUT of the Cloud:
-		• Data transfer IN is free
-	• Solves the expensive issue of traditional IT
-
-Q10. AWS Global Infrastructure
-	• AWS Regions
-		• AWS has Regions all around the world
-		• Names can be us-east-1, eu-west-3…
-		• A region is a cluster of data centers
-		• Most AWS services are region-scoped
-		How to choose an AWS Region?
-			• Compliance with data governance and legal
-			requirements: data never leaves a region without
-			your explicit permission
-			• Proximity to customers: reduced latency
-			• Available services within a Region: new services
-			and new features aren’t available in every Region
-			• Pricing: pricing varies region to region and is
-			transparent in the service pricing page
-			If you need to launch a new application,
-			where should you do it?
-	• AWS Availability Zones
-		Each region has many availability zones
-		(usually 3, min is 3, max is 6). Example:
-		• ap-southeast-2a
-		• ap-southeast-2b
-		• ap-southeast-2c
-		• Each availability zone (AZ) is one or more
-		discrete data centers with redundant power,
-		networking, and connectivity
-		• They’re separate from each other, so that
-		they’re isolated from disasters
-		• They’re connected with high bandwidth,
-		ultra-low latency networking
-		AWS Region
-		Sydney: ap-southeast-2
-		ap-southeast-2a
-		ap-southeast-2b ap-southeast-2c
-	• AWS Data Centers
-	• AWS Edge Locations
-		Amazon has 400+ Points of Presence (400+ Edge Locations & 10+
-		Regional Caches) in 90+ cities across 40+ countries
-		• Content is delivered to end users with lower latency
-
-
-##################COMPUTE#######################
-
-1. EC2 (Elastic Compute Cloud): Virtual servers in the cloud. (IAAS)
-	EC2 provides resizable compute capacity in the cloud, allowing users to run virtual servers (instances) and manage their own operating systems, applications, and configurations.
-	Virtual servers in the cloud, giving users full control over the infrastructure.
-2. Lambda: Serverless compute service.FaaS (Function as a Service)
-	Lambda is a serverless compute service where users can run code without provisioning or managing servers. It automatically scales and runs code in response to events, such as HTTP requests or changes to data in S3
-	Suited for event-driven and microservices architectures..
-3. Elastic Beanstalk: Fully managed service for deploying applications.(PAAS)
-	Elastic Beanstalk simplifies the deployment and management of applications by abstracting away infrastructure details. It automatically handles capacity provisioning, load balancing, and application health monitoring, allowing developers to focus on code.
-	 Suited for web applications and services.
-4. ECS (Elastic Container Service): Orchestrates Docker containers.(PAAS)
-	ECS allows users to run and manage Docker containers on a scalable infrastructure. It provides control over container placement, integrates with other AWS services, and supports both EC2-based and Fargate-based container deployments.
-5. Batch: Run batch computing workloads.(PAAS)
-	AWS Batch enables users to run batch computing workloads, such as data processing and analytics, on the AWS Cloud. It dynamically provisions resources as needed, and users only pay for what they use, making it suitable for cost-effective, scalable batch processing.
-
-##################STORAGE#######################
-
-6. S3 (Simple Storage Service): Scalable object storage.(IAAS/PAAS)
-7. EBS (Elastic Block Store): Block-level storage for EC2 instances.(IAAS)
-8. EFS (Elastic File System): Scalable file storage for EC2.(IAAS)
-9. Glacier: Low-cost archival storage for infrequently accessed data.(IAAS)
-10. Storage Gateway: Connect on-premises software to cloud storage.(IAAS)
-
-
-##################DATABASE(PAAS)#######################
-
-11. RDS (Relational Database Service): Managed relational databases.
-12. DynamoDB: Fully managed NoSQL database.
-13. Aurora: MySQL and PostgreSQL-compatible relational database.
-14. ElastiCache: In-memory caching for faster performance.
-15. Redshift: Fully managed data warehouse.
-
-##################NETWORKING#######################
-
-16. VPC (Virtual Private Cloud): Isolated cloud resources in a virtual network.(IAAS)
-17. Route 53: Scalable domain name system (DNS).(IAAS)
-18. Direct Connect: Dedicated network connection to AWS.(IAAS)
-19. CloudFront: Content delivery network (CDN).(PAAS)
-20. App Mesh: Service mesh for microservices.(PAAS)
-21. Transit Gateway: Connect VPCs and on-premises networks.(IAAS)
-
-##################Security & Identity: (PAAS) #######################
-
-22. IAM (Identity and Access Management): Securely control access to AWS services.
-23. KMS (Key Management Service): Centralized key management.
-24. GuardDuty: Intelligent threat detection.
-25. Inspector: Automated security assessment service.
-26. Cognito: Identity and access management for web and mobile apps.
-27. Secrets Manager: Protect access to sensitive information.
-
-##################ANALYTICS (PAAS)#######################
-
-28. Kinesis: Real-time data streaming.
-29. Athena: Query data in S3 using SQL.
-30. Glue: Fully managed extract, transform, and load (ETL) service.
-31. Quicksight: Business intelligence service.
-32. EMR (Elastic MapReduce): Big data processing framework.
-
-##################MACHINE LEARNING(PAAS)#######################
-
-33. SageMaker: Build, train, and deploy machine learning models.
-34. Comprehend: Natural language processing service.
-35. Transcribe: Convert speech into text.
-36. Personalize: Create personalized recommendations.
-37. Rekognition: Image and video analysis.
-38. Forecast: Time-series forecasting.
-
-##################Developer Tools:(PAAS)#######################
-
-39. CodePipeline: Continuous integration and delivery.
-40. CloudFormation: Infrastructure as Code.
-41. OpsWorks: Managed Chef and Puppet.
-42. CodeCommit: Securely store and manage Git repositories.
-43. CodeBuild: Fully managed build service.
-
-##################Management & Monitoring:(PAAS)#######################
-
-44. CloudWatch: Monitor and log AWS resources.
-45. CloudTrail: Track user activity and API usage.
-46. Config: Assess, audit, and evaluate configurations.
-47. X-Ray: Analyze and debug distributed applications.
-48. Systems Manager: Gain operational insights and take action.
-
-##################Billing & Cost Management:(PAAS)#######################
-
-49. Cost Explorer: Analyze AWS costs.
-50. Budgets: Set custom cost and usage budgets.
-51. Savings Plans: Save on EC2 usage.
-52. Reserved Instances: Reserve capacity and save on costs.
-
-##################IoT (Internet of Things):(PAAS)#######################
-
-53. IoT Core: Connect devices to the cloud securely.
-54. Greengrass: Run IoT applications on edge devices.
-55. FreeRTOS: IoT operating system for microcontrollers.
-
-##################Migration & Transfer:(PAAS)######################
-
-56. Snowball: Petabyte-scale data transfer.
-57. AWS Migration Hub: Track application migration.
-58. DataSync: Transfer data between on-premises and AWS.
-
-##################Game Development(PAAS)#######################
-
-59. GameLift: Deploy and scale multiplayer games.
-60. GameSparks: Live game operations platform.
-
-##################Media Services:(PAAS)#######################
-
-61. MediaConvert: File-based video transcoding.
-62. MediaLive: Broadcast-grade live video processing.
-63. MediaPackage: Video origination and packaging.
-
-##################Blockchain:(PAAS) #######################
-
-64. Managed Blockchain: Create and manage scalable blockchain networks.
-
-##################AR/VR (Augmented Reality/Virtual Reality):(PAAS)#######################
-
-65. Sumerian: Create and run AR, VR, and 3D applications.
-
-##################Containers:(PAAS)#######################
-
-66. EKS (Elastic Kubernetes Service): Managed Kubernetes service.
-67. Fargate: Serverless compute engine for containers.
-
-##################Customer Engagement:(PAAS)#######################
-
-68. Connect: Cloud contact center service.
-69. Pinpoint: Targeted user engagement.
-
-#################Business Applications:(SAAS)#######################
-
-70. Chime: Online meetings and video conferencing.
-71. WorkSpaces: Virtual desktops in the cloud.
-72. AppStream: Stream desktop applications.
-
-##################Quantum Computing:(PAAS)#######################
-
-73. Braket: Quantum computing service.
-
-##################Satellite(PAAS)#######################
-
-74. Ground Station: Fully managed ground station as a service.
-
-##################API(PAAS)#######################
-
-75. API Gateway: Create, publish, and manage APIs.
-
-##################Desktop & App Streaming:(PAAS)#######################
-
-76. WorkDocs: Secure document storage.
-
+1. What is Cloud Computing?
+2. AWS Identity & Access Management
+	• Users: mapped to a physical user, has a password for AWS Console
+	• Groups: contains users only
+	• Policies: JSON document that outlines permissions for users or groups
+	• Roles: for EC2 instances or AWS services
+	• Security: MFA + Password Policy
+	• AWS CLI: manage your AWS services using the command-line
+	• AWS SDK: manage your AWS services using a programming language
+	• Access Keys: access AWS using the CLI or SDK
+	• Audit: IAM Credential Reports & IAM Access Advisor
+3. Amazon EC2
+	• EC2 Instance: AMI (OS) + Instance Size (CPU + RAM) + Storage + 	security groups + EC2 User Data
+	• Security Groups: Firewall attached to the EC2 instance
+	• EC2 User Data: Script launched at the first start of an instance
+	• SSH: start a terminal into our EC2 Instances (port 22)
+	• EC2 Instance Role: link to IAM roles
+	• Purchasing Options: On-Demand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated Instance
+4. Amazon EC2 Instance Storage
+	• EBS volumes:
+		• network drives attached to one EC2 instance at a time
+		• Mapped to an Availability Zones
+		• Can use EBS Snapshots for backups / transferring EBS volumes across AZ
+	• AMI: create ready-to-use EC2 instances with our customizations
+	• EC2 Image Builder: automatically build, test and distribute AMIs
+	• EC2 Instance Store:
+		• High performance hardware disk attached to our EC2 instance
+		• Lost if our instance is stopped / terminated
+	• EFS: network file system, can be attached to 100s of instances in a region
+	• EFS-IA: cost-optimized storage class for infrequent accessed files
+	• FSx for Windows: Network File System for Windows servers
+	• FSx for Lustre: High Performance Computing Linux file system
+5. Elastic Load Balancing & Auto Scaling Group
+	• High Availability vs Scalability (vertical and horizontal) vs Elasticity vs Agility in the Cloud
+	• Elastic Load Balancers (ELB)
+	• Distribute traffic across backend EC2 instances, can be Multi-AZ
+	• Supports health checks
+	• 4 types: Classic (old), Application (HTTP – L7), Network (TCP – L4), Gateway (L3)
+	• Auto Scaling Groups (ASG)
+	• Implement Elasticity for your application, across multiple AZ
+	• Scale EC2 instances based on the demand on your system, replace unhealthy
+	• Integrated with the ELB
+6. Amazon S3
+	• Buckets vs Objects: global unique name, tied to a region
+	• S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+	• S3 Websites: host a static website on Amazon S3
+	• S3 Versioning: multiple versions for files, prevent accidental deletes
+	• S3 Replication: same-region or cross-region, must enable versioning
+	• S3 Storage Classes: Standard, IA, 1Z-IA, Intelligent, Glacier (Instant, Flexible, Deep)
+	• Snow Family: import data onto S3 through a physical device, edge computing
+	• OpsHub: desktop application to manage Snow Family devices
+	• Storage Gateway: hybrid solution to extend on-premises storage to S3
+7. Databases & Analytics
+	• Relational Databases - OLTP: RDS & Aurora (SQL)
+	• Differences between Multi-AZ, Read Replicas, Multi-Region
+	• In-memory Database: ElastiCache
+	• Key/Value Database: DynamoDB (serverless) & DAX (cache for DynamoDB)
+	• Warehouse - OLAP: Redshift (SQL)
+	• Hadoop Cluster: EMR
+	• Athena: query data on Amazon S3 (serverless & SQL)
+	• QuickSight: dashboards on your data (serverless)
+	• DocumentDB: “Aurora for MongoDB” (JSON – NoSQL database)
+	• Amazon QLDB: Financial Transactions Ledger (immutable journal, cryptographically verifiable)
+	• Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains
+	• Glue: Managed ETL (Extract Transform Load) and Data Catalog service
+	• Database Migration: DMS
+	• Neptune: graph database
+8. Other Compute Services
+	Other Compute - Summary
+	• Docker: container technology to run applications
+	• ECS: run Docker containers on EC2 instances
+	• Fargate:
+	• Run Docker containers without provisioning the infrastructure
+	• Serverless offering (no EC2 instances)
+	• ECR: Private Docker Images Repository
+	• Batch: run batch jobs on AWS across managed EC2 instances
+	• Lightsail: predictable & low pricing for simple application & DB stacks
+	Lambda Summary
+	• Lambda is Serverless, Function as a Service, seamless scaling, reactive
+	• Lambda Billing:
+	• By the time run x by the RAM provisioned
+	• By the number of invocations
+	• Language Support: many programming languages except (arbitrary) Docker
+	• Invocation time: up to 15 minutes
+	• Use cases:
+	• Create Thumbnails for images uploaded onto S3
+	• Run a Serverless cron job
+	• API Gateway: expose Lambda functions as HTTP API
+9. Deploying & Managing Infrastructure at Scale
+	Deployment - Summary
+	• CloudFormation: (AWS only)
+	• Infrastructure as Code, works with almost all of AWS resources
+	• Repeat across Regions & Accounts
+	• Beanstalk: (AWS only)
+	• Platform as a Service (PaaS), limited to certain programming languages or Docker
+	• Deploy code consistently with a known architecture: ex, ALB + EC2 + RDS
+	• CodeDeploy (hybrid): deploy & upgrade any application onto servers
+	• Systems Manager (hybrid): patch, configure and run commands at scale
+	• OpsWorks (hybrid): managed Chef and Puppet in AWS
+	Developer Services - Summary
+	• CodeCommit: Store code in private git repository (version controlled)
+	• CodeBuild: Build & test code in AWS
+	• CodeDeploy: Deploy code onto servers
+	• CodePipeline: Orchestration of pipeline (from code to build to deploy)
+	• CodeArtifact: Store software packages / dependencies on AWS
+	• CodeStar: Unified view for allowing developers to do CICD and code
+	• Cloud9: Cloud IDE (Integrated Development Environment) with collab
+	• AWS CDK: Define your cloud infrastructure using a programming language
+10. Global Infrastructure
+	Global Applications in AWS - Summary
+	• Global DNS: Route 53
+	• Great to route users to the closest deployment with least latency
+	• Great for disaster recovery strategies
+	• Global Content Delivery Network (CDN): CloudFront
+	• Replicate part of your application to AWS Edge Locations – decrease latency
+	• Cache common requests – improved user experience and decreased latency
+	• S3 Transfer Acceleration
+	• Accelerate global uploads & downloads into Amazon S3
+	• AWS Global Accelerator
+	• Improve global application availability and performance using the AWS global 	network
+	Global Applications in AWS - Summary
+	• AWS Outposts
+	• Deploy Outposts Racks in your own Data Centers to extend AWS services
+	• AWS WaveLength
+	• Brings AWS services to the edge of the 5G networks
+	• Ultra-low latency applications
+	• AWS Local Zones
+	• Bring AWS resources (compute, database, storage, …) closer to your users
+	• Good for latency-sensitive applications
+11. Cloud Integration
+	Integration Section – Summary
+	• SQS:
+	• Queue service in AWS
+	• Multiple Producers, messages are kept up to 14 days
+	• Multiple Consumers share the read and delete messages when done
+	• Used to decouple applications in AWS
+	• SNS:
+	• Notification service in AWS
+	• Subscribers: Email, Lambda, SQS, HTTP, Mobile…
+	• Multiple Subscribers, send all messages to all of them
+	• No message retention
+	• Kinesis: real-time data streaming, persistence and analysis
+	• Amazon MQ: managed message broker for ActiveMQ and RabbitMQ in the
+	cloud (MQTT, AMQP.. protocols)
+12. Cloud Monitoring
+	Monitoring Summary
+	• CloudWatch:
+	• Metrics: monitor the performance of AWS services and billing metrics
+	• Alarms: automate notification, perform EC2 action, notify to SNS based on metric
+	• Logs: collect log files from EC2 instances, servers, Lambda functions…
+	• Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule
+	• CloudTrail: audit API calls made within your AWS account
+	• CloudTrail Insights: automated analysis of your CloudTrail Events
+	• X-Ray: trace requests made through your distributed applications
+	• AWS Health Dashboard: status of all AWS services across all regions
+	• AWS Account Health Dashboard: AWS events that impact your infrastructure
+	• Amazon CodeGuru: automated code reviews and application performance 	recommendations
+13. Amazon VPC
+	VPC Closing Comments
+	• VPC – Virtual Private Cloud
+	• Subnets – Tied to an AZ, network partition of the VPC
+	• Internet Gateway – at the VPC level, provide Internet Access
+	• NAT Gateway / Instances – give internet access to private subnets
+	• NACL – Stateless, subnet rules for inbound and outbound
+	• Security Groups – Stateful, operate at the EC2 instance level or ENI
+	• VPC Peering – Connect two VPC with non overlapping IP ranges,	nontransitive
+	• Elastic IP –fixed public IPv4, ongoing cost if not in-use 	VPC Closing Comments
+	• VPC Endpoints – Provide private access to AWS Services within VPC
+	• PrivateLink – Privately connect to a service in a 3rd party VPC
+	• VPC Flow Logs – network traffic logs
+	• Site to Site VPN – VPN over public internet between on-premises DC and AWS
+	• Client VPN – OpenVPN connection from your computer into your 	VPC
+	• Direct Connect – direct private connection to AWS
+	• Transit Gateway – Connect thousands of VPC and on-premises networks together
+14. Security & Compliance
+	Section Summary: Security & Compliance
+	• Shared Responsibility on AWS
+	• Shield: Automatic DDoS Protection + 24/7 support for advanced
+	• WAF: Firewall to filter incoming requests based on rules
+	• KMS: Encryption keys managed by AWS
+	• CloudHSM: Hardware encryption, we manage encryption keys
+	• AWS Certificate Manager: provision, manage, and deploy SSL/TLS Certificates
+	• Artifact: Get access to compliance reports such as PCI, ISO, etc…
+	• GuardDuty: Find malicious behavior with VPC, DNS & CloudTrail Logs
+	• Inspector: find software vulnerabilities in EC2, ECR Images, and Lambda functions
+	• Network Firewall: Protect VPC against network attacks 
+	Section Summary: Security & Compliance
+	• Config: Track config changes and compliance against rules
+	• Macie: Find sensitive data (ex: PII data) in Amazon S3 buckets
+	• CloudTrail: Track API calls made by users within account
+	• AWS Security Hub: gather security findings from multiple AWS accounts
+	• Amazon Detective: find the root cause of security issues or suspicious activities
+	• AWS Abuse: Report AWS resources used for abusive or illegal purposes
+	• Root user privileges:
+	• Change account settings
+	• Close your AWS account
+	• Change or cancel your AWS Support plan
+	• Register as a seller in the Reserved Instance Marketplace
+	• IAM Access Analyzer: identify which resources are shared externally
+15. Machine Learning
+	AWS Machine Learning - Summary
+	• Rekognition: face detection, labeling, celebrity recognition
+	• Transcribe: audio to text (ex: subtitles)
+	• Polly: text to audio
+	• Translate: translations
+	• Lex: build conversational bots – chatbots
+	• Connect: cloud contact center
+	• Comprehend: natural language processing
+	• SageMaker: machine learning for every developer and data scientist
+	• Forecast: build highly accurate forecasts
+	• Kendra: ML-powered search engine
+	• Personalize: real-time personalized recommendations
+	• Textract: detect text and data in documents
+16. Account Management, Billing, & Support
+	Account Best Practices – Summary
+	• Operate multiple accounts using Organizations
+	• Use SCP (service control policies) to restrict account power
+	• Easily setup multiple accounts with best-practices with AWS Control Tower
+	• Use Tags & Cost Allocation Tags for easy management & billing
+	• IAM guidelines: MFA, least-privilege, password policy, password rotation
+	• Config to record all resources configurations & compliance over time
+	• CloudFormation to deploy stacks across accounts and regions
+	• Trusted Advisor to get insights, Support Plan adapted to your needs
+	• Send Service Logs and Access Logs to S3 or CloudWatch Logs
+	• CloudTrail to record API calls made within your account
+	• If your Account is compromised: change the root password, delete and rotate all passwords / keys, contact the AWS support
+	• Allow users to create pre-defined stacks defined by admins using AWS Service Catalog  
+	Billing and Costing Tools – Summary
+	• Compute Optimizer: recommends resources’ configurations to reduce cost
+	• Pricing Calculator: cost of services on AWS
+	• Billing Dashboard: high level overview + free tier dashboard
+	• Cost Allocation Tags: tag resources to create detailed reports
+	• Cost and Usage Reports: most comprehensive billing dataset
+	• Cost Explorer: View current usage (detailed) and forecast usage
+	• Billing Alarms: in us-east-1 – track overall and per-service billing
+	• Budgets: more advanced – track usage, costs, RI, and get alerts
+	• Savings Plans: easy way to save based on long-term usage of AWS
+	• Cost Anomaly Detection: detect unusual spends using Machine Learning
+	• Service Quotas: notify you when you’re close to service quota threshold
+17. Advanced Identity
+	• IAM
+	• Identity and Access Management inside your AWS account
+	• For users that you trust and belong to your company
+	• Organizations: Manage multiple accounts
+	• Security Token Service (STS): temporary, limited-privileges credentials to 	access AWS resources
+	• Cognito: create a database of users for your mobile & web applications
+	• Directory Services: integrate Microsoft Active Directory in AWS
+	• IAM Identity Center: one login for multiple AWS accounts & applications
+
+18. Other AWS Services
+
+19. AWS Architecting & EcoSystem
