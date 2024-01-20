@@ -1,0 +1,10 @@
+list:
+ l =[]
+ l =['s','s','s','s']
+
+p =""
+type(p)
+help(str)    
+type(l)
+help(list)  
+  
