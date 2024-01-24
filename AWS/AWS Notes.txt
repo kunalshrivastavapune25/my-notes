@@ -2,14 +2,9 @@ CLF C02
 40 aws services (200+ available)
 
 Q1. The Deployment Models of the Cloud
-	Private Cloud:
-		• Cloud services used by a single organization, not exposed to the public.
-			EG. ROCKSPACE
-	Public Cloud:
-		• Cloud resources owned and operated by a thirdparty cloud service provider delivered over the Internet.
-		EG. Gogle Cloud, AWS
-	Hybrid Cloud:
-		• Keep some servers on premises and extend some capabilities to the Cloud
+	Private Cloud: single organization, not exposed to the public EG. ROCKSPACE
+	Public Cloud: thirdparty EG. Gogle Cloud, AWS
+	Hybrid Cloud: Keep some servers on premises and extend some capabilities to the Cloud
 
 Q2. Types of Cloud Computing
 	• Infrastructure as a Service (IaaS)
@@ -29,25 +24,11 @@ Q2. Types of Cloud Computing
 		• Google Apps (Gmail), Dropbox, Zoom
 		• Many AWS services (ex: Rekognition for Machine Learning)
 	
-		SAAS Manages nothing	
-		 IAAS  PAAS     Applications
-		 IAAS  PAAS     Data
-		 IAAS           Runtime
-		 IAAS           Middleware
-		 IAAS           O/S
-						Virtualization
-						Servers
-						Storage
-						Networking
-	
 Q3. Pricing of the Cloud – Quick Overview
 	• AWS has 3 pricing fundamentals, following the pay•as•you•go pricingmodel
-	• Compute:
-		• Pay for compute time
-	• Storage:
-		• Pay for data stored in the Cloud
-	• Data transfer OUT of the Cloud:
-		• Data transfer IN is free
+	• Compute: Pay for compute time
+	• Storage: Pay for data stored in the Cloud
+	• Data transfer OUT of the Cloud: Data transfer IN is free
 	• Solves the expensive issue of traditional IT
 
 Q4. AWS Global Infrastructure
@@ -114,17 +95,16 @@ Q7. IAM: Permissions
 
 Q8. IAM Policies Structure
 	• Consists of
-	• Version: policy language version, always include “2012•10•
-	17”
+	• Version: policy language version, always include “2012•10•17”
 	• Id: an identifier for the policy (optional)
 	• Statement: one or more individual statements (required)
 	• Statements consists of
-	• Sid: an identifier for the statement (optional)
-	• Effect: whether the statement allows or denies access	(Allow, Deny)
-	• Principal: account/user/role to which this policy applied to
-	• Action: list of actions this policy allows or denies
-	• Resource: list of resources to which the actions applied to
-	• Condition: conditions for when this policy is in effect	(optional)
+		• Sid: an identifier for the statement (optional)
+		• Effect: whether the statement allows or denies access	(Allow, Deny)
+		• Principal: account/user/role to which this policy applied to
+		• Action: list of actions this policy allows or denies
+		• Resource: list of resources to which the actions applied to
+		• Condition: conditions for when this policy is in effect	(optional)
 
 Q9. Multi Factor Authentication • MFA
 	    • Virtual MFA device
