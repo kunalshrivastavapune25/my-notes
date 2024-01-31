@@ -9,12 +9,15 @@ Chief Information Officer (CIO)
 Correct option:
 Engineer
 Chief Technology Officer (CTO)
+
 AWS Cloud Adoption Framework (CAF) set of guidelines and best practices, Common stakeholders include Chief Technology Officer (CTO), technology leaders, architects, and engineers.
 
 ###############################################################################
 
 Question 2: 
-A silicon valley based healthcare startup stores anonymized patient health data on Amazon S3. The CTO further wants to ensure that any sensitive data on S3 is discovered and identified to prevent any sensitive data leaks. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
+A silicon valley based healthcare startup stores anonymized patient health data on Amazon S3. 
+The CTO further wants to ensure that any sensitive data on S3 is discovered and identified to prevent any sensitive data leaks. 
+As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
 Amazon Macie
 AWS Glue
 Amazon Polly 
@@ -67,7 +70,10 @@ AWS Key Management Service (AWS KMS) - AWS Key Management Service (KMS) makes it
 ###############################################################################
 
 Question 5: 
-A data analytics company is running a proprietary batch analytics application on AWS and wants to use a storage service which would be accessed by hundreds of EC2 instances simultaneously to append data to existing files. As a Cloud Practitioner, which AWS service would you suggest for this use-case?
+A data analytics company is running a proprietary batch analytics application on AWS 
+and wants to use a storage service which would be accessed by hundreds of EC2 instances 
+simultaneously to append data to existing files. As a Cloud Practitioner, which AWS service would you suggest for this use-case?
+
 
 Amazon Elastic File System (Amazon EFS)
 Amazon Elastic Block Store (Amazon EBS) 
@@ -88,7 +94,8 @@ Amazon Simple Storage Service (Amazon S3) - Amazon Simple Storage Service (Amazo
 ###############################################################################
 
 Question 6: 
-An IT company is planning to migrate from an on-premises environment to AWS Cloud. Which of the following expense areas would result in cost savings when the company moves to AWS Cloud? (Select two)
+An IT company is planning to migrate from an on-premises environment to AWS Cloud. 
+Which of the following expense areas would result in cost savings when the company moves to AWS Cloud? (Select two)
 
 	Data center hardware infrastructure expenditure
 	Data center physical security expenditure
@@ -108,7 +115,9 @@ expenditure on the SaaS application license fee, developer salary, and project m
 ###############################################################################
 
 Question 7: 
-A startup wants to set up its IT infrastructure on AWS Cloud. The CTO would like to get an estimate of the monthly AWS bill based on the AWS services that the startup wants to use. As a Cloud Practitioner, which AWS service would you suggest for this use-case?
+A startup wants to set up its IT infrastructure on AWS Cloud. 
+The CTO would like to get an estimate of the monthly AWS bill based on the AWS services that the startup wants to use. 
+As a Cloud Practitioner, which AWS service would you suggest for this use-case?
 
 AWS Pricing Calculator
 AWS Cost & Usage Report (AWS CUR) 
@@ -125,7 +134,8 @@ AWS Budgets - AWS Budgets gives the ability to set custom budgets that alert you
 ###############################################################################
 
 Question 8: 
-A startup wants to migrate its data and applications from the on-premises data center to AWS Cloud. Which of the following options can be used by the startup to help with this migration? (Select two)
+A startup wants to migrate its data and applications from the on-premises data center to AWS Cloud. 
+Which of the following options can be used by the startup to help with this migration? (Select two)
 
 Leverage AWS Professional Services to accelerate the infrastructure migration
 Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration
@@ -165,7 +175,8 @@ AWS Enterprise On-Ramp Support - production/business critical workloads in AWS a
 
 ###################################################################################
 
-Question 10: A multi-national corporation wants to get expert professional advice on migrating to AWS and managing their applications on AWS Cloud. Which of the following entities would you recommend for this engagement?
+Question 10: A multi-national corporation wants to get expert professional advice on migrating to AWS and managing their applications on AWS Cloud. 
+Which of the following entities would you recommend for this engagement?
 
 	APN Consulting Partner
 	APN Technology Partner 
@@ -441,7 +452,9 @@ AWS owned key - AWS owned keys are a collection of KMS keys that an AWS service 
 ###################################################################################
 
 Question 24: 
-A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. However, some of the units under-utilize their reserved instances while other units need more reserved instances. As a Cloud Practitioner, which of the following would you recommend as the most cost-optimal solution?
+A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. 
+However, some of the units under-utilize their reserved instances while other units need more reserved instances. 
+As a Cloud Practitioner, which of the following would you recommend as the most cost-optimal solution?
 
 	Use AWS Organizations to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
 	Use AWS Trusted Advisor to manage AWS accounts of all units and then share the reserved EC2 instances amongst all units
@@ -483,7 +496,8 @@ Trade variable expense for capital expense - With cloud computing, you actually 
 
 
 Question 26: 
-A company wants to move to AWS cloud and release new features with quick iterations by utilizing relevant AWS services whenever required. Which of the following characteristics of AWS Cloud does it want to leverage?
+A company wants to move to AWS cloud and release new features with quick iterations by utilizing relevant AWS services whenever required. 
+Which of the following characteristics of AWS Cloud does it want to leverage?
 	Agility
 	Elasticity
 	Reliability
@@ -499,7 +513,8 @@ Reliability - This refers to the ability of a system to recover from infrastruct
 Scalability - Scalability is the measurement of a system's ability to grow to accommodate an increase in demand, or shrink down to a diminishing demand.
 
 Question 27: 
-A multi-national company has just moved its infrastructure from its on-premises data center to AWS Cloud. As part of the shared responsibility model, AWS is responsible for which of the following?
+A multi-national company has just moved its infrastructure from its on-premises data center to AWS Cloud. 
+As part of the shared responsibility model, AWS is responsible for which of the following?
 	Physical and Environmental controls
 	Patching guest OS
 	Configuring customer applications
@@ -517,7 +532,8 @@ Service and Communications Protection or Zone Security - Customers are responsib
 
 
 Question 28: 
-The DevOps team at an e-commerce company is trying to debug performance issues for its serverless application built using a microservices architecture. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
+The DevOps team at an e-commerce company is trying to debug performance issues for its serverless application 
+built using a microservices architecture. As a Cloud Practitioner, which AWS service would you recommend addressing this use-case?
 	AWS X-Ray
 	AWS Trusted Advisor
 	Amazon Pinpoint
@@ -553,7 +569,9 @@ Use Amazon Translate to convert speech to text for downstream analysis. Then use
 Use Amazon Polly to convert speech to text for downstream analysis. Then use Amazon Translate to convey the text results via speech - Amazon Polly cannot be used to convert speech to text, so this option is incorrect.
 
 Question 30: 
-A startup wants to provision an EC2 instance for the lowest possible cost for a long-term duration but needs to make sure that the instance would never be interrupted. As a Cloud Practitioner, which of the following options would you recommend?
+A startup wants to provision an EC2 instance for the lowest possible cost for a long-term duration 
+but needs to make sure that the instance would never be interrupted. As a Cloud Practitioner, 
+which of the following options would you recommend?
 	EC2 Reserved Instance (RI)
 	EC2 On-Demand Instance
 	EC2 Spot Instance
@@ -639,10 +657,14 @@ latency-based routing - This routing policy is used when you have resources in m
 
 
 Question 34: Skipped
-Which of the following AWS Support plans provide access to guidance, configuration, and troubleshooting of AWS interoperability with third-party software? (Select two)
+Which of the following AWS Support plans provide access to guidance, configuration, and 
+troubleshooting of AWS interoperability with third-party software? (Select two)
 
-
-
+AWS Enterprise Support
+AWS Business Support
+AWS Basic Support 
+AWS Developer Support
+AWS Corporate Support
 
 
 
