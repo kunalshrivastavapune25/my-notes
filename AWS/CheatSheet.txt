@@ -1,51 +1,26 @@
-What is Cloud Computing?
-	On-demand delivery of compute, database storage, applications, other IT resources through cloud platform via Internet
-	Pay-as-you-go pricing
-
 6 Advantages of Cloud Computing
 	Trade capital expense for variable expense
-		Only pay for what you use
 	Benefit from massive economies of scale
-		You won’t have same purchasing power as Amazon
-		They get cheaper prices to purchase servers, hardware
 	Stop guessing about capacity
-		You’ll buy too much or too little. Too much = wasted money, too little
 	Increase speed and agility
-		Websites/apps can scale infinitely with demand
 	Stop spending money running/maintaining data centers
-		Focus on what you’re good at, not managing infrastructures
 	Go global in minutes
-		Deploy apps in minutes
-		Provide lower latency and better experience at minimal cost	
-		
+
 3 Types of Cloud Computing
 	Infrastructure as a Service (IAAS)
-		You manage the server (physical or virtual) as well as the operating system
-		Data center provider has no access to your server
 	Platform as a Service (PAAS)
-		Someone else manages the underlying hardware and operating systems, you just focus on your applications
-		You upload your code and it just executes
-		Think of GoDaddy
 	Software as a Service (SAAS)
-		Think of Gmail
-		All you do is interact with the application, manage the software and how you want to use it
-		Someone else takes care of the infrastructure and everything related to it		
 
 3 Types of Cloud Computing Deployments
 	Public Cloud – AWS, Azure, Google Cloud Platform
 	Hybrid – Mix of public and private
-		May want to keep some sensitive data on-premise
 	Private Cloud (or on-premise) – You manage it in your data center. Openstack or Vmware		
 	
-	
 Around the World with AWS
-	Region
-		Geographic area consisting of 2 or more availability zones
-	Availability Zone
-		A data center
-	Edge Location
-		CDN Endpoints for CloudFront
-		Many more edge locations than regions	
+	Region 		Geographic area consisting of 2 or more availability zones
+	Availability Zone 		A data center
+	Edge Location 		CDN Endpoints for CloudFront
+		
 
 Let’s Log Into AWS
 Support Plans

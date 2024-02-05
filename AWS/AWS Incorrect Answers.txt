@@ -29,6 +29,25 @@ Which AWS Support plan provides architectural guidance contextual to your specif
 AWS Business Support
 
 
+A company needs a storage solution for a project wherein the data is accessed less frequently but needs rapid access when required. Which S3 storage class is the MOST cost-effective for the given use-case?
+	Amazon S3 Standard-Infrequent Access (S3 Standard-IA)
+
+	Amazon S3 Standard-Infrequent Access (S3 Standard-IA) is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval fee. This combination of low cost and high performance make S3 Standard-IA ideal for long-term storage, backups, and as a data store for disaster recovery files.
+
+
+Which of the following AWS Support plans provide access to only core checks from the AWS Trusted Advisor Best Practice Checks? (Select two)
+	AWS Basic Support
+	AWS Developer Support
+
+Which AWS services can be used to facilitate organizational change management, part of the Reliability pillar of AWS Well-Architected Framework? AWS Config
+Amazon CloudWatch
+AWS CloudTrail
+
+Which of the following AWS services support VPC Endpoint Gateway for a private connection from a VPC? (Select two)
+Amazon Simple Storage Service (Amazon S3)
+Amazon DynamoDB
+
+
 MOCK2:
 
 Question 1: 
@@ -76,6 +95,19 @@ Question 10:
 AWS Compute Optimizer delivers recommendations for which of the following AWS resources? (Select two)
 	Amazon Elastic Compute Cloud (Amazon EC2) instances, Amazon EC2 Auto Scaling groups
 	Amazon Elastic Block Store (Amazon EBS), AWS Lambda functions
+
+An organization has a complex IT architecture involving a lot of system dependencies and it wants to track the history of changes to each resource. Which AWS service will help the organization track the history of configuration changes for all the resources?
+AWS Config
+
+An e-commerce company wants to store data from a recommendation engine in a database. As a Cloud Practioner, which AWS service would you recommend to provide this functionality with the LEAST operational overhead for any scale?
+Amazon DynamoDB
+
+
+What foundational capability under the operations perspective is part of the AWS Cloud Adoption Framework (AWS CAF)?
+Performance and capacity management
+
+
+
 
 
 MOCK3:
@@ -188,6 +220,15 @@ An IT company is on a cost-optimization spree and wants to identify all Amazon E
 Question 22:
 Which AWS service can be used for online analytical processing?
 	Amazon Redshift
+
+An IT company is on a cost-optimization spree and wants to identify all Amazon Elastic Compute Cloud (Amazon EC2) instances that are under-utilized. Which AWS services can be used off-the-shelf to address this use-case without needing any manual configurations? (Select two)
+AWS Trusted Advisor
+AWS Cost Explorer
+
+
+A company has a static website hosted on an Amazon Simple Storage Service (Amazon S3) bucket in an AWS Region in Asia. Although most of its users are in Asia, now it wants to drive growth globally. How can it improve the global performance of its static website?
+Use Amazon CloudFront to improve the performance of your website
+
 
 MOCK4
 
@@ -356,6 +397,46 @@ Which pillar of AWS Well-Architected Framework is responsible for making sure th
 Question 23:
 Which AWS service would you choose for a data processing project that needs a schemaless database?
 	Amazon DynamoDB
+
+Which of the following is correct regarding the Amazon Relational Database Service (Amazon RDS) service?
+You can use both read replicas and multi-AZ deployment for disaster recovery
+
+
+An organization maintains a separate Virtual Private Cloud (VPC) for each of its business units. Two units need to privately share data. Which is the most optimal way of privately sharing data between the two VPCs?
+VPC peering connection
+
+How is Amazon EC2 different from traditional hosting systems? (Select two)
+Amazon EC2 can scale with changing computing requirements
+With Amazon EC2, developers can launch and terminate the instances anytime they need to
+
+
+Which pillar of AWS Well-Architected Framework is responsible for making sure that you select the right resource types and sizes based on your workload requirements?
+Performance Efficiency - The performance efficiency pillar focuses on using IT and computing resources efficiently. Key topics include selecting the right resource types and sizes based on workload requirements, monitoring performance, and making informed decisions to maintain efficiency as business needs evolve.
+Incorrect options:
+Cost Optimization - Cost Optimization focuses on avoiding un-needed costs. Key topics include understanding and controlling where the money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over time, and scaling to meet business needs without overspending.
+Reliability - This refers to the ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
+Operational Excellence - The Operational Excellence pillar includes the ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures. In the cloud, you can apply the same engineering discipline that you use for application code to your entire environment. You can define your entire workload (applications, infrastructure) as code and update it with code. You can implement your operations procedures as code and automate their execution by triggering them in response to events.
+
+A financial services company wants to migrate from its on-premises data center to AWS Cloud. As a Cloud Practitioner, which AWS service would you recommend so that the company can compare the cost of running their IT infrastructure on-premises vs AWS Cloud?
+AWS Pricing Calculator
+
+Which of the following statements are true regarding Amazon Simple Storage Service (Amazon S3) (Select two)?
+Amazon Simple Storage Service (Amazon S3) is a key value based object storage service
+Amazon Simple Storage Service (Amazon S3) stores data in a flat non-hierarchical structure
+
+Which of the following types are free under the Amazon Simple Storage Service (Amazon S3) pricing model? (Select two)
+Data transferred in from the internet
+Data transferred out to an Amazon Elastic Compute Cloud (Amazon EC2) instance, when the instance is in the same AWS Region as the S3 bucket
+
+Which AWS service will you use to provision the same AWS infrastructure across multiple AWS accounts and regions?
+AWS CloudFormation
+incorect
+AWS OpsWorks - AWS OpsWorks is a configuration management service that provides managed instances of Chef and Puppet. OpsWorks lets you use Chef and Puppet to automate how servers are configured, deployed and managed across your Amazon EC2 instances or on-premises compute environments. You cannot use OpsWorks for running commands or managing patches on servers. You cannot use this service to provision AWS infrastructure.
+
+
+A financial services company wants to ensure that all customer data uploaded on its data lake on Amazon Simple Storage Service (Amazon S3) always stays private. Which of the following is the MOST efficient solution to address this compliance requirement?
+Use Amazon S3 Block Public Access to ensure that all Amazon S3 resources stay private
+
 
 
 
@@ -533,12 +614,6 @@ Which of the following statements are correct regarding Amazon API Gateway? (Sel
 
 Question 2:
 A team lead is reviewing the AWS services that can be used in the development workflow for his company. Which of the following statements are correct regarding the capabilities of these AWS services? (Select three)
-
-
-
-
-
-
 
 Explanation
 Correct options:
