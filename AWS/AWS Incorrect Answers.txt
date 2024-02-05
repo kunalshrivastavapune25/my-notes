@@ -597,6 +597,39 @@ Which of the following services are provided by Amazon Route 53? (Select Two)
 	Transfer acceleration - Transfer acceleration is a feature of Amazon's simple storage service (Amazon S3). Amazon S3 Transfer Acceleration (Amazon S3TA) can speed up content transfers to and from Amazon S3 by as much as 50-500% for long-distance transfer of larger objects.
 
 
+Which of the following options is NOT a feature of Amazon Inspector?
+Track configuration changes
+
+A company is planning to implement Chaos Engineering to expose any blind spots that can disrupt the resiliency of the application.
+Which AWS service will help implement this requirement with the least effort?
+AWS Fault Injection Simulator (AWS FIS)
+AWS Fault Injection Simulator (AWS FIS) is a fully managed service for running fault injection experiments on AWS that makes it easier to improve an application’s performance, observability, and resiliency. Fault injection experiments are used in chaos engineering, which is the practice of stressing an application in testing or production environments by creating disruptive events, such as a sudden increase in CPU or memory consumption, observing how the system responds, and implementing improvements. Fault injection experiment helps teams create the real-world conditions needed to uncover the hidden bugs, and monitor blind spots, and performance bottlenecks that are difficult to find in distributed systems.
+
+
+A company needs to use a secure online data transfer tool/service that can automate the ongoing transfers from on-premises systems into AWS while providing support for incremental data backups.
+Which AWS tool/service is an optimal fit for this requirement?
+AWS DataSync
+AWS DataSync is a secure online data transfer service that simplifies, automates, and accelerates copying terabytes of data to and from AWS storage services. Easily migrate or replicate large data sets without having to build custom solutions or oversee repetitive tasks. DataSync can copy data between Network File System (NFS) shares, or Server Message Block (SMB) shares, self-managed object storage, AWS Snowcone, Amazon Simple Storage Service (Amazon S3) buckets, Amazon Elastic File System (Amazon EFS) file systems, and Amazon FSx for Windows File Server file systems.
+
+A company needs to keep sensitive data in its own data center due to compliance but would still like to deploy resources using AWS. Which Cloud deployment model does this refer to?
+Hybrid Cloud
+
+
+A start-up would like to monitor its cost on the AWS Cloud and would like to choose an optimal Savings Plan. As a Cloud Practitioner, which AWS service would you use?
+AWS Cost Explorer
+AWS Cost Explorer lets you explore your AWS costs and usage at both a high level and at a detailed level of analysis and empowers you to dive deeper using several filtering dimensions (e.g., AWS Service, AWS Region, Linked Account, etc.). AWS Cost Explorer also gives you access to a set of default reports to help you get started, while also allowing you to create custom reports from scratch.
+stomers can receive Savings Plan recommendations at the member (linked) account level in addition to the existing AWS organization-level recommendations in AWS Cost Explorer.
+ncorrect options:
+AWS Cost & Usage Report (AWS CUR) - The AWS Cost & Usage Report (AWS CUR) is a single location for accessing comprehensive information about your AWS costs and usage. It does not provide Savings Plan recommendations.
+
+
+A company would like to separate cost for AWS services by the department for cost allocation. Which of the following is the simplest way to achieve this task?
+Create tags for each department
+You can assign metadata to your AWS resources in the form of tags. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. You can create tags to categorize resources by purpose, owner, environment, or other criteria.
+Typically, you use business tags such as cost center/business unit, customer, or project to associate AWS costs with traditional cost-allocation dimensions. But a cost allocation report can include any tag. This lets you associate costs with technical or security dimensions, such as specific applications, environments, or compliance programs.
+Incorrect options:
+Create different accounts for different departments - Users can belong to several departments. Therefore, having different accounts for different departments would imply some users having several accounts. This is contrary to the security best practice: one physical user = one account. Also, it is much simpler to set up tags for tracking costs for each department.
+
 
 Practice Test #6 
 
@@ -1404,3 +1437,16 @@ Reach out to Werner Vogels, the CTO of Amazon, with the details of the incident 
 Reference:
 
 https://aws.amazon.com/premiumsupport/knowledge-center/report-aws-abuse/
+
+
+
+Which of the following AWS services can be used to continuously monitor both malicious activities as well as unauthorized behavior to protect your AWS accounts and workloads?
+Amazon GuardDuty
+
+
+A media company uses Amazon Simple Storage Service (Amazon S3) for storing all its data. Which storage class should it consider for cost-optimal storage of the data that has random access patterns?
+Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering)
+
+Which free tool helps to review the state of your workloads and compares them to the latest AWS architectural best practices after you have answered a series of questions about your workload?
+AWS Well-Architected Tool
+
