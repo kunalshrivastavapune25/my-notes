@@ -26,8 +26,6 @@ Let’s Log Into AWS
 Support Plans
 	Basic
 	Developer
-		Experimenting with AWS
-		$29/month
 		One person can ask technical questions through support center, 12-24 hour support rate
 	Business
 		24/7 support by phone
@@ -59,8 +57,6 @@ Identify Access Management
 		
 S3 (Simple Storage Service)		
 	Overview
-		Provides developers and IT teams with secure, durable, highly-scalable object storage
-		Safe place to store your files
 		Object-based storage (pictures, Word files, videos), not operating system or database
 		Files can be anywhere from 0 bytes to 5 TB in size
 		Unlimited storage, but you pay by the gig
