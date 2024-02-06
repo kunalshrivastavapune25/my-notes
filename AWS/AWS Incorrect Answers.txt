@@ -1450,3 +1450,14 @@ Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering)
 Which free tool helps to review the state of your workloads and compares them to the latest AWS architectural best practices after you have answered a series of questions about your workload?
 AWS Well-Architected Tool
 
+Which of the following statements are correct regarding the health monitoring and reporting capabilities supported by AWS Elastic Beanstalk? (Select two)
+The AWS Elastic Beanstalk health monitoring can determine that the environment's Auto Scaling group is available and has a minimum of at least one instance
+With basic health reporting, the AWS Elastic Beanstalk service does not publish any metrics to Amazon CloudWatch
+
+
+An e-commerce company has its on-premises data storage on an NFS file system that is accessed in parallel by multiple applications. The company is looking at moving the applications and data stores to AWS Cloud.
+Which storage service should the company use to move their files to AWS Cloud seamlessly if the application is hosted on Amazon Elastic Compute Cloud (Amazon EC2) instances?
+
+Amazon Elastic File System (Amazon EFS)
+
+
