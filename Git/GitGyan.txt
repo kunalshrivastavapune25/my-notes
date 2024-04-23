@@ -1,0 +1,114 @@
+there are 3 places there you can see the config files
+
+System
+subdirectory inside program files
+Global
+~/.gitconfig falling back to ~/.config/git/config
+local
+.git/config
+
+local overrides global and so on
+
+
+list all system level , global level and local level variables
+
+kush0221@WS-15012 MINGW64 /c/GIT_Odido/bss-data-migration/.git (GIT_DIR!)
+$ git config --system --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+
+kush0221@WS-15012 MINGW64 /c/GIT_Odido/bss-data-migration/.git (GIT_DIR!)
+$ git config --global --list
+gui.recentrepo=C:/test
+gui.recentrepo=C:/testq
+gui.recentrepo=C:/my_aws_devops_git/my-nodejs-app
+gui.recentrepo=C:/GIT_Odido/bss-data-migration
+credential.https://git.netcracker.com.provider=generic
+credential.https://git-codecommit.us-east-1.amazonaws.com.provider=generic
+
+kush0221@WS-15012 MINGW64 /c/GIT_Odido/bss-data-migration/.git (GIT_DIR!)
+$ git config --local --list
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=https://git.netcracker.com/sd.tmnl/cloud-bss-development/bss-data-migration
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+gui.wmstate=zoomed
+gui.geometry=1831x693+38+38 254 315
+
+
+to update any parameter 
+git config --local user.name kush0221
+above command will insert any entry in local config
+
+
+this will list all
+git config --list
+git config --unset keyname
+
+for testing to create a new repository
+git init
+
+after adding a new file to a local
+git status
+git add new.txt
+git add .
+git commit -m "message"
+git rm -cached test.txt
+git reset HEAD test.txt
+
+git push origin master
+
+to see all commits 
+git log
+
+git remote add origin "remote repo url"
+either we can add our local repository to url or clone from url 
+git clone https://git.netcracker.com/sd.tmnl/cloud-bss-development/bss-data-migration
+git remote -v
+
+git push origin master
+
+
+understand basic git commands
+git add -- adds file to staged area
+git branch -- lists creates or delete branch
+git branch dev
+
+git checkout -- checkout and switch to a branch 
+git checkout dev
+
+git clone -- clone a repository to a new directory
+git commit -- record current changes to a repository
+git diff -- shows the diff between commits and working copy
+git fetch -- downloads objects from references from another repository
+git init -- creates empty git repository`
+git log -- shows commit logs
+git merge -- joins 2 or more dev histories/branches
+git merge master
+
+
+not important
+u can create alias also for git commands 
+git config alias.last 'log -l HEAD'
+git last 
+
+git architechture
+working directory --> git add --> staging aarea --> git commit --> repository
