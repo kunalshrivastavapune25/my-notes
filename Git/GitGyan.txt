@@ -1,5 +1,4 @@
 there are 3 places there you can see the config files
-
 System
 subdirectory inside program files
 Global
@@ -8,10 +7,7 @@ local
 .git/config
 
 local overrides global and so on
-
-
 list all system level , global level and local level variables
-
 kush0221@WS-15012 MINGW64 /c/GIT_Odido/bss-data-migration/.git (GIT_DIR!)
 $ git config --system --list
 diff.astextplain.textconv=astextplain
@@ -112,3 +108,105 @@ git last
 
 git architechture
 working directory --> git add --> staging aarea --> git commit --> repository
+
+
+to view all branches
+git branch
+
+create a new branch
+git branch feature
+
+switch to new branch
+git checkout feature
+
+push the branch
+git push origin feature
+
+
+
+to delete a branch 
+first delete the branch from reporitory
+git push origin --delete feature
+
+tehn delete the branch from local
+git branch -d feature
+
+
+to rename a branch 
+first delete the branch from reporitory
+git push origin --delete feature
+
+tehn delete the branch from local
+git branch -d feature
+
+
+git remote
+
+to get repository url
+git remote -v 
+
+
+command to push changes to url post commit
+git push origin master
+
+
+to fetch all changes from main repository url to local
+git fetch origin master
+
+to apply the changes
+git merge
+
+
+below will merge automatically 
+git pull origin master
+
+to remove a repository
+git remote rm origin 
+
+
+--create a new branch
+git branch branch1
+--switch to new branch
+git checkout branch1
+
+--create and switch to new branch
+git checkout -b branch1
+
+
+--to commit all new branches to main repository
+git branch -a
+
+
+--- go to a specific commit branch
+git log
+git branch commithash ssssdkwqlcksjcdslcnk
+
+
+--- go to a specific commit branch
+git log
+git checkout ssdkwqlcksjcdslcnk
+
+--from above if i want to branch out 
+git checkout -b detached 
+
+to delete a branch
+
+git branch -d {local_branch_name} <only for merged branch>
+git branch -D {local_branch_name} <forced delete of unmerged branch>
+
+to push
+git branch -a 
+git push origin master
+git push -d origin master 
+
+
+stash -- not important; read about same in chatgpt
+merge startey --resolve, recursive etc
+rebasing
+
+
+DIFFERENCE BETWEEN MERGING AND REBASING 
+GIT TAG COMMANDS AND TYPES OF TAGS 
+difference between taging and merging 
+concepts on git flow workflow
+forking a repository 
