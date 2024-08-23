@@ -1,0 +1,6 @@
+Docker, k8s, DevOps, git, Jenkins, 
+swagger , Newman, ingess , service, 
+pods, jobs, nifi, postgres, oracle, 
+microservice, dbaas, pim core, IBS, 
+python, data science, streamlit, influx , 
+ml,ai , DL
