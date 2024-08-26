@@ -1,25 +1,16 @@
 Q1: Project: Whats is ur project all About?
 
-Docker, 
-k8s, 
-DevOps, 
-git, 
-Jenkins, 
-swagger , 
-Newman, 
-ingess , 
-service, 
-pods, 
-jobs, 
-nifi, 
-postgres, 
-oracle, 
-microservice, 
-dbaas, 
-pim core, 
-IBS, 
-python, 
-data science, 
-streamlit, 
-influx , 
+Docker, k8s, swagger , grafana,
+elastic search, 
+ingess , service, pods, jobs, 
+
+DevOps, git,Jenkins, 
+
+Newman, nifi, 
+postgres, oracle, 
+microservice, dbaas,pim core, 
+IBS,
+
+python, data science, 
+streamlit, influx , 
 ml,ai , DL
