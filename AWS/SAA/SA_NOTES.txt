@@ -1,1 +1,187 @@
-hello worlds
+AWS Certified Solutions Architect Associate Cheat Sheet (Simplified & Engaging)
+This guide breaks down the core concepts of AWS for the Solutions Architect Associate exam into bite-sized, practical notes. Let’s dive into the key services, concepts, and exam tips without the yawn-inducing fluff!
+
+1. Cloud Computing Basics
+What is Cloud Computing? On-demand delivery of IT resources (compute, storage, databases, etc.) over the internet with pay-as-you-go pricing. No need to own physical servers!
+Public vs. Private vs. Multi-Cloud:
+Public Cloud (AWS): Shared infrastructure, highly scalable, low maintenance (e.g., EC2, S3). Connected to the internet but secure.
+Private Cloud: Dedicated infrastructure, more control, but IT-intensive.
+Multi-Cloud: Using multiple cloud providers for flexibility or redundancy.
+AWS Global Infrastructure:
+Regions: Isolated geographic areas (e.g., us-east-1). Choose for latency, compliance, or disaster recovery.
+Availability Zones (AZs): Data centers within a region, isolated for fault tolerance.
+Edge Locations: Used by CloudFront for content delivery (CDN).
+Exam Tip: Know that some services (e.g., IAM, Route 53) are global, while others (e.g., EC2, RDS) are region-specific.
+
+2. AWS Fundamentals
+Regions & AZs Benefits:
+Geographical Separation: Protects against natural disasters.
+Geopolitical Compliance: Adheres to local laws (e.g., GDPR).
+Fault Isolation: Issues in one region/AZ don’t affect others.
+VPC (Virtual Private Cloud):
+A virtual network in AWS, like your own private data center.
+Default VPC: Comes with one subnet per AZ, public IPs, and a CIDR of 172.31.0.0/16.
+Subnets: Subdivisions of a VPC. Public subnets have internet access; private ones don’t.
+Route Tables: Control traffic routing within a VPC (e.g., to an Internet Gateway for public access).
+Exam Tip: Understand VPC CIDR blocks and subnetting. Overlapping CIDRs are a common exam gotcha!
+
+3. IAM (Identity and Access Management)
+What is IAM? Controls who can do what in your AWS account.
+Key Components:
+IAM Users: For humans or applications needing long-term AWS access (up to 5,000 per account).
+IAM Groups: Containers for users to simplify permission management (max 10 groups per user).
+IAM Roles: Temporary credentials for AWS services or cross-account access. Includes:
+Trust Policy: Who can assume the role.
+Permissions Policy: What the role can do.
+IAM Policies: JSON documents defining permissions (e.g., allow/deny S3 access).
+AWS Organizations: Manage multiple AWS accounts centrally.
+Service Control Policies (SCPs): Restrict what accounts can do (except the master account).
+Best Practices:
+Use roles over access keys for security.
+Avoid using the root account except for initial setup.
+Exam Tip: Know the difference between IAM users, groups, and roles. Roles are key for EC2 instances or cross-account access.
+
+4. S3 (Simple Storage Service)
+What is S3? Scalable object storage for files, images, backups, etc.
+Security:
+Private by default (only the root account has access).
+Use IAM policies for account-level access, bucket policies for cross-account or anonymous access, and avoid ACLs unless necessary.
+Static Website Hosting: Enable to serve web content via HTTP (not via AWS API).
+Storage Classes:
+Standard: Frequently accessed data, high durability (11 9’s).
+Standard-IA: Infrequent access, lower cost, 30-day minimum charge.
+One Zone-IA: Cheaper, single AZ, for non-critical data.
+Glacier: Long-term storage, cheap but slow retrieval (hours).
+Intelligent-Tiering: Auto-moves data between tiers based on access patterns.
+Encryption:
+SSE-S3: AWS-managed keys.
+SSE-KMS: Customer-managed keys via AWS KMS.
+SSE-C: Customer-provided keys.
+Replication:
+SRR (Same-Region Replication): For log aggregation or syncing accounts.
+CRR (Cross-Region Replication): For global resilience or latency reduction.
+Exam Tip: Focus on S3 storage classes, encryption types, and bucket policies for exam scenarios.
+
+5. EC2 (Elastic Compute Cloud)
+What is EC2? Virtual servers for running applications (IaaS).
+Key Features:
+AMIs (Amazon Machine Images): Pre-configured templates (e.g., Linux, Windows).
+Instance Types: Vary by CPU, memory, storage (e.g., t3.micro, c5.large).
+States:
+Stopped: Charged only for EBS storage, no CPU/memory usage.
+Running: Charged for CPU, memory, and storage.
+Storage:
+EBS (Elastic Block Store): Persistent, network-attached storage.
+Instance Store: Fast, ephemeral storage (data lost on stop/terminate).
+Networking:
+ENI (Elastic Network Interface): Virtual NIC with private/public IPs, MAC address.
+Security Groups: Virtual firewalls controlling inbound/outbound traffic.
+Pricing Models:
+On-Demand: Pay per hour/second, no commitment.
+Reserved Instances: 1- or 3-year commitment, up to 75% savings.
+Spot Instances: Bid for unused capacity, cheapest but can be interrupted.
+Exam Tip: Know when to use EBS vs. instance store and how security groups differ from NACLs (Network Access Control Lists).
+
+6. Networking (VPC, Route 53, CloudFront)
+VPC Setup:
+CIDR Blocks: Define IP ranges (e.g., 10.0.0.0/16). Avoid overlaps with other VPCs.
+Internet Gateway (IGW): Connects VPC to the internet.
+NAT Gateway: Allows private subnets to access the internet (outbound only).
+Route 53 (DNS Service):
+Global service for domain registration and routing.
+Routing Policies:
+Simple: Single resource, no health checks.
+Failover: Routes to a backup if primary fails.
+Weighted: Distributes traffic based on weights.
+Latency: Routes to the lowest-latency region.
+CloudFront (CDN):
+Caches content at edge locations for faster delivery.
+Supports HTTPS with SSL certificates.
+Use with S3 for static content or ALB for dynamic content.
+Exam Tip: Understand Route 53 routing policies and how CloudFront improves performance.
+
+7. Databases
+RDS (Relational Database Service):
+Managed SQL databases (MySQL, PostgreSQL, Aurora, etc.).
+Multi-AZ: For high availability, syncs data to a standby replica.
+Read Replicas: Scale read performance (async replication).
+Aurora:
+AWS’s high-performance relational database.
+Cluster Endpoint: For read/write operations.
+Reader Endpoint: Load balances read replicas.
+Serverless: Auto-scales, no instance management.
+DynamoDB (NoSQL):
+Fast, scalable key-value database.
+On-Demand: Pay per read/write, no capacity planning.
+Provisioned: Set read/write capacity units (RCUs/WCUs).
+Streams: Capture changes for event-driven apps.
+DAX: In-memory cache for faster reads.
+Exam Tip: Know when to use RDS vs. Aurora vs. DynamoDB based on workload (SQL vs. NoSQL, scalability needs).
+
+8. High Availability & Scaling
+Load Balancers:
+ALB (Application Load Balancer): Layer 7, HTTP/HTTPS, content-based routing.
+NLB (Network Load Balancer): Layer 4, TCP/UDP, ultra-low latency.
+GLB (Gateway Load Balancer): Layer 3, for network appliances.
+Auto Scaling:
+Automatically adds/removes EC2 instances based on demand.
+Use Launch Templates for instance configuration.
+Integrates with ALB for health checks and load distribution.
+Serverless (Lambda):
+Run code without managing servers.
+Scales automatically, pay per execution.
+Use for event-driven tasks (e.g., triggered by S3 uploads).
+Exam Tip: ALB is the go-to for web apps; NLB for low-latency TCP traffic. Know auto-scaling policies.
+
+9. Security & Monitoring
+KMS (Key Management Service):
+Manages encryption keys (CMKs) for services like S3, EBS.
+Keys are region-specific, never leave KMS.
+CloudTrail:
+Logs API calls for auditing (e.g., who created an EC2 instance?).
+15-minute delay, not real-time.
+CloudWatch:
+Monitors metrics, logs, and alarms.
+Logs: Store and analyze log data (e.g., from EC2, Lambda).
+Alarms: Trigger actions (e.g., SNS notifications) based on thresholds.
+WAF (Web Application Firewall):
+Protects against Layer 7 attacks (SQL injection, XSS).
+Integrates with ALB or CloudFront.
+Exam Tip: CloudTrail is for auditing, CloudWatch for monitoring. Know KMS for encryption scenarios.
+
+10. Containers & Serverless
+ECS (Elastic Container Service):
+Managed container orchestration.
+EC2 Mode: Run containers on EC2 instances you manage.
+Fargate Mode: Serverless, no EC2 management.
+ECR (Elastic Container Registry): Stores Docker images.
+Step Functions: Orchestrates workflows for Lambda or ECS tasks.
+SQS (Simple Queue Service):
+Message queue for decoupling apps.
+Standard Queue: High throughput, at-least-once delivery.
+FIFO Queue: Ordered, exactly-once delivery.
+Exam Tip: Fargate simplifies ECS by removing server management. SQS is key for decoupling microservices.
+
+11. Migration & Hybrid
+Snowball: Physical device for transferring large data to/from AWS.
+Direct Connect: Dedicated network connection for hybrid setups.
+Site-to-Site VPN: Secure connection over the internet, often a backup for Direct Connect.
+FSx for Windows File Server: Managed file storage for Windows apps.
+Exam Tip: Snowball for massive data transfers; Direct Connect for consistent, high-speed hybrid connectivity.
+
+12. Exam Power-Ups
+CloudFormation: Automates infrastructure setup using YAML/JSON templates. A stack is a live instance of a template.
+EFS (Elastic File System): NFS-based file storage for Linux, multi-AZ, scalable.
+Global Accelerator: Improves performance by routing traffic via AWS’s global network.
+VPC Endpoints:
+Gateway Endpoints: For S3 and DynamoDB, uses route tables.
+Interface Endpoints: For other services, uses ENIs.
+Exam Tip: CloudFormation is key for infrastructure-as-code. Know the difference between gateway and interface endpoints.
+
+Key Takeaways
+Think Scalability: AWS services like S3, DynamoDB, and Lambda are designed to scale effortlessly.
+Security First: Use IAM roles, KMS for encryption, and WAF for web protection.
+High Availability: Leverage multi-AZ, load balancers, and auto-scaling for resilience.
+Cost Optimization: Choose the right storage class, pricing model (e.g., Spot Instances), or serverless options.
+Study Tip: Focus on real-world scenarios (e.g., “How would you secure an S3 bucket?” or “When to use RDS vs. DynamoDB?”). Practice with AWS Free Tier or Qwiklabs to get hands-on experience.
+
