@@ -869,3 +869,142 @@ Would you like me to help you prepare **three crisp sample stories (STAR format)
 so you can narrate them naturally in your Barclays interview?
 
 
+Perfect 👍 — here’s your **1-page interview-ready summary sheet** comparing **Apache NiFi vs Informatica vs AWS Glue** — formatted exactly how you’d explain it in a Barclays panel.
+
+---
+
+# 🧩 **NiFi vs Informatica vs Glue — Data Integration Comparison Sheet**
+
+| **Aspect**                    | **Apache NiFi**                                                | **Informatica (PowerCenter / IICS)**              | **AWS Glue**                                        |
+| ----------------------------- | -------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
+| **Type**                      | Open-source data-flow orchestration tool                       | Enterprise ETL & data-integration suite           | Serverless, fully managed ETL service on AWS        |
+| **Primary Use Case**          | Real-time & batch data ingestion between heterogeneous systems | Complex batch ETL, large-scale DW transformations | Cloud-native ETL & metadata cataloging in AWS       |
+| **Architecture**              | Flow-based, drag-and-drop web UI with 300+ processors          | Repository-driven, GUI-based mapping designer     | Serverless Spark jobs auto-scaled by AWS            |
+| **Processing Mode**           | Real-time streaming + batch                                    | Mostly batch (some near-real-time in IICS)        | Batch & event-driven (S3, EventBridge, Lambda)      |
+| **Transformation Capability** | Moderate — simple joins, filters, enrichment                   | Advanced — supports complex business logic        | High — PySpark/Scala for complex transformations    |
+| **Scalability**               | Clustered nodes, flow partitioning                             | Highly scalable with PowerCenter Grid/IICS        | Auto-scales serverlessly based on job size          |
+| **Data Provenance / Lineage** | Built-in tracking at record level                              | Metadata Manager provides lineage                 | Integrated with AWS Glue Data Catalog               |
+| **Extensibility**             | Custom processors via Java/Python                              | Custom transformations via scripts                | Custom ETL in Python (PySpark)                      |
+| **Cloud Integration**         | Works with AWS, Azure, Kafka, HDFS, DBs                        | Cloud connectors via IICS subscription            | Deep native integration (S3, Redshift, Athena, RDS) |
+| **Security**                  | SSL/TLS, LDAP/Kerberos, fine-grained RBAC                      | Role-based security + metadata access control     | IAM-based access, KMS encryption                    |
+| **Cost / License**            | Free (open source)                                             | Paid (Enterprise license)                         | Pay-per-use serverless pricing                      |
+| **Monitoring**                | Real-time UI queues + back-pressure alerts                     | Central monitoring console                        | CloudWatch, Glue Job Metrics                        |
+| **Best Fit**                  | Hybrid data flows, streaming & monitoring-heavy use cases      | Enterprise ETL with complex transformation logic  | Cloud-first analytics / data lake pipelines         |
+
+---
+
+## 🧠 **How to Answer in the Interview**
+
+> “I’ve worked extensively with Apache NiFi for real-time data ingestion and orchestration, especially in hybrid on-prem + AWS environments.
+> NiFi’s strength lies in its flow-based UI, data provenance, and real-time control.
+> Informatica, on the other hand, is excellent for complex ETL logic and large-scale enterprise data warehousing but comes with higher licensing and less flexibility.
+> AWS Glue fits perfectly in a modern cloud architecture — it’s serverless, auto-scales, and integrates natively with S3 and Redshift.
+> In short, NiFi is best for orchestration and monitoring, Informatica for heavy transformation, and Glue for cloud-native automation.”
+
+---
+
+## 🎯 **Quick Interview Hooks**
+
+* *“NiFi = Real-time & visibility”*
+* *“Informatica = Enterprise-grade transformation”*
+* *“Glue = Serverless cloud ETL & catalog”*
+* Mention that **Barclays uses all three** in different units — NiFi for orchestration, Informatica for regulated ETL, Glue for AWS analytics stack.
+
+---
+
+Would you like me to turn this into a **print-ready PDF (1-page visual table + short answer)** for your final prep file?
+
+
+
+Perfect — this is a **must-know topic** for your Barclays Senior Data Engineer interview, since you’ve used **Apache NiFi** in your resume and Barclays frequently asks about **NiFi vs Informatica**.
+
+Here’s a clear, interview-ready summary 👇
+
+---
+
+## 🧠 **What is Apache NiFi?**
+
+**Apache NiFi** is an **open-source data integration and flow automation tool** that allows you to **collect, route, transform, and manage data between systems** using a web-based, drag-and-drop interface.
+
+It was originally developed by the U.S. NSA and donated to Apache — designed for **real-time streaming and batch data movement** with built-in reliability and security.
+
+---
+
+## ⚙️ **Core Features of Apache NiFi**
+
+| Category                    | Key Features                                                         | Example                                                 |
+| --------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Flow-Based UI**           | Visual, drag-and-drop design for data flows                          | Easily build ingestion pipelines from APIs to databases |
+| **Data Provenance**         | End-to-end tracking of data lineage                                  | Audit every record — when, where, and how it moved      |
+| **Back Pressure & Queuing** | Automatic flow control to prevent overload                           | Stops new ingestion if target DB is slow                |
+| **Processor Library**       | 300+ built-in processors for ingest, transform, route                | e.g., GetFile, PutSQL, ExecuteScript, RouteOnAttribute  |
+| **Real-Time Streaming**     | Continuous data movement, not just batch                             | Stream data from Kafka, logs, or IoT                    |
+| **Security**                | SSL/TLS, Kerberos, LDAP integration, fine-grained access             | Role-based data flow access                             |
+| **Integration**             | Works with AWS (S3, Lambda, Kinesis), HDFS, Oracle, Kafka, REST APIs | Used in your Netcracker project for ETL orchestration   |
+
+---
+
+## 🚀 **Advantages of NiFi**
+
+1. **Ease of Use** – Intuitive GUI, no heavy coding required.
+2. **Real-Time Processing** – Can handle streaming data as well as batch.
+3. **Data Provenance** – Full visibility of data flow (audit-ready).
+4. **Extensible** – Custom processors in Python, Java, or Groovy.
+5. **Integration Friendly** – Works with most databases, cloud, and messaging tools.
+6. **Scalability** – Supports clustering for horizontal scaling.
+7. **Back Pressure & Prioritization** – Prevents data loss during spikes.
+
+✅ *Example for Interview:*
+
+> “In Netcracker, we used NiFi for large-scale data migration — ingesting from multiple sources (Oracle, CSVs) into PostgreSQL and AWS S3. Its real-time flow monitoring and retry mechanism made it ideal for telecom-scale data transfers.”
+
+---
+
+## ⚠️ **Disadvantages / Limitations**
+
+1. **High Memory Usage** – Each processor keeps queues in memory.
+2. **Limited Complex Transformations** – Not as strong as Informatica or Spark for advanced joins or heavy business logic.
+3. **Version Control** – Earlier versions lacked strong Git integration (improving in newer ones).
+4. **Not Ideal for Massive Parallel Compute** – Works well for orchestration, not deep analytics.
+5. **Cluster Setup Can Be Complex** – Managing NiFi clusters requires tuning.
+
+---
+
+## 🔁 **NiFi vs. Informatica (Comparison Table)**
+
+| Feature                    | **Apache NiFi**                                 | **Informatica PowerCenter / IICS**                    |
+| -------------------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| **License**                | Open-source (Free)                              | Commercial (Expensive)                                |
+| **UI/Development**         | Web-based drag-drop flow UI                     | GUI-based ETL designer                                |
+| **Processing Type**        | Real-time + batch                               | Primarily batch (IICS supports some real-time)        |
+| **Data Provenance**        | Built-in lineage tracking                       | Available via metadata manager                        |
+| **Extensibility**          | Highly customizable (custom processors/scripts) | Customization limited, requires Informatica scripting |
+| **Scalability**            | Cluster-based scaling, cloud integration        | High performance, enterprise-grade scaling            |
+| **Learning Curve**         | Easy for developers, intuitive                  | Steeper, more setup effort                            |
+| **Integration with Cloud** | Native AWS/Azure connectors                     | Cloud connectors available (via IICS)                 |
+| **Best Use Case**          | Real-time ingestion, hybrid flows               | Complex transformations, enterprise ETL               |
+| **Example Use Case**       | Streaming data to DW or S3                      | Heavy data warehousing transformations                |
+
+---
+
+## 🧩 **When to Use NiFi vs Informatica**
+
+| Use NiFi When                                               | Use Informatica When                                        |
+| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| You need **real-time streaming and event-based** ingestion  | You need **complex transformations and data warehousing**   |
+| You want **open-source, low-cost orchestration**            | You have **large enterprise ETL with heavy business logic** |
+| You need to **move and monitor data across hybrid systems** | You want **governed, enterprise-grade data integration**    |
+
+---
+
+## 💬 **Sample Interview Answer**
+
+> “Apache NiFi is an open-source data integration tool designed for flow-based programming. It helps design, monitor, and control real-time data pipelines visually.
+> I’ve used NiFi for orchestrating ETL between Oracle and AWS S3 — it provided excellent visibility via data provenance, flow prioritization, and retry mechanisms.
+> Compared to Informatica, NiFi is more lightweight and flexible for hybrid and streaming use cases, while Informatica is stronger for heavy transformation and metadata-driven ETL. In our telecom migration project, NiFi’s real-time monitoring and backpressure features gave us better operational control.”
+
+---
+
+Would you like me to give you a **1-page interview answer sheet** comparing *NiFi vs Informatica vs Glue* (Barclays often asks a 3-way comparison in data engineer panels)? It includes a table + short paragraph answer to memorize.
+
+
