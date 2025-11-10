@@ -771,3 +771,101 @@ Perfect — your resume is strong, and the statements you highlighted are backed
 
 Would you like me to prepare a **mock interview Q&A sheet (20 questions)** tailored to Barclays’ typical Senior Data Engineer round (covering data architecture, cloud, Python, and stakeholder management)? It’ll help you rehearse confidently before your call.
 
+Excellent — these are **exactly** the kind of behavioral and situational questions Barclays hiring managers ask, especially in final or managerial rounds. They test your **emotional intelligence, leadership maturity, and conflict-resolution style** — not just technical skills.
+
+Let’s go one by one 👇
+
+---
+
+## 🧳 **1️⃣ “Why are you leaving Netcracker?”**
+
+✅ **Goal:** Show maturity and *forward-looking intent*, not frustration or complaints.
+
+**Strong sample answer:**
+
+> “Netcracker has been a great place to learn — I’ve handled end-to-end data architecture, migrations, and led a strong engineering team. But at this stage, I’m looking for an environment where I can work on **more complex data modernization programs, cloud-native platforms, and cross-domain analytics**. Barclays’ focus on digital and data transformation perfectly aligns with where I want to grow next.”
+
+**Alternate phrasing (shorter):**
+
+> “I’m proud of what I’ve delivered at Netcracker — from multi-TB migrations to pipeline automation — but now I want to apply those learnings in a global enterprise setup like Barclays, where I can contribute to larger-scale data strategy and innovation.”
+
+🧠 **Tips:**
+
+* Avoid mentioning salary, politics, or management issues.
+* Focus on **career growth, challenge, exposure, and impact.**
+* End on a positive note: “It was a great learning journey, but I’m ready for the next leap.”
+
+---
+
+## 🤝 **2️⃣ “How do you resolve conflicts?”**
+
+✅ **Goal:** Show calm, structured thinking, and emotional control.
+
+**STAR-style sample answer:**
+
+> “I believe conflicts are natural when multiple strong professionals work together. My approach is to first **listen to all perspectives**, then **restate the common goal**, and finally **facilitate data-driven discussion** to reach a decision.
+> For example, during a data migration program at Vodafone, there was conflict between two teams about transformation logic. I arranged a short sync-up, presented test results, and aligned everyone on data accuracy as the key objective — once everyone saw the numbers, the issue resolved quickly.”
+
+**Structure to remember:**
+
+1. **Listen first** (understand their concern)
+2. **Acknowledge and empathize** (avoid blame)
+3. **Recenter on the business goal**
+4. **Offer data or facts, not opinions**
+5. **Agree on next steps & document decisions**
+
+---
+
+## 🧭 **3️⃣ “How do you manage stakeholders and vendors when everyone has conflicting opinions or issues?”**
+
+✅ **This is a *classic* question for a program leader or senior engineer** — they’re checking how you handle **chaos, coordination, and accountability**.
+
+**Scenario:**
+You have 5 vendors — each giving excuses or delays. Some say it’s not their scope, some say resources unavailable, some say they weren’t informed, etc.
+
+Here’s how to **answer like a leader:**
+
+---
+
+### **Structured Answer:**
+
+> “In large programs involving multiple vendors, such situations are common. My approach is structured — I focus on **clarity, accountability, and collaboration.**
+
+> 1️⃣ **Establish a clear RACI matrix:** I ensure roles and responsibilities are documented and agreed upon during kickoff — who owns what, who supports, who approves. So when someone says ‘not in scope,’ we can refer back to agreed scope and responsibilities.
+
+> 2️⃣ **Prioritize by business impact:** Instead of arguing, I reframe — ‘Let’s focus on what’s blocking delivery today.’ This keeps everyone solution-oriented.
+
+> 3️⃣ **Immediate alignment huddles:** I call short coordination meetings (15–20 min) with all vendors on the same call. This ensures transparency — when one vendor hears another’s concern, they’re more likely to cooperate.
+
+> 4️⃣ **Escalate with diplomacy:** If a vendor repeatedly delays or blames others, I escalate factually — via mail or governance deck — not emotionally.
+
+> 5️⃣ **Build trust:** I appreciate effort publicly when vendors collaborate. People cooperate better when they feel recognized.
+
+> In my last CRM transformation program, I handled 4 vendors — Oracle, IBM, TechM, and Vodafone’s internal IT. Initially, everyone worked in silos, but after I set up joint dashboards and a common communication channel, we reduced inter-vendor delays by 40%.”
+
+---
+
+### 🧠 **Key Phrases Barclays Managers Love:**
+
+* “I focus on outcomes, not blame.”
+* “I ensure accountability through documented governance.”
+* “I facilitate cross-vendor alignment meetings to drive transparency.”
+* “I always bring discussions back to business priorities, not personal preferences.”
+* “Escalation is my last resort — collaboration is my first tool.”
+
+---
+
+### ✅ **Short “Interview Version” (for 1–2 min answer):**
+
+> “I handle such conflicts through structure and communication. I ensure all vendors are clear on scope via RACI, and when disagreements arise, I bring everyone on one quick alignment call. I focus on facts, timelines, and shared objectives — not individual opinions.
+> For example, in a recent data migration project, multiple vendors blamed each other for late file delivery. I created a joint status tracker, clarified dependencies, and aligned everyone to the go-live goal. Within a week, collaboration improved and delivery stabilized.”
+
+---
+
+Would you like me to help you prepare **three crisp sample stories (STAR format)** for these behavioral areas:
+1️⃣ Conflict resolution,
+2️⃣ Stakeholder management, and
+3️⃣ Leadership under pressure —
+so you can narrate them naturally in your Barclays interview?
+
+
