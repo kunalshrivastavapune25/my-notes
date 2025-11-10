@@ -939,4 +939,117 @@ It was originally developed by the U.S. NSA and donated to Apache — designed f
 
 Would you like me to give you a **1-page interview answer sheet** comparing *NiFi vs Informatica vs Glue* (Barclays often asks a 3-way comparison in data engineer panels)? It includes a table + short paragraph answer to memorize.
 
+Perfect 👍 — here’s a **simple text-based ERD** for an **Aviva Insurance Data Warehouse**, designed around **FactPolicy** as the central fact table connected to several dimensions (Customer, Product, Agent, Date, Region).
+
+This layout reflects a **star schema**, which is exactly what you can describe in your Barclays interview.
+
+---
+
+## 🧩 **Aviva Insurance Data Warehouse – Star Schema Design**
+
+### 🟦 **Fact Table: FactPolicy**
+
+| Column Name           | Description                      |
+| --------------------- | -------------------------------- |
+| **Policy_Key (PK)**   | Surrogate key for the fact table |
+| **Customer_Key (FK)** | Links to DimCustomer             |
+| **Product_Key (FK)**  | Links to DimProduct              |
+| **Agent_Key (FK)**    | Links to DimAgent                |
+| **Region_Key (FK)**   | Links to DimRegion               |
+| **Date_Key (FK)**     | Links to DimDate                 |
+| **Premium_Amount**    | Policy premium amount            |
+| **Sum_Assured**       | Total coverage amount            |
+| **Claim_Count**       | Number of claims raised          |
+| **Claim_Amount**      | Total claim amount               |
+| **Policy_Status**     | Active / Lapsed / Closed         |
+| **Load_Date**         | ETL load date                    |
+
+---
+
+### 🟨 **Dimension Tables**
+
+#### **1️⃣ DimCustomer**
+
+| Column Name           | Description                     |
+| --------------------- | ------------------------------- |
+| **Customer_Key (PK)** | Surrogate key                   |
+| **Customer_ID (BK)**  | Business key from source system |
+| **Customer_Name**     | Full name                       |
+| **Gender**            | M/F/O                           |
+| **Date_Of_Birth**     | Customer’s DOB                  |
+| **Occupation**        | Job type                        |
+| **Marital_Status**    | Married/Single                  |
+| **Join_Date**         | Customer registration date      |
+
+---
+
+#### **2️⃣ DimProduct**
+
+| Column Name           | Description                  |
+| --------------------- | ---------------------------- |
+| **Product_Key (PK)**  | Surrogate key                |
+| **Product_ID (BK)**   | Business product code        |
+| **Product_Name**      | Policy product name          |
+| **Product_Type**      | Life / Health / Motor / Term |
+| **Premium_Type**      | Monthly / Yearly             |
+| **Coverage_Duration** | Tenure in years              |
+
+---
+
+#### **3️⃣ DimAgent**
+
+| Column Name         | Description                 |
+| ------------------- | --------------------------- |
+| **Agent_Key (PK)**  | Surrogate key               |
+| **Agent_ID (BK)**   | Source agent code           |
+| **Agent_Name**      | Full name                   |
+| **Channel_Type**    | Direct / Partner / Online   |
+| **Region_Key (FK)** | Region where agent operates |
+| **Join_Date**       | Agent onboard date          |
+
+---
+
+#### **4️⃣ DimRegion**
+
+| Column Name          | Description     |
+| -------------------- | --------------- |
+| **Region_Key (PK)**  | Surrogate key   |
+| **Region_Code (BK)** | Region ID       |
+| **Region_Name**      | Zone/State name |
+| **Country**          | Country name    |
+
+---
+
+#### **5️⃣ DimDate**
+
+| Column Name               | Description              |
+| ------------------------- | ------------------------ |
+| **Date_Key (PK)**         | Surrogate key (YYYYMMDD) |
+| **Full_Date**             | Date field               |
+| **Month**                 | Month name               |
+| **Quarter**               | Q1–Q4                    |
+| **Year**                  | Calendar year            |
+| **Is_Financial_Year_End** | Y/N flag                 |
+
+---
+
+## 🔗 **Relationships**
+
+* `FactPolicy.Customer_Key` → `DimCustomer.Customer_Key`
+* `FactPolicy.Product_Key` → `DimProduct.Product_Key`
+* `FactPolicy.Agent_Key` → `DimAgent.Agent_Key`
+* `FactPolicy.Region_Key` → `DimRegion.Region_Key`
+* `FactPolicy.Date_Key` → `DimDate.Date_Key`
+
+---
+
+### 🧠 **Interview Tip (How to Explain It)**
+
+> “For Aviva’s Insurance Data Warehouse, I used a star schema with `FactPolicy` at the center capturing key measures like premium, claim amount, and policy status.
+> It connects to customer, product, agent, date, and region dimensions, which provide analytical perspectives for business insights like claim ratio by region or premium trend by product type.
+> This structure improved query performance and simplified BI reporting.”
+
+---
+
+Would you like me to extend this with **2 more fact tables (FactClaim and FactPremiumPayment)** to show a *multi-fact, conformed-dimension design* — often preferred for BFSI analytics discussions?
 
