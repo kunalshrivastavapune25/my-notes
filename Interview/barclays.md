@@ -1053,3 +1053,161 @@ This layout reflects a **star schema**, which is exactly what you can describe i
 
 Would you like me to extend this with **2 more fact tables (FactClaim and FactPremiumPayment)** to show a *multi-fact, conformed-dimension design* — often preferred for BFSI analytics discussions?
 
+
+Perfect 👍 — you’re now talking about a **Data Warehouse design using Slowly Changing Dimensions (SCD Type 2)**, which is exactly the kind of practical modeling question you might face at **Barclays or any BFSI data engineering interview**.
+
+Let’s build this step by step 👇
+
+---
+
+## 🧩 **Goal: Simple Insurance DWH (Star Schema with SCD Type-2 Dimensions)**
+
+We’ll design:
+
+* **1 Fact Table:** `FactPolicy`
+* **4 Dimension Tables:** `DimCustomer`, `DimProduct`, `DimAgent`, `DimDate`
+* Each dimension will support **Slowly Changing Dimensions (SCD Type 2)** — meaning when an attribute changes (e.g., customer address or agent region), we keep **a new row with new effective dates**, not overwrite old data.
+
+---
+
+## 🏗️ **1️⃣ Fact Table: FactPolicy**
+
+| Column Name           | Data Type     | Description            |
+| --------------------- | ------------- | ---------------------- |
+| **Policy_Key (PK)**   | INT           | Surrogate key          |
+| **Customer_Key (FK)** | INT           | From DimCustomer       |
+| **Product_Key (FK)**  | INT           | From DimProduct        |
+| **Agent_Key (FK)**    | INT           | From DimAgent          |
+| **Date_Key (FK)**     | INT           | From DimDate           |
+| **Premium_Amount**    | DECIMAL(12,2) | Premium amount         |
+| **Claim_Count**       | INT           | Number of claims       |
+| **Claim_Amount**      | DECIMAL(12,2) | Total claim amount     |
+| **Policy_Status**     | VARCHAR(20)   | Active, Closed, Lapsed |
+| **Load_Date**         | DATE          | ETL load date          |
+
+---
+
+## 🟨 **2️⃣ DimCustomer (SCD Type 2)**
+
+| Column Name           | Data Type    | Description                 |
+| --------------------- | ------------ | --------------------------- |
+| **Customer_Key (PK)** | INT          | Surrogate key               |
+| **Customer_ID (BK)**  | VARCHAR(20)  | Business key from source    |
+| **Customer_Name**     | VARCHAR(100) | Full name                   |
+| **Gender**            | CHAR(1)      | M/F/O                       |
+| **Date_Of_Birth**     | DATE         | DOB                         |
+| **Address**           | VARCHAR(200) | Customer address            |
+| **Marital_Status**    | VARCHAR(20)  | Married/Single              |
+| **Start_Date**        | DATE         | Record effective start date |
+| **End_Date**          | DATE         | Record effective end date   |
+| **Is_Current**        | CHAR(1)      | ‘Y’ = Current record        |
+
+**Example Data:**
+
+| Customer_Key | Customer_ID | Address   | Start_Date | End_Date   | Is_Current |
+| ------------ | ----------- | --------- | ---------- | ---------- | ---------- |
+| 101          | CUST001     | Pune      | 2020-01-01 | 2023-02-15 | N          |
+| 202          | CUST001     | Bangalore | 2023-02-16 | 9999-12-31 | Y          |
+
+---
+
+## 🟩 **3️⃣ DimProduct (SCD Type 2)**
+
+| Column Name           | Data Type    | Description                  |
+| --------------------- | ------------ | ---------------------------- |
+| **Product_Key (PK)**  | INT          | Surrogate key                |
+| **Product_ID (BK)**   | VARCHAR(20)  | Source product ID            |
+| **Product_Name**      | VARCHAR(100) | Product name                 |
+| **Product_Type**      | VARCHAR(50)  | Life / Health / Motor        |
+| **Premium_Type**      | VARCHAR(20)  | Monthly / Yearly             |
+| **Coverage_Duration** | INT          | Duration in years            |
+| **Start_Date**        | DATE         | Record effective start date  |
+| **End_Date**          | DATE         | Record effective end date    |
+| **Is_Current**        | CHAR(1)      | ‘Y’ = Active product version |
+
+---
+
+## 🟦 **4️⃣ DimAgent (SCD Type 2)**
+
+| Column Name        | Data Type    | Description               |
+| ------------------ | ------------ | ------------------------- |
+| **Agent_Key (PK)** | INT          | Surrogate key             |
+| **Agent_ID (BK)**  | VARCHAR(20)  | Source system code        |
+| **Agent_Name**     | VARCHAR(100) | Full name                 |
+| **Channel_Type**   | VARCHAR(30)  | Online / Partner / Direct |
+| **Region**         | VARCHAR(50)  | Assigned region           |
+| **Start_Date**     | DATE         | Effective from            |
+| **End_Date**       | DATE         | Effective till            |
+| **Is_Current**     | CHAR(1)      | ‘Y’ = Current record      |
+
+---
+
+## 🟥 **5️⃣ DimDate (Static Date Dimension)**
+
+| Column Name       | Data Type   | Description     |
+| ----------------- | ----------- | --------------- |
+| **Date_Key (PK)** | INT         | YYYYMMDD format |
+| **Full_Date**     | DATE        | Calendar date   |
+| **Day_Name**      | VARCHAR(10) | Mon/Tue/Wed     |
+| **Month**         | VARCHAR(10) | Month name      |
+| **Quarter**       | VARCHAR(10) | Q1–Q4           |
+| **Year**          | INT         | Year            |
+| **Is_Weekend**    | CHAR(1)     | Y/N             |
+
+---
+
+## 🧠 **How SCD Type 2 Works (Customer Example)**
+
+If customer **CUST001** moves from *Pune* to *Bangalore* on 16-Feb-2023:
+
+1. Old record’s `End_Date` = 2023-02-15, `Is_Current` = 'N'
+2. New record inserted with new address, `Start_Date` = 2023-02-16, `End_Date` = 9999-12-31, `Is_Current` = 'Y'
+3. FactPolicy continues referencing correct version via `Customer_Key`.
+
+---
+
+## 📈 **ERD (Text-based View)**
+
+```
+               ┌───────────────────────┐
+               │      DimCustomer      │
+               │ Customer_Key (PK)     │
+               │ Customer_ID (BK)      │
+               │ Address               │
+               │ Start_Date / End_Date │
+               │ Is_Current            │
+               └────────┬──────────────┘
+                        │
+                        │
+               ┌────────▼────────┐
+               │   FactPolicy    │
+               │ Policy_Key (PK) │
+               │ Customer_Key FK │
+               │ Product_Key FK  │
+               │ Agent_Key FK    │
+               │ Date_Key FK     │
+               │ Premium_Amount  │
+               │ Claim_Count     │
+               └────────┬────────┘
+                        │
+     ┌──────────────────┼─────────────────┐
+     │                  │                 │
+┌────▼──────┐     ┌─────▼──────┐    ┌─────▼─────┐
+│ DimProduct│     │ DimAgent   │    │ DimDate   │
+│ Product_Key│     │ Agent_Key │    │ Date_Key  │
+│ Start/End │     │ Start/End │    │ Year, Qtr │
+└───────────┘     └───────────┘    └───────────┘
+```
+
+---
+
+## 💬 **How to Explain This in Interview**
+
+> “I’ve designed an insurance DWH with one fact and four SCD Type-2 dimensions. Each dimension has start and end dates to maintain historical data — so when customer or agent details change, we retain old versions for accurate historical reporting. The fact table always references the correct surrogate key version from the dimension. This ensures both time-variant and non-volatile characteristics of a true warehouse.”
+
+---
+
+Would you like me to also show **sample SQL DDL scripts (CREATE TABLE statements)** for these tables — including indexes, surrogate key definitions, and SCD columns?
+That would help you speak technically during your Barclays interview or even build a PoC.
+
+
