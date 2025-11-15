@@ -38,3 +38,4 @@
 
 20. how can u help 6d
 
+21. Identifying risks before hand and mitigation 
