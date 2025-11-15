@@ -39,3 +39,9 @@
 20. how can u help 6d
 
 21. Identifying risks before hand and mitigation 
+
+22. some practical understanding about tlo slo proces discount account customer and party
+
+23. some practical understanding about network elements in hlr vlr etc gsm how call connects
+
+24. prepaid upss tables structures 
