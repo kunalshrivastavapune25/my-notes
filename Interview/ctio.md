@@ -15,7 +15,7 @@ My responsibilities include:
 
 ## ✅ **2. Can you list 5 biggest challenges you faced and resolution?** 
 
-*These challenges taught me to think analytically, optimize processes, and collaborate across teams. In all cases, I focused on reducing load time, improving data quality, and ensuring predictable cutover execution and focussing on critical path.*
+*These challenges taught me to think analytically, optimize processes, and collaborate across teams. In all cases, I focused on reducing load time, improving data quality, and ensuring predictable cutover execution and focussing on critical path. We get these knowledge from dry and mock runs *
 
 **1. Siebel CRM Migration – Slow Delta Load & Cutover Bottleneck**
 
