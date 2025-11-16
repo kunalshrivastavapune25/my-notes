@@ -10,7 +10,7 @@ My responsibilities include:
 * Ensuring we have the right **environments** — DEV, SIT, UAT, E2E, and proper backup/recovery.
 * Driving **Agile sprint planning**, iteration goals, resource mentoring, and delivery governance.
 * Making sure the project is delivered with **zero surprises**, minimal risk, and full stakeholder alignment.
-
+* it's iteration based migration where functionalities keep added in nc and post uat, we ask that much data from source and migrate , we give product catalogue to them before each migration iteration 
 ---
 
 ## ✅ **2. Can you list 5 biggest challenges you faced and resolution?** 
