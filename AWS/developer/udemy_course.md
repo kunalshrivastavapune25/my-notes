@@ -11,7 +11,7 @@
 | 7              | AWS Fundamentals: ELB + ASG                                     | 20             | 1:36             |        |
 | 8              | AWS Fundamentals: RDS + Aurora + ElastiCache                    | 12             | 1:06             | <span style="color:orange">pending</span> |
 | 9              | Route 53                                                        | 21             | 1:30             |        |
-| 10             | VPC Fundamentals                                                | 7              | 0:25             |        |
+| 10             | VPC Fundamentals                                                | 7              | 0:25             | <span style="color:orange">pending</span> |
 | 11             | Amazon S3 Introduction                                          | 14             | 0:48             | <span style="color:orange">pending</span> |
 | 12             | AWS CLI, SDK, IAM Roles & Policies                              | 9              | 0:32             | <span style="color:orange">pending</span> |
 | 13             | Advanced Amazon S3                                              | 7              | 0:23             | <span style="color:orange">pending</span> |
@@ -22,9 +22,9 @@
 | 18             | AWS CloudFormation                                              | 19             | 1:11             |        |
 | 19             | AWS Integration & Messaging: SQS, SNS & Kinesis                 | 22             | 1:42             | <span style="color:orange">pending</span> |
 | 20             | AWS Monitoring & Audit: CloudWatch, X-Ray and CloudTrail        | 30             | 1:46             | <span style="color:orange">pending</span> |
-| 21             | AWS Serverless: Lambda                                          | 49             | 3:04             | <span style="color:orange">pending</span> |
-| 22             | AWS Serverless: DynamoDB                                        | 26             | 1:46             | <span style="color:orange">pending</span> |
-| 23             | AWS Serverless: API Gateway                                     | 22             | 1:22             | <span style="color:orange">pending</span> |
+| 21             | AWS Serverless: Lambda                                          | 49             | 3:04             | <span style="color:green">done</span> |
+| 22             | AWS Serverless: DynamoDB                                        | 26             | 1:46             | <span style="color:green">done</span> |
+| 23             | AWS Serverless: API Gateway                                     | 22             | 1:22             | <span style="color:green">done</span> |
 | 24             | AWS CICD: CodeCommit, CodePipeline, CodeBuild, CodeDeploy       | 19             | 1:32             | <span style="color:orange">pending</span> |
 | 25             | AWS Serverless: SAM - Serverless Application Model              | 9              | 0:35             | <span style="color:orange">pending</span> |
 | 26             | Cloud Development Kit (CDK)                                     | 6              | 0:26             | <span style="color:orange">pending</span> |
