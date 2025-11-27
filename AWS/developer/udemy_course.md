@@ -6,7 +6,7 @@
 | 2              | Code & Slides Download                                          | 1              | 0:01             | <span style="color:green">done</span> |
 | 3              | Getting started with AWS                                        | 3              | 0:13             | <span style="color:green">done</span> |
 | 4              | IAM & AWS CLI                                                   | 21             | 0:58             | <span style="color:green">done</span> |
-| 5              | EC2 Fundamentals                                                | 15             | 1:20             | <span style="color:orange">pending</span> |
+| 5              | EC2 Fundamentals                                                | 15             | 1:20             | <span style="color:green">done</span> |
 | 6              | EC2 Instance Storage                                            | 14             | 0:56             | <span style="color:orange">pending</span> |
 | 7              | AWS Fundamentals: ELB + ASG                                     | 20             | 1:36             | <span style="color:orange">pending</span> |
 | 8              | AWS Fundamentals: RDS + Aurora + ElastiCache                    | 12             | 1:06             | <span style="color:orange">pending</span> |
