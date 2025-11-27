@@ -7,8 +7,8 @@
 | 3              | Getting started with AWS                                        | 3              | 0:13             | <span style="color:green">done</span> |
 | 4              | IAM & AWS CLI                                                   | 21             | 0:58             | <span style="color:green">done</span> |
 | 5              | EC2 Fundamentals                                                | 15             | 1:20             | <span style="color:green">done</span> |
-| 6              | EC2 Instance Storage                                            | 14             | 0:56             | <span style="color:orange">pending</span> |
-| 7              | AWS Fundamentals: ELB + ASG                                     | 20             | 1:36             | <span style="color:orange">pending</span> |
+| 6              | EC2 Instance Storage                                            | 14             | 0:56             | <span style="color:green">done</span> |
+| 7              | AWS Fundamentals: ELB + ASG                                     | 20             | 1:36             | <span style="color:green">done</span> |
 | 8              | AWS Fundamentals: RDS + Aurora + ElastiCache                    | 12             | 1:06             | <span style="color:orange">pending</span> |
 | 9              | Route 53                                                        | 21             | 1:30             | <span style="color:orange">pending</span> |
 | 10             | VPC Fundamentals                                                | 7              | 0:25             | <span style="color:orange">pending</span> |
