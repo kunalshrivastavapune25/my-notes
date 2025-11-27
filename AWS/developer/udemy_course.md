@@ -11,7 +11,7 @@
 | 7              | AWS Fundamentals: ELB + ASG                                     | 20             | 1:36             | <span style="color:green">done</span> |
 | 8              | AWS Fundamentals: RDS + Aurora + ElastiCache                    | 12             | 1:06             | <span style="color:green">done</span> |
 | 9              | Route 53                                                        | 21             | 1:30             | <span style="color:green">done</span> |
-| 10             | VPC Fundamentals                                                | 7              | 0:25             | <span style="color:orange">pending</span> |
+| 10             | VPC Fundamentals                                                | 7              | 0:25             | <span style="color:green">done</span> |
 | 11             | Amazon S3 Introduction                                          | 14             | 0:48             | <span style="color:orange">pending</span> |
 | 12             | AWS CLI, SDK, IAM Roles & Policies                              | 9              | 0:32             | <span style="color:orange">pending</span> |
 | 13             | Advanced Amazon S3                                              | 7              | 0:23             | <span style="color:orange">pending</span> |
