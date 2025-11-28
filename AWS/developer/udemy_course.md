@@ -12,11 +12,11 @@
 | 8              | AWS Fundamentals: RDS + Aurora + ElastiCache                    | 12             | 1:06             | <span style="color:green">done</span> |
 | 9              | Route 53                                                        | 21             | 1:30             | <span style="color:green">done</span> |
 | 10             | VPC Fundamentals                                                | 7              | 0:25             | <span style="color:green">done</span> |
-| 11             | Amazon S3 Introduction                                          | 14             | 0:48             | <span style="color:orange">pending</span> |
-| 12             | AWS CLI, SDK, IAM Roles & Policies                              | 9              | 0:32             | <span style="color:orange">pending</span> |
-| 13             | Advanced Amazon S3                                              | 7              | 0:23             | <span style="color:orange">pending</span> |
-| 14             | Amazon S3 Security                                              | 15             | 0:49             | <span style="color:orange">pending</span> |
-| 15             | CloudFront                                                      | 13             | 0:49             | <span style="color:orange">pending</span> |
+| 11             | Amazon S3 Introduction                                          | 14             | 0:48             | <span style="color:green">done</span> |
+| 12             | AWS CLI, SDK, IAM Roles & Policies                              | 9              | 0:32             | <span style="color:green">done</span> |
+| 13             | Advanced Amazon S3                                              | 7              | 0:23             | <span style="color:green">done</span> |
+| 14             | Amazon S3 Security                                              | 15             | 0:49             | <span style="color:green">done</span> |
+| 15             | CloudFront                                                      | 13             | 0:49             | <span style="color:green">done</span> |
 | 16             | ECS, ECR & Fargate - Docker in AWS                              | 18             | 1:18             | <span style="color:orange">pending</span> |
 | 17             | AWS Elastic Beanstalk                                           | 14             | 0:59             | <span style="color:orange">pending</span> |
 | 18             | AWS CloudFormation                                              | 19             | 1:11             | <span style="color:orange">pending</span> |
