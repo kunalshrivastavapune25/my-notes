@@ -17,8 +17,8 @@
 | 13             | Advanced Amazon S3                                              | 7              | 0:23             | <span style="color:green">done</span> |
 | 14             | Amazon S3 Security                                              | 15             | 0:49             | <span style="color:green">done</span> |
 | 15             | CloudFront                                                      | 13             | 0:49             | <span style="color:green">done</span> |
-| 16             | ECS, ECR & Fargate - Docker in AWS                              | 18             | 1:18             | <span style="color:orange">pending</span> |
-| 17             | AWS Elastic Beanstalk                                           | 14             | 0:59             | <span style="color:orange">pending</span> |
+| 16             | ECS, ECR & Fargate - Docker in AWS                              | 18             | 1:18             | <span style="color:green">done</span> |
+| 17             | AWS Elastic Beanstalk                                           | 14             | 0:59             | <span style="color:green">done</span> |
 | 18             | AWS CloudFormation                                              | 19             | 1:11             | <span style="color:orange">pending</span> |
 | 19             | AWS Integration & Messaging: SQS, SNS & Kinesis                 | 22             | 1:42             | <span style="color:orange">pending</span> |
 | 20             | AWS Monitoring & Audit: CloudWatch, X-Ray and CloudTrail        | 30             | 1:46             | <span style="color:orange">pending</span> |
