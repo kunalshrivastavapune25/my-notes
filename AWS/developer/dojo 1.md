@@ -7,18 +7,20 @@ Which of the following AWS services will help you achieve this?
 * AWS CodePipeline
 * AWS Fault Injection Simulator
 
-AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This makes it a good choice for automating your CI/CD process and centrally monitoring application activity.
+
+
+* ** AWS CodePipeline ** is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This makes it a good choice for automating your CI/CD process and centrally monitoring application activity.
 Moreover, AWS CodePipeline integrates with AWS CloudWatch, which provides a reliable, scalable, and flexible monitoring solution. You can create dashboards in CloudWatch to centrally monitor application activity and manage day-to-day development tasks.
 
-The option that says: AWS Fault Injection Simulator is incorrect because this is just a managed service that is commonly used in chaos engineering, and not for application development. It enables you to perform fault injection experiments on your AWS workloads to improve the performance and resiliency of your applications.
-The option that says: Elastic Beanstalk is incorrect because it is an orchestration service to quickly deploy and manage applications in AWS.
-The option that says: Amazon CodeGuru is incorrect because this is simply a developer tool that provides intelligent recommendations to improve the quality of your codebase and for identifying an application’s most “expensive” lines of code in terms of resource intensiveness, CPU performance, and code efficiency.
+* The option that says: AWS Fault Injection Simulator is incorrect because this is just a managed service that is commonly used in chaos engineering, and not for application development. It enables you to perform fault injection experiments on your AWS workloads to improve the performance and resiliency of your applications.
+* The option that says: Elastic Beanstalk is incorrect because it is an orchestration service to quickly deploy and manage applications in AWS.
+* The option that says: Amazon CodeGuru is incorrect because this is simply a developer tool that provides intelligent recommendations to improve the quality of your codebase and for identifying an application’s most “expensive” lines of code in terms of resource intensiveness, CPU performance, and code efficiency.
  
-References:
+* References:
 https://docs.aws.amazon.com/codepipeline/latest/userguide/detect-state-changes-cloudwatch-events.html
 https://aws.amazon.com/codepipeline/
  
-Check out this AWS CodePipeline Cheat Sheet:
+* Check out this AWS CodePipeline Cheat Sheet:
 https://tutorialsdojo.com/aws-codepipeline/
 ## 2. Question
 An EBS-backed EC2 instance has been recently reported to contain a malware that could spread to your other instances. To fix this security vulnerability, you will need to attach its root EBS volume to a new EC2 instance which hosts a security program that can scan viruses, worms, Trojan horses, or spyware.
