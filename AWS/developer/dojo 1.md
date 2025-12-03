@@ -6,7 +6,7 @@ Which of the following AWS services will help you achieve this?
 * AWS Elastic Beanstalk
 * AWS CodePipeline
 * AWS Fault Injection Simulator
-Correct
+
 AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This makes it a good choice for automating your CI/CD process and centrally monitoring application activity.
 Moreover, AWS CodePipeline integrates with AWS CloudWatch, which provides a reliable, scalable, and flexible monitoring solution. You can create dashboards in CloudWatch to centrally monitor application activity and manage day-to-day development tasks.
 
@@ -27,7 +27,7 @@ What steps would you take to detach the root volume from the compromised EC2 ins
 * Unmount the volume from the OS and then detach.
 * Unmount the volume, stop the instance, and then detach.
 * Stop the instance then detach the volume.
-Correct
+
 You can detach an Amazon EBS volume from an instance explicitly or by terminating the instance. However, if the instance is running, you must first unmount the volume from the instance.
 If an EBS volume is the root device of an instance, you must stop the instance before you can detach the volume.
 The options that say unmount the volume from the OS and then detach and unmount the volume, stop the instance, and then detach are both incorrect because you can’t unmount the root volume on a running instance.
@@ -45,7 +45,7 @@ Which of the following statements are TRUE regarding this scenario?
 * The Kinesis shards must be merged to increase the data capacity of the stream as well as the concurrency execution of the Lambda function.
 * The Lambda function will throttle the incoming requests due to the excessive number of Kinesis shards.
 * The Lambda function has 500 concurrent executions.
-Incorrect
+
 You can use an AWS Lambda function to process records in an Amazon Kinesis data stream. With Kinesis, you can collect data from many sources and process them with multiple consumers. Lambda supports standard data stream iterators and HTTP/2 stream consumers. Lambda reads records from the data stream and invokes your function synchronously with an event that contains stream records. Lambda reads records in batches and invokes your function to process records from the batch.
 
 Concurrent executions refers to the number of executions of your function code that are happening at any given time. You can estimate the concurrent execution count, but the it will differ depending on whether or not your Lambda function is processing events from a poll-based event source.
@@ -70,7 +70,7 @@ Which of the following is the MOST suitable and cost-effective option which will
 * Use a combination of Lambda and Step Functions to orchestrate service components and asynchronously process the requests.
 * Use AWS Serverless Application Model (AWS SAM) to allow asynchronous requests to your Lambda function.
 * Configure the application to asynchronously process the requests and change the invocation type of the Lambda function to Event.
-Correct
+
 AWS Lambda supports synchronous and asynchronous invocation of a Lambda function. You can control the invocation type only when you invoke a Lambda function (referred to as on-demand invocation). The following examples illustrate on-demand invocations:
 – Your custom application invokes a Lambda function.
 – You manually invoke a Lambda function (for example, using the AWS CLI) for testing purposes.
@@ -81,7 +81,7 @@ RequestResponse (default) – Invoke the function synchronously. Keep the connec
 Event – Invoke the function asynchronously. Send events that fail multiple times to the function’s dead-letter queue (if it’s configured). The API response only includes a status code.
 DryRun – Validate parameter values and verify that the user or role has permission to invoke the function.
 By configuring the application to asynchronously process requests by changing the invocation type of the Lambda function to “Event,” the function can run in the background without blocking the main application. When the processing is complete, Lambda can store it back to S3 and trigger another event, such as a notification to the user that the image is ready.
-Hence, the correct answer is to configure the application to asynchronously process the requests and change the invocation type of the Lambda function to Event.
+* Hence, the correct answer is to configure the application to asynchronously process the requests and change the invocation type of the Lambda function to Event.
 Configuring the application to asynchronously process the requests and use the default invocation type of the Lambda function is incorrect because this will invoke your Lambda function synchronously. The default invocation type is RequestResponse which invokes the function synchronously and keeps the connection open until the function returns a response or times out.
 Using AWS Serverless Application Model (AWS SAM) to allow asynchronous requests to your Lambda function is incorrect because AWS SAM just is an open-source framework that you can use to build serverless applications on AWS.
 Using a combination of Lambda and Step Functions to orchestrate service components and asynchronously process the requests is incorrect because the AWS Step Functions service just lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly. Although this can be a valid solution, it is not cost-effective since the application does not have a lot of components to orchestrate. Lambda functions can effectively meet the requirements in this scenario without using Step Functions by processing the requests asynchronously.
@@ -99,7 +99,7 @@ Which of the following correctly describes the process of envelope encryption?
 * Encrypt plaintext data with a data key and then encrypt the data key with a top-level plaintext key.
 * Encrypt plaintext data with a KMS key and then encrypt the KMS key with a top-level plaintext data key.
 * Encrypt plaintext data with a data key and then encrypt the data key with a top-level encrypted key.
-Incorrect
+
 When you encrypt your data, your data is protected, but you have to protect your encryption key. One strategy is to encrypt it. Envelope encryption is the practice of encrypting plaintext data with a data key and then encrypting the data key under another key.
 
 You can even encrypt the data encryption key under another encryption key, and encrypt that encryption key under another encryption key. But, eventually, one key must remain in plaintext so you can decrypt the keys and your data. This top-level plaintext key encryption key is known as the root key.
@@ -129,11 +129,11 @@ Which of the following steps should you implement to properly deploy the serverl
 * Use AWS Serverless Application Model (AWS SAM) to deploy the Lambda function.
 * Create a new layer which contains the Custom Runtime for C++ and then launch a Lambda function which uses that runtime.
 * Create a Lambda function with the C++ code and directly upload it to AWS.
-Incorrect
+
 You can implement an AWS Lambda runtime in any programming language. A runtime is a program that runs a Lambda function’s handler method when the function is invoked. You can include a runtime in your function’s deployment package in the form of an executable file named bootstrap.
 A runtime is responsible for running the function’s setup code, reading the handler name from an environment variable, and reading invocation events from the Lambda runtime API. The runtime passes the event data to the function handler, and posts the response from the handler back to Lambda.
 Your custom runtime runs in the standard Lambda execution environment. It can be a shell script, a script in a language that’s included in Amazon Linux, or a binary executable file that’s compiled in Amazon Linux.
-Hence, the correct answer in this scenario is to create a new layer which contains the Custom Runtime for C++ and then launch a Lambda function which uses that runtime.
+* Hence, the correct answer in this scenario is to create a new layer which contains the Custom Runtime for C++ and then launch a Lambda function which uses that runtime.
 Uploading the deployment package to S3 and then using CloudFormation to deploy Lambda function with a reference to the S3 URL of the package is incorrect because you have to implement a Custom Runtime in order to execute the C++ code. Take note that this programming language is not natively supported yet in Lambda, which is why the use of a Custom Runtime is essential.
 Creating a Lambda function with the C++ code and directly uploading it to AWS is incorrect because there is a 50 MB deployment package size limit in Lambda if you’ll directly upload the package. Just as mentioned above, you have to implement a Custom Runtime for this scenario.
 Using AWS Serverless Application Model (AWS SAM) to deploy the Lambda function is incorrect because using SAM alone is not enough to run the C++ code in Lambda. You have to use a Custom Runtime.
@@ -152,7 +152,7 @@ Which of the following parameters should you include in CLI command for this sce
 * --size-only
 * --exclude
 * --max-items
-Correct
+
 For commands that can return a large list of items, the AWS Command Line Interface (AWS CLI) adds three options that you can use to control the number of items included in the output when the AWS CLI calls a service’s API to populate the list. By default, the AWS CLI uses a page size of 1000 and retrieves all available items.
 If you see issues when running list commands on a large number of resources, the default page size of 1000 might be too high. This can cause calls to AWS services to exceed the maximum allowed time and generate a “timed out” error. You can use the --page-size option to specify that the AWS CLI request a smaller number of items from each call to the AWS service. The CLI still retrieves the full list, but performs a larger number of service API calls in the background and retrieves a smaller number of items with each call. This gives the individual calls a better chance of succeeding without a timeout.
 To include fewer items at a time in the AWS CLI output, use the --max-items option. The AWS CLI still handles pagination with the service as described above, but prints out only the number of items at a time that you specify. If the number of items output is fewer than the total number of items returned by the underlying API calls, the output includes a NextToken that you can pass to a subsequent command to retrieve the next set of items.
@@ -172,12 +172,12 @@ What must be done to give new users access to the service?
 * Use the UpdateAuthorizer operation to modify the authorization settings. Promote the changes to the production stage by calling the CreateDeployment operation.
 * Use the ImportApiKeys operation to import the premium users’ keys, then apply the UpdateUsagePlan operation to set the new tier access.
 * Instruct users to send their API key in a custom header. In the integration request, adjust the mapping template to extract and evaluate this header to distinguish between free-tier and premium subscribers.
-Incorrect
+
 In Amazon API Gateway, API keys by themselves do not grant access to execute an API. They need to be associated with a usage plan, and that usage plan then determines which API stages and methods the API key can access.
 
 If the API key is not associated with a usage plan, it will not have permission to access any of the resources, which will result in a “403 Forbidden” error.
 In the given scenario, existing users can access the service, but new premium subscribers cannot. This indicates that while the API keys were created for new users, they might not have been associated with the appropriate usage plan. Hence, after generating an API key, it must be added to a usage plan by calling the CreateUsagePlanKey method.
-Hence, the correct answer is: Associate the API keys for the premium users with the intended usage plan using the CreateUsagePlanKey operation.
+* Hence, the correct answer is: Associate the API keys for the premium users with the intended usage plan using the CreateUsagePlanKey operation.
 The option that says: Use the ImportApiKeys operation to import the premium users’ keys, then apply the UpdateUsagePlan operation to set the new tier access is incorrect. The importApiKeys API is primarily used for bulk importing API keys, not for associating them with a usage plan. Although the updateUsagePlan API modifies properties of a usage plan; it doesn’t handle direct association of API keys.
 The option that says: Use the UpdateAuthorizer operation to modify the authorization settings. Promote the changes to the production stage by calling the CreateDeployment operation is incorrect. The updateAuthorizer operation is only used to modify the settings of an existing custom authorizer, which handles custom authorization logic for APIs. In the scenario, the issue is not related to custom authorization but rather to the association of API keys with a usage plan.
 The option that says: Instruct users to send their API key in a custom header. In the integration request, adjust the mapping template to extract and evaluate this header to distinguish between free-tier and premium subscribers is incorrect. Changing the way users provide their API key adds unnecessary complexity and won’t solve the issue at hand. The problem isn’t with how the API key is being sent but with the API key not having appropriate permissions because it’s not associated with a usage plan.
@@ -195,7 +195,7 @@ Which of the following is the MOST suitable way to configure the data analytics 
 * Enable DynamoDB Streams and set the value of StreamViewType to NEW_AND_OLD_IMAGE. Create a trigger in AWS Lambda to capture stream data and forward it to your application.
 * Enable DynamoDB Streams and set the value of StreamViewType to NEW_AND_OLD_IMAGE. Use Kinesis Adapter in the application to consume streams from DynamoDB.
 * Enable DynamoDB Streams and set the value of StreamViewType to NEW_IMAGE. Use Kinesis Adapter in the application to consume streams from DynamoDB.
-Correct
+
 DynamoDB Streams provides a time-ordered sequence of item-level changes in any DynamoDB table. The changes are de-duplicated and stored for 24 hours. Applications can access this log and view the data items as they appeared before and after they were modified, in near real time.
 The Kinesis Adapter is the recommended way to consume streams from DynamoDB for real-time processing. The DynamoDB Streams API is intentionally similar to that of Kinesis Streams, a service for real-time processing of streaming data at a massive scale. You can write applications for Kinesis Streams using the Kinesis Client Library (KCL). The KCL simplifies coding by providing useful abstractions above the low-level Kinesis Streams API. As a DynamoDB Streams user, you can leverage the design patterns found within the KCL to process DynamoDB Streams shards and stream records. To do this, you use the DynamoDB Streams Kinesis Adapter. The Kinesis Adapter implements the Kinesis Streams interface, so that the KCL can be used for consuming and processing records from DynamoDB Streams.
 
@@ -204,7 +204,7 @@ KEYS_ONLY – Only the key attributes of the modified item are written to the st
 NEW_IMAGE – The entire item, as it appears after it was modified, is written to the stream.
 OLD_IMAGE – The entire item, as it appeared before it was modified, is written to the stream.
 NEW_AND_OLD_IMAGES – Both the new and the old item images of the item are written to the stream.
-Hence, the correct answer is: Enable DynamoDB Streams and set the value of StreamViewType to NEW_IMAGE then use Kinesis Adapter in the application to consume streams from DynamoDB.
+* Hence, the correct answer is: Enable DynamoDB Streams and set the value of StreamViewType to NEW_IMAGE then use Kinesis Adapter in the application to consume streams from DynamoDB.
 The option that says: Enable DynamoDB Streams and set the value of StreamViewType to NEW_AND_OLD_IMAGE. Create a trigger in AWS Lambda to capture stream data and forward it to your application is incorrect. Using Lambda for real-time data analytics is not a suitable solution for this scenario since it reads records in batches. A more appropriate service to use is the Kinesis service. In addition, using the StreamViewType of NEW_AND_OLD_IMAGE is wrong since this will send both the old and the new values of the item. Remember that it is specifically mentioned in the scenario that only the new values should be tracked.
 The option that says: Enable DynamoDB Streams and set the value of StreamViewType to NEW_IMAGE. Create a trigger in AWS Lambda to capture stream data and forward it to your application is incorrect because just like what is mentioned above, it is better to use Kinesis instead of Lambda for the real-time data analytics application.
 The option that says: Enable DynamoDB Streams and set the value of StreamViewType to NEW_AND_OLD_IMAGE. Use Kinesis Adapter in the application to consume streams from DynamoDB is incorrect because this will send both the old and the new values of the item to the data analytics application. The correct StreamViewType to use here should be NEW_IMAGE.
@@ -226,7 +226,7 @@ What else should the developer do to meet the requirement without too much overh
 * Create a Lambda function authorizer for the API. In the Lambda function, write a logic that verifies the requester’s identity by extracting the information from the context object.
 * Create a Cognito User Pool authorizer. Add the IAM role to the user pool. Authenticate the requester’s identity using Cognito. Ask the analysts to pass the token returned by Cognito in their request headers.
 * Set AWS_IAM as the method authorization type for the API. Attach a resource policy to the API that grants permission to the specified IAM role to invoke the execute-api:Invoke action.
-Correct
+
 By using AWS_IAM as the method authorization type, it ensures that the API can only be accessed by IAM identities such as IAM users or IAM roles. Attaching a resource policy to the API that grants permission to the specified IAM role to invoke the execute-api:Invoke action allows the specified IAM role to make authorized requests to the API while denying access to any other unauthorized users or roles.
 {
 "Version": "2012-10-17",
@@ -246,7 +246,7 @@ By using AWS_IAM as the method authorization type, it ensures that the API can o
 ]
 }
 This combination of method authorization and resource policy provides an additional layer of security for the API.
-Hence, the correct answer in this scenario is to Set AWS_IAM as the method authorization type for the API. Attach a resource policy to the API that grants permission to the specified IAM role to invoke the execute-api:Invoke action.
+* Hence, the correct answer in this scenario is to Set AWS_IAM as the method authorization type for the API. Attach a resource policy to the API that grants permission to the specified IAM role to invoke the execute-api:Invoke action.
 The option that says: Create an API Key for the API. Attach a resource policy to the API that grants permission to the specified IAM role to invoke the GetAPIKeys action is incorrect API Keys are just a way of identifying the calling parties that you trust, but they are not intended to be used to grant permissions to an IAM role.
 The option that says: Create a Lambda function authorizer for the API. In the Lambda function, write a logic that verifies the requester’s identity by extracting the information from the context object is incorrect. While this may be possible, Lambda function authorizer is more suitable for custom authorization scheme that uses a bearer token authentication strategy such as OAuth or SAML. Additionally, this approach requires you to write, test, and maintain custom authentication and authorization code, which can be complex and time-consuming.
 The option that says: Create a Cognito User Pool authorizer. Add the IAM role to the user pool. Authenticate the requester’s identity using Cognito. Ask the analysts to pass the token returned by Cognito in their request headers is incorrect. Adding a Cognito User Pool authorizer is unnecessary since the API will be accessed through an IAM role.
@@ -264,12 +264,12 @@ Which solution will help the developer in resolving the issue?
 * Update the developer’s IAM role by including permission to explicitly allow the PutEvents operation on EventBridge.
 * Implement a resource-based policy on the Lambda function that grants necessary permissions to perform the PutEvents action on EventBridge.
 * Establish a Virtual Private Cloud (VPC) peering connection to facilitate communication between AWS Lambda and EventBridge.
-Correct
+
 AWS Lambda is a service that allows you to run your code without managing any servers. It only runs your code when it is needed and can scale from a few requests per day to thousands per second automatically. Moreover, AWS Lambda functions can be triggered by various AWS services, such as Amazon EventBridge. Amazon EventBridge is a serverless event bus that can connect application data from your apps, SaaS, and AWS services. Using EventBridge, you can build event-driven architectures that are highly scalable and decoupled from each other. This approach can make your applications more resilient and flexible.
 
 Lambda functions often need to interact with other AWS services, such as sending events to an EventBridge bus. However, to access and perform actions on these services, the function requires the necessary permissions. This is where the concept of an execution role comes into play. An execution role is an IAM role that grants the Lambda function permissions to access AWS services and resources. By adjusting the execution role of a Lambda function to include permissions for the PutEvents action on EventBridge, the function can safely interact with EventBridge. This method follows the AWS best practice of granting the least privilege, ensuring that the function only has the permissions needed to perform its designated tasks. As a result, the security posture of the application is enhanced.
 In the provided scenario, where a developer’s AWS Lambda function encounter AccessDeniedException errors when attempting to publish events to an EventBridge event bus, adjusting the Lambda function’s execution role is the correct approach to resolving the issue. By granting the execution role permission for the PutEvents action on EventBridge, the Lambda function is authorized to execute the PutEvents call successfully. This solution emphasizes the importance of IAM roles in managing permissions within AWS environments, ensuring secure and efficient access management for serverless applications.
-Hence, the correct answer is: Adjust the AWS Lambda function’s execution role to grant it permissions for the PutEvents action on EventBridge.
+* Hence, the correct answer is: Adjust the AWS Lambda function’s execution role to grant it permissions for the PutEvents action on EventBridge.
 The option that says: Establish a Virtual Private Cloud (VPC) peering connection to facilitate communication between AWS Lambda and EventBridge is incorrect. VPC peering is a networking feature that allows traffic to be routed between two VPCs using private IP addresses. However, this option does not address the underlying issue, which is related to IAM permissions and not network connectivity. Amazon EventBridge is a serverless event bus service that doesn’t require VPC peering with AWS Lambda for connectivity. The AccessDeniedException error indicates a permissions issue that needs IAM configuration adjustments rather than network infrastructure changes.
 The option that says: Update the developer’s IAM role by including permission to explicitly allow the PutEvents operation on EventBridge is incorrect because the permissions required to execute AWS service operations from within an AWS Lambda function are determined by the execution role attached to the Lambda function itself, not the IAM role of the developer. The execution role provides the Lambda function with the necessary AWS credentials to interact with other AWS services under the permissions defined in that role. Modifying the programmer’s IAM role would not grant the Lambda function the permissions it needs to interact with EventBridge.
 The option that says: Implement a resource-based policy on the Lambda function that grants necessary permissions to perform the PutEvents action on EventBridge is incorrect. Lambda functions do not use resource-based policies to grant permissions to access other AWS services. Instead, permissions are primarily managed through the execution role.
@@ -301,7 +301,7 @@ Which of the following statements are TRUE with regards to this S3 configuration
 * This configuration authorizes the user to perform actions on the S3 bucket.
 * This will cause the browser to cache the response of the preflight OPTIONS request for 1 hour.
 * All HTTP Methods are allowed.
-Incorrect
+
 Cross-origin resource sharing (CORS) defines a way for client web applications that are loaded in one domain to interact with resources in a different domain. With CORS support, you can build rich client-side web applications with Amazon S3 and selectively allow cross-origin access to your Amazon S3 resources.
 To configure your bucket to allow cross-origin requests, you create a CORS configuration, which is an XML document with rules that identify the origins that you will allow to access your bucket, the operations (HTTP methods) that will support each origin, and other operation-specific information. You can add up to 100 rules to the configuration. You add the XML document as the cors subresource to the bucket either programmatically or by using the Amazon S3 console as shown below:
 
@@ -312,7 +312,7 @@ AllowedHeader – Specifies the headers allowed in a preflight request.
  Below are some of the CORSRule elements:
 MaxAgeSeconds  – Specifies the amount of time in seconds (in this example, 3000) that the browser caches an Amazon S3 response to a preflight OPTIONS request for the specified resource. By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated.
 ExposeHeader  – Identifies the response headers (in this example, x-amz-server-side-encryption, x-amz-request-id, and x-amz-id-2) that customers are able to access from their applications (for example, from a JavaScript XMLHttpRequest object).
-Hence, the correct answers in this scenario are:
+* Hence, the correct answers in this scenario are:
 – It allows a user to view, add, remove or update objects inside the S3 bucket from the domain tutorialsdojo.com
 – This will cause the browser to cache an Amazon S3 response of a preflight OPTIONS request for 1 hour
 The option that says: the request will fail if the x-amz-meta-custom-header header is not included is incorrect because the ExposeHeader element refers to the header that will be exposed to the response and not a constraint for the request.
@@ -333,7 +333,7 @@ Which of the following should you do to satisfy the above task?
 * Add metadata in the segment document.
 * Add annotations in the subsegment section of the segment document.
 * Add annotations in the segment document.
-Incorrect
+
 Even with sampling, a complex application generates a lot of data. The AWS X-Ray console provides an easy-to-navigate view of the service graph. It shows health and performance information that helps you identify issues and opportunities for optimization in your application. For advanced tracing, you can drill down to traces for individual requests, or use filter expressions to find traces related to specific paths or users.
 
 When you instrument your application, the X-Ray SDK records information about incoming and outgoing requests, the AWS resources used, and the application itself. You can add other information to the segment document as annotations and metadata.
@@ -358,7 +358,7 @@ Which of the following is the MOST likely cause of this issue?
 * You are not using FTP in invoking the API.
 * You are not using HTTPS in invoking the API.
 * You are not using HTTP/2 in invoking the API.
-Correct
+
 All of the APIs created with Amazon API Gateway expose HTTPS endpoints only. Amazon API Gateway does not support unencrypted (HTTP) endpoints. By default, Amazon API Gateway assigns an internal domain to the API that automatically uses the Amazon API Gateway certificate. When configuring your APIs to run under a custom domain name, you can provide your own certificate for the domain.
 
 Calling a deployed API involves submitting requests to the URL for the API Gateway component service for API execution, known as execute-api. The base URL for REST APIs is in the following format:
@@ -383,7 +383,7 @@ Which of the following integration types is the MOST suitable one to use in API 
 * HTTP_PROXY
 * AWS
 * HTTP
-Incorrect
+
 You can integrate an API method in your API Gateway with a custom HTTP endpoint of your application in two ways:
  – HTTP proxy integration
  – HTTP custom integration
@@ -394,7 +394,7 @@ With custom integration, setup is more involved. In addition to the proxy integr
 Programmatically, you choose an integration type by setting the type property on the Integration resource. For the Lambda proxy integration, the value is AWS_PROXY. For the Lambda custom integration and all other AWS integrations, it is AWS. For the HTTP proxy integration and HTTP integration, the value is HTTP_PROXY and HTTP, respectively. For the mock integration, the type value is MOCK.
 Since the integration type that is being described in the scenario fits the definition of an HTTP custom integration, the correct answer in this scenario is to use the HTTP integration type.
 
-Hence, the correct answer is: HTTP.
+* Hence, the correct answer is: HTTP.
 AWS is incorrect because this type is primarily used for Lambda custom integration. Since the scenario does not specify that the microservices are Lambda functions, the HTTP integration type is the most flexible and suitable for such a scenario.
 AWS_PROXY is incorrect because this type is primarily used for Lambda proxy integration. The scenario didn’t mention that it uses a serverless application or Lambda.
 HTTP_PROXY is incorrect because this type is only used for HTTP proxy integration where you don’t need to do data mapping for your request and response data.
@@ -411,11 +411,11 @@ What should the developer do to complete this task?
 * Get the public and private IP addresses from the instance metadata service using the http://169.254.169.254/latest/meta-data/ endpoint.
 * Get the public and private IP addresses from the instance user data service using the http://169.254.169.254/latest/userdata/ endpoint.
 * Get the public and private IP addresses from Amazon CloudWatch.
-Correct
+
 Instance metadata is data about your EC2 instance that you can use to configure or manage the running instance. Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI. This can be helpful when you’re writing scripts to run from your instance. For example, you can access the local IP address of your instance from instance metadata to manage a connection to an external application.
 
 To view the private IPv4 address, public IPv4 address, and all other categories of instance metadata from within a running instance, use the following URL: http://169.254.169.254/latest/meta-data/.
-Hence, the correct answer is: Get the public and private IP addresses from the instance metadata service using the http://169.254.169.254/latest/meta-data/ endpoint.
+* Hence, the correct answer is: Get the public and private IP addresses from the instance metadata service using the http://169.254.169.254/latest/meta-data/ endpoint.
 The option that says: Get the public and private IP addresses from Amazon CloudWatch is incorrect because there is no direct way to fetch the public and private IP addresses of the EC2 instance using CloudWatch.
 The option that says: Get the public and private IP addresses from AWS CloudTrail is incorrect because CloudTrail is primarily used to track the API activity of each AWS service. Just like CloudWatch, there is no easy way to get the associated IP addresses of the EC2 instance using CloudTrail.
 The option that says: Get the public and private IP addresses from the instance user data service using the http://169.254.169.254/latest/userdata/ endpoint is incorrect because a user data is mainly used to perform common automated configuration tasks and run scripts after the instance starts. You will not find the associated IP addresses of the EC2 instance from its user data. You have to use the metadata service instead.
@@ -434,12 +434,12 @@ Which combination of actions will fulfill the requirements in the most cost-effe
 * Configure the webhook handler to call the SendTaskHeartbeat method after a successful notification.
 * Use a Wait State to pause the execution of the workflow. Configure the webhook handler to invoke the Lambda function synchronously.
 * Set the invocation method of the Lambda function task state to asynchronous. Create an AWS SQS queue and configure the webhook handler to send the payment service’s response to the queue. Use a combination of Wait State and Choice State to poll the queue.
-Correct
+
 In AWS Step Functions, the waitForTaskToken option allows a task to be paused until an external system signals its completion. When a task is configured with this option, Step Functions generates a unique token, which can be retrieved from the context object of the state machine. This token, for instance, can be stored in a data store for reference.
 The diagram below depicts how waitForTaskToken is used for an SQS task state.
 
 An external system, such as a webhook handler can then reference the token and call the SendTaskSuccess or SendTaskFailure method to signal Step Functions to resume the workflow. When the workflow is in a paused state, you’re not billed for the time the workflow is paused, making it a cost-effective method for awaiting external processes or events.
-Hence, the correct answers are:
+* Hence, the correct answers are:
 	* Configure the Lambda function task state to use the waitForTaskToken option. Retrieve the task token from the context object of the state machine and include it as part of the Lambda function’s payload body.
 	* Configure the webhook handler to call the SendTaskSuccess method after a successful notification.
 The option that says: Set the invocation method of the Lambda function task state to asynchronous. Create an AWS SQS queue and configure the webhook handler to send the payment service’s response to the queue. Use a combination of Wait State and Choice State to poll the queue is incorrect. While this solution may work, every iteration involving the Wait State and Choice State incurs a cost as a state transition. If the third-party service takes an unpredictable amount of time, the state machine could go through multiple cycles of waiting and checking the SQS queue, resulting in a higher cost.
@@ -460,7 +460,7 @@ What action can the developer take to lessen the chances of processing duplicate
 * Refactor the Lambda function to store the message's content and drop the incoming messages with similar content within a 5-minute period.
 * Add a MessageDeduplicationId parameter to the SendMessage API request.
 * Configure the Amazon SQS queue to automatically drop a duplicate message whenever it arrives within the message’s VisibilityTimeout.
-Incorrect
+
 Amazon SQS FIFO First-In-First-Out queues are designed to enhance messaging between applications when the order of operations and events is critical or where duplicates can’t be tolerated.
 
 Amazon SQS FIFO queues follow exactly-once processing. It introduces a parameter called Message Deduplication ID, which is the token used for deduplication of sent messages. Suppose a message with a particular message deduplication ID is sent successfully. In that case, any messages sent with the same message deduplication ID are accepted successfully but aren’t delivered during the 5-minute deduplication interval.
@@ -486,7 +486,7 @@ What should the developer implement to meet the above requirements?
 * Distribute tasks evenly across all available EC2 instances using the spread task placement strategy.
 * Place tasks randomly using the random task placement strategy.
 * Distribute tasks evenly across Availability Zones, and then re-distribute the tasks among EC2 instances based on the least available amount of CPU/memory within each Availability Zone.
-Correct
+
 The binpack strategy tries to fit your workloads in as few instances as possible. It gets its name from the bin packing problem where the goal is to fit objects of various sizes in the smallest number of bins. It is well suited to scenarios for minimizing the number of instances in your cluster, perhaps for cost savings, and lends itself well to automatic scaling for elastic workloads, to shut down instances that are not in use.
 A task placement strategy is an algorithm for selecting instances for task placement or tasks for termination. Task placement strategies can be specified when either running a task or creating a new service.
 Amazon ECS supports the following task placement strategies:
@@ -496,7 +496,7 @@ spread – Place tasks evenly based on the specified value. Accepted values are 
 
 When you use the binpack strategy, you must also indicate if you are trying to make optimal use of your instances’ CPU or memory. This is done by passing an extra field parameter, which tells the task placement engine which parameter to use to evaluate how “full” your “bins” are. It then chooses the instance with the least available CPU or memory (depending on which you pick). If there are multiple instances with this CPU or memory remaining, it chooses randomly.
 By spreading tasks among your EC2 instances using the binpack strategy, you can minimize costs and resource consumption since this strategy maximizes available CPU/memory of your already running instances.
-Hence, the correct answer is: Distribute tasks among all registered EC2 instances based on the least available amount of CPU or memory using the binpack task placement strategy. 
+* Hence, the correct answer is: Distribute tasks among all registered EC2 instances based on the least available amount of CPU or memory using the binpack task placement strategy. 
 The option that says: Distribute tasks evenly across all available EC2 instances using the spread task placement strategy is incorrect because this strategy is typically used to achieve high availability by making sure that multiple copies of a task are scheduled across multiple instances based on attributes such as Availability Zones. Since the scenario is focused on cost rather than availability, this option is clearly not suitable for this scenario.
 The option that says: Place tasks randomly using the random task placement strategy is incorrect. Random task placement just ensures tasks are run on instances with sufficient resources to complete them. Binpack has better cost-savings since it strategically places tasks in as few instances as possible.
 The option that says: Distribute tasks evenly across Availability Zones, and then re-distributing the tasks among EC2 instances based on the least available amount of CPU/memory within each Availability Zone is incorrect. Although it will meet the required task placement, this method will use more unnecessary EC2 instances. Take note that the scenario requires you to minimize the number of instances in use, which will keep the cost down.
@@ -515,12 +515,12 @@ Which of the following is the MOST suitable way to provide access for the develo
 * Go to the AWS Console and create a new IAM user with programmatic access. In the application server, create the credentials file at ~/.aws/credentials with the access keys of the IAM user.
 * Create an IAM role with the appropriate permissions to access the required AWS services. Assign the role to the on-premises Linux server.
 * Create an IAM role with the appropriate permissions to access the required AWS services and assign the role to the on-premises Linux server. Whenever the application needs to access any AWS services, request for temporary security credentials from STS using the AssumeRole API.
-Incorrect
+
 If you have resources that are running inside AWS that need programmatic access to various AWS services, then the best practice is always to use IAM roles. However, applications running outside of an AWS environment will need access keys for programmatic access to AWS resources. For example, monitoring tools running on-premises and third-party automation tools will need access keys.
 Access keys are long-term credentials for an IAM user or the AWS account root user. You can use access keys to sign programmatic requests to the AWS CLI or AWS API (directly or using the AWS SDK).
 
 In order to use the AWS SDK for your application, you have to create your credentials file first at ~/.aws/credentials for Linux servers or at C:\Users\USER_NAME\.aws\credentials for Windows users and then save your access keys.
-Hence, the correct answer is: Go to the AWS Console and create a new IAM user with programmatic access. In the application server, create the credentials file at ~/.aws/credentials with the access keys of the IAM user.
+* Hence, the correct answer is: Go to the AWS Console and create a new IAM user with programmatic access. In the application server, create the credentials file at ~/.aws/credentials with the access keys of the IAM user.
 The option that says: Create an IAM role with the appropriate permissions to access the required AWS services and assign the role to the on-premises Linux server. Whenever the application needs to access any AWS services, request for temporary security credentials from STS using the AssumeRole API is incorrect because the scenario says that the application is running in a Linux server on-premises and not on an EC2 instance. You cannot directly assign an IAM Role to a server on your on-premises data center. Although it may be possible to use a combination of STS and IAM Role, the use of access keys for AWS SDK is still preferred, especially if the application server is on-premises.
 The option that says: Create an IAM role with the appropriate permissions to access the required AWS services. Assign the role to the on-premises Linux server is also incorrect because, just as mentioned above, the use of an IAM Role is not a suitable solution for this scenario.
 The option that says: Go to the AWS Console and create a new IAM User with the appropriate permissions. In the application server, create the credentials file at ~/.aws/credentials with the username and the hashed password of the IAM User is incorrect. An IAM user’s username and password can only be used to interact with AWS via its Management Console. These credentials are intended for human use and are not suitable for use in automated systems, such as applications and scripts that make programmatic calls to AWS services.
@@ -540,12 +540,12 @@ Which combination of steps must the developer do to resolve the issue? (Select T
 * Use the aws configure command with the --profile parameter to add a named profile with the sandbox AWS account’s credentials.
 * Run the function using sam local invoke with the --parameter-overrides parameter.
 * Create an AWS SAM CLI configuration file at the root of the SAM project folder. Add the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables to it.
-Incorrect
+
 AWS Lambda functions have an associated execution role that provides permissions to interact with other AWS services. However, when you run AWS Lambda functions locally using the SAM CLI, you’re simulating the execution environment of the Lambda function but not replicating the AWS execution context, including the IAM execution role. This means that the function won’t automatically assume any IAM execution role and instead will rely on the credentials stored in ~/.aws/credentials file.
 When testing locally with AWS SAM, you can specify a named profile from your AWS CLI configuration using the --profile parameter with the sam local invoke command. This will instruct the SAM CLI to use the credentials from the specified profile when invoking the Lambda function. You can run the aws configure  with the --profile option to set the credentials for a named profile.
 
 In the scenario, the developer must first set up the sandbox AWS account’s credentials using aws configure --profile sandbox. This creates a named profile ‘sandbox’ (note that you can use any name for the profile). For local testing with the SAM CLI, the developer can then specify this profile using the command sam local invoke --profile sandbox. This ensures that the locally executed Lambda function utilizes the correct credentials to access resources in the sandbox AWS account.
-Hence, the correct answers are:
+* Hence, the correct answers are:
 – Use the aws configure command with the --profile parameter to add a named profile with the sandbox AWS account’s credentials.
 – Run the function using sam local invoke with the --profile parameter.
 The option that says: Create an AWS SAM CLI configuration file at the root of the SAM project folder. Add the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables to it is incorrect. The SAM CLI relies on the AWS credentials stored in the /.aws/credentials file, which can be set through the aws configure command. While it’s technically possible to place application credentials in a configuration file, SAM CLI doesn’t support sourcing AWS credentials from it for authentication.
@@ -566,7 +566,7 @@ What should the client do in order to get the latest data?
 * Have the client send a request with the Cached: false header.
 * Override API caching by allowing the client to send requests to the endpoint directly.
 * Have the client send a request with the Cache-Control: max-age=0 header.
-Correct
+
 A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. The client must send a request that contains the Cache-Control: max-age=0 header.
  
 
@@ -589,14 +589,14 @@ Which of the following could the developer do to resolve the performance issue? 
 * Cache the database response using Amazon CloudFront.
 * Implement a Multi-AZ deployment configuration for the RDS DB instance.
 * Implement database caching using Amazon ElastiCache.
-Correct
+
 Amazon RDS Read Replicas provide enhanced performance and durability for the database (DB) instances. This feature makes it easy to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads. You can create one or more replicas of a given source DB Instance and serve high-volume application read traffic from multiple copies of your data, thereby increasing aggregate read throughput.
 You can reduce the load on your source DB instance by routing read queries from your applications to the read replica. Read replicas allow you to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads.
 
 Because read replicas can be promoted to master status, they are useful as part of a sharding implementation. To shard your database, add a read replica and promote it to master status, then, from each of the resulting DB Instances, delete the data that belongs to the other shard.
 In-memory data caching can be one of the most effective strategies to improve your overall application performance and reduce your database costs. Caching can be applied to any type of database, including relational databases such as Amazon RDS or NoSQL databases such as Amazon DynamoDB, MongoDB, and Apache Cassandra. The best part of caching is that it’s minimally invasive to implement, and by doing so, your application performance regarding both scale and speed is dramatically improved.
 Amazon ElastiCache offers fully managed Redis and Memcached. Seamlessly deploy, run, and scale popular open-source compatible in-memory data stores. Build data-intensive apps or improve the performance of your existing apps by retrieving data from high throughput and low latency in-memory data stores.
-Hence, the correct answers in this scenario are:
+* Hence, the correct answers in this scenario are:
  – Set up read replicas for the RDS database instance and route read queries to these replicas.
  – Implement database caching using Amazon ElastiCache.
 The option that says: Replace the database with Amazon MemoryDB for Redis is incorrect because Redshift is primarily used for online analytics processing applications (OLAP) and as a data warehouse. Hence, this will not improve the read performance of your application.
@@ -621,7 +621,7 @@ What is the BEST service that the developer should implement in this scenario?
 * Set up Amazon DynamoDB for the database and implement atomic counters for UpdateItem operation of the website counter.
 * Take advantage of Amazon Aurora's performance speed and AUTO_INCREMENT feature for item updates.
 * Launch an Amazon Redshift for the database and apply a step count of 1 for the IDENTITY column.
-Correct
+
 Amazon DynamoDB is a key-value and document database that delivers single-digit millisecond performance at any scale. Since fast performance is one of the requirements asked in the scenario, DynamoDB should be an option to consider.
 In DynamoDB, an item is a collection of attributes. Each attribute has a name and a value. An attribute value can be a scalar, a set, or a document type. DynamoDB provides four operations for basic create/read/update/delete (CRUD) functionality:
 PutItem      – create an item.
@@ -631,7 +631,7 @@ DeleteItem – delete an item.
 You can use the UpdateItem operation to implement an atomic counter—a numeric attribute that is incremented, unconditionally, without interfering with other write requests. With an atomic counter, the numeric value will increment each time you call UpdateItem.
 
 For example, you might use an atomic counter to keep track of the number of visitors to a website. In this case, your application would increment a numeric value, regardless of its current value. If an UpdateItem operation should fail, the application could simply retry the operation. This would risk updating the counter twice, but you could probably tolerate a slight overcounting or undercounting of website visitors.
-Hence, the correct answer is to setup Amazon DynamoDB for the database and implement atomic counters for the UpdateItem operation of the website counter.
+* Hence, the correct answer is to setup Amazon DynamoDB for the database and implement atomic counters for the UpdateItem operation of the website counter.
 Using Amazon RDS for the database and setting up SQL AUTO_INCREMENT on your tables is incorrect because RDS is not scalable enough to handle millions of data being submitted by readers worldwide. Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table. This is often the primary key field that we would like to be created automatically every time a new record is inserted. Since you would not want to add a new database entry for every link click and immediately consume all your storage space, it would be better to use DynamoDB’s atomic counter instead.
 Launching an Amazon Redshift for the database and applying a step count of 1 for the IDENTITY column is incorrect because Redshift is more suited for data warehousing demands that need parallel execution capabilities and columnar storage types.
 Taking advantage of Amazon Aurora’s performance speed and AUTO_INCREMENT feature for item updates is incorrect. Although Aurora is a scalable database service, using the AUTO_INCREMENT feature of SQL does not suit the scenario’s requirement. Auto-increment simply allows a unique number to be generated automatically when a new record is inserted into a table.
@@ -650,7 +650,7 @@ Which of the following is the most suitable way to delete the session data?
 * Use atomic counters to track the validity of the session data and delete once it becomes stale.
 * Delete the stale data by regularly performing a scan on the table.
 * Use conditional writes to add the session data to the DynamoDB table and then automatically delete it based on the condition you specify.
-Incorrect
+
 Time To Live (TTL) for DynamoDB allows you to define when items in a table expire so that they can be automatically deleted from the database.
 TTL is provided at no extra cost as a way to reduce storage usage and reduce the cost of storing irrelevant data without using provisioned throughput. With TTL enabled on a table, you can set a timestamp for deletion on a per-item basis, allowing you to limit storage usage to only those records that are relevant.
 
@@ -677,7 +677,7 @@ Which of the following statements are TRUE in this scenario? (Select TWO.)
 * The unreserved concurrency pool is 600.
 * You can still set a concurrency execution limit of 1300 to a third Lambda function.
 * You can still set a concurrency execution limit of 1400 to a third Lambda function.
-Incorrect
+
 The unit of scale for AWS Lambda is a concurrent execution. However, scaling indefinitely is not desirable in all scenarios. For example, you may want to control your concurrency for cost reasons or to regulate how long it takes you to process a batch of events, or to simply match it with a downstream resource. To assist with this, Lambda provides a concurrent execution limit control at both the account level and the function level.
 The concurrent executions refer to the number of executions of your function code that are happening at any given time. You can estimate the concurrent execution count, but the concurrent execution count will differ depending on whether or not your Lambda function is processing events from a poll-based event source.
 
@@ -685,7 +685,7 @@ If you create a Lambda function to process events from event sources that aren�
 If you set the concurrent execution limit for a function, the value is deducted from the unreserved concurrency pool. For example, if your account’s concurrent execution limit is 1000 and you have 10 functions, you can specify a limit on one function at 200 and another function at 100. The remaining 700 will be shared among the other 8 functions.
 AWS Lambda will keep the unreserved concurrency pool at a minimum of 100 concurrent executions so that functions that do not have specific limits set can still process requests. So, in practice, if your total account limit is 1000, you are limited to allocating 900 to individual functions.
 In this scenario, you still have 1400 concurrent executions remaining which will be shared by the other 8 Lambda functions in your AWS account. Take note that the unreserved account concurrency can’t go below 100, which means that you only set a concurrency execution limit of 1300 to a single function or spread out to the remaining 8 functions.
-Hence, the correct answers in this scenario are:
+* Hence, the correct answers in this scenario are:
 – The remaining 1400 concurrent executions will be shared among the other 8 functions.
 – You can still set a concurrency execution limit of 1300 to a third Lambda function.
 The option that says: the unreserved concurrency pool is 600 is incorrect because this is the value of the total reserved concurrency that you have allocated to the 2 Lambda functions.
@@ -710,11 +710,11 @@ Which combination of steps should the developer follow to successfully deploy th
 * Deploy the SAM template from an Amazon S3 bucket.
 * Build the SAM template using the AWS SDK for AWS CodeDeploy.
 * Package the SAM application for deployment.
-Correct
+
 AWS SAM uses AWS CloudFormation as the underlying deployment mechanism. You can deploy your application by using AWS SAM command line interface (CLI) commands. You can also use other AWS services that integrate with AWS SAM to automate your deployments.
 
 The typical AWS SAM deployment workflow starts with the sam build command, which compiles source code and readies deployment artifacts. Once built for deployment, the SAM template and the associated artifacts need to be stored in an S3 bucket. The sam deploy command takes care of this by first uploading the CloudFormation template to the S3 bucket. Though historically, the sam package command was used for this purpose, it’s become somewhat legacy, as sam deploy , now implicitly handles the packaging. Once the template is in the S3 bucket, AWS CloudFormation references it to create or update the defined resources.
-Hence, the correct answers are:
+* Hence, the correct answers are:
 – Build the SAM template in the local environment
 – Package the SAM application for deployment.
 – Deploy the SAM template from an Amazon S3 bucket.
@@ -735,7 +735,7 @@ What should the developer do to properly deploy the functions that satisfies thi
 * Deploy the functions using a Linear deployment configuration.
 * Deploy the functions using an Immutable deployment configuration.
 * Deploy the functions using an All-at-once deployment configuration.
-Incorrect
+
 CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services. CodeDeploy can deploy application content that runs on a server and is stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. CodeDeploy can also deploy a serverless Lambda function. You do not need to make changes to your existing code before you can use CodeDeploy.
 CodeDeploy supports the following deployment configurations:
 -In-place (for EC2/On-premises) – the application on each instance in the deployment group is stopped, the latest application revision is installed, and the new version of the application is started and validated.
@@ -762,12 +762,12 @@ Which action should the developer modify to achieve better performance in the AW
 * Use AWS Step Functions to split tasks into smaller workflows.
 * Utilize Amazon S3 Transfer Acceleration for image uploads.
 * Increase the timeout setting of the Lambda function.
-Correct
+
 AWS Lambda is a serverless compute service that allows developers to run code without provisioning or managing servers. It automatically scales based on the workload and charges only for the compute time consumed. Developers can use Lambda to execute code in response to events such as changes in data, HTTP requests, or system state changes, making it ideal for event-driven architectures. Lambda supports multiple programming languages and integrates seamlessly with other AWS services, enabling flexible and scalable application development.
 AWS Lambda functions operate within a highly available infrastructure and manage resources automatically, ensuring reliability and performance. Lambda can execute specific business logic by using triggers like S3 events, DynamoDB streams, or API Gateway, making it a key component for building modern, agile applications.
 
 AWS Lambda allows developers to configure memory allocation for 128 MB to 10,240 MB functions. This memory setting directly influences the CPU resources available to the function, as Lambda allocates CPU power proportionally to the configured memory. For instance, at 1,769 MB, a function has the equivalent of one vCPU. Increasing the memory allocation provides more RAM and enhances CPU capacity, which can lead to significant performance improvements for compute-intensive tasks.
-Hence, the correct answer is: Optimize memory allocation for the Lambda function.
+* Hence, the correct answer is: Optimize memory allocation for the Lambda function.
 The option that says: Use AWS Step Functions to split tasks into smaller workflows is incorrect. AWS Step Functions are primarily used for orchestrating workflows and breaking down complex processes into smaller, manageable steps. However, this approach does not directly improve the execution performance of the Lambda function itself. The issue lies in the Lambda function’s CPU resources, which Step Functions simply cannot address. While they can enhance task coordination, they typically do not optimize the speed of underlying tasks within a single function.
 The option that says: Increase the timeout setting of the Lambda function is incorrect. This option primarily focuses on extending the maximum runtime for the Lambda function. Increasing the timeout setting would allow the function to run longer but not address the underlying inefficiencies caused by insufficient memory or CPU resources. Timeout adjustments are typically useful for handling long-running tasks, not optimizing compute-intensive workloads.
 The option that says: Utilize Amazon S3 Transfer Acceleration for image uploads is incorrect. Amazon S3 Transfer Acceleration is designed to improve the upload and download speed of objects to and from S3 by using Amazon’s global edge network. However, this feature is only relevant when data transfer speed between the client and S3 is a bottleneck. In this case, the issue lies with the processing of images within the Lambda function. Transfer Acceleration simply cannot influence the performance of compute tasks, as it is unrelated to the Lambda execution environment.
@@ -786,12 +786,12 @@ Which of the following solutions is the EASIEST method to implement that will im
 * Use DynamoDB Batch Operations API for GET, PUT, and DELETE operations.
 * Enable DynamoDB Streams.
 * Upgrade the EC2 instances to a higher instance type.
-Correct
+
 For applications that need to read or write multiple items, DynamoDB provides the BatchGetItem and BatchWriteItem operations. Using these operations can reduce the number of network round trips from your application to DynamoDB. In addition, DynamoDB performs the individual read or write operations in parallel. Your applications benefit from this parallelism without having to manage concurrency or threading.
 
 The batch operations are essentially wrappers around multiple read or write requests. For example, if a BatchGetItem request contains five items, DynamoDB performs five GetItem operations on your behalf. Similarly, if a BatchWriteItem request contains two put requests and four delete requests, DynamoDB performs two PutItem and four DeleteItem requests.
 In general, a batch operation does not fail unless all of the requests in the batch fail. For example, suppose you perform a BatchGetItemoperation but one of the individual GetItem requests in the batch fails. In this case, BatchGetItem returns the keys and data from the GetItemrequest that failed. The other GetItem requests in the batch are not affected.
-Hence, the correct answer is to use DynamoDB Batch Operations API for GET, PUT, and DELETE operations in this scenario.
+* Hence, the correct answer is to use DynamoDB Batch Operations API for GET, PUT, and DELETE operations in this scenario.
 Upgrading the EC2 instances to a higher instance type is incorrect because the network overhead is the one that affects application performance and not the compute capacity. This is due to multiple read and write requests performed as single operations on DynamoDB, instead of a Batch operation.
 Enabling DynamoDB Streams is incorrect because a DynamoDB stream is just an ordered flow of information about changes to items in an Amazon DynamoDB table. When you enable a stream on a table, DynamoDB captures information about every modification to data items in the table. Apparently, this feature does not solve the application issue where there is a large volume of data being processed one by one, and not by batch.
 Refactoring the application to use DynamoDB transactional read and write APIs is incorrect because the Amazon DynamoDB transactions feature just simplifies the developer experience of making coordinated, all-or-nothing changes to multiple items both within and across tables. Transactions provide atomicity, consistency, isolation, and durability (ACID) in DynamoDB, enabling you to maintain data correctness in your applications easily. Take note that every transactional read and write API call consumes high RCU and WCUs, unlike eventual or strong consistency requests. Hence, this entails a significant increase in costs which contradicts the requirements of the scenario.
@@ -809,12 +809,12 @@ Which of the following SQS feature should you use to meet this requirement?
 * Delay Queue
 * Long Polling
 * Short Polling
-Incorrect
+
 Delay queues let you postpone the delivery of new messages to a queue for a number of seconds. If you create a delay queue, any messages that you send to the queue remain invisible to consumers for the duration of the delay period. The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes
 Delay queues are similar to visibility timeouts because both features make messages unavailable to consumers for a specific period of time. The difference between the two is that, for delay queues, a message is hidden when it is first added to queue, whereas for visibility timeouts a message is hidden only after it is consumed from the queue.
 
 To set delay seconds on individual messages rather than on an entire queue, use message timers to allow Amazon SQS to use the message timer’s DelaySeconds value instead of the delay queue’s DelaySeconds value.
-Hence, the correct answer is to use a Delay Queue.
+* Hence, the correct answer is to use a Delay Queue.
 Short Polling is incorrect because this is just the default configuration of SQS that queries only a subset of its servers (based on a weighted random distribution), to determine whether any messages are available for a response.
 Visibility Timeouts is incorrect because, with this configuration, a message is hidden only after it is consumed from the queue, and not before. Take note that the difference between the two is that, for delay queues, a message is hidden when it is first added to the queue, whereas for visibility timeouts a message is hidden only after it is consumed from the queue.
 Long Polling is incorrect because this just helps reduce the cost of using Amazon SQS by eliminating the number of empty responses (when there are no messages available for a ReceiveMessage request) and false empty responses (when messages are available but aren’t included in a response).
@@ -832,13 +832,13 @@ Which solution meets the requirements?
 * Store the credentials as Standard Parameters in AWS Systems Manager (SSM) Parameter Store and configure Expiration and ExpirationNotification policies. Create an Amazon EventBridge rule that sends Amazon SNS email notifications.
 * Use AWS Secret Managers to store user credentials and turn on automatic rotation.
 * Store the credentials as Advanced Parameters in AWS Systems Manager (SSM) Parameter Store and configure Expiration and ExpirationNotification policies. Create an Amazon EventBridge rule that sends Amazon SNS email notifications.
-Incorrect
+
 Parameter Store, a capability of AWS Systems Manager, includes standard parameters and advanced parameters. You individually configure parameters to use either the standard-parameter tier (the default tier) or the advanced-parameter tier.
 You can change a standard parameter to an advanced parameter at any time, but you can’t revert an advanced parameter to a standard parameter. This is because reverting an advanced parameter to a standard parameter would cause the system to truncate the size of the parameter from 8 KB to 4 KB, resulting in data loss. Reverting would also remove any policies attached to the parameter. Also, advanced parameters use a different form of encryption than standard parameters.
 
 Parameter policies help you manage a growing set of parameters by allowing you to assign specific criteria to a parameter, such as an expiration date or time to live. Parameter policies are especially helpful in forcing you to update or delete passwords and configuration data stored in Parameter Store, a capability of AWS Systems Manager.
 You can assign multiple policies to a parameter. For example, you can assign Expiration and ExpirationNotification policies so that the system initiates an EventBridge event to notify you about the impending deletion of a parameter. The Expiration policy lets you delete a parameter at a specified time while the ExpirationNotification policy is used to notify when a parameter is about to expire. These features are only available for Advanced Parameters in the AWS Systems Manager Parameter Store.
-Hence, the correct answer is: Store the credentials as Advanced Parameters in AWS Systems Manager (SSM) Parameter Store and configure Expiration and ExpirationNotification policies. Create an Amazon EventBridge rule that sends Amazon SNS email notifications.
+* Hence, the correct answer is: Store the credentials as Advanced Parameters in AWS Systems Manager (SSM) Parameter Store and configure Expiration and ExpirationNotification policies. Create an Amazon EventBridge rule that sends Amazon SNS email notifications.
 The option that says: Use AWS Secrets Manager to store user credentials. Create a Lambda function that runs periodically to send Amazon SNS email notifications for passwords nearing expiration is incorrect. Although it’s possible to store login credentials in Secrets Manager, creating a cron-based Lambda function for checking password expiration and sending notifications via SNS takes more development overhead than simply using the ExpirationNotification policy in SSM Parameter Store.
 The option that says: Use AWS Secrets Manager to store user credentials and turn on automatic rotation is incorrect. Automatic rotation in AWS Secrets Manager is typically used when secrets can be changed programmatically without user intervention (e.g, rotating database credentials). In the scenario’s case, users must manually change their passwords.
 The option that says: Store the credentials as Standard Parameters in AWS Systems Manager (SSM) Parameter Store and configure Expiration and ExpirationNotification policies. Create an Amazon EventBridge rule that sends Amazon SNS email notifications is incorrect because Standard Parameters do not support Expiration and ExpirationNotification policies.
@@ -855,7 +855,7 @@ A developer is launching a Lambda function that requires access to a MySQL RDS i
 * Expose an endpoint of your RDS to the Internet using an Elastic IP.
 * Move your RDS instance to a public subnet.
 * Configure the Lambda function to connect to your VPC.
-Incorrect
+
 You can configure a Lambda function to connect to a virtual private cloud (VPC) in your account. Use Amazon Virtual Private Cloud (Amazon VPC) to create a private network for resources such as databases, cache instances, or internal services. Connect your function to the VPC to access private resources during execution.
 AWS Lambda runs your function code securely within a VPC by default. However, to enable your Lambda function to access resources inside your private VPC, you must provide additional VPC-specific configuration information that includes VPC subnet IDs and security group IDs. AWS Lambda uses this information to set up elastic network interfaces (ENIs) that enable your function to connect securely to other resources within your private VPC.
 The following diagram guides you through a decision tree as to whether you should use a VPC (Virtual Private Cloud):
@@ -879,14 +879,14 @@ Which of the following services should you implement to mitigate this attack?
 * Amazon Guard​Duty
 * Network Access Control List
 * AWS WAF
-Incorrect
+
 AWS WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to an Amazon API Gateway API, Amazon CloudFront or an Application Load Balancer. AWS WAF also lets you control access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, API Gateway, CloudFront or an Application Load Balancer responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). You also can configure CloudFront to return a custom error page when a request is blocked.
 
 At the simplest level, AWS WAF lets you choose one of the following behaviors:
 Allow all requests except the ones that you specify – This is useful when you want CloudFront or an Application Load Balancer to serve content for a public website, but you also want to block requests from attackers.
 Block all requests except the ones that you specify – This is useful when you want to serve content for a restricted website whose users are readily identifiable by properties in web requests, such as the IP addresses that they use to browse to the website.
 Count the requests that match the properties that you specify – When you want to allow or block requests based on new properties in web requests, you first can configure AWS WAF to count the requests that match those properties without allowing or blocking those requests. This lets you confirm that you didn’t accidentally configure AWS WAF to block all the traffic to your website. When you’re confident that you specified the correct properties, you can change the behavior to allow or block requests.
-Hence, the correct answer in this scenario is AWS WAF.
+* Hence, the correct answer in this scenario is AWS WAF.
 Amazon Guard​Duty is incorrect because this is just a threat detection service that continuously monitors malicious activity and unauthorized behavior to protect your AWS accounts and workloads.
 AWS Firewall Manager is incorrect because this just simplifies your AWS WAF and AWS Shield Advanced administration and maintenance tasks across multiple accounts and resources.
 Network Access Control List is incorrect because this is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
@@ -906,7 +906,7 @@ Which of the following actions could the developer take to achieve this? (Select
 * Implement Amazon S3 server-side encryption with customer-provided keys (SSE-C).
 * Implement Amazon S3 server-side encryption with Amazon S3-Managed Encryption Keys.
 * Encrypt the data on the client-side before sending to Amazon S3 using their own master key.
-Incorrect
+
 Data protection refers to protecting data while in transit (as it travels to and from Amazon S3) and at rest (while it is stored on disks in Amazon S3 data centers). You can protect data in transit by using SSL or by using client-side encryption.
 You have the following options for protecting data at rest in Amazon S3:
 Use Server-Side Encryption – You request Amazon S3 to encrypt your object before saving it on disks in its data centers and decrypt it when you download the objects.
@@ -937,13 +937,13 @@ Which IAM managed policy does Elastic Beanstalk use for the X-Ray daemon to uplo
 * AWSXRayDaemonWriteAccess
 * AWSXRayElasticBeanstalkWriteAccess
 * AWSXrayFullAccess
-Incorrect
+
 You can use AWS Identity and Access Management (IAM) to grant X-Ray permissions to users and compute resources in your account. IAM controls access to the X-Ray service at the API level to enforce permissions uniformly, regardless of which client (console, AWS SDK, AWS CLI) your users employ. To use the X-Ray console to view service maps and segments, you only need read permissions. To enable console access, add the AWSXrayReadOnlyAccess managed policy to your IAM user. For local development and testing, create an IAM user with read and write permissions. Generate access keys for the user and store them in the standard AWS SDK location. You can use these credentials with the X-Ray daemon, the AWS CLI, and the AWS SDK.
 
 To deploy your instrumented app to AWS, create an IAM role with write permissions and assign it to the resources running your application. AWSXRayDaemonWriteAccess includes permission to upload traces, and some read permissions as well to support the use of sampling rules.
 The read and write policies do not include permission to configure encryption key settings and sampling rules. Use AWSXrayFullAccess to access these settings, or add configuration APIs in a custom policy. For encryption and decryption with a customer-managed key that you create, you also need permission to use the key.
 On supported platforms, you can use a configuration option to run the X-Ray daemon on the instances in your environment. You can enable the daemon in the Elastic Beanstalk console or by using a configuration file. To upload data to X-Ray, the X-Ray daemon requires IAM permissions in the AWSXRayDaemonWriteAccess managed policy. These permissions are included in the Elastic Beanstalk instance profile.
-Hence, the correct answer is the AWSXRayDaemonWriteAccess managed policy.
+* Hence, the correct answer is the AWSXRayDaemonWriteAccess managed policy.
 AWSXrayReadOnlyAccess is incorrect because this policy is primarily used if you just want a read-only access to X-Ray.
 AWSXrayFullAccess is incorrect. Although this can provide the required access to the daemon, this is not being used in Elastic Beanstalk as it does not abide by the standard security advice of granting the least privilege.
 AWSXRayElasticBeanstalkWriteAccess is incorrect because this is not an available managed policy.
@@ -966,7 +966,7 @@ Which TWO options will allow the developer to meet this requirement using CloudF
 * Set up an Origin Access Control (OAC) setting
 * Associate a Web ACL using AWS Web Application Firewall (WAF) with your CloudFront Distribution.
 * Configure the Viewer Protocol Policy to use HTTPS only
-Incorrect
+
 For web distributions, you can configure CloudFront to require that viewers use HTTPS to request your objects, so connections are encrypted when CloudFront communicates with viewers. You can also configure CloudFront to use HTTPS to get objects from your origin, so connections are encrypted when CloudFront communicates with your origin.
 If you configure CloudFront to require HTTPS both to communicate with viewers and to communicate with your origin, here’s what happens when CloudFront receives a request for an object. The process works basically the same way whether your origin is an Amazon S3 bucket or a custom origin such as an HTTP/S server:
 1. A viewer submits an HTTPS request to CloudFront. There’s some SSL/TLS negotiation here between the viewer and CloudFront. In the end, the viewer submits the request in an encrypted format.
@@ -977,7 +977,7 @@ If you configure CloudFront to require HTTPS both to communicate with viewers an
 6. The viewer decrypts the response.
 You can configure one or more cache behaviors in your CloudFront distribution to require HTTPS for communication between viewers and CloudFront. You also can configure one or more cache behaviors to allow both HTTP and HTTPS, so that CloudFront requires HTTPS for some objects but not for others.
 To implement this setup, you have to change the Origin Protocol Policy setting for the applicable origins in your distribution. If you’re using the domain name that CloudFront assigned to your distribution, such as dtut0rial5d0j0.cloudfront.net, you change the Viewer Protocol Policy setting for one or more cache behaviors to require HTTPS communication. With this configuration, CloudFront provides the SSL/TLS certificate.
-Hence, the correct answers are: Configure the Origin Protocol Policy to use HTTPS only and Configure the Viewer Protocol Policy to use HTTPS only are correct answers in this scenario.
+* Hence, the correct answers are: Configure the Origin Protocol Policy to use HTTPS only and Configure the Viewer Protocol Policy to use HTTPS only are correct answers in this scenario.
 The option that says: Configure your ALB to only allow traffic on port 443 using an SSL certificate from AWS Config is incorrect because you can’t store a certificate in AWS Config.
 The option that says: Set up an Origin Access Control (OAC) setting is incorrect because this CloudFront feature only allows you to secure S3 origins by granting access to S3 buckets for designated CloudFront distributions. This method is applicable only to S3 origins and cannot be used to establish end-to-end SSL connections for other origins.
 The option that says: Associate a Web ACL using AWS Web Application Firewall (WAF) with your CloudFront Distribution is incorrect because AWS WAF is primarily used to protect your web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources. This will not allow you to establish an SSL connection between your origin and your clients.
@@ -996,7 +996,7 @@ What should you do to rectify this problem?
 * Use a FIFO (First-In-First-Out) Queue and provide the Message Deduplication ID for each message.
 * Use a Standard Queue and provide the Message Group ID for each message.
 * Use a Standard Queue and provide the Message Deduplication ID for each message.
-Incorrect
+
 Unlike standard queues, FIFO queues don’t introduce duplicate messages. FIFO queues help you avoid sending duplicates to a queue. If you retry the SendMessage action within the 5-minute deduplication interval, Amazon SQS doesn’t introduce any duplicates into the queue.
 To configure deduplication, you must do one of the following:
 – Enable content-based deduplication. This instructs Amazon SQS to use a SHA-256 hash to generate the message deduplication ID using the body of the message – but not the attributes of the message.
@@ -1004,7 +1004,7 @@ To configure deduplication, you must do one of the following:
 
 The message deduplication ID is the token used for deduplication of sent messages. If a message with a particular message deduplication ID is sent successfully, any messages sent with the same message deduplication ID are accepted successfully but aren’t delivered during the 5-minute deduplication interval.
 Message deduplication applies to an entire queue, not to individual message groups. Amazon SQS continues to keep track of the message deduplication ID even after the message is received and deleted.
-Hence, the correct answer in this scenario is to use a FIFO (First-In-First-Out) Queue and provide the Message Deduplication ID for each message.
+* Hence, the correct answer in this scenario is to use a FIFO (First-In-First-Out) Queue and provide the Message Deduplication ID for each message.
 Using a FIFO (First-In-First-Out) Queue by disabling the content-based deduplication is incorrect. Although the use of FIFO queue is valid, it is wrong to disable the content-based deduplication. This should be enabled to avoid duplicate messages in the queue.
 Using a Standard Queue and providing the Message Group ID for each message is incorrect because you should use a FIFO queue instead to avoid duplicate messages.
 Using a Standard Queue and providing the Message Deduplication ID for each message is incorrect. Although it is a valid answer to provide the Message Deduplication ID, this feature can’t be enabled for Standard Queues. You have to use the FIFO queues instead for this scenario.
@@ -1022,11 +1022,11 @@ Which of the following should you implement to resolve this issue?
 * Split shards of the data stream.
 * Merge shards of the data stream.
 * Embed a primary key within the record.
-Correct
+
 There are two primary reasons why records may be delivered more than one time to your Amazon Kinesis Data Streams application: producer retries and consumer retries. Your application must anticipate and appropriately handle processing individual records multiple times.
 
 Consider a producer that experiences a network-related timeout after it makes a call to PutRecord, but before it can receive an acknowledgment from Amazon Kinesis Data Streams. The producer cannot be sure if the record was delivered to Kinesis Data Streams. Assuming that every record is important to the application, the producer would have written to retry the call with the same data. If both PutRecord calls on that same data were successfully committed to Kinesis Data Streams, then there will be two Kinesis Data Streams records. Although the two records have identical data, they also have unique sequence numbers. Applications that need strict guarantees should embed a primary key within the record to remove duplicates later when processing. Note that the number of duplicates due to producer retries is usually low compared to the number of duplicates due to consumer retries.
-Hence, the correct answer in this scenario is to embed a primary key within the record to remove duplicates later when processing.
+* Hence, the correct answer in this scenario is to embed a primary key within the record to remove duplicates later when processing.
 Adding more shards is incorrect because this is not a suitable solution for handling duplicate records in the Kinesis data stream. This is primarily used to increase the rate of data flowing through the stream.
 Splitting shards of the data stream is incorrect because this is used to increase the capacity of the stream and not to avoid any duplicate data.
 Merging shards of the data stream is incorrect because this is primarily used to make better use of the unused capacity in the stream and to save on costs.
@@ -1044,7 +1044,7 @@ Which of the following is the MOST appropriate solution to secure the credential
 * Store the credentials in AWS KMS.
 * Store the credentials to Systems Manager Parameter Store with a SecureString data type.
 * Store the credentials to AWS ACM.
-Correct
+
 AWS Secrets Manager is an AWS service that makes it easier for you to manage secrets. Secrets can be database credentials, passwords, third-party API keys, and even arbitrary text. You can store and control access to these secrets centrally by using the Secrets Manager console, the Secrets Manager command line interface (CLI), or the Secrets Manager API and SDKs.
 In the past, when you created a custom application that retrieves information from a database, you typically had to embed the credentials (the secret) for accessing the database directly in the application. When it came time to rotate the credentials, you had to do much more than just create new credentials. You had to invest time to update the application to use the new credentials. Then you had to distribute the updated application. If you had multiple applications that shared credentials and you missed updating one of them, the application would break. Because of this risk, many customers have chosen not to regularly rotate their credentials, which effectively substitutes one risk for another.
 
@@ -1068,14 +1068,14 @@ Which of the following should the developer do to avoid any potential request th
 * Ensure that the global secondary index's provisioned WCU is equal or less than the WCU of the base table.
 * Ensure that the global secondary index's provisioned RCU is equal or greater than the RCU of the base table.
 * Ensure that the global secondary index's provisioned WCU is equal or greater than the WCU of the base table.
-Correct
+
 A global secondary index (GSI) is an index with a partition key and a sort key that can be different from those on the base table. It is considered “global” because queries on the index can span all of the data in the base table, across all partitions.
 Every global secondary index has its own provisioned throughput settings for read and write activity. Queries or scans on a global secondary index consume capacity units from the index, not from the base table. The same holds true for global secondary index updates due to table writes.
 When you create a global secondary index on a provisioned mode table, you must specify read and write capacity units for the expected workload on that index. The provisioned throughput settings of a global secondary index are separate from those of its base table. A Query operation on a global secondary index consumes read capacity units from the index, not the base table. When you put, update, or delete items in a table, the global secondary indexes on that table are also updated; these index updates consume write capacity units from the index, not from the base table.
 
 For example, if you Query a global secondary index and exceed its provisioned read capacity, your request will be throttled. If you perform heavy write activity on the table but a global secondary index on that table has insufficient write capacity, then the write activity on the table will be throttled.
 To avoid potential throttling, the provisioned write capacity for a global secondary index should be equal or greater than the write capacity of the base table since new updates will write to both the base table and global secondary index.
-Hence, the correct answer in this scenario is to ensure that the global secondary index’s provisioned WCU is equal to or greater than the WCU of the base table.
+* Hence, the correct answer in this scenario is to ensure that the global secondary index’s provisioned WCU is equal to or greater than the WCU of the base table.
 Ensuring that the global secondary index’s provisioned WCU is equal or less than the WCU of the base table is incorrect because it should be the other way around, just as what is mentioned above. The provisioned write capacity for a global secondary index should be equal to or greater than the write capacity of the base table.
 Ensuring that the global secondary index’s provisioned RCU is equal to or greater than the RCU of the base table is incorrect because you have to set the WCU and not the RCU.
 Ensuring that the global secondary index’s provisioned RCU is equal or less than the RCU of the base table is incorrect because this should be WCU and in addition, the global secondary index’s provisioned WCU should be set to a value that is equal or greater than the WCU of the base table to prevent request throttling.
@@ -1093,7 +1093,7 @@ What could be the MOST likely cause of this issue?
 * API Gateway Private Integrations has not been configured yet.
 * They have not provided an IAM role to their API Gateway yet.
 * The provided IAM role to their API Gateway only has read access but no write privileges to CloudWatch.
-Correct
+
 You can monitor API execution using CloudWatch, which collects and processes raw data from API Gateway into readable, near-real-time metrics. These statistics are recorded for a period of two weeks so that you can access historical information and gain a better perspective on how your web application or service is performing. By default, API Gateway metric data is automatically sent to CloudWatch in one-minute periods.
 
 The metrics reported by API Gateway provide information that you can analyze in different ways. The list below shows some common uses for the metrics. These are suggestions to get you started, not a comprehensive list.
@@ -1117,7 +1117,7 @@ A developer needs to configure the environment name, solution stack, and environ
 * cron.yaml
 * env.config
 * env.yaml
-Correct
+
 In Elastic Beanstalk, you can include a YAML formatted environment manifest in the root of your application source bundle to configure the environment name, solution stack and environment links to use when creating your environment. An environment manifest uses the same format as Saved Configurations.
 This file format includes support for environment groups. To use groups, specify the environment name in the manifest with a + symbol at the end. When you create or update the environment, specify the group name with --group-name (AWS CLI) or --env-group-suffix (EB CLI).
 The following example manifest defines a web server environment for the tutorialsdojo frontend application, with a link to a worker environment component that it is dependent upon. The manifest uses groups to allow creating multiple environments with the same source bundle:
@@ -1174,7 +1174,7 @@ Which of the following are the recommended steps to locally encrypt data using A
 * Encrypt data locally using the Encrypt operation.
 * Use the GenerateDataKey operation to get a data encryption key then use the plaintext data key in the response to encrypt data locally.
 * Erase the encrypted data key from memory and store the plaintext data key alongside the locally encrypted data.
-Incorrect
+
 When you encrypt your data, your data is protected, but you have to protect your encryption key. One strategy is to encrypt it. Envelope encryption is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key.
 You can even encrypt the data encryption key under another encryption key, and encrypt that encryption key under another encryption key. But, eventually, one key must remain in plaintext so you can decrypt the keys and your data. This top-level plaintext encryption key is known as the root key.
 
@@ -1183,7 +1183,7 @@ It is recommended that you use the following pattern to encrypt data locally in 
 1. Use the GenerateDataKey operation to get a data encryption key.
 2. Use the plaintext data key (returned in the Plaintext field of the response) to encrypt data locally, then erase the plaintext data key from memory.
 3. Store the encrypted data key (returned in the CiphertextBlob field of the response) alongside the locally encrypted data.
-Hence, the correct answers are:
+* Hence, the correct answers are:
 – Use the GenerateDataKey operation to get a data encryption key then use the plaintext data key in the ponse to encrypt data locally.
 – Erase the plaintext data key from memory and store the encrypted data key alongside the locally encrypted data.
 The option that says: Use the GenerateDataKeyWithoutPlaintext operation to get a data encryption key then using the plaintext data key in the response to encrypt data locally is incorrect because you have to typically use the GenerateDataKey operation instead. This is because the GenerateDataKeyWithoutPlaintext operation will not return the plaintext data key just as its name implies.
@@ -1204,7 +1204,7 @@ Which of the following ECS features provides you with expressions that you can u
 * Task Placement Strategies
 * Task Groups
 * Task Placement Constraints
-Incorrect
+
 When a task that uses the EC2 launch type is launched, Amazon ECS must determine where to place the task based on the requirements specified in the task definition, such as CPU and memory. Similarly, when you scale down the task count, Amazon ECS must determine which tasks to terminate. You can apply task placement strategies and constraints to customize how Amazon ECS places and terminates tasks. Task placement strategies and constraints are not supported for tasks using the Fargate launch type. By default, Fargate tasks are spread across Availability Zones.
 
 Cluster queries are expressions that enable you to group objects. For example, you can group container instances by attributes such as Availability Zone, instance type, or custom metadata. You can add custom metadata to your container instances, known as attributes. Each attribute has a name and an optional string value. You can use the built-in attributes provided by Amazon ECS or define custom attributes.
@@ -1227,7 +1227,7 @@ What should be done to accomplish this feature?
 * Add the ReturnValues parameter with a value of INDEXES in every write request.
 * Add the ReturnValues parameter with a value of TOTAL in every write request.
 * Add the ReturnConsumedCapacity parameter with a value of TOTAL in every write request.
-Incorrect
+
 To create, update, or delete an item in a DynamoDB table, use one of the following operations:
 - PutItem
 - UpdateItem
@@ -1237,7 +1237,7 @@ To return the number of write capacity units consumed by any of these operations
 TOTAL — returns the total number of write capacity units consumed.
 INDEXES — returns the total number of write capacity units consumed, with subtotals for the table and any secondary indexes that were affected by the operation.
 NONE — no write capacity details are returned. (This is the default.)
-Hence, the correct answer is to add the ReturnConsumedCapacity parameter with a value of INDEXES in every write request.
+* Hence, the correct answer is to add the ReturnConsumedCapacity parameter with a value of INDEXES in every write request.
 Adding the ReturnValues parameter with a value of INDEXES in every write request is incorrect because you should use a ReturnConsumedCapacity parameter instead.
 Adding the ReturnConsumedCapacity parameter with a value of TOTAL in every write request is incorrect because this will not return the consumed WCU subtotals for the table and any secondary indexes that were affected by the operation just as what is required by the application. You have to use INDEXES instead.
 Adding the ReturnValues parameter with a value of TOTAL in every write request is incorrect because you should use a ReturnConsumedCapacity parameter instead. In addition, the value of the parameter is also incorrect as it doesn’t return the consumed WCU subtotals for the table and any secondary indexes that were affected by the operation.
@@ -1255,7 +1255,7 @@ Which of the following request headers should the developer use?
 * x-amz-server-side-encryption
 * x-amz-server-side-encryption-customer-key
 * x-amz-server-side-encryption-customer-key-MD5
-Correct
+
 Server-side encryption protects data at rest. If you use Server-Side Encryption with Amazon S3-Managed Encryption Keys (SSE-S3), Amazon S3 will encrypt each object with a unique key and as an additional safeguard, it encrypts the key itself with a master key that it rotates regularly. Amazon S3 server-side encryption uses one of the strongest block ciphers available, 256-bit Advanced Encryption Standard (AES-256), to encrypt your data.
 
 If you need server-side encryption for all of the objects that are stored in a bucket, use a bucket policy. For example, the following bucket policy denies permissions to upload an object unless the request includes the x-amz-server-side-encryption header to request server-side encryption:
@@ -1280,12 +1280,12 @@ Which of the following is the EASIEST way to accomplish this task?
 * Use AWS SAM to migrate and deploy the company's web services to API Gateway.
 * Import their Swagger or OpenAPI definitions to API Gateway using the AWS Console.
 * Use CodeDeploy to migrate and deploy the company's web services to API Gateway.
-Correct
+
 You can use the API Gateway Import API feature to import a REST API from an external definition file into API Gateway. Currently, the Import API feature supports OpenAPI v2.0 and OpenAPI v3.0 definition files. You can update an API by overwriting it with a new definition or merge a definition with an existing API. You specify the options using a mode query parameter in the request URL.
 You can paste a Swagger API definition in the AWS Console to create a new API and populate it with the resources and methods from your Swagger or OpenAPI definition, just as shown below:
 
 You can also import your Swagger definition through the AWS CLI and SDKs.
-Hence, the correct answer in this scenario is to import their Swagger or OpenAPI definitions to API Gateway using the AWS Console.
+* Hence, the correct answer in this scenario is to import their Swagger or OpenAPI definitions to API Gateway using the AWS Console.
 Using CodeDeploy to migrate and deploy the company’s web services to API Gateway is incorrect because using CodeDeploy alone is not enough to deploy new custom APIs. This is mainly used in conjunction with AWS SAM where you can add deployment preferences to manage the way traffic is shifted during an AWS Lambda application deployment.
 Using AWS SAM to migrate and deploy the company’s web services to API Gateway is incorrect. Although using AWS SAM is the preferred way to deploy your serverless application, it is not the easiest way to import the Swagger API definitions file. As mentioned above, you can simply import Swagger or OpenAPI files directly to AWS.
 Creating models and templates for request and response mappings based on the company’s API definitions is incorrect because this is primarily done for API Gateway integration to other services and not for importing API definitions file.
@@ -1303,7 +1303,7 @@ Which of the following options is the MOST appropriate way to monitor the websit
 * Use high-resolution metrics.
 * Set both the Period and Datapoints to Alarm to 3.
 * Set both the Evaluation Period and Datapoints to Alarm to 3.
-Correct
+
 When you create an alarm, you specify three settings to enable CloudWatch to evaluate when to change the alarm state:
  – Period is the length of time to evaluate the metric or expression to create each individual data point for an alarm. It is expressed in seconds. If you choose one minute as the period, there is one datapoint every minute.
  – Evaluation Period is the number of the most recent periods, or data points, to evaluate when determining alarm state.
@@ -1328,7 +1328,7 @@ What should the developer do?
 * Declare an OutputPath field filter on the Amazon States Language specification.
 * Declare a Parameters field filter on the Amazon States Language specification.
 * Declare a ResultPath field filter on the Amazon States Language specification.
-Incorrect
+
 A Step Functions execution receives a JSON text as input and passes that input to the first state in the workflow. Individual states receive JSON as input and usually pass JSON as output to the next state. Understanding how this information flows from state to state and learning how to filter and manipulate this data is key to effectively designing and implementing workflows in AWS Step Functions.
 
 In the Amazon States Language, these fields filter and control the flow of JSON from state to state:
@@ -1340,7 +1340,7 @@ Both the InputPath and Parameters fields provide a way to manipulate JSON as it 
 AWS Step Functions applies the InputPath field first, and then the Parameters field. You can first filter your raw input to a selection you want using InputPath, and then apply Parameters to manipulate that input further, or add new values.
 The output of a state can be a copy of its input, the result it produces (for example, the output from a Task state’s Lambda function), or a combination of its input and result. Use ResultPath to control which combination of these is passed to the state output.
 OutputPath enables you to select a portion of the state output to pass to the next state. This enables you to filter out unwanted information, and pass only the portion of JSON that you care about.
-Out of these field filters, the ResultPath field filter is the only one that can control input values and its previous results to be passed to the state output. Hence, the correct answer is: Declare a ResultPath field filter on the Amazon States Language specification.
+Out of these field filters, the ResultPath field filter is the only one that can control input values and its previous results to be passed to the state output. * Hence, the correct answer is: Declare a ResultPath field filter on the Amazon States Language specification.
 The option that says: Declare an InputPath field filter on the Amazon State Language specification is incorrect because it just operates on the input level by filtering the JSON notation by using a path. It cannot control both ends of a state (input and output).
 The option that says: Declare an OutputPath field filter on the Amazon State Language specification is incorrect because it just operates on the output level. It is used to filter out unwanted information and pass only the portion of JSON that you care about that will be passed onto the next state.
 The option that says: Declare a Parameters field filter on the Amazon State Language specification is incorrect because this is used in conjunction with the InputPath field filter, which means it can only be used on the input level of a state.
@@ -1358,12 +1358,12 @@ Which of the following is the MOST suitable solution that the developer should i
 * Use Cognito with SNS to allow additional authentication via SMS.
 * Integrate multi-factor authentication (MFA) to a user pool in Cognito to protect the identity of your users.
 * Create a custom application that integrates with Amazon Cognito which implements the second layer of authentication.
-Correct
+
 You can add multi-factor authentication (MFA) to a user pool to protect the identity of your users. MFA adds a second authentication method that doesn’t rely solely on usernames and passwords. You can choose to use SMS text messages, or time-based one-time (TOTP) passwords as second factors in signing in your users. You can also use adaptive authentication with its risk-based model to predict when you might need another authentication factor. It’s part of the user pool’s advanced security features, which also include protections against compromised credentials.
 
 Multi-factor authentication (MFA) increases security for your app by adding another authentication method, and not relying solely on user name and password. You can choose to use SMS text messages, or time-based one-time (TOTP) passwords as second factors in signing in your users.
 With adaptive authentication, you can configure your user pool to require second-factor authentication in response to an increased risk level.
-Hence, the correct answer in this scenario is to integrate multi-factor authentication (MFA) to a user pool in Cognito to protect the identity of your users.
+* Hence, the correct answer in this scenario is to integrate multi-factor authentication (MFA) to a user pool in Cognito to protect the identity of your users.
 Creating a custom application that integrates with Amazon Cognito which implements the second layer of authentication is incorrect. Although this option is viable, it is not the most suitable solution in this scenario since you can simply use MFA as a second-factor authentication for the mobile app.
 Using a new IAM policy to a user pool in Cognito is incorrect because an IAM Policy alone cannot implement a second-factor authentication. You have to configure Cognito to use MFA instead.
 Using Cognito with SNS to allow additional authentication via SMS is incorrect. Although this is part of the MFA setup, using this solution alone is not enough if you didn’t enable MFA in the first place.
@@ -1382,7 +1382,7 @@ Which of the following should the developer consider when using this type of ind
 * For each partition key value, the total size of all indexed items must be 10 GB or less.
 * Queries or scans on this index consume read capacity units from the base table.
 * Queries on this index support eventual consistency only.
-Incorrect
+
 A global secondary index is an index with a partition key and a sort key that can be different from those on the base table. A global secondary index is considered “global” because queries on the index can span all of the data in the base table, across all partitions.
 To create a table with one or more global secondary indexes, use the CreateTable operation with the GlobalSecondaryIndexes parameter. For maximum query flexibility, you can create up to 20 global secondary indexes (default limit) per table. You must specify one attribute to act as the index partition key; you can optionally specify another attribute for the index sort key. It is not necessary for either of these key attributes to be the same as a key attribute in the table. Global secondary indexes inherit the read/write capacity mode from the base table.
 
@@ -1413,7 +1413,7 @@ What should you do to protect, encrypt, and share your database credentials in A
 * Use AWS Systems Manager Parameter Store as a Secure String Parameter.
 * Encrypt the database credentials and store them in an S3 bucket which the Lambda functions can fetch.
 * Use IAM DB Authentication in RDS to allow encrypted connections from each Lambda function.
-Incorrect
+
 AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, and license codes as parameter values. You can store values as plain text or encrypted data. You can then reference values by using the unique name that you specified when you created the parameter.
 
 Parameter Store offers the following benefits and features:
@@ -1442,11 +1442,11 @@ Which action will accomplish this requirement?
 * Set up an internet-facing Network Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to authenticate users using the OIDC IdP configuratio
 * Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to invoke an AWS Lambda function for OIDC authentication.
 * Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to authenticate users using the OIDC IdP configuration.
-Incorrect
+
 Application Load Balancer (ALB) is created to handle both HTTP and HTTPS traffic at the application layer (Layer 7). It provides advanced routing capabilities and supports features such as user authentication and SSL termination, which are essential for securing web applications exposed to the internet. By configuring a public ALB, the company ensures that all incoming traffic to the internal website is managed through a central point that can enforce security policies, including OIDC authentication. The ALB can be easily integrated with the company’s OIDC identity provider to authenticate users, making it an ideal solution for this requirement.
 
 Setting up a listener on HTTPS port 443 ensures that all data transferred between users and the website is encrypted, protecting sensitive information from being intercepted. The listener can be configured with rules to authenticate users using the company’s OIDC IdP, which verifies the identity of the users before granting access. This setup leverages the ALB’s native support for OIDC authentication, streamlining the authentication process without requiring changes to the website itself. This approach aligns with best practices for securing web applications, as outlined in the latest AWS documentation, ensuring robust protection for the company’s internal resources.
-Hence, the correct answer is: Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to authenticate users using the OIDC IdP configuration.
+* Hence, the correct answer is: Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to authenticate users using the OIDC IdP configuration.
 The option that says: Set up an internet-facing Network Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to authenticate users using the OIDC IdP configuration is incorrect because Network Load Balancers only operate at the transport layer (Layer 4) and does not support OIDC authentication, which is required for this scenario.
 The option that says: Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 80. Add a default authenticating operation that returns the OIDC IdP configuration is incorrect This is incorrect because port 80 is typically used for HTTP, not HTTPS. OIDC authentication only works for HTTPS listeners.
 The option that says: Set up an internet-facing Application Load Balancer. Create a listener rule for the load balancer for HTTPS on port 443. Configure the rule’s default action to invoke an AWS Lambda function for OIDC authentication is incorrect. While this approach is technically feasible, it adds unnecessary complexity and requires custom coding, which might not align with the requirement to avoid modifying the existing code infrastructure.
@@ -1464,12 +1464,12 @@ Which of the following is the MOST suitable solution that the developer should i
 * Set up your Systems Manager State Manager to store the latest AMI IDs and integrate it with your CloudFormation template. Call the update-stack API in CloudFormation whenever you decide to update the EC2 instances in your CloudFormation template.
 * Integrate CloudFormation with AWS Service Catalog to fetch the latest AMI IDs and automatically use them for succeeding deployments.
 * Set up CloudFormation with Systems Manager Parameter Store to retrieve the latest AMI IDs for your template. Whenever you decide to update the EC2 instances, call the update-stack API in CloudFormation in your CloudFormation template.
-Incorrect
+
 You can use the existing Parameters section of your CloudFormation template to define Systems Manager parameters, along with other parameters. Systems Manager parameters are a unique type that is different from existing parameters because they refer to actual values in the Parameter Store. The value for this type of parameter would be the Systems Manager (SSM) parameter key instead of a string or other value. CloudFormation will fetch values stored against these keys in Systems Manager in your account and use them for the current stack operation.
 If the parameter referenced in the template does not exist in Systems Manager, there will be synchronous validation error that will be thrown. Also, if you have defined any parameter value validations (AllowedValues, AllowedPattern, etc.) for Systems Manager parameters, they will be performed against SSM keys which are given as input values for template parameters, not actual values stored in Systems Manager.
 
 Parameters stored in Systems Manager are mutable. Any time you use a template containing Systems Manager parameters to create/update your stacks, CloudFormation uses the values for these Systems Manager parameters at the time of the create/update operation. So, as parameters are updated in Systems Manager, you can have the new value of the parameter take effect by just executing a stack update operation. The Parameters section in the output for Describe API will show an additional ‘ResolvedValue’ field that contains the resolved value of the Systems Manager parameter that was used for the last stack operation.
-Hence, the correct answer is to set up CloudFormation with Systems Manager Parameter Store to retrieve the latest AMI IDs for your template. Whenever you decide to update the EC2 instances, call the update-stack API in CloudFormation in your CloudFormation template. 
+* Hence, the correct answer is to set up CloudFormation with Systems Manager Parameter Store to retrieve the latest AMI IDs for your template. Whenever you decide to update the EC2 instances, call the update-stack API in CloudFormation in your CloudFormation template. 
 The option that says: Set up your Systems Manager State Manager to store the latest AMI IDs and integrate it with your CloudFormation template. Call the update-stack API in CloudFormation whenever you decide to update the EC2 instances in your CloudFormation template is incorrect because the Systems Manager State Manager service simply automates the process of keeping your Amazon EC2 and hybrid infrastructure in a state that you define. This can’t be used as a parameter store that refers to the latest AMI of your application.
 The option that says: Integrate AWS Service Catalog with AWS Config to automatically fetch the latest AMI and use it for succeeding deployments is incorrect because AWS Service Catalog is not suitable in this scenario since this service just allows organizations to create and manage catalogs of IT services that are approved for use on AWS. In addition, AWS Config is simply a service that enables you to assess, audit, and evaluate the configurations of your AWS resources, which clearly is irrelevant in this case as the developer won’t be able to use this to store the latest AMI IDs.
 The option that says: Integrate CloudFormation with AWS Service Catalog to fetch the latest AMI IDs and automatically use them for succeeding deployments is incorrect because, just as mentioned above, the AWS Service Catalog just allows organizations to create and manage catalogs of IT services that are approved for use on AWS. A more appropriate solution for this scenario would be to use the Systems Manager Parameter Store to retrieve the latest AMI IDs for your template.
@@ -1486,11 +1486,11 @@ A company has developed a Lambda function that will send status updates to a thi
 * Launch an EC2 instance that has a cron job that triggers the Lambda function every 30 minutes.
 * Integrate Amazon EventBridge (Amazon CloudWatch Events) with Lambda, which will automatically trigger the function every 30 minutes.
 * Enable scheduling on the AWS Console of your Lambda function. Define a schedule to run it at 30-minute intervals.
-Incorrect
+
 Amazon EventBridge (Amazon CloudWatch Events) helps you respond to state changes in your AWS resources. When your resources change state, they automatically send events into an event stream. You can create rules that match selected events in the stream and route them to your AWS Lambda function to take action. For example, you can automatically invoke an AWS Lambda function to log the state of an EC2 instance or AutoScaling Group. You maintain event source mapping in Amazon CloudWatch Events by using a rule target definition.
 
 You can also create a Lambda function and direct AWS Lambda to execute it on a regular schedule. You can specify a fixed rate (for example, execute a Lambda function every hour or 15 minutes), or you can specify a Cron expression.
-Hence, the correct answer is: Integrate Amazon EventBridge (Amazon CloudWatch Events) with Lambda, which will automatically trigger the function every 30 minutes.
+* Hence, the correct answer is: Integrate Amazon EventBridge (Amazon CloudWatch Events) with Lambda, which will automatically trigger the function every 30 minutes.
 The option that says: Launch an EC2 instance that has a cron job that triggers the Lambda function every 30 minutes is incorrect because provisioning a new instance incurs additional costs. There is also a possibility that the Lambda function will not be invoked in the event that the instance was stopped or terminated.
 The option that says: Use the Task Scheduler of your Windows PC to trigger the Lambda function every 30 minutes is incorrect because this setup is difficult to manage due to the fact that you are using your own computer to trigger the function. This may be the most cost-effective solution but it certainly is not the most manageable option. The best way is to integrate CloudWatch Events with Lambda.
 The option that says: Enable scheduling on the AWS Console of your Lambda function. Define a schedule to run it at 30-minute intervals is incorrect because there is no feature like this in Lambda.
@@ -1509,7 +1509,7 @@ Which of the following should the consumers of the API do to invalidate the cach
 * Send a request with the Cache-Control: INVALIDATE_CACHE header.
 * Send a request with the Cache-Control: no-cache header.
 * Configure the front-end application to clear the browser cache before fetching data from API Gateway.
-Incorrect
+
 A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. The client must send a request that contains the Cache-Control: max-age=0 header. The client receives the response directly from the integration endpoint instead of the cache, provided that the client is authorized to do so. This replaces the existing cache entry with the new response, which is fetched from the integration endpoint.
 
 Ticking the Require authorization checkbox ensures that not every client can invalidate the API cache. If most or all of the clients invalidate the API cache, this could significantly increase the latency of your API.
@@ -1531,7 +1531,7 @@ Which of the following is the MOST likely cause of this issue?
 * The underlying Lambda function has been running for more than 29 seconds causing the API Gateway request to time out.
 * The API Gateway automatically enabled throttling in peak times which caused the HTTP 504 errors.
 * The memory allocated for the Lambda function is insufficient
-Incorrect
+
 A gateway response is identified by a response type defined by API Gateway. The response consists of an HTTP status code, a set of additional headers that are specified by parameter mappings, and a payload that is generated by a non-VTL (Apache Velocity Template Language) mapping template.
 
 You can set up a gateway response for a supported response type at the API level. Whenever API Gateway returns a response of the type, the header mappings and payload mapping templates defined in the gateway response are applied to return the mapped results to the API caller.
@@ -1540,7 +1540,7 @@ INTEGRATION_FAILURE – The gateway response for an integration failed error. If
 INTEGRATION_TIMEOUT – The gateway response for an integration timed-out error. If the response type is unspecified, this response defaults to the DEFAULT_5XX type.
 For the integration timeout, the range is from 50 milliseconds to 29 seconds for all integration types, including Lambda, Lambda proxy, HTTP, HTTP proxy, and AWS integrations.
 In this scenario, there is an issue where the users are getting HTTP 504 errors in the serverless application. This means the Lambda function is working fine at times, but there are instances when it throws an error. Based on this analysis, the most likely cause of the issue is the INTEGRATION_TIMEOUT error since you will only get an INTEGRATION_FAILURE error if your AWS Lambda integration does not work at all in the first place.
-Hence, the correct answer is: The underlying Lambda function has been running for more than 29 seconds causing the API Gateway request to time out.
+* Hence, the correct answer is: The underlying Lambda function has been running for more than 29 seconds causing the API Gateway request to time out.
 The option that says: The memory allocated for the Lambda function is insufficient is incorrect. The fact that no errors were found in the CloudWatch Logs suggests that the function is not the bottleneck.
 The option that says: The API Gateway automatically enabled throttling in peak times which caused the HTTP 504 errors is incorrect because a large number of incoming requests will most likely produce an HTTP 502 or 429 error but not a 504 error. If executing the function would cause you to exceed a concurrency limit at either the account level (ConcurrentInvocationLimitExceeded) or function level (ReservedFunctionConcurrentInvocationLimitExceeded), Lambda may return a TooManyRequestsException as a response. For functions with a long timeout, your client might be disconnected during synchronous invocation while it waits for a response and returns an HTTP 504 error.
 The option that says: There is an authorization failure occurring between API Gateway and the Lambda function is incorrect because an authentication issue usually produces HTTP 403 errors and not 504s. The gateway response for authorization failures for missing authentication token errors, invalid AWS signature errors, or Amazon Cognito authentication problems is HTTP 403, which is why this option is unlikely to cause this issue.
@@ -1559,7 +1559,7 @@ Which of the following are the most optimal WCU and RCU that you should provisio
 * 10 RCU and 20 WCU
 * 40 RCU and 20 WCU
 * 40 RCU and 40 WCU
-Incorrect
+
 When you create a new provisioned table in DynamoDB, you must specify its provisioned throughput capacity—the amount of read and write activity that the table will be able to support. DynamoDB uses this information to reserve sufficient system resources to meet your throughput requirements.
 You can optionally allow DynamoDB auto-scaling to manage your table’s throughput capacity. However, you still must provide initial settings for read and write capacity when you create the table. DynamoDB auto scaling uses these initial settings as a starting point and then adjusts them dynamically in response to your application’s requirements. You specify throughput requirements in terms of capacity units—the amount of data your application needs to read or write per second. You can modify these settings later, if needed, or enable DynamoDB auto-scaling to modify them automatically.
 
@@ -1575,7 +1575,7 @@ Step #2 Multiply the number of reads per second by the resulting value from Step
 = 20 RCU
 Since the type of read being asked is eventually consistent, we get half of 20, which is 10.
 = 20/2 = 10 RCU
-Hence, the correct answer is to provision 10 RCU and 20 WCU to your DynamoDB table.
+* Hence, the correct answer is to provision 10 RCU and 20 WCU to your DynamoDB table.
 The 20 RCU and 20 WCU setting is incorrect because this would be the result if you use strong consistency reads. Remember that the scenario explicitly said that eventual consistency reads would be used.
 The 40 RCU and 20 WCU is incorrect because 40 RCU is overkill for the required eventual consistency reads. If the scenario was asking for transactional read requests, then this option could have been correct.
 The 40 RCU and 40 WCU setting is incorrect because this would be the result if you chose transactional requests both on your reads and writes. Take note that the scenario didn’t say that the database is using DynamoDB Transactions.
@@ -1596,10 +1596,10 @@ Which of the following is the MOST appropriate service that the developer should
 * Serverless Application Framework
 * AWS Systems Manager
 * AWS SAM
-Incorrect
+
 The AWS Serverless Application Model (AWS SAM) is an open source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. You define the application you want with just a few lines per resource and model it using YAML.
 AWS SAM is natively supported by AWS CloudFormation and provides a simplified way of defining the Amazon API Gateway APIs, AWS Lambda functions, and Amazon DynamoDB tables needed by your serverless application. During deployment, SAM transforms and expands the SAM syntax into AWS CloudFormation syntax. Then, CloudFormation provisions your resources with reliable deployment capabilities.
-Hence, the correct answer is AWS SAM.
+* Hence, the correct answer is AWS SAM.
 AWS CloudFormation is incorrect. Although this service can deploy the serverless application to AWS, it is still more appropriate to use AWS SAM instead. AWS SAM can simplify the deployment of the serverless application by deploying all related resources together as a single, versioned entity.
 AWS Systems Manager is incorrect because it is more focused on management and operations of AWS resources, such as automation, patching, and configuration, but it is not a deployment or application modeling tool.
 Serverless Application Framework is incorrect. Although it is a well-known framework for building and deploying serverless applications into the AWS cloud, this is not an AWS native solution. It also does not allow configuration of DynamoDB databases or API Gateway APIs, unlike AWS SAM.
@@ -1620,7 +1620,7 @@ Which of the following services can the developer configure with Elastic Beansta
 * Amazon EC2 Instance
 * Amazon CloudFront
 * Amazon Athena
-Incorrect
+
 AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger, and IIS.
 You can upload your code and Elastic Beanstalk automatically handles the deployment, from capacity provisioning, load balancing, auto-scaling to application health monitoring. At the same time, you retain full control over the AWS resources powering your application and can access the underlying resources.
 
@@ -1635,7 +1635,7 @@ With ElasticBeanstalk, you can:
 – Adjust application server settings (e.g., JVM settings) and pass environment variables
 – Run other application components, such as a memory caching service, side-by-side in Amazon EC2.
 – Access log files without logging in to the application servers
-Hence, the correct answers are: Amazon EC2 Instance, Amazon CloudWatch, and Application Load Balancer.
+* Hence, the correct answers are: Amazon EC2 Instance, Amazon CloudWatch, and Application Load Balancer.
 You cannot configure Amazon Athena, AWS Lambda, and Amazon CloudFront on ElasticBeanstalk.
  
 References:
@@ -1651,12 +1651,12 @@ How should you handle this error?
 * Create a Local Secondary Index (LSI) to the existing DynamoDB table to increase the provisioned throughput.
 * Reduce the frequency of requests using error retries and exponential backoff.
 * Refactor the code in the Lambda function to optimize its performance.
-Incorrect
+
 When your program sends a request, DynamoDB attempts to process it. If the request is successful, DynamoDB returns an HTTP success status code (200 OK), along with the results from the requested operation. If the request is unsuccessful, DynamoDB returns an error.
 An HTTP 400 status code indicates a problem with your request, such as authentication failure, missing required parameters, or exceeding a table’s provisioned throughput. You have to fix the issue in your application before submitting the request again.
 
 ProvisionedThroughputExceededException means that your request rate is too high. The AWS SDKs for DynamoDB automatically retries requests that receive this exception. Your request is eventually successful unless your retry queue is too large to finish. To handle this error, you can reduce the frequency of requests using error retries and exponential backoff.
-Hence, the correct answer is: Reduce the frequency of requests using error retries and exponential backoff.
+* Hence, the correct answer is: Reduce the frequency of requests using error retries and exponential backoff.
 The option that says: Enable DynamoDB Accelerator (DAX) to reduce response times from milliseconds to microseconds is incorrect because DAX is used to provide a fully managed, in-memory caching solution. This option is not the right way to handle errors due to high request rates.
 The option that says: Refactor the code in the Lambda function to optimize its performance is incorrect because this will just improve the code’s readability and maintainability. This won’t have any impact on reducing the frequency of requests.
 The option that says: Create a Local Secondary Index ( LSI ) to the existing DynamoDb table to increase the provisioned throughput is incorrect. LSI is used to give flexibility to your queries against the DynamoDB table. LSI uses an alternative sort key aside from the original sort key defined at the creation of the table. Additionally, you cannot create an LSI on an existing table. It can only be added during the creation of a DynamoDB table.
@@ -1676,10 +1676,10 @@ Which of the following should be used to satisfy the above requirement?
 * AWS Transfer for SFTP
 * Amazon CloudFront
 * AWS Direct Connect
-Incorrect
+
 Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and your Amazon S3 bucket. Transfer Acceleration leverages Amazon CloudFront’s globally distributed AWS Edge Locations. As data arrives at an AWS Edge Location, data is routed to your Amazon S3 bucket over an optimized network path.
 
-Hence, the correct answer is: S3 Transfer Acceleration.
+* Hence, the correct answer is: S3 Transfer Acceleration.
 AWS Transfer for SFTP is incorrect because this is just a fully managed service that enables the transfer of files directly into and out of Amazon S3 using the Secure File Transfer Protocol (SFTP) which is also known as Secure Shell (SSH) File Transfer Protocol. It does not provide a fast, easy, and secure way to transfer files over long distances between your client and your Amazon S3 bucket.
 AWS Direct Connect is incorrect because you have users all around the world and not just on your on-premises data center. Direct Connect would be too costly and is definitely not suitable for this purpose.
 Amazon CloudFront is incorrect because this service is primarily used to serve static content and not as a transfer accelerator going to or from Amazon S3. CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds.
@@ -1700,7 +1700,7 @@ Which of the following is the MOST suitable component that you should implement 
 * Dead Letter Queue
 * FIFO Queue
 * Amazon MQ
-Incorrect
+
 Function invocation can result in an error for several reasons. Your code might raise an exception, time out, or run out of memory. The runtime executing your code might encounter an error and stop. You might run out of concurrency and be throttled.
 When an error occurs, your code might have run completely, partially, or not at all. In most cases, the client or service that invokes your function retries if it encounters an error, so your code must be able to process the same event repeatedly without unwanted effects. If your function manages resources or writes to a database, you need to handle cases where the same request is made several times.
 
@@ -1723,7 +1723,7 @@ Which must be done to meet the requirement?
 * Set up an Amazon EventBridge (Amazon CloudWatch Events) event pattern that captures SSM Parameter-related events. Use Amazon SNS to send notifications.
 * Convert the sensitive parameters from Standard tier into Advanced tier. Set a NoChangeNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS.
 * Convert the sensitive parameters from Standard tier into Advanced tier. Set a ExpirationNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS.
-Incorrect
+
 Parameter policies help you manage a growing set of parameters by allowing you to assign specific criteria to a parameter, such as an expiration date or time to live. Parameter policies are especially helpful in forcing you to update or delete passwords and configuration data stored in Parameter Store, a capability of AWS Systems Manager. Take note that parameter policies are only available for parameters in the Advanced tier.
 Parameter Store offers the following types of policies:
 Expiration – deletes the parameter at a specific date
@@ -1732,7 +1732,7 @@ NoChangeNotification – sends an event to Amazon EventBridge (Amazon CloudWatch
 
 The NoChangeNotification policy sends a notification based on the LastModifiedTime attribute of the parameter. If you change or edit a parameter, the system resets the notification time period based on the new value of LastModifiedTime. In the scenario’s case, we want to be notified if specific parameters were not rotated in the last 90 days.
 In the scenario, the goal is to be notified if specific sensitive parameters have not been rotated within the past 90 days. Configuring the NoChangeNotification policy with a value of 90 days allows SSM to emit a notification to EventBridge whenever the LastModifiedTime of the sensitive parameters exceeds the specified time frame. However, setting the notification policy alone is not enough. You must configure Amazon EventBridge (Amazon CloudWatch Events) to capture the emitted events and route them to an Amazon SNS topic.
-Hence, the correct answer is: Convert the sensitive parameters from Standard tier into Advanced tier. Set a NoChangeNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS.
+* Hence, the correct answer is: Convert the sensitive parameters from Standard tier into Advanced tier. Set a NoChangeNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS.
 The option that says: Configure a NoChangeNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS is incorrect because notification policies are not supported in the Standard tier. You must convert the parameters first into the Advanced tier.
 The option that says: Convert the sensitive parameters from Standard tier into Advanced tier. Set a ExpirationNotification policy with a value of 90 days. Use Amazon EventBridge (Amazon CloudWatch Events) to send a notification via Amazon SNS is incorrect because the ExpirationNotification policy is for notifying when a parameter is about to expire, not when it hasn’t been rotated. In this case, the NoChangeNotification policy should be used instead.
 The option that says: Set up an Amazon EventBridge (Amazon CloudWatch Events) event pattern that captures SSM Parameter-related events. Use Amazon SNS to send notifications is incorrect. A notification policy must be enabled as well, otherwise, Amazon EventBridge (Amazon CloudWatch Events) won’t be able to receive any notifications.
@@ -1745,5 +1745,3 @@ Check out this cheat sheet on AWS Secrets Manager vs Systems Manager Parameter S
 https://tutorialsdojo.com/aws-secrets-manager-vs-systems-manager-parameter-store/
 
 From <https://portal.tutorialsdojo.com/courses/aws-certified-developer-associate-practice-exams/lessons/randomized-test-6/quizzes/randomized-test-aws-certified-developer-associate/> 
-
-
