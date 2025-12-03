@@ -9,7 +9,7 @@ Which of the following AWS services will help you achieve this?
 
 
 ### ✅ Correct Answer:
-* ** AWS CodePipeline ** is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This makes it a good choice for automating your CI/CD process and centrally monitoring application activity.
+* **AWS CodePipeline** is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This makes it a good choice for automating your CI/CD process and centrally monitoring application activity.
 Moreover, AWS CodePipeline integrates with AWS CloudWatch, which provides a reliable, scalable, and flexible monitoring solution. You can create dashboards in CloudWatch to centrally monitor application activity and manage day-to-day development tasks.
 ### ❌ Incorrect Options
 * The option that says: AWS Fault Injection Simulator is incorrect because this is just a managed service that is commonly used in chaos engineering, and not for application development. It enables you to perform fault injection experiments on your AWS workloads to improve the performance and resiliency of your applications.
@@ -1748,3 +1748,4 @@ Check out this cheat sheet on AWS Secrets Manager vs Systems Manager Parameter S
 https://tutorialsdojo.com/aws-secrets-manager-vs-systems-manager-parameter-store/
 
 From <https://portal.tutorialsdojo.com/courses/aws-certified-developer-associate-practice-exams/lessons/randomized-test-6/quizzes/randomized-test-aws-certified-developer-associate/> 
+
