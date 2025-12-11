@@ -133,6 +133,7 @@ These are *exact* tasks companies give:
 * Build a CloudWatch dashboard with alarms.
 * Demo of code deploy on ec2, lambda, ecs and on premises
 * Experience about client calls , how to freeze requirements, and deliver and propose new architectural solutions wrt cloud migration to clients
+* Lets say if client want to move to cloud how will u approach
 
 ---
 
