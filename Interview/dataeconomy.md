@@ -131,6 +131,7 @@ These are *exact* tasks companies give:
 * Create CI/CD pipeline that deploys a Lambda.
 * Create a Docker compose for local microservices.
 * Build a CloudWatch dashboard with alarms.
+* Demo of code deploy on ec2, lambda, ecs and on premises
 
 ---
 
@@ -142,12 +143,3 @@ These are *exact* tasks companies give:
 * They may ask “How would you improve this architecture?”
 
 ---
-
-# If you want, I can generate:
-
-✅ A full **PDF of these notes**
-✅ A **detailed 50–70 question bank**
-✅ A **mock interview**
-✅ A **custom study plan to crack DataEconomy next attempt**
-
-Just tell me what you want.
