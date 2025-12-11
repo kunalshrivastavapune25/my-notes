@@ -12,7 +12,7 @@ You can copy-paste this entire structure and I’ll fill details later if you wa
 A concise, powerful statement.
 
 **Example:**
-**Certified Cloud & DevOps Architect** with 10+ years of experience designing scalable cloud architectures, DevOps automation, and large-scale data migration solutions. Skilled in AWS, CI/CD, Kubernetes, microservices, and end-to-end solution design. Proven ability to modernize legacy systems, build resilient architectures, and lead cross-functional technical delivery. Seeking opportunities in **Cloud DevOps, Solution Architecture, and Cloud/Data Migration** roles.
+**Certified Cloud & DevOps Architect** with 18+ years of experience designing scalable cloud architectures, DevOps automation, and large-scale data migration solutions. Skilled in AWS, CI/CD, Kubernetes, microservices, and end-to-end solution design. Proven ability to modernize legacy systems, build resilient architectures, and lead cross-functional technical delivery. Seeking opportunities in **Cloud DevOps, Solution Architecture, and Cloud/Data Migration** roles.
 
 ---
 
