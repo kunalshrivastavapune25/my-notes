@@ -25,7 +25,7 @@ Make it readable in one glance.
 * AWS Architecture, VPC Design, Multi-AZ/Region HA
 * Microservices, Serverless (Lambda), Event-driven Design
 * HLD/LLD Documentation, Architecture Reviews
-* Scalability, DR & Backup Planning, Cost Optimization
+* Scalability, DR & Backup Planning, Cost Optimization, Staksets
 
 ### **DevOps**
 
@@ -63,7 +63,7 @@ Break into skill areas for maximum clarity (your idea is correct).
 * Managed Kubernetes clusters (EKS), created Helm charts, deployed microservices.
 * Implemented monitoring dashboards, alerts (CloudWatch, Grafana, Prometheus).
 * Built secure pipelines with secrets management, IAM, and artifact repositories.
-
+* i made stakesets for dev testing and product accounts
 ---
 
 ## **B. SOLUTION ARCHITECTURE RESPONSIBILITIES**
