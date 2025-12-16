@@ -144,6 +144,6 @@ These are *exact* tasks companies give:
 * They may give you a live task in 20 minutes.
 * They may ask you to draw architecture diagrams on screen.
 * They may ask “How would you improve this architecture?"
-* why did you did developer associate? what u learnt important stuff 
+* why did you did developer associate? what u learnt important stuff , check first 2/3 pages of udemy ppt
 
 ---
