@@ -839,8 +839,158 @@ I ensure data quality at **three levels**:
 
 ---
 
-If you want, next I can:
+This is a **classic senior-level interview question**, and the panel is checking **governance, ownership, and timing** — not just technical skills.
 
-* Convert this into **short crisp answers (30–60 seconds each)**
-* Map answers **specifically to ERP (SAP / Oracle / Siebel)**
-* Do a **mock interview Q&A** like a real panel
+Below is a **crisp, authoritative answer** you can give, followed by a **phase-wise table** and a **one-line interview summary**.
+
+---
+
+## ✅ Short Interview Answer (30–40 seconds)
+
+> “The migration strategy document is created during the **Discovery & Assessment phase**. It is **owned by the Data Migration Lead / Solution Architect**, and developed **collaboratively** with business data owners, application SMEs, architects, QA, security, and operations teams. It is reviewed and finalized before the development phase begins.”
+
+---
+
+## 📌 Detailed Answer (Phase-wise & Role-wise)
+
+### 🔹 **When is the Migration Strategy Document Created?**
+
+* **Primary phase:** **Data Discovery & Assessment**
+* **Finalized before:** **Design & Development phase**
+* **Updated during:** POC / Dry runs (if needed)
+* **Baselined before:** Production migration
+
+---
+
+## 👤 **Who Owns the Migration Strategy Document?**
+
+**Primary Owner:**
+
+* **Data Migration Lead** / **Migration Architect** / **Solution Architect**
+
+**Accountability:**
+
+* Migration Lead is accountable for:
+
+  * Strategy correctness
+  * Risk mitigation
+  * Business alignment
+
+---
+
+## 🤝 **Who Contributes (By Role)?**
+
+| Role                       | Contribution                              |
+| -------------------------- | ----------------------------------------- |
+| Business Data Owners       | Data scope, criticality, validation rules |
+| Application SMEs           | Source & target system behavior           |
+| ERP / CRM Functional Leads | Master & transactional data logic         |
+| Data Architects            | Data model & mapping approach             |
+| ETL / Integration Team     | Tool capabilities & feasibility           |
+| QA / Validation Team       | Testing & reconciliation approach         |
+| Security / Compliance      | Data privacy, masking, encryption         |
+| Operations / Infra         | Cutover, rollback, monitoring             |
+
+---
+
+## 🗂 Phase-wise Breakdown (Very Interview-Friendly)
+
+### 🟦 Phase 1: Discovery & Assessment
+
+**What happens:**
+
+* Data profiling
+* Volume & quality analysis
+* Dependency identification
+* Risk assessment
+
+**Outcome:**
+
+* **Draft Migration Strategy**
+* Recommended approach (phased, parallel, big bang)
+
+---
+
+### 🟦 Phase 2: POC (Proof of Concept)
+
+**What happens:**
+
+* Tool validation
+* Sample migration
+* Performance benchmarking
+
+**Outcome:**
+
+* Strategy refined (batch size, iteration model, tooling)
+* Risk assumptions validated
+
+---
+
+### 🟦 Phase 3: Design & Development
+
+**What happens:**
+
+* Mapping documents created
+* ETL flows built
+
+**Outcome:**
+
+* Strategy is **baselined**
+* Execution aligns to approved strategy
+
+---
+
+### 🟦 Phase 4: Dry Runs / Mock Migration
+
+**What happens:**
+
+* Full rehearsal
+* Timelines validated
+
+**Outcome:**
+
+* Minor strategy adjustments (if needed)
+* Cutover approach confirmed
+
+---
+
+### 🟦 Phase 5: Production Migration
+
+**What happens:**
+
+* Strategy executed
+* No major changes allowed
+
+---
+
+### 🟦 Phase 6: Post-Migration
+
+**What happens:**
+
+* Validation & sign-off
+* Lessons learned
+
+---
+
+## 🎯 Interview One-Liner (Use This)
+
+> “The migration strategy is defined early during discovery, owned by the migration lead, co-created with business and technical stakeholders, validated through POC and mock runs, and then executed without change during production.”
+
+---
+
+## 🔥 Bonus: What Interviewers LOVE to Hear
+
+Add this if time permits:
+
+> “The migration strategy is a **living document early on**, but becomes a **controlled, signed-off baseline** before production migration.”
+
+---
+
+If you want, I can:
+
+* Share a **real-world migration strategy document outline**
+* Create a **RACI chart for migration governance**
+* Help you answer **follow-up challenges from interviewers**
+* Simulate **panel cross-questioning**
+
+Just tell me 👍
