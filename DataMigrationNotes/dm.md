@@ -1207,4 +1207,115 @@ If you want, next I can:
 
 Just tell me 👍
 
+Below is a **strong, concise, interview-ready answer** you can use when asked
+**“What are your current responsibilities as a Migration Lead?”**
+
+I’ve aligned it with **your Odido → Netcracker ODA program** and a **Data Migration Lead JD**.
+
+---
+
+## ✅ Short Interview Answer (60–90 seconds)
+
+> “As a Data Migration Lead, I own the end-to-end migration strategy and execution. My responsibilities span planning, execution, data quality governance, stakeholder management, and go-live readiness, ensuring zero data loss and minimal business impact.”
+
+---
+
+## 📌 Detailed Responsibilities (Role-Based)
+
+### 1️⃣ Migration Strategy & Planning
+
+* Define **overall migration strategy** (iteration-based, cohort-driven)
+* Identify **data scope**: master, transactional, historical
+* Define **critical path, cutover, and rollback strategy**
+* Align migration iterations with **program sprint milestones**
+
+---
+
+### 2️⃣ Data Discovery & Design Ownership
+
+* Lead **data profiling and assessment** of legacy billing systems
+* Own **source-to-target mappings** and transformation rules
+* Define **migration keys, cohorts, and validation rules**
+* Finalize **fallout acceptance thresholds per iteration**
+
+---
+
+### 3️⃣ Execution & Delivery
+
+* Lead **end-to-end ETL execution** using Apache NiFi
+* Oversee transformation from **NC format to canonical JSON**
+* Coordinate **parallel bulk API ingestion** into ODA microservices
+  (CPQ, GSM, Customer, Accounts)
+* Ensure **repeatable, idempotent migration runs**
+
+---
+
+### 4️⃣ Data Quality & Governance
+
+* Define and enforce **data quality rules**
+* Monitor:
+
+  * Row counts
+  * Reconciliation
+  * Fallout reports
+* Drive **defect triage, root cause analysis, and re-migration**
+* Ensure audit readiness and traceability
+
+---
+
+### 5️⃣ Iteration & Cutover Management
+
+* Plan and execute:
+
+  * Dry runs
+  * Mock runs
+  * Dress rehearsals
+* Own **cutover execution plan** and **go / no-go recommendations**
+* Manage delta migration and post-go-live hypercare
+
+---
+
+### 6️⃣ Stakeholder & Program Management
+
+* Act as **single point of contact** for migration across:
+
+  * Business
+  * IT
+  * Architecture
+  * Vendors
+* Present **migration dashboards and risk status** to leadership
+* Manage escalations and decision-making forums
+
+---
+
+### 7️⃣ Team Leadership & Governance
+
+* Lead ETL, validation, and support teams
+* Define **RACI, runbooks, and SOPs**
+* Mentor team on migration best practices
+
+---
+
+## 🎯 One-Line Wrap-Up (Very Strong)
+
+> “I am accountable for taking data from legacy billing systems to ODA-based Netcracker applications in a controlled, auditable, and business-safe manner.”
+
+---
+
+## 🔥 If Interviewer Pushes: “What is NOT your responsibility?”
+
+Answer:
+
+> “I don’t own business data correction decisions, but I highlight issues, propose solutions, and drive resolution with data owners.”
+
+---
+
+If you want, I can:
+
+* Convert this into a **30-second elevator answer**
+* Tailor it for **ERP-heavy interviews (SAP/Oracle)**
+* Prepare **follow-up technical drill-down questions**
+* Create a **responsibility slide you can reuse**
+
+Just say 👍
 
