@@ -986,11 +986,139 @@ Add this if time permits:
 
 ---
 
+This is a **very good governance question**, and interviewers ask it to see **how you operate in real programs**, not just technically.
+
+Here’s a **clear, confident answer you can give**.
+
+---
+
+## ✅ Short Interview Answer (Best)
+
+> “Stakeholders are identified during the discovery phase through the program governance setup. The primary sources are the **Program Manager**, **Business Sponsor**, and **Application Owners**, and I validate and expand the list through workshops and dependency analysis.”
+
+---
+
+## 🔍 Detailed, Practical Answer
+
+Stakeholders are **not told by one single person**. They are identified through **multiple formal channels**.
+
+---
+
+## 🧩 Who Identifies / Tells You the Stakeholders?
+
+### 1️⃣ **Program Manager / Delivery Manager**
+
+* Shares:
+
+  * Program org structure
+  * Governance model
+  * Steering committee members
+* Identifies:
+
+  * Business sponsors
+  * Key decision makers
+  * Escalation paths
+
+📌 *This is usually your starting point.*
+
+---
+
+### 2️⃣ **Business Sponsor / Business Owner**
+
+* Identifies:
+
+  * Business data owners
+  * Functional heads (Billing, CRM, Finance)
+* Clarifies:
+
+  * Critical data
+  * Business priorities
+
+---
+
+### 3️⃣ **Application Owners / System SMEs**
+
+* Identify:
+
+  * Source system owners
+  * Target system owners
+  * Integration touchpoints
+* Explain:
+
+  * System dependencies
+  * Data consumers
+
+---
+
+### 4️⃣ **Enterprise / Solution Architect**
+
+* Helps identify:
+
+  * Cross-system impacts
+  * Shared platforms
+  * Architecture dependencies
+
+---
+
+### 5️⃣ **Compliance / Security / Audit Teams**
+
+* Identify:
+
+  * Regulatory stakeholders
+  * Data privacy owners
+  * Audit approvers
+
+---
+
+## 🧠 Your Role as Data Migration Lead (Important)
+
+You **do not just wait** to be told.
+
+You:
+
+* Validate stakeholders during workshops
+* Discover missing stakeholders via:
+
+  * Data flow analysis
+  * Interface mapping
+* Update the stakeholder register continuously
+
+📌 Example:
+
+> “While mapping data flows, we realized Finance reporting depended on billing data, so Finance became a critical stakeholder.”
+
+---
+
+## 📋 Formal Artifacts Where Stakeholders Are Listed
+
+* Program Charter
+* RACI Matrix
+* Migration Strategy Document
+* RAID Log
+* Communication Plan
+
+---
+
+## 🎯 Interview One-Liner (Very Strong)
+
+> “Stakeholders are initially provided by program governance, but as a migration lead, I proactively validate and expand the list based on data dependencies and system interactions.”
+
+---
+
+## 🔥 If Interviewer Pushes Further
+
+**Q:** *What if someone is missed?*
+**A:**
+
+> “That’s why we treat stakeholder identification as iterative. We review and update it at each major phase—discovery, POC, and mock runs.”
+
+---
+
 If you want, I can:
 
-* Share a **real-world migration strategy document outline**
-* Create a **RACI chart for migration governance**
-* Help you answer **follow-up challenges from interviewers**
-* Simulate **panel cross-questioning**
+* Create a **stakeholder RACI for a migration project**
+* Give **real conflict scenarios & resolutions**
+* Prepare **governance slides you can reuse in interviews**
 
-Just tell me 👍
+Just say 👍
+
