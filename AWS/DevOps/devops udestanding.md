@@ -3,6 +3,25 @@ Typical Enterprise workflows
 
 <img width="1600" height="720" alt="image" src="https://github.com/user-attachments/assets/bc4f9bea-80ef-4b9a-802f-68bb824f57f8" />
 
+# 🔷  Architect’s Mental Model (Remember This)
+
+```
+CI/CD Orchestrators (choose ONE)
+--------------------------------
+Jenkins | GitHub Actions | CodePipeline
+
+Infrastructure
+--------------
+Terraform / CloudFormation
+
+Configuration
+-------------
+Ansible / Chef / Puppet
+
+Deployment
+----------
+CodeDeploy / ECS / EKS / ArgoCD
+```
 
 # 🔷 GitHub Actions + Terraform + Ansible + AWS
 
@@ -247,25 +266,6 @@ Very popular for:
 
 ---
 
-##  Architect’s Mental Model (Remember This)
-
-```
-CI/CD Orchestrators (choose ONE)
---------------------------------
-Jenkins | GitHub Actions | CodePipeline
-
-Infrastructure
---------------
-Terraform / CloudFormation
-
-Configuration
--------------
-Ansible / Chef / Puppet
-
-Deployment
-----------
-CodeDeploy / ECS / EKS / ArgoCD
-```
 
 ## Jenkins vs CodePipeline (Core Difference)
 
