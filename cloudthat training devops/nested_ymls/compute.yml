@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Compute stack
+
+Parameters:
+  PublicSubnetId:
+    Type: String
+  WebSGId:
+    Type: String
+
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Sub "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2}}"
+      InstanceType: t3.micro
+      SubnetId: !Ref PublicSubnetId
+      SecurityGroupIds:
+        - !Ref WebSGId
+      Tags:
+        - Key: Name
+          Value: nested-public-ec2
+
+Outputs:
+  PublicIP:
+    Value: !GetAtt WebServer.PublicIp

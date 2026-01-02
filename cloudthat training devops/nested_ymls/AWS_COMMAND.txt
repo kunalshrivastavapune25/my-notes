@@ -1,0 +1,23 @@
+aws s3 cp . s3://kunal-cfn-bucket/nested/ --recursive
+
+TemplateURL: https://my-cfn-bucket.s3.amazonaws.com/nested/network.yml
+
+aws cloudformation deploy --stack-name nested-super-stack --template-file parent.yml --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation create-stack --stack-name Lab1 --template-body file://parent.yml --capabilities CAPABILITY_NAMED_IAM  
+  aws lambda invoke \
+  --function-name nested-private-test \
+  response.json
+cat response.json
+
+
+aws cloudformation create-stack --stack-name Lab1 --parameters ParameterKey=InstanceType,ParameterValue=t2.micro --template-body file://lab1.yaml --disable-rollback
+aws cloudformation delete-stack --stack-name Lab1
+
+cd C:\kunal\"cloudthat training devops"\nested_ymls
+
+
+https://classrooms.labs.aws.training/sa/lab/arn%3Aaws%3Alearningcontent%3Aus-east-1%3A006961644361%3Ablueprintversion%2FILT-TF-200-DEVOPS-3%2Flab-1-CloudFormation%3A3.7.21-ba4be72b/en-US/a98a88ae-5606-41b6-bba2-80d7865ec073::9V84BE2H16Y43udLb3MXmY
+
+https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/resources?filteringText=&filteringStatus=active&viewNested=true&stackId=arn%3Aaws%3Acloudformation%3Aap-northeast-1%3A748187732673%3Astack%2FLab1%2F82176390-e338-11f0-91de-065fd0f5137b
+
+https://ap-northeast-1.console.aws.amazon.com/vpcconsole/home?region=ap-northeast-1#VpcDetails:VpcId=vpc-0600b57774330eb69

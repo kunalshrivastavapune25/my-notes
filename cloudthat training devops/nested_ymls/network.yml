@@ -1,0 +1,216 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'My superymlx'
+Parameters:
+  VPCCIDR:
+    Description: CIDR Block for VPC
+    Type: String
+    Default: 10.199.0.0/16
+    AllowedValues:
+      - 10.199.0.0/16
+
+Resources:
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: !Ref VPCCIDR
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: CF lab environment
+
+
+
+#  InternetGateway:
+#    Type: AWS::EC2::InternetGateway
+#
+#  AttachIGW:
+#    Type: AWS::EC2::VPCGatewayAttachment
+#    Properties:
+#      VpcId: !Ref VPC
+#      InternetGatewayId: !Ref InternetGateway
+#
+#  PublicSubnet:
+#    Type: AWS::EC2::Subnet
+#    Properties:
+#      VpcId: !Ref VPC
+#      CidrBlock: 10.199.10.0/24
+#      MapPublicIpOnLaunch: true
+#      AvailabilityZone: !Select [0, !GetAZs ""]
+#
+#  PrivateSubnet:
+#    Type: AWS::EC2::Subnet
+#    Properties:
+#      VpcId: !Ref VPC
+#      CidrBlock: 10.199.20.0/24
+#      AvailabilityZone: !Select [0, !GetAZs ""]
+#
+#  PublicRT:
+#    Type: AWS::EC2::RouteTable
+#    Properties:
+#      VpcId: !Ref VPC
+#
+#  PublicRoute:
+#    Type: AWS::EC2::Route
+#    DependsOn: AttachIGW
+#    Properties:
+#      RouteTableId: !Ref PublicRT
+#      DestinationCidrBlock: 0.0.0.0/0
+#      GatewayId: !Ref InternetGateway
+#
+#  PublicAssoc:
+#    Type: AWS::EC2::SubnetRouteTableAssociation
+#    Properties:
+#      SubnetId: !Ref PublicSubnet
+#      RouteTableId: !Ref PublicRT
+#
+#  NatEip:
+#    Type: AWS::EC2::EIP
+#    Properties:
+#      Domain: vpc
+#
+#  NatGateway:
+#    Type: AWS::EC2::NatGateway
+#    Properties:
+#      AllocationId: !GetAtt NatEip.AllocationId
+#      SubnetId: !Ref PublicSubnet
+#
+#  PrivateRT:
+#    Type: AWS::EC2::RouteTable
+#    Properties:
+#      VpcId: !Ref VPC
+#
+#  PrivateRoute:
+#    Type: AWS::EC2::Route
+#    Properties:
+#      RouteTableId: !Ref PrivateRT
+#      DestinationCidrBlock: 0.0.0.0/0
+#      NatGatewayId: !Ref NatGateway
+#
+#  PrivateAssoc:
+#    Type: AWS::EC2::SubnetRouteTableAssociation
+#    Properties:
+#      SubnetId: !Ref PrivateSubnet
+#      RouteTableId: !Ref PrivateRT
+##Public Subnet NACL
+#  PublicNACL:
+#    Type: AWS::EC2::NetworkAcl
+#    Properties:
+#      VpcId: !Ref VPC
+#      Tags:
+#        - Key: Name
+#          Value: public-nacl
+##Inbound rules (HTTP + HTTPS + Ephemeral)
+#  PublicNACLInboundHTTP:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PublicNACL
+#      RuleNumber: 100
+#      Protocol: 6
+#      RuleAction: allow
+#      Egress: false
+#      CidrBlock: 0.0.0.0/0
+#      PortRange:
+#        From: 80
+#        To: 80
+#
+#  PublicNACLInboundHTTPS:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PublicNACL
+#      RuleNumber: 110
+#      Protocol: 6
+#      RuleAction: allow
+#      Egress: false
+#      CidrBlock: 0.0.0.0/0
+#      PortRange:
+#        From: 443
+#        To: 443
+#
+#  PublicNACLInboundEphemeral:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PublicNACL
+#      RuleNumber: 120
+#      Protocol: 6
+#      RuleAction: allow
+#      Egress: false
+#      CidrBlock: 0.0.0.0/0
+#      PortRange:
+#        From: 1024
+#        To: 65535
+##Outbound (Allow all)
+#  PublicNACLOutbound:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PublicNACL
+#      RuleNumber: 100
+#      Protocol: -1
+#      RuleAction: allow
+#      Egress: true
+#      CidrBlock: 0.0.0.0/0
+##Associate Public Subnet
+#  PublicSubnetNACLAssociation:
+#    Type: AWS::EC2::SubnetNetworkAclAssociation
+#    Properties:
+#      SubnetId: !Ref PublicSubnet
+#      NetworkAclId: !Ref PublicNACL
+#
+##Private Subnet NACL (Lambda / Backend)
+#  PrivateNACL:
+#    Type: AWS::EC2::NetworkAcl
+#    Properties:
+#      VpcId: !Ref VPC
+#      Tags:
+#        - Key: Name
+#          Value: private-nacl
+##Inbound (Only VPC traffic + ephemeral)
+#  PrivateNACLInboundVPC:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PrivateNACL
+#      RuleNumber: 100
+#      Protocol: -1
+#      RuleAction: allow
+#      Egress: false
+#      CidrBlock: 10.199.0.0/16
+#
+#  PrivateNACLInboundEphemeral:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PrivateNACL
+#      RuleNumber: 110
+#      Protocol: 6
+#      RuleAction: allow
+#      Egress: false
+#      CidrBlock: 0.0.0.0/0
+#      PortRange:
+#        From: 1024
+#        To: 65535
+##Outbound (Internet via NAT)        
+#  PrivateNACLOutbound:
+#    Type: AWS::EC2::NetworkAclEntry
+#    Properties:
+#      NetworkAclId: !Ref PrivateNACL
+#      RuleNumber: 100
+#      Protocol: -1
+#      RuleAction: allow
+#      Egress: true
+#      CidrBlock: 0.0.0.0/0
+##Associate Private Subnet
+#  PrivateSubnetNACLAssociation:
+#    Type: AWS::EC2::SubnetNetworkAclAssociation
+#    Properties:
+#      SubnetId: !Ref PrivateSubnet
+#      NetworkAclId: !Ref PrivateNACL
+
+
+Outputs:
+  VpcId:
+    Value: !Ref VPC
+#  PublicSubnetId:
+#    Value: !Ref PublicSubnet
+#  PrivateSubnetId:
+#    Value: !Ref PrivateSubnet

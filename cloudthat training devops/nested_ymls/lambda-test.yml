@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Lambda connectivity test
+
+Parameters:
+  PrivateSubnetId:
+    Type: String
+  LambdaSGId:
+    Type: String
+
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+  TestLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: nested-private-test
+      Runtime: python3.10
+      Handler: index.lambda_handler
+      Role: !GetAtt LambdaRole.Arn
+      Timeout: 30
+      VpcConfig:
+        SubnetIds:
+          - !Ref PrivateSubnetId
+        SecurityGroupIds:
+          - !Ref LambdaSGId
+      Code:
+        ZipFile: |
+          import urllib.request, boto3
+          def lambda_handler(event, context):
+              r={}
+              try:
+                  urllib.request.urlopen("https://example.com",timeout=5)
+                  r["internet"]="OK"
+              except Exception as e:
+                  r["internet"]=str(e)
+              try:
+                  boto3.client("s3").list_buckets()
+                  r["s3"]="OK"
+              except Exception as e:
+                  r["s3"]=str(e)
+              return r

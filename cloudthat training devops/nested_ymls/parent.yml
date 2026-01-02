@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Parent stack (Nested)
+
+Resources:
+  NetworkStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: network.yml
+
+#  SecurityStack:
+#    Type: AWS::CloudFormation::Stack
+#    Properties:
+#      TemplateURL: security.yml
+#      Parameters:
+#        VpcId: !GetAtt NetworkStack.Outputs.VpcId
+
+#  ComputeStack:
+#    Type: AWS::CloudFormation::Stack
+#    Properties:
+#      TemplateURL: compute.yml
+#      Parameters:
+#        PublicSubnetId: !GetAtt NetworkStack.Outputs.PublicSubnetId
+#        WebSGId: !GetAtt SecurityStack.Outputs.WebSGId
+
+#  LambdaTestStack:
+#    Type: AWS::CloudFormation::Stack
+#    Properties:
+#      TemplateURL: lambda-test.yml
+#      Parameters:
+#        PrivateSubnetId: !GetAtt NetworkStack.Outputs.PrivateSubnetId
+#        LambdaSGId: !GetAtt SecurityStack.Outputs.LambdaSGId

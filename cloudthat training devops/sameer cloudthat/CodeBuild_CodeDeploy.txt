@@ -1,0 +1,15 @@
+CodeBuild
+1. Create CodeBuild Project
+2. Include code+buildspec.yaml file in source e.g. codecommit
+3. Start the Build
+
+
+CodeDeploy
+1. Create an EC2 Instance with appropriate tag and role to access S3 for read
+2. Install Codedepoly Agent onto EC2
+3. Create CodeDeploy Application with EC2 Platform
+4. Create CodeDeploy Deployment group and identify EC2 Instance
+5. Create S3 Bucket and enable versioning onto identify
+6. Put the zip of code to s3 bucket through the command given in CODEDEPLOY.md file
+7. Create CodeDeploy Deployment with S3 revision
+9. observe the deployment
