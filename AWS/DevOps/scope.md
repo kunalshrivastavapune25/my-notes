@@ -33,8 +33,9 @@
 
 * **Frameworks:** Node.js and Django.
 * **Servers:** Apache (httpd).
-* **Caching/Database:** Redis.
+* **Caching/Database:** Redis.dynamodb
 * **Networking:** Amazon VPC.
+* **API Gateway** 
 
 ---
 
