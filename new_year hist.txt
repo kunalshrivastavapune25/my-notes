@@ -1,0 +1,31 @@
+dec 2025 -- mulshi (sahyadri) (gaurav harsh kunal)
+dec 2024 -- lonavala (bailey) (gaurav harsh kunal saurabh)
+dec 2023 -- mulshi (jaldurg) (gaurav harsh kunal)
+dec 2022 -- kamshet (gaurav kunal)
+dec 2021 -- lonavala (bailey) (gaurav harsh kunal ashu)
+dec 2020 -- only harsh shivansh (harsh kunal)
+dec 2019 -- cancel ghar me
+dec 2018 -- gaurav k ghar me didi aur bhai k saath (gaurav , kunal ,didi)
+dec 2017 -- Gaurav k ghar (gaurav kunal)
+dec 2016 -- Gaurav k ghar (gaurav kunal)
+dec 2015 -- West wing home (phd and sandeep gaurav kunal))
+dec 2014 -- gaurav k ghar (prince gaurav kunal)) 
+dec 2013 -- gaurav k ghar (bhatnagar gaurav  kunal)
+dec 2012 -- rajwada (gaurav kunal)
+dec 2011 -- balewadi (orchid) (gaurav kunal)
+
+
+AVWAP()
+pivot
+sd1
+sd2
+pivot points 
+
+
+
+
+=CONCATENATE(MONTH(A2),"-",DAY(A2), "-",MINUTE(A2),"-",HOUR(A2),"-",SECOND(A2),"-CALL-",AI2,"-",MONTH(AL2),"-",DAY(AL2), "-",MINUTE(AL2),"-",HOUR(AL2),"-",SECOND(AL2))
+
+
+delta
+theta
